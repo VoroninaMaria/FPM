@@ -1,0 +1,17 @@
+{
+  "development": {
+    "serverUrl": "http://localhost:5001/",
+    "clientUrl": "http://localhost:19006/",
+    "frontendUrl": "http://localhost:3000/"
+  },
+  "test": {
+    "serverUrl": "http://localhost:5002/",
+    "clientUrl": "http://localhost:19007/",
+    "frontendUrl": "http://localhost:3002/"
+  },
+  "production": {
+    "serverUrl": "https://api.petrolium.top/",
+    "clientUrl": "https://client.petrolium.top/",
+    "frontendUrl": "https://merchant.petrolium.top/"
+  }
+}

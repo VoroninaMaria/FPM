@@ -1,0 +1,576 @@
+.MuiButtonBase-root a:link {
+  background: rgb(232, 203, 192);
+  border-bottom: 1px solid #ddd;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 203, 192, 0.8722339277507878) 0%,
+    rgba(99, 111, 164, 0.7938025552017682) 100%
+  );
+}
+
+.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  margin-top: -50px;
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 100%,
+    rgba(255, 255, 253, 0.13273812943146013) 100%
+  );
+  background: rgb(0, 0, 0);
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+}
+
+.RaSidebar-fixed a:visited {
+  background: rgb(232, 203, 192);
+  border-bottom: 1px solid #ddd;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 203, 192, 0.8722339277507878) 0%,
+    rgba(99, 111, 164, 0.7938025552017682) 100%
+  );
+}
+.RaSidebar-fixed a {
+  border-bottom: 1px solid #ddd;
+}
+.RaSidebar-fixed a:focus {
+  background: rgb(232, 203, 192);
+  border-bottom: 1px solid #ddd;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 203, 192, 0.8722339277507878) 0%,
+    rgba(99, 111, 164, 0.7938025552017682) 100%
+  );
+  color: black;
+}
+.RaSidebar-fixed a:hover {
+  background: rgb(232, 203, 192);
+  border-bottom: 1px solid #ddd;
+  background: linear-gradient(
+    90deg,
+    rgba(232, 203, 192, 0.8722339277507878) 0%,
+    rgba(99, 111, 164, 0.7938025552017682) 100%
+  );
+}
+
+.css-9lo51-MuiDrawer-docked-RaSidebar-root .RaSidebar-fixed {
+  position: absolute;
+}
+
+.RaSidebar-fixed {
+  background: rgb(232, 203, 192);
+  background: linear-gradient(
+    90deg,
+    rgba(232, 203, 192, 0.656547653240984) 0%,
+    rgba(99, 111, 164, 0.5136905103838411) 100%
+  );
+}
+
+.MuiPaper-root.MuiAppBar-positionFixed {
+  background: rgb(255, 255, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 1) 100%,
+    rgba(255, 255, 253, 0.13273812943146013) 100%
+  );
+  background: rgb(0, 0, 0);
+  background: linear-gradient(to right, #1f1c2c, #928dab);
+}
+
+.RaDatagrid-tableWrapper tbody tr:nth-of-type(even) {
+  background: rgb(99, 111, 164);
+  background: linear-gradient(
+    90deg,
+    rgba(99, 111, 164, 0.12993700898328087) 0%,
+    rgba(232, 203, 192, 0.1411414907759979) 31%,
+    rgba(232, 203, 192, 0.15514709301689422) 73%,
+    rgba(99, 111, 164, 0.15234597256871496) 100%
+  );
+}
+
+.RaDatagrid-tableWrapper a {
+  color: rgba(70, 79, 121, 1);
+}
+.css-17tmrxl a {
+  color: rgba(70, 79, 121, 1);
+}
+.css-17tmrxl button {
+  color: rgba(70, 79, 121, 1);
+}
+.css-16zittn.MuiButton-sizeSmall {
+  color: rgba(70, 79, 121, 1);
+}
+.css-1n0ba4w .RaReferenceField-link span {
+  color: rgba(70, 79, 121, 1);
+}
+.react-json-view path {
+  color: rgba(70, 79, 121, 1);
+}
+.RaDatagrid-tableWrapper a {
+  color: black;
+}
+
+#loader {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  z-index: 1;
+  width: 100px;
+  height: 100px;
+  margin: -76px 0 0 -76px;
+  border: 16px solid #f3f3f3;
+  border-radius: 50%;
+  border-top: 16px solid #3498db;
+  -webkit-animation: spin 2s linear infinite;
+  animation: spin 2s linear infinite;
+}
+
+@-webkit-keyframes spin {
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.skip-button {
+  position: absolute;
+  display: inline-block;
+  cursor: pointer;
+  outline: none;
+  border: 0;
+  top: 50%;
+  vertical-align: middle;
+  text-decoration: none;
+  background: transparent;
+  padding: 0;
+  font-size: inherit;
+  font-family: inherit;
+}
+
+.skip-button {
+  width: 12rem;
+  height: auto;
+}
+
+button.skip-button .circle {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: relative;
+  display: block;
+  margin: 0;
+  width: 3rem;
+  height: 3rem;
+  background: linear-gradient(to right, #2b5876, #4e4376);
+  border-radius: 1.625rem;
+}
+
+button.skip-button .circle .icon {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  margin: auto;
+  background: #fff;
+}
+
+button.skip-button .circle .icon.arrow {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  left: 0.625rem;
+  width: 1.125rem;
+  height: 0.125rem;
+  background: none;
+}
+
+button.skip-button .circle .icon.arrow::before {
+  position: absolute;
+  content: "";
+  top: -0.29rem;
+  right: 0.0625rem;
+
+  width: 0.625rem;
+  height: 0.625rem;
+  border-top: 0.125rem solid #fff;
+  border-right: 0.125rem solid #fff;
+  transform: rotate(45deg);
+}
+
+button.skip-button .button-text {
+  transition: all 0.45s cubic-bezier(0.65, 0, 0.076, 1);
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 0.75rem 0;
+  margin: 0 0 0 1.85rem;
+  color: #282936;
+  font-weight: 700;
+  line-height: 1.6;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+button:hover .circle {
+  width: 100%;
+}
+
+button:hover .circle .icon.arrow {
+  background: #fff;
+  transform: translate(1rem, 0);
+}
+
+button:hover .button-text {
+  color: #fff;
+}
+
+#main-content
+  > div
+  > div.RaEdit-main
+  > div
+  > form
+  > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-16qrmh1-MuiToolbar-root-RaToolbar-root
+  > button {
+  border: 1px;
+  background: linear-gradient(
+    30deg,
+    rgba(86, 171, 47, 0.037500034193364895) 2%,
+    rgba(168, 224, 99, 0.04310227508972342) 100%
+  );
+  color: black;
+}
+
+.css-t039ty-MuiButtonBase-root-MuiButton-root-RaSaveButton-root.Mui-disabled {
+  background-color: white;
+}
+
+#main-content > div > div > div > form > div > button {
+  background: white;
+  width: 9em;
+  height: 3em;
+  color: black;
+  font-size: 15px;
+  font-family: inherit;
+  border: none;
+  position: absolute;
+  z-index: 1;
+}
+
+#main-content > div > div > div > form > div > button::before {
+  content: "";
+  width: 0;
+  border-radius: 4px;
+  height: 3em;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background: rgb(241, 39, 17);
+  background: linear-gradient(
+    30deg,
+    rgba(29, 151, 108, 0.46887258321297265) 0%,
+    rgba(147, 249, 185, 0.4660714627647934) 48%,
+    rgba(0, 0, 0, 0.4660714627647934) 100%
+  );
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
+}
+#main-content > div > div > div > form > div > button:hover::before {
+  width: 9em;
+}
+.button-save {
+  background: white;
+  width: 9em;
+  height: 3em;
+  font-size: 15px;
+  font-family: inherit;
+  border: none;
+  position: absolute;
+  z-index: 1;
+}
+
+.button-save::before {
+  content: "";
+  width: 0;
+  border-radius: 4px;
+  height: 3em;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  background: linear-gradient(
+    30deg,
+    rgba(29, 151, 108, 0.46887258321297265) 0%,
+    rgba(147, 249, 185, 0.4660714627647934) 48%,
+    rgba(0, 0, 0, 0.4660714627647934) 100%
+  );
+  transition: 0.5s ease;
+  display: block;
+  z-index: -1;
+}
+
+.button-save:hover::before {
+  width: 9em;
+}
+#main-content
+  > div
+  > div
+  > div.MuiPaper-root.MuiPaper-elevation.MuiPaper-rounded.MuiPaper-elevation1.MuiCard-root.RaList-content.css-bhp9pd-MuiPaper-root-MuiCard-root
+  > div
+  > div
+  > table
+  > tbody
+  > tr
+  > td
+  > a {
+  justify-content: flex-start;
+}
+
+.RaList-main a {
+  color: #291680;
+}
+
+.RaList-content {
+  background: rgba(245, 245, 245, 0.5024860285911239);
+}
+
+#main-content > div > div > div > div > div > table > tbody > tr > td > button {
+  justify-content: flex-start;
+}
+
+table {
+  background: rgba(218, 218, 218, 0.19996502018776263);
+}
+
+.button-show {
+  background-repeat: no-repeat;
+  width: fit-content;
+  height: 42px;
+  align-content: center;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.button-show::before {
+  content: "";
+  background: linear-gradient(
+    30deg,
+    rgba(189, 195, 199, 0.6901610986191351) 0%,
+    rgba(44, 62, 80, 0.6901610986191351) 100%
+  );
+  transition: 0.5s ease;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  z-index: -1;
+  display: inline-block;
+}
+
+.button-show:hover::before {
+  width: 100%;
+}
+
+.button-edit {
+  background-repeat: no-repeat;
+  width: fit-content;
+  height: 42px;
+  align-content: center;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.button-edit::before {
+  content: "";
+  background: linear-gradient(
+    30deg,
+    rgba(141, 150, 226, 0.5473039557619923) 63%,
+    rgba(63, 43, 150, 0.575315160243785) 100%
+  );
+  transition: 0.5s ease;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: width 700ms ease-in-out;
+  display: inline-block;
+}
+
+.button-edit:hover::before {
+  width: 100%;
+}
+
+.button-delete {
+  background-repeat: no-repeat;
+  width: fit-content;
+  height: 42px;
+  align-content: center;
+  z-index: 1;
+  overflow: hidden;
+  color: red;
+}
+
+.button-delete::before {
+  content: "";
+  background: linear-gradient(
+    30deg,
+    rgba(255, 251, 213, 0.8442227232689951) 0%,
+    rgba(227, 163, 151, 1) 72%,
+    rgba(178, 10, 44, 0.6033263647255778) 100%
+  );
+  transition: 0.5s ease;
+  width: 0;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: -1;
+  transition: width 700ms ease-in-out;
+  display: inline-block;
+}
+
+.button-delete:hover::before {
+  width: 100%;
+}
+#main-content > div > div > div > div > div > table > tbody > tr > td > a {
+  border-radius: 0%;
+}
+#main-content > div > div > div > div > div > table > tbody > tr > td > button {
+  border-radius: 0%;
+  color: #d10000;
+}
+
+#block_select_page_id {
+  width: 210px;
+}
+
+#root > div > div > div > div > main > div.RaSidebar-docked > div > div {
+  height: 100%;
+}
+#main-content > div > div > div > div > div > table > thead > tr > th {
+  background: rgba(99, 111, 164, 0.1271358885351015);
+}
+
+.page-preview-container {
+  flex: 3;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.block-preview-container {
+  flex: 7;
+  align-items: center;
+  justify-content: center;
+  display: flex;
+}
+
+.edit-container {
+  display: flex;
+}
+
+.css-4e85xd-RaTabbedShowLayout-root .RaTabbedShowLayout-content {
+  height: 83.5vh;
+}
+
+.p_container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+}
+
+@media (max-width: 768px) {
+  .css-1a69w1n-MuiStack-root {
+    height: 180vh;
+  }
+}
+
+#main-content
+  > div
+  > div.RaShow-main
+  > div
+  > div
+  > div.MuiTabs-root.css-1ujnqem-MuiTabs-root
+  > div
+  > div
+  > a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.show-tab.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
+  color: #291680;
+}
+
+#main-content
+  > div
+  > div.RaShow-main
+  > div
+  > div
+  > div.MuiTabs-root.css-1ujnqem-MuiTabs-root
+  > div
+  > span.css-1aquho2-MuiTabs-indicator {
+  background-color: #291680;
+}
+
+.block-edit-button {
+  align-self: center;
+  background-color: #fff;
+  background-image: none;
+  background-position: 0 90%;
+  background-repeat: repeat no-repeat;
+  background-size: 4px 3px;
+  border-radius: 15px 225px 255px 15px 15px 255px 225px 15px;
+  border-style: solid;
+  border-width: 2px;
+  box-shadow: rgba(0, 0, 0, 0.2) 7px 20px 17px -10px;
+  box-sizing: border-box;
+  color: #41403e;
+  cursor: pointer;
+  display: inline-block;
+  font-family: Neucha, sans-serif;
+  font-size: 1rem;
+  line-height: 23px;
+  outline: none;
+  padding: 0.75rem 1.35rem;
+  margin-top: 10px;
+  width: fit-content;
+  text-decoration: none;
+  transition: all 235ms ease-in-out;
+  border-bottom-left-radius: 15px 255px;
+  border-bottom-right-radius: 225px 15px;
+  border-top-left-radius: 255px 15px;
+  border-top-right-radius: 15px 225px;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+}
+
+.block-edit-button:hover {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 8px -5px;
+  transform: translate3d(0, 2px, 0);
+}
+
+.block-edit-button:focus {
+  box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
+}
+// #root > div > div > div > div > main > div > div > div {
+//   position: inherit;
+// }
+
+// #root > div > div > div > div > main > div > div > div {
+//   position: inherit;
+// }
+#main-content > div > div > div > div > div > table > thead > tr > th {
+  background: rgba(99, 111, 164, 0.127);
+  position: relative;
+}

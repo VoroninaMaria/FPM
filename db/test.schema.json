@@ -1,0 +1,902 @@
+{
+  "admins": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "encrypted_password": {
+      "type": "character varying",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "login": {
+      "type": "character varying",
+      "default": null
+    },
+    "session_identifier": {
+      "type": "character varying",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "blocks": {
+    "blocks": {
+      "type": "integer",
+      "default": "0"
+    },
+    "container_styles": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "page_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "position": {
+      "type": "integer",
+      "default": "0"
+    },
+    "props": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "styles": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "type": {
+      "type": "character varying",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "brand_merchants": {
+    "brand_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "config": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "brands": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "default_config": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "name": {
+      "type": "USER-DEFINED",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "chat_messages": {
+    "author": {
+      "type": "text",
+      "default": null
+    },
+    "client_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "message": {
+      "type": "character varying",
+      "default": null
+    },
+    "reply_to": {
+      "type": "uuid",
+      "default": null
+    },
+    "status": {
+      "type": "integer",
+      "default": "0"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "client_categories": {
+    "category_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "client_changes": {
+    "client_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "field_name": {
+      "type": "character varying",
+      "default": null
+    },
+    "id": {
+      "type": "integer",
+      "default": "nextval('client_changes_id_seq'::regclass)"
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'pending'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "value": {
+      "type": "character varying",
+      "default": null
+    }
+  },
+  "client_promotions": {
+    "client_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "promotion_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "status": {
+      "type": "integer",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "client_tags": {
+    "client_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "integer",
+      "default": "nextval('client_tags_id_seq'::regclass)"
+    },
+    "tag_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "clients": {
+    "category_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "company_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "email": {
+      "type": "character varying",
+      "default": null
+    },
+    "encrypted_password": {
+      "type": "character varying",
+      "default": null
+    },
+    "first_name": {
+      "type": "character varying",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "id_clients": {
+      "type": "integer",
+      "default": null
+    },
+    "last_name": {
+      "type": "character varying",
+      "default": null
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "phone": {
+      "type": "character varying",
+      "default": null
+    },
+    "session_identifier": {
+      "type": "character varying",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'initial'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "companies": {
+    "active": {
+      "type": "boolean",
+      "default": "true"
+    },
+    "brand_merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "external_id": {
+      "type": "character varying",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "designs": {
+    "authenticated_page_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "default_page_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "error_page_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "loader_page_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "styles": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "files": {
+    "account_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "account_type": {
+      "type": "text",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "data": {
+      "type": "bytea",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "mimetype": {
+      "type": "character varying",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "size": {
+      "type": "integer",
+      "default": "0"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "gas_brand_merchants": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "gas_brand_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "gas_brands": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "logo_file_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "gbm_fuels": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "discount_price": {
+      "type": "integer",
+      "default": null
+    },
+    "gas_brand_merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "regular_price": {
+      "type": "integer",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "managers": {
+    "client_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "company_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "merchant_payment_gateways": {
+    "config": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "default": {
+      "type": "boolean",
+      "default": "false"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "payment_gateway_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "merchants": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "default_category_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "design_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "encrypted_password": {
+      "type": "character varying",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "login": {
+      "type": "character varying",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "newbie": {
+      "type": "boolean",
+      "default": "true"
+    },
+    "plugins": {
+      "type": "json",
+      "default": "'{\"designEditor\":false}'::json"
+    },
+    "session_identifier": {
+      "type": "character varying",
+      "default": null
+    },
+    "sms_fallback": {
+      "type": "boolean",
+      "default": "false"
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "storage_capacity": {
+      "type": "integer",
+      "default": "1000"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "migrations": {
+    "batch": {
+      "type": "integer",
+      "default": null
+    },
+    "id": {
+      "type": "integer",
+      "default": "nextval('migrations_id_seq'::regclass)"
+    },
+    "migration_time": {
+      "type": "timestamp with time zone",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    }
+  },
+  "migrations_lock": {
+    "index": {
+      "type": "integer",
+      "default": "nextval('migrations_lock_index_seq'::regclass)"
+    },
+    "is_locked": {
+      "type": "integer",
+      "default": null
+    }
+  },
+  "notification_logs": {
+    "account_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "account_type": {
+      "type": "text",
+      "default": null
+    },
+    "code": {
+      "type": "character varying",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "message": {
+      "type": "text",
+      "default": null
+    },
+    "response": {
+      "type": "json",
+      "default": null
+    },
+    "sms_service_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "pages": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "design_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "styles": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "payment_gateways": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "payment_truncs": {
+    "amount": {
+      "type": "integer",
+      "default": null
+    },
+    "client_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "description": {
+      "type": "character varying",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_payment_gateway_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "short_description": {
+      "type": "character varying",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": null
+    },
+    "title": {
+      "type": "character varying",
+      "default": null
+    },
+    "transactions": {
+      "type": "json",
+      "default": "'[]'::json"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "promotions": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "end_date": {
+      "type": "timestamp with time zone",
+      "default": null
+    },
+    "file_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "start_date": {
+      "type": "timestamp with time zone",
+      "default": null
+    },
+    "text": {
+      "type": "text",
+      "default": null
+    },
+    "title": {
+      "type": "character varying",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "sms_services": {
+    "balance": {
+      "type": "real",
+      "default": null
+    },
+    "config": {
+      "type": "json",
+      "default": "'{}'::json"
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "service_name": {
+      "type": "character varying",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'active'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "tags": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  }
+}
