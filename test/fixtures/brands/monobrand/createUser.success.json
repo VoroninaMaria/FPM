@@ -1,0 +1,17 @@
+{
+  "status": 200,
+  "headers": {
+    "server": "nginx",
+    "date": "Wed, 28 Jun 2023 17:50:20 GMT",
+    "content-type": "application/json; charset=UTF-8",
+    "transfer-encoding": "chunked",
+    "connection": "close",
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET, POST, PUT, DELETE",
+    "x-ray": "p529:0.000/wn32683:0.010/wa32683:D=7674"
+  },
+  "data": {
+    "result": true,
+    "data": { "user": { "uuid": "3e3f29c7-6f7e-48aa-bb45-375247110ba9" } }
+  }
+}
