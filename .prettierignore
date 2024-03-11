@@ -1,0 +1,11 @@
+node_modules
+merchant/build
+merchant/node_modules
+admin/node_modules
+client/node_modules
+admin/build
+client/node_modules
+client/.expo
+skeleton_mobile/node_modules
+skeleton_mobile/android
+skeleton_mobile/ios

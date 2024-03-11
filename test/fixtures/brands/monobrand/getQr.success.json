@@ -1,0 +1,27 @@
+{
+  "status": 200,
+  "headers": {
+    "server": "nginx",
+    "date": "Wed, 28 Jun 2023 17:50:21 GMT",
+    "content-type": "application/json; charset=UTF-8",
+    "transfer-encoding": "chunked",
+    "connection": "close",
+    "access-control-allow-origin": "*",
+    "access-control-allow-methods": "GET, POST, PUT, DELETE",
+    "x-ray": "p529:0.210/wn32683:0.210/wa32683:D=203155"
+  },
+  "data": {
+    "result": true,
+    "data": {
+      "card": {
+        "qr": {
+          "code": "10377+0047581D49A92",
+          "title": "10377+0047581",
+          "expire": 1687974681,
+          "lifetime": 60,
+          "pin": "0000"
+        }
+      }
+    }
+  }
+}

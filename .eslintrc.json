@@ -1,0 +1,34 @@
+{
+  "env": {
+    "es6": true,
+    "node": true,
+    "mocha": true
+  },
+  "ignorePatterns": [
+    "dist",
+    "merchant/build",
+    "admin/build",
+    "node_modules",
+    "merchant/node_modules",
+    "admin/node_modules"
+  ],
+  "extends": ["eslint-config-leapfrog", "prettier"],
+  "parserOptions": {
+    "ecmaVersion": 2022,
+    "sourceType": "module"
+  },
+  "rules": {
+    "newline-before-return": "off",
+    "indent": ["error", 2, { "SwitchCase": 1 }],
+    "require-jsdoc": "off",
+    "no-await-in-loop": "off",
+    "require-await": "off",
+    "semi": ["error", "always"],
+    "camelcase": [
+      "off",
+      {
+        "properties": "always"
+      }
+    ]
+  }
+}
