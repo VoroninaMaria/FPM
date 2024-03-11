@@ -1,0 +1,10 @@
+import { addTimestamps, addPrimaryUuid } from "../shared/index.js";
+
+export const up = (knex) =>
+  knex.schema.createTable('table_name', table => {
+    addPrimaryUuid(knex, table);
+    addTimestamps(knex, table);
+  });
+
+export const down = (knex) =>
+  knex.schema.dropTable('table_name');

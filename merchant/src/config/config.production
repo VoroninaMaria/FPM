@@ -1,0 +1,7 @@
+{
+  "production": {
+    "serverUrl": "https://api.petrolium.top/",
+    "clientUrl": "https://client.petrolium.top/",
+    "frontendUrl": "https://merchant.petrolium.top/",
+  }
+}

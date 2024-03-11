@@ -1,0 +1,15 @@
+export const seed = (knex) => 
+  knex('table_name')
+    .del()
+    .then(() => {
+      return knex('table_name').insert([
+        {
+          colName: 'rowValue',
+          colName2: 'rowValue'
+        },
+        {
+          colName: 'rowValue',
+          colName2: 'rowValue'
+        }
+      ]);
+    });

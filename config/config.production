@@ -1,0 +1,21 @@
+{  
+  "production": {
+    "encryption":{
+      "saltRounds": 10
+    },
+    "host": "0.0.0.0",
+    "proto":"https",
+    "domain": "api.petrolium.top",
+    "port": 5111,
+    "database": {
+      "client": "pg",
+      "connection": {
+        "host": "postgres",
+        "user": "postgres",
+        "password": "NopsheckhunRouWag",
+        "database": "petrolium_mobile_back_prod"
+      }
+    },
+    "jwtSecret": "my_very_secret_key"
+  }
+}

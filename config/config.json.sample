@@ -1,0 +1,44 @@
+{
+  "development": {
+    "assetsUrl": "http://localhost:5001/files",
+    "encryption":{
+      "saltRounds": 10
+    },
+    "host": "0.0.0.0",
+    "domain": "localhost",
+    "port": 5001,
+    "redis": "redis://REDIS_TEST:6379",
+    "database": {
+      "client": "pg",
+      "connection": {
+        "host": "PG_TEST",
+        "port": 5432,
+        "user": "postgres",
+        "database": "petrolium_mobile_back_dev",
+        "password": "postgres"
+      }
+    },
+    "jwtSecret": "my_very_secret_key"
+  },
+
+  "test": {
+    "assetsUrl": "http://localhost:5002/files",
+    "encryption":{
+      "saltRounds": 1
+    },
+    "host": "0.0.0.0",
+    "port": 5002,
+    "redis": "redis://REDIS_TEST:6379",
+    "database": {
+      "client": "pg",
+      "connection": {
+        "host": "PG_TEST",
+        "port": 5432,
+        "user": "postgres",
+        "database": "petrolium_mobile_back_test",
+        "password":"postgres"
+      }
+    },
+    "jwtSecret": "my_very_secret_key"
+  }
+}
