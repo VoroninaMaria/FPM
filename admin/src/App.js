@@ -7,16 +7,9 @@ import {
   PictureAsPdf,
   Tag,
   Class,
-  Brush,
-  Description,
-  Widgets,
-  NotificationsActive,
-  Groups,
   AccountBox,
   Diversity3,
   Work,
-  Business,
-  Face,
   Payments,
 } from "@mui/icons-material/index.js";
 
@@ -65,14 +58,6 @@ export const App = () => {
         icon={Diversity3}
       />
       <Resource
-        name="Brand"
-        list={Pages.Brand.List}
-        show={Pages.Brand.Show}
-        edit={Pages.Brand.Edit}
-        create={Pages.Brand.Create}
-        icon={Work}
-      />
-      <Resource
         name="PaymentGateway"
         list={Pages.PaymentGateway.List}
         show={Pages.PaymentGateway.Show}
@@ -87,14 +72,6 @@ export const App = () => {
         edit={Pages.MerchantPaymentGateway.Edit}
         create={Pages.MerchantPaymentGateway.Create}
         icon={Payments}
-      />
-      <Resource
-        name="BrandMerchant"
-        list={Pages.BrandMerchant.List}
-        show={Pages.BrandMerchant.Show}
-        edit={Pages.BrandMerchant.Edit}
-        create={Pages.BrandMerchant.Create}
-        icon={Groups}
       />
       <Resource
         name="SmsService"
@@ -112,30 +89,6 @@ export const App = () => {
         icon={Class}
       />
       <Resource
-        name="Design"
-        list={Pages.Design.List}
-        show={Pages.Design.Show}
-        edit={Pages.Design.Edit}
-        create={Pages.Design.Create}
-        icon={Brush}
-      />
-      <Resource
-        name="Page"
-        create={Pages.Page.Create}
-        show={Pages.Page.Show}
-        list={Pages.Page.List}
-        edit={Pages.Page.Edit}
-        icon={Description}
-      />
-      <Resource
-        name="Block"
-        list={Pages.Block.List}
-        show={Pages.Block.Show}
-        edit={Pages.Block.Edit}
-        create={Pages.Block.Create}
-        icon={Widgets}
-      />
-      <Resource
         name="Tag"
         list={Pages.Tag.List}
         show={Pages.Tag.Show}
@@ -149,44 +102,6 @@ export const App = () => {
         show={Pages.File.Show}
         create={Pages.File.Create}
         icon={PictureAsPdf}
-      />
-      <Resource
-        name="Promotion"
-        list={Pages.Promotion.List}
-        show={Pages.Promotion.Show}
-        edit={Pages.Promotion.Edit}
-        create={Pages.Promotion.Create}
-        icon={NotificationsActive}
-      />
-      <Resource
-        name="Company"
-        list={Pages.Company.List}
-        show={Pages.Company.Show}
-        icon={Business}
-      />
-      <Resource
-        name="Manager"
-        list={Pages.Manager.List}
-        create={Pages.Manager.Create}
-        show={Pages.Manager.Show}
-        icon={Face}
-      />
-      <Resource
-        name="GasBrand"
-        list={Pages.GasBrand.List}
-        create={Pages.GasBrand.Create}
-        show={Pages.GasBrand.Show}
-        edit={Pages.GasBrand.Edit}
-        icon={Face}
-      />
-
-      <Resource
-        name="GasBrandMerchant"
-        list={Pages.GasBrandMerchant.List}
-        create={Pages.GasBrandMerchant.Create}
-        show={Pages.GasBrandMerchant.Show}
-        edit={Pages.GasBrandMerchant.Edit}
-        icon={Face}
       />
     </Admin>
   );
