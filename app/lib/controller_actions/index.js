@@ -6,8 +6,6 @@ import sharedLogin from "./shared_login.js";
 import clientResetPassword from "./client_reset_password.js";
 import clientConfirmResetPassword from "./client_confirm_reset_password.js";
 import checkAuth from "./checkAuth.js";
-import serveDesigns from "./serveDesigns.js";
-import serveDesignsMD5 from "./serveDesignsMD5.js";
 import clientCheckAuth from "./clientCheckAuth.js";
 import clientResendPassword from "./client_resend_password.js";
 
@@ -19,9 +17,7 @@ export {
   confirmClient,
   ping,
   register,
-  serveDesigns,
   sharedLogin,
-  serveDesignsMD5,
   clientCheckAuth,
   clientResendPassword,
 };

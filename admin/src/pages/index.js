@@ -5,8 +5,6 @@ import SmsService from "./SmsService/index.js";
 import Category from "./Category/index.js";
 import Tag from "./Tag/index.js";
 import File from "./File/index.js";
-import PaymentGateway from "./PaymentGateway/index.js";
-import MerchantPaymentGateway from "./MerchantPaymentGateway/index.js";
 
 export default {
   Admin,
@@ -14,8 +12,6 @@ export default {
   Client,
   File,
   Merchant,
-  PaymentGateway,
   SmsService,
   Tag,
-  MerchantPaymentGateway,
 };

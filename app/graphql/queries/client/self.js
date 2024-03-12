@@ -1,4 +1,3 @@
-import { Datex } from "@local/app/connectors/brands/index.js";
 import { Database } from "@local/lib/index.js";
 import { Client } from "@local/graphql/types/index.js";
 import { GraphQLError } from "graphql";
@@ -37,35 +36,6 @@ const self = {
       .catch(() => {
         throw new GraphQLError("Forbidden");
       });
-
-    if (merchant.plugins.datex) {
-      const datexBrand = await Database("brands")
-        .where({ name: "Datex" })
-        .first()
-        .catch(() => {
-          throw new GraphQLError("Forbidden");
-        });
-
-      const dtxMerchantBrand = await Database("brand_merchants")
-        .where({ merchant_id: merchant.id, brand_id: datexBrand.id })
-        .first()
-        .catch(() => {
-          throw new GraphQLError("Forbidden");
-        });
-
-      const datex = new Datex(dtxMerchantBrand.config);
-
-      const datexClient = await datex.getClient(client.phone);
-
-      await datex.close();
-
-      return {
-        id_clients: datexClient.id_clients,
-        ...datexClient,
-        entity: datexClient.id_form_property,
-        ...clientInfo,
-      };
-    }
 
     return clientInfo;
   },

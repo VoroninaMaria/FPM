@@ -9,8 +9,6 @@ import {
   Class,
   AccountBox,
   Diversity3,
-  Work,
-  Payments,
 } from "@mui/icons-material/index.js";
 
 import Pages from "./pages/index.js";
@@ -56,22 +54,6 @@ export const App = () => {
         show={Pages.Merchant.Show}
         edit={Pages.Merchant.Edit}
         icon={Diversity3}
-      />
-      <Resource
-        name="PaymentGateway"
-        list={Pages.PaymentGateway.List}
-        show={Pages.PaymentGateway.Show}
-        edit={Pages.PaymentGateway.Edit}
-        create={Pages.PaymentGateway.Create}
-        icon={Work}
-      />
-      <Resource
-        name="MerchantPaymentGateway"
-        list={Pages.MerchantPaymentGateway.List}
-        show={Pages.MerchantPaymentGateway.Show}
-        edit={Pages.MerchantPaymentGateway.Edit}
-        create={Pages.MerchantPaymentGateway.Create}
-        icon={Payments}
       />
       <Resource
         name="SmsService"

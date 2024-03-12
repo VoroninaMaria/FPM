@@ -6,7 +6,6 @@ import { files } from "./shared/index.js";
 import expressWs from "express-ws";
 import { onConnection } from "./ws.js";
 import callbacks from "./callbacks/index.js";
-import pgwstRouter from "./pgws/index.js";
 
 const router = express.Router();
 
@@ -17,7 +16,6 @@ router.use("/api/admin", adminRouter);
 router.use("/api/merchant", merchantRouter);
 router.get("/files/:id", files);
 router.use("/api/callbacks", callbacks);
-router.use("/api/pgws", pgwstRouter);
 router.ws("/ws/merchant", (ws, req) => onConnection(ws, req, "merchants"));
 router.ws("/ws/client", (ws, req) => onConnection(ws, req, "clients"));
 router.use(express.static("public"));
