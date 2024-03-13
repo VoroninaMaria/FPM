@@ -9,10 +9,9 @@ const authProvider = {
   login: ({ username, password }) =>
     webClient()
       .post("/api/merchant/auth/login", { login: username, password })
-      .then(({ data: { token, id, plugins } }) => {
+      .then(({ data: { token, id } }) => {
         localStorage.setItem("token", token);
         localStorage.setItem("id", id);
-        localStorage.setItem("plugins", plugins);
         window.dispatchEvent(loginEvent);
       })
       .catch((error) => {

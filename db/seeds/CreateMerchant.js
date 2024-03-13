@@ -7,13 +7,11 @@ export const seed = async (knex) => {
         name: "uklon",
         encrypted_password: await encryptPassword("123123"),
         login: "uklon",
-        plugins: { designEditor: true },
       },
       {
         name: "uber",
         encrypted_password: await encryptPassword("123123"),
         login: "uber",
-        plugins: { designEditor: true },
       },
       {
         name: "bolt",

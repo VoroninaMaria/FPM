@@ -6,9 +6,6 @@ import Category from "./Category/index.js";
 import Tag from "./Tag/index.js";
 import File from "./File/index.js";
 import Dashboard from "./Dashboard/index.js";
-import Transaction from "./Transaction/index.js";
-import MerchantPaymentGateway from "./MerchantPaymentGateway/index.js";
-import Trunc from "./Trunc/index.js";
 
 export default {
   Chat,
@@ -19,7 +16,4 @@ export default {
   Tag,
   File,
   Dashboard,
-  Transaction,
-  MerchantPaymentGateway,
-  Trunc,
 };

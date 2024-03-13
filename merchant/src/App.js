@@ -9,7 +9,7 @@ import {
   Tag,
   Class,
   AccountBox,
-  AccountBalance,
+  // AccountBalance,
 } from "@mui/icons-material/index.js";
 
 import Pages from "./pages/index.js";
@@ -50,14 +50,14 @@ export const App = () => {
         icon={People}
       />
 
-      <Resource
-        name="MerchantPaymentGateway"
-        list={Pages.MerchantPaymentGateway.List}
-        show={Pages.MerchantPaymentGateway.Show}
-        edit={Pages.MerchantPaymentGateway.Edit}
-        create={Pages.MerchantPaymentGateway.Create}
-        icon={AccountBalance}
-      />
+      {/* <Resource*/}
+      {/*  name="MerchantPaymentGateway"*/}
+      {/*  list={Pages.MerchantPaymentGateway.List}*/}
+      {/*  show={Pages.MerchantPaymentGateway.Show}*/}
+      {/*  edit={Pages.MerchantPaymentGateway.Edit}*/}
+      {/*  create={Pages.MerchantPaymentGateway.Create}*/}
+      {/*  icon={AccountBalance}*/}
+      {/* />*/}
 
       <Resource
         name="SmsService"

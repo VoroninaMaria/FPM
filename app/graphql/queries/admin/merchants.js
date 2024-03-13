@@ -14,21 +14,6 @@ const Merchant = {
     Database("merchants")
       .where({ id })
       .first()
-      .then(({ plugins, ...merchant }) => {
-        if (plugins.datex) {
-          const filteredPlugins = Object.fromEntries(
-            Object.entries(plugins).filter(
-              ([key, datex]) => key && datex === true
-            )
-          );
-
-          return {
-            plugins: filteredPlugins,
-            ...merchant,
-          };
-        }
-        return { plugins, ...merchant };
-      })
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),
@@ -57,20 +42,6 @@ const allMerchants = {
       .limit(perPage)
       .offset(page * perPage)
       .orderBy(sortField, sortOrder)
-      .then((merchants) => {
-        return merchants.map(({ plugins, ...merchant }) => {
-          const filteredPlugins = Object.fromEntries(
-            Object.entries(plugins).filter(
-              ([key, value]) => key && value === true
-            )
-          );
-
-          return {
-            plugins: filteredPlugins,
-            ...merchant,
-          };
-        });
-      })
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),

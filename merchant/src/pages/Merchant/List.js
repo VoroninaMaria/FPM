@@ -16,14 +16,6 @@ import React from "react";
 const listMerchants = () => {
   const t = useTranslate();
 
-  const [designEditorEnabled, setDesignEditorEnabled] = React.useState(false);
-
-  React.useEffect(() => {
-    const plugins = JSON.parse(localStorage.getItem("plugins"));
-
-    setDesignEditorEnabled(plugins.designEditor);
-  });
-
   return (
     <List actions={<TopToolbar />}>
       <Datagrid bulkActionButtons={false}>
@@ -36,11 +28,9 @@ const listMerchants = () => {
           }
         />
         <NumberField source="storage_capacity" />
-        {designEditorEnabled && (
-          <ReferenceField source="design_id" reference="Design" link="show">
-            <TextField source="name" />
-          </ReferenceField>
-        )}
+        <ReferenceField source="design_id" reference="Design" link="show">
+          <TextField source="name" />
+        </ReferenceField>
         <TextField source="newbie" />
         <DateField source="created_at" />
         <DateField source="updated_at" />

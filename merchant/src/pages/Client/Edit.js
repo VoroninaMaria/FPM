@@ -13,8 +13,6 @@ import {
   required,
   number,
   email,
-  useNotify,
-  useGetOne,
 } from "react-admin";
 import {
   CLIENT_STATUSES,
@@ -24,61 +22,34 @@ import { CustomToolbar, Title } from "../../shared/components/index.js";
 
 const ClientCategory = () => {
   const { record } = useEditContext();
-  const notify = useNotify();
-  const { data: merchant, error } = useGetOne("Merchant", {
-    id: record.merchant_id,
-  });
 
-  if (error) {
-    return notify(`resources.notifications.errors.${error.message}`, {
-      type: "error",
-    });
-  }
-
-  if (!error && merchant?.plugins.datex === false) {
-    return (
-      <ReferenceInput
-        source="category_id"
-        reference="Category"
-        filter={{
-          merchant_id: record.merchant_id,
-        }}
-      >
-        <SelectInput optionText="name" optionValue="id" />
-      </ReferenceInput>
-    );
-  }
-  return;
+  return (
+    <ReferenceInput
+      source="category_id"
+      reference="Category"
+      filter={{
+        merchant_id: record.merchant_id,
+      }}
+    >
+      <SelectInput optionText="name" optionValue="id" />
+    </ReferenceInput>
+  );
 };
 
 const ClientTags = () => {
   const { record } = useEditContext();
-  const notify = useNotify();
-  const { data: merchant, error } = useGetOne("Merchant", {
-    id: record.merchant_id,
-  });
 
-  if (error) {
-    return notify(`resources.notifications.errors.${error.message}`, {
-      type: "error",
-    });
-  }
-
-  if (!error && merchant?.plugins.datex === false) {
-    return (
-      <ReferenceArrayInput
-        source="tag_ids"
-        reference="Tag"
-        filter={{
-          merchant_id: record.merchant_id,
-        }}
-      >
-        <SelectArrayInput optionText="name" optionValue="id" />
-      </ReferenceArrayInput>
-    );
-  }
-
-  return;
+  return (
+    <ReferenceArrayInput
+      source="tag_ids"
+      reference="Tag"
+      filter={{
+        merchant_id: record.merchant_id,
+      }}
+    >
+      <SelectArrayInput optionText="name" optionValue="id" />
+    </ReferenceArrayInput>
+  );
 };
 
 const editClient = () => (
@@ -97,8 +68,6 @@ const editClient = () => (
         />
         <TextInput inputProps={{ maxLength: 64 }} source="first_name" />
         <TextInput inputProps={{ maxLength: 64 }} source="last_name" />
-        <TextInput inputProps={{ maxLength: 64 }} source="city" />
-        <TextInput inputProps={{ maxLength: 64 }} source="address" />
         <TextInput
           helperText="380000000000"
           inputProps={{ maxLength: 12 }}

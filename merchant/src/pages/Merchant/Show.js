@@ -17,14 +17,6 @@ import {
 const showMerchant = () => {
   const t = useTranslate();
 
-  const [designEditorEnabled, setDesignEditorEnabled] = React.useState(false);
-
-  React.useEffect(() => {
-    const plugins = JSON.parse(localStorage.getItem("plugins"));
-
-    setDesignEditorEnabled(plugins.designEditor);
-  });
-
   return (
     <Show title={<Title source="name" />} actions={<ShowOnlyTopToolbar />}>
       <SimpleShowLayout>
@@ -37,11 +29,9 @@ const showMerchant = () => {
           }
         />
         <NumberField source="storage_capacity" />
-        {designEditorEnabled && (
-          <ReferenceField source="design_id" reference="Design" link="show">
-            <TextField source="name" />
-          </ReferenceField>
-        )}
+        <ReferenceField source="design_id" reference="Design" link="show">
+          <TextField source="name" />
+        </ReferenceField>
         <DateField source="created_at" />
         <DateField source="updated_at" />
       </SimpleShowLayout>

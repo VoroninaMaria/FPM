@@ -12,7 +12,6 @@ import {
   Title,
   ShowOnlyTopToolbar,
 } from "../../shared/components/index.js";
-import { JsonField } from "react-admin-json-view";
 
 const showMerchant = () => {
   const t = useTranslate();
@@ -32,19 +31,6 @@ const showMerchant = () => {
           <TextField source="name" />
         </ReferenceField>
         <NumberField source="storage_capacity" />
-        <JsonField
-          label="resources.Merchant.source.plugins"
-          source="plugins"
-          reactJsonOptions={{
-            name: null,
-            sortKeys: true,
-            collapsed: true,
-            quotesOnKeys: false,
-            enableClipboard: false,
-            displayDataTypes: false,
-          }}
-          sortable={false}
-        />
         <DateField source="created_at" />
         <DateField source="updated_at" />
       </SimpleShowLayout>
