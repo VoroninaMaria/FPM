@@ -68,6 +68,24 @@ export default yup.object({
             });
         }),
     }),
+  discount_id: yup
+    .string()
+    .notRequired()
+    .when({
+      is: (exists) => !!exists,
+      then: (rule) =>
+        rule.test("present", "discount_not_found", function (id) {
+          const { merchant_id } = this.parent;
+
+          return Database("discounts")
+            .where({ id, merchant_id })
+            .first()
+            .then((discount) => discount)
+            .catch(() => {
+              throw new GraphQLError("Forbidden");
+            });
+        }),
+    }),
   tag_ids: yup
     .array()
     .of(yup.string())
