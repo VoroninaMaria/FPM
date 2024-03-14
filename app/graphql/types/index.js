@@ -17,3 +17,5 @@ export { default as TagFilter } from "./TagFilter.js";
 export { default as File } from "./File.js";
 export { default as FileFilter } from "./FileFilter.js";
 export { default as ClientChange } from "./ClientChange.js";
+export { default as Discount } from "./Discount.js";
+export { default as DiscountFilter } from "./DiscountFilter.js";

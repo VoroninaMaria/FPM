@@ -85,6 +85,14 @@ export const App = () => {
         create={Pages.File.Create}
         icon={PictureAsPdf}
       />
+      <Resource
+        name="Discount"
+        list={Pages.Discount.List}
+        show={Pages.Discount.Show}
+        edit={Pages.Discount.Edit}
+        create={Pages.Discount.Create}
+        icon={PictureAsPdf}
+      />
     </Admin>
   );
 };
