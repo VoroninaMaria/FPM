@@ -12,6 +12,9 @@ import createClientValidation from "./createClientValidation.js";
 import updateTagValidation from "./updateTagValidation.js";
 import deleteTagValidation from "./deleteTagValidation.js";
 import deleteFileValidation from "./deleteFileValidation.js";
+import deleteDiscountValidation from "./deleteDiscountValidation.js";
+import createDiscountValidation from "./createDiscountValidation.js";
+import updateDiscountValidation from "./updateDiscountValidation.js";
 
 export {
   createFileValidation,
@@ -28,4 +31,7 @@ export {
   updateTagValidation,
   deleteTagValidation,
   deleteFileValidation,
+  deleteDiscountValidation,
+  createDiscountValidation,
+  updateDiscountValidation,
 };

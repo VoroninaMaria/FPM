@@ -11,6 +11,9 @@ import deleteCategory from "./deleteCategory.js";
 import createTag from "./createTag.js";
 import updateTag from "./updateTag.js";
 import deleteFile from "./deleteFile.js";
+import createDiscount from "./createDiscount.js";
+import updateDiscount from "./updateDiscount.js";
+import deleteDiscount from "./deleteDiscount.js";
 
 export default {
   createFile,
@@ -26,4 +29,7 @@ export default {
   updateTag,
   deleteTag,
   deleteFile,
+  deleteDiscount,
+  updateDiscount,
+  createDiscount,
 };

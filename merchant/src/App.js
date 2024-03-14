@@ -50,15 +50,6 @@ export const App = () => {
         icon={People}
       />
 
-      {/* <Resource*/}
-      {/*  name="MerchantPaymentGateway"*/}
-      {/*  list={Pages.MerchantPaymentGateway.List}*/}
-      {/*  show={Pages.MerchantPaymentGateway.Show}*/}
-      {/*  edit={Pages.MerchantPaymentGateway.Edit}*/}
-      {/*  create={Pages.MerchantPaymentGateway.Create}*/}
-      {/*  icon={AccountBalance}*/}
-      {/* />*/}
-
       <Resource
         name="SmsService"
         create={Pages.SmsService.Create}
@@ -89,6 +80,15 @@ export const App = () => {
         list={Pages.File.List}
         show={Pages.File.Show}
         create={Pages.File.Create}
+        icon={PictureAsPdf}
+      />
+
+      <Resource
+        name="Discount"
+        list={Pages.Discount.List}
+        show={Pages.Discount.Show}
+        edit={Pages.Discount.Edit}
+        create={Pages.Discount.Create}
         icon={PictureAsPdf}
       />
 
