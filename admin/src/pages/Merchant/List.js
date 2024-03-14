@@ -7,7 +7,6 @@ import {
   ShowButton,
   EditButton,
   NumberField,
-  ReferenceField,
 } from "react-admin";
 import {
   DateField,
@@ -28,9 +27,6 @@ const listMerchants = () => {
             t(`resources.Merchant.source.status.${record.status}`)
           }
         />
-        <ReferenceField source="design_id" reference="Design" link="show">
-          <TextField source="name" />
-        </ReferenceField>
         <NumberField source="storage_capacity" />
         <DateField source="created_at" />
         <DateField source="updated_at" />

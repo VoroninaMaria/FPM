@@ -8,7 +8,6 @@ import {
   EditButton,
   NumberField,
   TopToolbar,
-  ReferenceField,
 } from "react-admin";
 import { DateField } from "../../shared/components/index.js";
 import React from "react";
@@ -28,10 +27,6 @@ const listMerchants = () => {
           }
         />
         <NumberField source="storage_capacity" />
-        <ReferenceField source="design_id" reference="Design" link="show">
-          <TextField source="name" />
-        </ReferenceField>
-        <TextField source="newbie" />
         <DateField source="created_at" />
         <DateField source="updated_at" />
         <ShowButton className="button-show" />

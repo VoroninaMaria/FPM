@@ -5,8 +5,6 @@ import {
   SelectInput,
   TextInput,
   required,
-  ReferenceInput,
-  useEditContext,
   SimpleForm,
   minValue,
   maxValue,
@@ -19,22 +17,6 @@ const capacityRegex = regex(
   /^\d+$/,
   "resources.notifications.errors.invalid_syntax"
 );
-const ChooseDesign = () => {
-  const { record } = useEditContext();
-
-  return (
-    <ReferenceInput
-      source="design_id"
-      reference="Design"
-      filter={{
-        merchant_id: record.id,
-      }}
-    >
-      <SelectInput optionText="name" optionValue="id" />
-    </ReferenceInput>
-  );
-};
-
 const editMerchant = () => (
   <Edit
     redirect="show"
@@ -43,7 +25,6 @@ const editMerchant = () => (
   >
     <SimpleForm toolbar={<CustomToolbar />}>
       <TextField source="name" />
-      <ChooseDesign />
       <SelectInput
         source="status"
         validate={[required()]}

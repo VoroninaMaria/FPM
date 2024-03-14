@@ -14,14 +14,8 @@ export default yup.object({
     .string()
     .required()
     .test("present", "client_not_found", validatePresence("merchants", "id")),
-  first_name: yup
-    .string()
-    .required()
-    .test("valid", "invalid_syntax", validateTextInput),
-  last_name: yup
-    .string()
-    .required()
-    .test("valid", "invalid_syntax", validateTextInput),
+  first_name: yup.string().test("valid", "invalid_syntax", validateTextInput),
+  last_name: yup.string().test("valid", "invalid_syntax", validateTextInput),
   phone: yup
     .string()
     .required()
