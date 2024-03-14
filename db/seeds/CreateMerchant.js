@@ -4,29 +4,29 @@ export const seed = async (knex) => {
   await knex("merchants")
     .insert([
       {
-        name: "uklon",
+        name: "gym1",
         encrypted_password: await encryptPassword("123123"),
-        login: "uklon",
+        login: "gym1",
       },
       {
-        name: "uber",
+        name: "gym2",
         encrypted_password: await encryptPassword("123123"),
-        login: "uber",
+        login: "gym2",
       },
       {
-        name: "bolt",
+        name: "gym3",
         encrypted_password: await encryptPassword("123123"),
-        login: "bolt",
+        login: "gym3",
       },
       {
-        name: "opti",
+        name: "gym4",
         encrypted_password: await encryptPassword("123123"),
-        login: "opti",
+        login: "gym4",
       },
       {
-        name: "Mango",
+        name: "gym5",
         encrypted_password: await encryptPassword("123123"),
-        login: "mango",
+        login: "gym5",
       },
     ])
     .onConflict("name")
