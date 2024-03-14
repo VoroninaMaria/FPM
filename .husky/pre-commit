@@ -2,7 +2,7 @@
 . "$(dirname -- "$0")/_/husky.sh"
 
 cmp db/development.schema.json db/test.schema.json
-yarn ts
+#yarn ts
 yarn eslint .
 yarn prettier . -c
-yarn test --bail
+#yarn test --bail

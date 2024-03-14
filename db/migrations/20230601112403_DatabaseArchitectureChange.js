@@ -1,26 +1,7 @@
-import { addTimestamps, addPrimaryUuid } from "../shared/index.js";
 export const up = async (knex) => {
   await knex.schema.dropTable("account_contacts");
   await knex.schema.dropTable("contacts");
   await knex.schema.dropTable("sessions");
-
-  await knex.schema.createTable("brands", (table) => {
-    addPrimaryUuid(knex, table);
-    table.string("brand_name").notNull();
-    table.enu("status", ["active", "blocked", "disabled", "error"]).notNull();
-    addTimestamps(knex, table);
-  });
-
-  await knex.schema.createTable("brand_merchants", (table) => {
-    addPrimaryUuid(knex, table);
-    table.uuid("merchant_id");
-    table.uuid("brand_id").notNull().references("id").inTable("brands");
-    table.json("config").notNull().defaultTo({});
-    table.enu("status", ["active", "blocked", "disabled", "error"]).notNull();
-    addTimestamps(knex, table);
-    table.index("merchant_id", "merchant_id_idx");
-    table.index("brand_id", "brand_id_idx");
-  });
 
   await knex.schema.alterTable("admins", (table) => {
     table.string("login").notNull().unique();

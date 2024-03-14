@@ -1,5 +1,4 @@
 import { Database } from "@local/lib/index.js";
-import { Datex } from "@local/app/connectors/brands/index.js";
 import { Client } from "@local/graphql/types/index.js";
 import { updateClientValidation } from "@local/graphql/validations/merchant/index.js";
 import {
@@ -10,11 +9,7 @@ import {
   GraphQLError,
 } from "graphql";
 import { GraphQLJSONObject } from "graphql-type-json";
-import {
-  CLIENT_CHANGE_STATUSES,
-  CLIENT_STATUSES,
-} from "@local/constants/index.js";
-import { generateSessionIdentifier } from "@local/helpers/index.js";
+import { CLIENT_CHANGE_STATUSES } from "@local/constants/index.js";
 
 export default {
   type: Client,
@@ -24,8 +19,6 @@ export default {
     email: { type: GraphQLString },
     first_name: { type: GraphQLString },
     last_name: { type: GraphQLString },
-    city: { type: GraphQLString },
-    address: { type: GraphQLString },
     status: { type: new GraphQLNonNull(GraphQLString) },
     category_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
@@ -59,46 +52,13 @@ export default {
       })
       .update({
         id: args.id,
-        ...(args.status !== CLIENT_STATUSES.confirmed.name && {
-          status: args.status,
-          session_identifier: generateSessionIdentifier(),
-        }),
-        ...(args.status === CLIENT_STATUSES.confirmed.name && {
-          status: args.status,
-        }),
+        status: args.status,
         category_id: args.category_id,
         phone: args.phone,
         email: args.email,
         first_name: args.first_name,
         last_name: args.last_name,
         updated_at: Database.fn.now(),
-      })
-      .returning("*")
-      .then(async ([client]) => {
-        if (merchant.plugins.datex) {
-          const datexBrand = await Database("brands")
-            .where({ name: "Datex" })
-            .first();
-          const dtxMerchantBrand = await Database("brand_merchants")
-            .where({ merchant_id: merchant.id, brand_id: datexBrand.id })
-            .first();
-          const datex = new Datex(dtxMerchantBrand.config);
-          const { id_clients } = await datex.clientIdByExternalId(client.id);
-          const [dtxClient] = await datex.updateClient({
-            id_clients: id_clients,
-            fn_clients: client.first_name + " " + client.last_name,
-            sn_clients: client.first_name,
-            phones: client.phone,
-            email: client.email,
-            city: args.city,
-            address: args.address,
-          });
-
-          await datex.close();
-
-          return { ...client, ...dtxClient };
-        }
-        return client;
       })
       .catch(() => {
         throw new GraphQLError("Forbidden");
@@ -142,39 +102,8 @@ export default {
           merchant_id: merchant.id,
         })
         .update({
-          ...(changes.phone && {
-            session_identifier: generateSessionIdentifier(),
-          }),
           ...changes,
           updated_at: Database.fn.now(),
-        })
-        .returning("*")
-        .then(async ([client]) => {
-          if (merchant.plugins.datex) {
-            const datexBrand = await Database("brands")
-              .where({ name: "Datex" })
-              .first();
-            const dtxMerchantBrand = await Database("brand_merchants")
-              .where({ merchant_id: merchant.id, brand_id: datexBrand.id })
-              .first();
-            const datex = new Datex(dtxMerchantBrand.config);
-            const { id_clients } = await datex.clientIdByExternalId(client.id);
-
-            const [dtxClient] = await datex.updateClient({
-              id_clients: id_clients,
-              fn_clients: client.first_name + " " + client.last_name,
-              sn_clients: client.first_name,
-              phones: client.phone,
-              email: client.email,
-              city: args.city,
-              address: args.address,
-            });
-
-            await datex.close();
-
-            return { ...client, ...dtxClient };
-          }
-          return client;
         })
         .catch(() => {
           throw new GraphQLError("Forbidden");
@@ -182,10 +111,7 @@ export default {
     }
 
     return Database("clients")
-      .where({
-        id: args.id,
-        merchant_id: merchant.id,
-      })
+      .where({ id: args.id, merchant_id: merchant.id })
       .first()
       .then((client) => ({ ...client, tag_ids: args.tag_ids ?? [] }))
       .catch(() => {

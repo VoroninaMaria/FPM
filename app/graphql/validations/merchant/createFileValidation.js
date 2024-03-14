@@ -10,19 +10,7 @@ export default yup.object({
   account_id: yup
     .string()
     .required()
-    .test("present", "merchant_not_found", validatePresence("merchants", "id"))
-    .test("active", "plugin_inactive", function (account_id) {
-      return Database("merchants")
-        .where({
-          id: account_id,
-        })
-        .then(([merchant]) => {
-          if (merchant.plugins.files) {
-            return true;
-          }
-          return false;
-        });
-    }),
+    .test("present", "merchant_not_found", validatePresence("merchants", "id")),
   name: yup
     .string()
     .required()

@@ -4,7 +4,6 @@ import {
   generateSessionIdentifier,
   encryptPassword,
 } from "@local/helpers/index.js";
-import datexRegister from "./datexRegister.js";
 import { MERCHANT_STATUSES, CLIENT_STATUSES } from "@local/constants/index.js";
 
 const confirmClient = (req, res, next) => {
@@ -41,9 +40,6 @@ const confirmClient = (req, res, next) => {
             })
             .then(async ([merchant]) => {
               if (!merchant) return Errors.forbidden(res);
-              if (merchant.plugins.datex) {
-                await datexRegister(client, merchant);
-              }
 
               const token = buildJwt({
                 id: client.id,

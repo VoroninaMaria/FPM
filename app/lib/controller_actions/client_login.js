@@ -6,7 +6,6 @@ import {
   validatePhone,
   encryptPassword,
 } from "@local/helpers/index.js";
-import { Datex } from "@local/app/connectors/brands/index.js";
 
 import { MERCHANT_STATUSES, CLIENT_STATUSES } from "@local/constants/index.js";
 
@@ -31,11 +30,7 @@ const ClientLogin = async (req, res, next) => {
     })
     .then(async ([client]) => {
       if (!client) {
-        const brand = await Database("brands").where({ name: "Datex" }).first();
-        const datexConfig = await Database("brand_merchants")
-          .where({ merchant_id: merchantInstance.id, brand_id: brand.id })
-          .first();
-        const datex = new Datex(datexConfig.config);
+        const datex = {};
 
         const dtxClient = await datex.getClient(phone);
 

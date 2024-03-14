@@ -38,9 +38,6 @@ const listClients = () => {
             <ChipField source="name" size="small" />
           </SingleFieldList>
         </ReferenceArrayField>
-        <ReferenceField source="company_id" reference="Company" link="show">
-          <TextField source="name" />
-        </ReferenceField>
         <FunctionField
           source="status"
           render={(record) =>

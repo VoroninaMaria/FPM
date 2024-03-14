@@ -7,13 +7,11 @@ import {
   ShowButton,
   EditButton,
   NumberField,
-  ReferenceField,
 } from "react-admin";
 import {
   DateField,
   CreateOnlyTopToolbar,
 } from "../../shared/components/index.js";
-import { JsonField } from "react-admin-json-view";
 
 const listMerchants = () => {
   const t = useTranslate();
@@ -29,23 +27,7 @@ const listMerchants = () => {
             t(`resources.Merchant.source.status.${record.status}`)
           }
         />
-        <ReferenceField source="design_id" reference="Design" link="show">
-          <TextField source="name" />
-        </ReferenceField>
         <NumberField source="storage_capacity" />
-        <JsonField
-          label="resources.Merchant.source.plugins"
-          source="plugins"
-          reactJsonOptions={{
-            name: null,
-            sortKeys: true,
-            collapsed: true,
-            quotesOnKeys: false,
-            enableClipboard: false,
-            displayDataTypes: false,
-          }}
-          sortable={false}
-        />
         <DateField source="created_at" />
         <DateField source="updated_at" />
         <ShowButton className="button-show" />
