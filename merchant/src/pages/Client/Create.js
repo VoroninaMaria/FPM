@@ -27,6 +27,9 @@ const createClient = () => (
       <ReferenceInput source="category_id" reference="Category">
         <SelectInput optionText="name" optionValue="id" />
       </ReferenceInput>
+      <ReferenceInput source="discount_id" reference="Discount">
+        <SelectInput optionText="name" optionValue="id" />
+      </ReferenceInput>
       <ReferenceArrayInput source="tag_ids" reference="Tag">
         <SelectArrayInput optionText="name" optionValue="id" />
       </ReferenceArrayInput>
