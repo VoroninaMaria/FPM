@@ -1,10 +1,4 @@
-import {
-  NumberField,
-  ReferenceField,
-  Show,
-  SimpleShowLayout,
-  TextField,
-} from "react-admin";
+import { NumberField, Show, SimpleShowLayout, TextField } from "react-admin";
 import {
   DateField,
   Title,
@@ -16,9 +10,6 @@ const showDiscount = () => (
     <SimpleShowLayout>
       <TextField source="name" />
       <NumberField source="percent" />
-      <ReferenceField source="merchant_id" reference="Merchant" link="show">
-        <TextField source="name" />
-      </ReferenceField>
       <DateField source="created_at" />
       <DateField source="updated_at" />
     </SimpleShowLayout>
