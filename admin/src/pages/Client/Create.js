@@ -49,13 +49,6 @@ const createClient = () => {
             >
               <SelectArrayInput optionText="name" optionValue="id" />
             </ReferenceArrayInput>
-            <ReferenceInput
-              source="discount_id"
-              reference="Discount"
-              filter={{ merchant_id: selectedMerchant }}
-            >
-              <SelectInput optionText="name" optionValue="id" />
-            </ReferenceInput>
           </>
         )}
         <TextInput

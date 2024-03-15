@@ -57,9 +57,6 @@ const ListClients = (props) => {
         <ReferenceField source="category_id" reference="Category" link="show">
           <TextField source="name" />
         </ReferenceField>
-        <ReferenceField source="discount_id" reference="Discount" link="show">
-          <TextField source="name" />
-        </ReferenceField>
         <ReferenceArrayField source="tag_ids" reference="Tag" sortable={false}>
           <SingleFieldList>
             <ChipField source="name" size="small" />

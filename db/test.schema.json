@@ -150,10 +150,6 @@
       "type": "timestamp with time zone",
       "default": "now()"
     },
-    "discount_id": {
-      "type": "uuid",
-      "default": null
-    },
     "email": {
       "type": "character varying",
       "default": null
@@ -253,6 +249,32 @@
     "size": {
       "type": "integer",
       "default": "0"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "locations": {
+    "address": {
+      "type": "character varying",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
     },
     "updated_at": {
       "type": "timestamp with time zone",

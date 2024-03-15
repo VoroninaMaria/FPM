@@ -20,7 +20,6 @@ export default {
     last_name: { type: GraphQLString },
     phone: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: GraphQLString },
-    discount_id: { type: GraphQLID },
     category_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
     password: { type: new GraphQLNonNull(GraphQLString) },
@@ -37,7 +36,6 @@ export default {
           ...(args.category_id && {
             category_id: args.category_id,
           }),
-          discount_id: args.discount_id,
           encrypted_password: await encryptPassword(args.password),
           status: CLIENT_STATUSES.confirmed.name,
         })
