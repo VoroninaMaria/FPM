@@ -106,6 +106,35 @@ export default yup.object({
           }
         ),
     }),
+  discount_id: yup
+    .string()
+    .notRequired()
+    .when({
+      is: (exists) => !!exists,
+      then: (rule) =>
+        rule.test(
+          "present",
+          "discount_not_found",
+          async function (discount_id) {
+            const { id: client_id } = this.parent;
+            const client = await Database("clients")
+              .where({
+                id: client_id,
+              })
+              .first()
+              .catch(() => {
+                throw new GraphQLError("Forbidden");
+              });
+
+            return Database("discounts")
+              .where({ merchant_id: client.merchant_id, id: discount_id })
+              .first()
+              .catch(() => {
+                throw new GraphQLError("Forbidden");
+              });
+          }
+        ),
+    }),
   tag_ids: yup
     .array()
     .of(yup.string())

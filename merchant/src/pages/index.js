@@ -6,6 +6,7 @@ import Category from "./Category/index.js";
 import Tag from "./Tag/index.js";
 import File from "./File/index.js";
 import Dashboard from "./Dashboard/index.js";
+import Discount from "./Discount/index.js";
 
 export default {
   Chat,
@@ -16,4 +17,5 @@ export default {
   Tag,
   File,
   Dashboard,
+  Discount,
 };

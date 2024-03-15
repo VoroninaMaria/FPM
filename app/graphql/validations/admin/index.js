@@ -13,6 +13,9 @@ import updateTagValidation from "./updateTagValidation.js";
 import deleteTagValidation from "./deleteTagValidation.js";
 import createFileValidation from "./createFileValidation.js";
 import deleteFileValidation from "./deleteFileValidation.js";
+import createDiscountValidation from "./createDiscountValidation.js";
+import updateDiscountValidation from "./updateDiscountValidation.js";
+import deleteDiscountValidation from "./deleteDiscountValidation.js";
 
 export {
   createMerchantValidation,
@@ -30,4 +33,7 @@ export {
   deleteTagValidation,
   createFileValidation,
   deleteFileValidation,
+  createDiscountValidation,
+  updateDiscountValidation,
+  deleteDiscountValidation,
 };

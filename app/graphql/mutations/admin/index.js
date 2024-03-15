@@ -13,6 +13,9 @@ import deleteTag from "./deleteTag.js";
 import createFile from "./createFile.js";
 import deleteFile from "./deleteFile.js";
 import createMerchant from "./createMerchant.js";
+import createDiscount from "./createDiscount.js";
+import updateDiscount from "./updateDiscount.js";
+import deleteDiscount from "./deleteDiscount.js";
 
 export default {
   updateMerchant,
@@ -30,4 +33,7 @@ export default {
   createFile,
   deleteFile,
   createMerchant,
+  createDiscount,
+  updateDiscount,
+  deleteDiscount,
 };

@@ -17,6 +17,7 @@ export default new GraphQLObjectType({
     phone: { type: GraphQLString },
     email: { type: GraphQLString },
     category_id: { type: GraphQLID },
+    discount_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
     unconfirmed_changes: { type: new GraphQLList(GraphQLJSONObject) },
     created_at: { type: GraphQLString },

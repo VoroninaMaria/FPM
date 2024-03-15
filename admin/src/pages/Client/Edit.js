@@ -36,6 +36,22 @@ const ClientCategory = () => {
   );
 };
 
+const ClientDiscount = () => {
+  const { record } = useEditContext();
+
+  return (
+    <ReferenceInput
+      source="discount_id"
+      reference="Discount"
+      filter={{
+        merchant_id: record.merchant_id,
+      }}
+    >
+      <SelectInput optionText="name" optionValue="id" />
+    </ReferenceInput>
+  );
+};
+
 const ClientTags = () => {
   const { record } = useEditContext();
 
@@ -76,6 +92,7 @@ const editClient = () => (
         />
         <ClientCategory />
         <ClientTags />
+        <ClientDiscount />
         <SelectInput
           source="status"
           validate={[required()]}
