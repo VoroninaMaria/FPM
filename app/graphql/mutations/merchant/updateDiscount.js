@@ -28,6 +28,7 @@ export default {
           .update({
             name: params.name,
             updated_at: Database.fn.now(),
+            percent: params.percent,
           })
           .returning("*")
           .then(([discount]) => discount)
