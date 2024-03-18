@@ -101,6 +101,15 @@ export const App = () => {
         create={Pages.Location.Create}
         icon={PictureAsPdf}
       />
+
+      <Resource
+        name="Membership"
+        list={Pages.Membership.List}
+        show={Pages.Membership.Show}
+        create={Pages.Membership.Create}
+        edit={Pages.Membership.Edit}
+        icon={PictureAsPdf}
+      />
     </Admin>
   );
 };
