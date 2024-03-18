@@ -159,7 +159,7 @@ const ProfileScreen = ({ navigation }) => {
           <View style={styles.topImage}>
             <Image
               style={styles.tinyLogo}
-              source={require("../assets/images/horizontal_transp.png")}
+              source={require("../assets/images/gymLogo.png")}
             />
           </View>
           <View style={styles.avatarContainer}>
@@ -198,7 +198,7 @@ const ProfileScreen = ({ navigation }) => {
                 style={styles.icons}
                 name="edit"
                 size={20}
-                color="#18AA5E"
+                color="#e6ab00"
               />
             </View>
             {firstNameError && (
@@ -233,7 +233,7 @@ const ProfileScreen = ({ navigation }) => {
                 style={styles.icons}
                 name="edit"
                 size={20}
-                color="#18AA5E"
+                color="#e6ab00"
               />
             </View>
             {lastNameError && (
@@ -267,7 +267,7 @@ const ProfileScreen = ({ navigation }) => {
                 style={styles.icons}
                 name="edit"
                 size={20}
-                color="#18AA5E"
+                color="#e6ab00"
               />
             </View>
             {emailError && (
@@ -329,9 +329,8 @@ const styles = StyleSheet.create({
   },
   tinyLogo: {
     marginTop: 20,
-    width: 230,
-    height: 27,
-    resizeMode: "contain",
+    width: 200,
+    height: 95,
   },
 
   form: {
@@ -349,7 +348,7 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 40,
-    backgroundColor: "#18AA5E",
+    backgroundColor: "#e6ab00",
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
@@ -360,7 +359,7 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   avatarContainer: {
-    marginTop: 10,
+    marginTop: 50,
     alignItems: "center",
   },
   avatar: {

@@ -31,7 +31,7 @@ const SupportScreen = ({ navigation }) => {
             <View style={{ marginLeft: "2%" }}>
               <Text
                 style={{
-                  color: "rgba(24, 170, 94, 1)",
+                  color: "#e6ab00",
                   fontWeight: "bold",
                 }}
               >
@@ -41,7 +41,7 @@ const SupportScreen = ({ navigation }) => {
                 style={{
                   width: "100%",
                   borderBottomWidth: 2,
-                  borderColor: "rgba(24, 170, 94, 1)",
+                  borderColor: "#e6ab00",
                 }}
               ></View>
             </View>
@@ -61,7 +61,7 @@ const SupportScreen = ({ navigation }) => {
             <View>
               <Text
                 style={{
-                  color: "rgba(24, 170, 94, 1)",
+                  color: "#e6ab00",
                   fontWeight: "bold",
                 }}
               >
@@ -71,7 +71,7 @@ const SupportScreen = ({ navigation }) => {
                 style={{
                   width: "100%",
                   borderBottomWidth: 2,
-                  borderColor: "rgba(24, 170, 94, 1)",
+                  borderColor: "#e6ab00",
                 }}
               ></View>
             </View>

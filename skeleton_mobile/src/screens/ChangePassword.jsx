@@ -103,7 +103,7 @@ const ChangePassword = () => {
           <View style={styles.topImage}>
             <Image
               style={styles.tinyLogo}
-              source={require("../assets/images/horizontal_transp.png")}
+              source={require("../assets/images/gymLogo.png")}
             />
           </View>
           <View style={styles.passwordContainer}>
@@ -287,8 +287,7 @@ const styles = StyleSheet.create({
   tinyLogo: {
     marginTop: 20,
     width: 230,
-    height: 29,
-    resizeMode: "contain",
+    height: 95,
   },
   pinText: {
     left: 20,
@@ -344,9 +343,10 @@ const styles = StyleSheet.create({
     width: "40%",
     height: "25%",
     borderRadius: 6,
-    borderColor: "#18AA5E",
+    borderColor: "#e6ab00",
     borderWidth: 2,
-    backgroundColor: "#18AA5E",
+    color: "black",
+    backgroundColor: "#f2cb84",
     justifyContent: "center",
     alignItems: "center",
     marginTop: "5%",

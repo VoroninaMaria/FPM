@@ -5,7 +5,7 @@ const LoaderScreen = () => (
     <View style={styles.container}>
       <View style={styles.containerImg}>
         <Image
-          source={require("../assets/images/logo.png")}
+          source={require("../assets/images/gymLogo.png")}
           style={styles.logoLoginScreen}
         />
       </View>
@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   logoLoginScreen: {
-    width: 250,
-    height: 150,
+    width: 400,
+    height: 250,
   },
 });

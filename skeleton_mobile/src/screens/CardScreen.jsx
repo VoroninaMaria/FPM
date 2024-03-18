@@ -246,7 +246,7 @@ const CardScreen = () => {
           <View style={styles.topContainer}>
             <View style={styles.containerImg}>
               <Image
-                source={require("../assets/images/horizontal_transp.png")}
+                source={require("../assets/images/gymLogo.png")}
                 style={styles.logoLoginScreen}
               />
             </View>
@@ -264,22 +264,28 @@ const CardScreen = () => {
                 <View style={styles.card}>
                   <View style={styles.cardTop}>
                     <Image
-                      source={require("../assets/images/circle.png")}
+                      source={require("../assets/images/logoCard.png")}
                       style={styles.imageCard}
                     />
                   </View>
                   <View style={styles.cardButtom}>
                     <LinearGradient
-                      colors={["#adf3f1", "#3bc0ff"]}
+                      colors={[
+                        "rgba(246,199,112,0.8813900560224089)",
+                        "rgba(241,201,85,0.6965161064425771)",
+                      ]}
+                      start={{ x: 0, y: 0 }}
+                      end={{ x: 0, y: 1 }}
                       style={styles.linearGradient}
                     >
                       <Image
-                        source={require("../assets/images/text_card.png")}
+                        source={require("../assets/images/cardText.png")}
                         style={styles.textCard}
                       />
                       <View
                         style={{
                           alignItems: "center",
+                          marginTop: "-2%",
                           justifyContent: "space-between",
                         }}
                       >
@@ -326,17 +332,15 @@ const CardScreen = () => {
 
               <TouchableOpacity style={styles.partner} onPress={openPartners}>
                 <Text style={styles.partnerText}>
-                  {t("CardScreen.partners")}
+                  {t("CardScreen.trainers")}
                 </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.middleContainer}>
               <Text style={styles.fuelPrices}>
-                {t("CardScreen.fuelPrices")}
+                {t("CardScreen.subscriptionPrices")}
               </Text>
-              <Text style={styles.priceSer}>
-                * вказана середня ціна в мережі АЗС по Україні
-              </Text>
+
               <View>
                 <View
                   style={{
@@ -453,7 +457,7 @@ const styles = StyleSheet.create({
   },
   logoLoginScreen: {
     width: 220,
-    height: 29,
+    height: 90,
   },
   card: {
     width: "90%",
@@ -468,6 +472,7 @@ const styles = StyleSheet.create({
   cardTop: {
     width: "100%",
     flex: 1,
+    alignItems: "center",
   },
   cardButtom: {
     width: "100%",
@@ -480,16 +485,13 @@ const styles = StyleSheet.create({
   },
   imageCard: {
     flex: 1,
-    width: 250,
-    height: 71.08,
-    left: "15%",
-    resizeMode: "contain",
+    width: 230,
+    height: 60.08,
   },
   textCard: {
     marginTop: "1%",
-    width: "50%",
-    height: "20%",
-    resizeMode: "contain",
+    width: "22%",
+    height: "30%",
   },
   cardText: {
     fontWeight: "500",
@@ -505,6 +507,7 @@ const styles = StyleSheet.create({
     marginTop: "3%",
     flexDirection: "row",
     width: "100%",
+
     justifyContent: "space-between",
   },
   buttonCard: {
@@ -516,15 +519,15 @@ const styles = StyleSheet.create({
     height: "100%",
     marginLeft: "5%",
     padding: "3%",
-    backgroundColor: "#18aa5e",
+    backgroundColor: "#f2cb84",
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: "#18aa5e",
+    borderColor: "#e6ab00",
   },
   topupText: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "white",
+    color: "black",
     textAlign: "center",
   },
   partner: {
@@ -533,10 +536,10 @@ const styles = StyleSheet.create({
     marginLeft: "5%",
     padding: "3%",
     backgroundColor: "white",
-    borderColor: "green",
+    borderColor: "#f2cb84",
     borderWidth: 1,
     borderRadius: 6,
-    shadowColor: "rgba(24, 170, 94, 0.2)",
+    shadowColor: "rgba(246,199,112,0.26514355742296913)",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 15,
@@ -545,7 +548,7 @@ const styles = StyleSheet.create({
   partnerText: {
     fontSize: 15,
     fontWeight: "bold",
-    color: "#18aa5e",
+    color: "black",
     textAlign: "center",
   },
   fuelPrices: {
@@ -605,7 +608,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: "right",
     flex: 1,
-    color: "#18aa5e",
+    color: "#e6ab00",
     marginRight: "35%",
     marginTop: "15%",
   },
@@ -618,7 +621,7 @@ const styles = StyleSheet.create({
     fontWeight: "500",
     textAlign: "right",
     flex: 1,
-    color: "#18aa5e",
+    color: "#e6ab00",
     marginRight: "20%",
     marginTop: "15%",
   },

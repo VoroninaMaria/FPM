@@ -1,13 +1,13 @@
 {
   "translation": {
     "CardScreen": {
-      "fuelCard": "Паливна картка",
+      "fuelCard": "Спорт картка",
       "balance": "Мій баланс :",
       "currencyBalance": "₴",
       "topUp": "Поповнити",
-      "partners": "Партнери",
-      "fuelPrices": "Ціни на пальне",
-      "type": "Паливо",
+      "trainers": "Тренери",
+      "subscriptionPrices": "Ціни на абонемент",
+      "type": "Категорія",
       "not_disc": "Ціна",
       "disc": "Зі знижкою",
       "discount": "Знижка",
@@ -69,7 +69,7 @@
       "notExit": "Ні, залишитись тут"
     },
     "PartnersScreen": {
-      "ourPartners": "Наші партнери",
+      "ourTrainers": "Наші тренери",
       "logo": "Лого"
     },
     "RegisterScreen": {

@@ -35,7 +35,7 @@ const ExitScreen = ({ navigation, setAuthToken }) => {
         <View style={styles.containerBrands}>
           <View style={styles.containerImg}>
             <Image
-              source={require("../assets/images/horizontal_transp.png")}
+              source={require("../assets/images/gymLogo.png")}
               style={styles.logoLoginScreen}
             />
           </View>
@@ -88,14 +88,13 @@ const styles = StyleSheet.create({
   },
   containerImg: {
     resizeMode: "contain",
-    marginLeft: "15%",
     marginBottom: 40,
-    paddingHorizontal: 20,
+    alignItems: "center",
     height: "5%",
   },
   logoLoginScreen: {
     width: 220,
-    height: 29,
+    height: 90,
   },
   exitTextContainer: {
     height: "10%",
@@ -129,18 +128,19 @@ const styles = StyleSheet.create({
     marginLeft: "3%",
     justifyContent: "center",
     padding: "2%",
-    backgroundColor: "#18aa5e",
+    backgroundColor: "#f2cb84",
     borderRadius: 6,
     borderWidth: 1,
+
     textAlign: "center",
     alignItems: "center",
-    borderColor: "#18aa5e",
+    borderColor: "#e6ab00",
   },
   exitsText: {
     textAlign: "center",
     fontSize: 14,
     fontWeight: "600",
-    color: "white",
+    color: "black",
     alignItems: "center",
   },
   notExit: {
@@ -150,19 +150,20 @@ const styles = StyleSheet.create({
     padding: "3%",
     backgroundColor: "white",
     alignItems: "center",
-    borderColor: "green",
+    borderColor: "#e6ab00",
+
     justifyContent: "center",
     borderWidth: 1,
     textAlign: "center",
     borderRadius: 6,
-    shadowColor: "rgba(24, 170, 94, 0.2)",
+    shadowColor: "rgba(246,199,112,0.26514355742296913)",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 15,
     elevation: 5,
   },
   notExitText: {
-    color: "#18AA5E",
+    color: "#e6ab00",
     fontSize: 14,
     fontWeight: "600",
     textAlign: "center",

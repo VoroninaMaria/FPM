@@ -41,7 +41,7 @@ const ChangingPinScreen = () => {
         <View style={styles.containerBrands}>
           <View style={styles.containerImg}>
             <Image
-              source={require("../assets/images/horizontal_transp.png")}
+              source={require("../assets/images/gymLogo.png")}
               style={styles.logoLoginScreen}
             />
           </View>
@@ -50,7 +50,7 @@ const ChangingPinScreen = () => {
               <Icon
                 name="user"
                 size={28}
-                color="#18aa5e"
+                color="#e6ab00"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -62,7 +62,7 @@ const ChangingPinScreen = () => {
               <Icon
                 name="credit-card"
                 size={28}
-                color="#18aa5e"
+                color="#e6ab00"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -114,8 +114,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   logoLoginScreen: {
-    width: 220,
-    height: 29,
+    width: 200,
+    height: 85,
   },
   containerImg: {
     resizeMode: "contain",
@@ -130,7 +130,7 @@ const styles = StyleSheet.create({
   },
   list: {
     flexDirection: "row",
-    top: "5%",
+
     alignItems: "center",
     padding: "5%",
   },
@@ -147,7 +147,6 @@ const styles = StyleSheet.create({
     borderColor: "rgba(226, 226, 226, 1)",
     width: "85%",
     margin: 10,
-    top: "10%",
 
     marginLeft: "7%",
   },
@@ -160,7 +159,7 @@ const styles = StyleSheet.create({
   },
   exitContainer: {
     height: "30%",
-    marginTop: "5%",
+
     marginRight: "30%",
   },
   exitText: {

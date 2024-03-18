@@ -49,7 +49,7 @@ const MenuScreen = ({ navigation }) => {
         <View style={styles.containerBrands}>
           <View style={styles.containerImg}>
             <Image
-              source={require("../assets/images/horizontal_transp.png")}
+              source={require("../assets/images/gymLogo.png")}
               style={styles.logoLoginScreen}
             />
           </View>
@@ -58,7 +58,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="house-user"
                 size={28}
-                color="#18aa5e"
+                color="#f2cb84"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -68,7 +68,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="exchange-alt"
                 size={28}
-                color="#18aa5e"
+                color="#e6ab00"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -84,7 +84,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="th-list"
                 size={28}
-                color="#18aa5e"
+                color="#f2cb84"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -101,7 +101,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="newspaper"
                 size={28}
-                color="#18aa5e"
+                color="#e6ab00"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -111,7 +111,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="user"
                 size={28}
-                color="#18aa5e"
+                color="#f2cb84"
                 marginLeft="5%"
                 justifyContent="space-between"
               />
@@ -121,7 +121,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="sliders-h"
                 size={25}
-                color="#18aa5e"
+                color="#e6ab00"
                 marginLeft="5%"
                 justifyContent="space-between"
               />
@@ -131,7 +131,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="headset"
                 size={28}
-                color="#18aa5e"
+                color="#f2cb84"
                 marginLeft="5%"
                 justifyContent="space-between"
               />
@@ -143,7 +143,7 @@ const MenuScreen = ({ navigation }) => {
                 <Icon
                   name="door-open"
                   size={28}
-                  color="#636363"
+                  color="#e6ab00"
                   marginRight="5%"
                   justifyContent="space-between"
                 />
@@ -189,8 +189,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   logoLoginScreen: {
-    width: 220,
-    height: 29,
+    width: 180,
+    height: 74,
   },
   containerImg: {
     resizeMode: "contain",
