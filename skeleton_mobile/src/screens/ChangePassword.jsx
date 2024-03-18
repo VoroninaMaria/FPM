@@ -338,6 +338,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
     height: "20%",
+    color: "black",
   },
   btnCha: {
     width: "40%",
@@ -352,7 +353,7 @@ const styles = StyleSheet.create({
     marginTop: "5%",
   },
   txtCha: {
-    color: "#FFFFFF",
+    color: "black",
   },
   btnExit: {
     alignItems: "center",
