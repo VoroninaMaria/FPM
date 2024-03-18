@@ -7,6 +7,7 @@ import Tag from "./Tag/index.js";
 import File from "./File/index.js";
 import Dashboard from "./Dashboard/index.js";
 import Discount from "./Discount/index.js";
+import Location from "./Location/index.js";
 
 export default {
   Chat,
@@ -18,4 +19,5 @@ export default {
   File,
   Dashboard,
   Discount,
+  Location,
 };

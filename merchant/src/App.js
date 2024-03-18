@@ -91,6 +91,15 @@ export const App = () => {
         create={Pages.Discount.Create}
         icon={PictureAsPdf}
       />
+
+      <Resource
+        name="Location"
+        list={Pages.Location.List}
+        show={Pages.Location.Show}
+        create={Pages.Location.Create}
+        edit={Pages.Location.Edit}
+        icon={Tag}
+      />
       <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
     </Admin>
   );

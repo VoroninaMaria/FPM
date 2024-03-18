@@ -2,7 +2,7 @@ import yup from "yup";
 import {
   validatePresence,
   validateTextInput,
-  validateUniquenessOnUpdateWithFields,
+  validateUniquenessWithFields,
 } from "@local/graphql/validations/shared/index.js";
 
 export default yup.object({
@@ -17,13 +17,10 @@ export default yup.object({
     .test(
       "address",
       "already_exist",
-      validateUniquenessOnUpdateWithFields("locations", [
-        "address",
-        "merchant_id",
-      ])
+      validateUniquenessWithFields("locations", ["address", "merchant_id"])
     ),
   merchant_id: yup
     .string()
     .required()
-    .test("present", "location_not_found", validatePresence("merchants", "id")),
+    .test("present", "discount_not_found", validatePresence("merchants", "id")),
 });
