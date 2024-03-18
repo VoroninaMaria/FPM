@@ -1,40 +1,39 @@
 import { GraphQLNonNull, GraphQLID, GraphQLList, GraphQLError } from "graphql";
 import { Database } from "@local/lib/index.js";
 import {
-  Discount as DiscountType,
-  DiscountFilter,
+  Location as LocationType,
+  LocationFilter,
   ListMetadata,
 } from "@local/graphql/types/index.js";
 import paginationArgs from "@local/graphql/queries/shared/paginationArgs.js";
 
-const Discount = {
-  type: DiscountType,
+const Location = {
+  type: LocationType,
   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-  resolve: (_, { id }, { merchant }) =>
-    Database("discounts")
-      .where({ id, merchant_id: merchant.id })
+  resolve: (_, { id }) =>
+    Database("locations")
+      .where({ id })
       .first()
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),
 };
 
-const allDiscounts = {
-  type: new GraphQLList(DiscountType),
-  args: { ...paginationArgs, filter: { type: DiscountFilter } },
+const allLocations = {
+  type: new GraphQLList(LocationType),
+  args: { ...paginationArgs, filter: { type: LocationFilter } },
   resolve: (
     _,
     {
-      perPage = 10,
+      perPage = 20,
       page = 0,
-      sortField = "id",
+      sortField = "merchant_id",
       sortOrder = "asc",
       filter: { ids, ...filter },
-    },
-    { merchant }
+    }
   ) =>
-    Database("discounts")
-      .where({ merchant_id: merchant.id, ...filter })
+    Database("locations")
+      .where({ ...filter })
       .modify((queryBuilder) => {
         if (ids?.length) queryBuilder.whereIn("id", ids);
       })
@@ -46,12 +45,12 @@ const allDiscounts = {
       }),
 };
 
-const _allDiscountsMeta = {
+const _allLocationsMeta = {
   type: ListMetadata,
-  args: { ...paginationArgs, filter: { type: DiscountFilter } },
-  resolve: (_, { filter: { ids, ...filter } }, { merchant }) =>
-    Database("discounts")
-      .where({ merchant_id: merchant.id, ...filter })
+  args: { ...paginationArgs, filter: { type: LocationFilter } },
+  resolve: (_, { filter: { ids, ...filter } }) =>
+    Database("locations")
+      .where({ ...filter })
       .modify((queryBuilder) => {
         if (ids?.length) queryBuilder.whereIn("id", ids);
       })
@@ -62,4 +61,4 @@ const _allDiscountsMeta = {
       }),
 };
 
-export default { Discount, allDiscounts, _allDiscountsMeta };
+export default { Location, allLocations, _allLocationsMeta };

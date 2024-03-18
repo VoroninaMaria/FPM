@@ -6,7 +6,6 @@ import sms_services from "./sms_services.js";
 import tag from "./tag.js";
 import file from "./file.js";
 import discount from "./discount.js";
-
 export default {
   self,
   ...merchant,

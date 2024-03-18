@@ -5,5 +5,5 @@ export default yup.object({
   id: yup
     .string()
     .required()
-    .test("present", "discount", validatePresence("discounts", "id")),
+    .test("present", "locations", validatePresence("locations", "id")),
 });

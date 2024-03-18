@@ -91,7 +91,6 @@ export const App = () => {
         create={Pages.Discount.Create}
         icon={PictureAsPdf}
       />
-
       <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
     </Admin>
   );
