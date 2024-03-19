@@ -20,6 +20,7 @@ export default {
     last_name: { type: GraphQLString },
     phone: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: GraphQLString },
+    membership_id: { type: GraphQLID },
     category_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
     password: { type: new GraphQLNonNull(GraphQLString) },
@@ -33,6 +34,7 @@ export default {
           last_name: args.last_name,
           email: args.email,
           phone: args.phone,
+          membership_id: args.membership_id,
           ...(args.category_id && {
             category_id: args.category_id,
           }),

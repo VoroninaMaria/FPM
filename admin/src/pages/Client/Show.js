@@ -40,6 +40,13 @@ const showClient = () => {
             <ChipField source="name" size="small" />
           </SingleFieldList>
         </ReferenceArrayField>
+        <ReferenceField
+          source="membership_id"
+          reference="Membership"
+          link="show"
+        >
+          <TextField source="name" />
+        </ReferenceField>
         <FunctionField
           source="status"
           render={(record) =>

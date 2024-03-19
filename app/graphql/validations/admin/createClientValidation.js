@@ -86,6 +86,24 @@ export default yup.object({
             });
         }),
     }),
+  membership_id: yup
+    .string()
+    .notRequired()
+    .when({
+      is: (exists) => !!exists,
+      then: (rule) =>
+        rule.test("present", "membership_not_found", function (id) {
+          const { merchant_id } = this.parent;
+
+          return Database("memberships")
+            .where({ id, merchant_id })
+            .first()
+            .then((membership) => membership)
+            .catch(() => {
+              throw new GraphQLError("Forbidden");
+            });
+        }),
+    }),
   tag_ids: yup
     .array()
     .of(yup.string())

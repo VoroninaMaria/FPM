@@ -14,6 +14,7 @@ export default new GraphQLInputObjectType({
     status: { type: GraphQLString },
     phone: { type: GraphQLString },
     email: { type: GraphQLString },
+    membership_id: { type: GraphQLID },
     discount_id: { type: GraphQLID },
     category_id: { type: GraphQLID },
     company_id: { type: GraphQLID },

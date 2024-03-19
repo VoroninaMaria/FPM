@@ -16,6 +16,7 @@ export default new GraphQLObjectType({
     last_name: { type: GraphQLString },
     phone: { type: GraphQLString },
     email: { type: GraphQLString },
+    membership_id: { type: GraphQLID },
     category_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
     unconfirmed_changes: { type: new GraphQLList(GraphQLJSONObject) },

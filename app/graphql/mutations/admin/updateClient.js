@@ -21,6 +21,7 @@ export default {
     email: { type: GraphQLString },
     status: { type: new GraphQLNonNull(GraphQLString) },
     category_id: { type: GraphQLID },
+    membership_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
     unconfirmed_changes: { type: new GraphQLList(GraphQLJSONObject) },
   },
@@ -53,6 +54,7 @@ export default {
         phone: args.phone,
         email: args.email,
         status: args.status,
+        membership_id: args.membership_id,
         category_id: args.category_id,
         updated_at: Database.fn.now(),
       })
