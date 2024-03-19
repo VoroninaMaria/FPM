@@ -7,6 +7,7 @@ import tag from "./tag.js";
 import file from "./file.js";
 import discount from "./discount.js";
 import location from "./location.js";
+import membership from "./membership.js";
 
 export default {
   self,
@@ -18,4 +19,5 @@ export default {
   ...client,
   ...discount,
   ...location,
+  ...membership,
 };

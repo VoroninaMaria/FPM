@@ -100,6 +100,13 @@ export const App = () => {
         edit={Pages.Location.Edit}
         icon={Tag}
       />
+
+      <Resource
+        name="Membership"
+        list={Pages.Membership.List}
+        show={Pages.Membership.Show}
+        icon={Tag}
+      />
       <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
     </Admin>
   );
