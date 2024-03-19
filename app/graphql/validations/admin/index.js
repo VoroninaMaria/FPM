@@ -21,6 +21,7 @@ import updateLocationValidation from "./updateLocationValidation.js";
 import deleteLocationValidation from "./deleteLocationValidation.js";
 import createMembershipValidation from "./createMembershipValidation.js";
 import updateMembershipValidation from "./updateMembershipValidation.js";
+import deleteMembershipValidation from "./deleteMembershipValidation.js";
 
 export {
   createMerchantValidation,
@@ -46,4 +47,5 @@ export {
   deleteLocationValidation,
   createMembershipValidation,
   updateMembershipValidation,
+  deleteMembershipValidation,
 };

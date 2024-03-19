@@ -105,6 +105,8 @@ export const App = () => {
         name="Membership"
         list={Pages.Membership.List}
         show={Pages.Membership.Show}
+        create={Pages.Membership.Create}
+        edit={Pages.Membership.Edit}
         icon={Tag}
       />
       <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
