@@ -13,7 +13,7 @@
         "host": "postgres",
         "user": "postgres",
         "password": "NopsheckhunRouWag",
-        "database": "petrolium_mobile_back_prod"
+        "database": "diploma_back_prod"
       }
     },
     "jwtSecret": "my_very_secret_key"
