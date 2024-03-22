@@ -118,6 +118,8 @@ const ProfileScreen = ({ navigation }) => {
                 },
               } = res;
 
+              console.log(res.body);
+
               setChangeFirstName(profileInfo.first_name);
               setChangeLastName(profileInfo.last_name);
               setChangeEmail(profileInfo.email);
@@ -126,7 +128,8 @@ const ProfileScreen = ({ navigation }) => {
               return updateDatexClient;
             });
         })
-        .catch(() => {
+        .catch((error) => {
+          console.log(error);
           Alert.alert(t("Session.session"), t("Session.finished"));
         });
     }
