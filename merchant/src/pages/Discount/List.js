@@ -12,7 +12,7 @@ import {
   CreateOnlyTopToolbar,
 } from "../../shared/components/index.js";
 
-const listCategory = () => (
+const listDiscount = () => (
   <List actions={<CreateOnlyTopToolbar />}>
     <Datagrid bulkActionButtons={false}>
       <TextField source="name" />
@@ -26,4 +26,4 @@ const listCategory = () => (
   </List>
 );
 
-export default listCategory;
+export default listDiscount;

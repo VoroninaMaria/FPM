@@ -35,14 +35,18 @@ const showClient = () => {
         <ReferenceField source="category_id" reference="Category" link="show">
           <TextField source="name" />
         </ReferenceField>
-        <ReferenceField source="discount_id" reference="Discount" link="show">
-          <TextField source="name" />
-        </ReferenceField>
         <ReferenceArrayField source="tag_ids" reference="Tag">
           <SingleFieldList linkType="show">
             <ChipField source="name" size="small" />
           </SingleFieldList>
         </ReferenceArrayField>
+        <ReferenceField
+          source="membership_id"
+          reference="Membership"
+          link="show"
+        >
+          <TextField source="name" />
+        </ReferenceField>
         <FunctionField
           source="status"
           render={(record) =>

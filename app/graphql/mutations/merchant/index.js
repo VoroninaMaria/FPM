@@ -14,6 +14,12 @@ import deleteFile from "./deleteFile.js";
 import createDiscount from "./createDiscount.js";
 import updateDiscount from "./updateDiscount.js";
 import deleteDiscount from "./deleteDiscount.js";
+import createLocation from "./createLocation.js";
+import updateLocation from "./updateLocation.js";
+import deleteLocation from "./deleteLocation.js";
+import createMembership from "./createMembership.js";
+import updateMembership from "./updateMembership.js";
+import deleteMembership from "./deleteMembership.js";
 
 export default {
   createFile,
@@ -32,4 +38,10 @@ export default {
   deleteDiscount,
   updateDiscount,
   createDiscount,
+  createLocation,
+  updateLocation,
+  deleteLocation,
+  createMembership,
+  updateMembership,
+  deleteMembership,
 };

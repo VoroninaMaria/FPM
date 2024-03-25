@@ -14,7 +14,7 @@
         "host": "PG_TEST",
         "port": 5432,
         "user": "postgres",
-        "database": "petrolium_mobile_back_dev",
+        "database": "diploma_back_dev",
         "password": "postgres"
       }
     },
@@ -35,7 +35,7 @@
         "host": "PG_TEST",
         "port": 5432,
         "user": "postgres",
-        "database": "petrolium_mobile_back_test",
+        "database": "diploma_back_test",
         "password":"postgres"
       }
     },

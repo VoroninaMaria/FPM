@@ -6,7 +6,6 @@ import {
   useTranslate,
   FunctionField,
   NumberField,
-  ReferenceField,
 } from "react-admin";
 import {
   DateField,
@@ -29,9 +28,6 @@ const showMerchant = () => {
           }
         />
         <NumberField source="storage_capacity" />
-        <ReferenceField source="design_id" reference="Design" link="show">
-          <TextField source="name" />
-        </ReferenceField>
         <DateField source="created_at" />
         <DateField source="updated_at" />
       </SimpleShowLayout>

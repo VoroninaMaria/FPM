@@ -6,6 +6,8 @@ import Category from "./Category/index.js";
 import Tag from "./Tag/index.js";
 import File from "./File/index.js";
 import Discount from "./Discount/index.js";
+import Location from "./Location/index.js";
+import Membership from "./Membership/index.js";
 
 export default {
   Admin,
@@ -16,4 +18,6 @@ export default {
   SmsService,
   Tag,
   Discount,
+  Location,
+  Membership,
 };

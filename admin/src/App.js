@@ -93,6 +93,23 @@ export const App = () => {
         create={Pages.Discount.Create}
         icon={PictureAsPdf}
       />
+      <Resource
+        name="Location"
+        list={Pages.Location.List}
+        show={Pages.Location.Show}
+        edit={Pages.Location.Edit}
+        create={Pages.Location.Create}
+        icon={PictureAsPdf}
+      />
+
+      <Resource
+        name="Membership"
+        list={Pages.Membership.List}
+        show={Pages.Membership.Show}
+        create={Pages.Membership.Create}
+        edit={Pages.Membership.Edit}
+        icon={PictureAsPdf}
+      />
     </Admin>
   );
 };

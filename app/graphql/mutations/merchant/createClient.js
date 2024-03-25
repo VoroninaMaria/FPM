@@ -20,6 +20,7 @@ export default {
     phone: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: GraphQLString },
     category_id: { type: GraphQLID },
+    membership_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
     password: { type: new GraphQLNonNull(GraphQLString) },
   },
@@ -35,6 +36,7 @@ export default {
             phone: params.phone,
             ...(params.category_id && { category_id: params.category_id }),
             merchant_id: merchant.id,
+            membership_id: params.membership_id,
             encrypted_password: await encryptPassword(params.password),
             status: CLIENT_STATUSES.confirmed.name,
           })

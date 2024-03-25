@@ -19,3 +19,7 @@ export { default as FileFilter } from "./FileFilter.js";
 export { default as ClientChange } from "./ClientChange.js";
 export { default as Discount } from "./Discount.js";
 export { default as DiscountFilter } from "./DiscountFilter.js";
+export { default as Location } from "./Location.js";
+export { default as LocationFilter } from "./LocationFilter.js";
+export { default as Membership } from "./Membership.js";
+export { default as MembershipFilter } from "./MembershipFilter.js";

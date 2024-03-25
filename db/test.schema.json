@@ -1,4 +1,38 @@
 {
+  "abilities": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "description": {
+      "type": "character varying",
+      "default": null
+    },
+    "discount_price": {
+      "type": "integer",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "membership_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "regular_price": {
+      "type": "integer",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
   "admins": {
     "created_at": {
       "type": "timestamp with time zone",
@@ -150,10 +184,6 @@
       "type": "timestamp with time zone",
       "default": "now()"
     },
-    "discount_id": {
-      "type": "uuid",
-      "default": null
-    },
     "email": {
       "type": "character varying",
       "default": null
@@ -172,6 +202,10 @@
     },
     "last_name": {
       "type": "character varying",
+      "default": null
+    },
+    "membership_id": {
+      "type": "uuid",
       "default": null
     },
     "merchant_id": {
@@ -253,6 +287,70 @@
     "size": {
       "type": "integer",
       "default": "0"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "locations": {
+    "address": {
+      "type": "character varying",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "memberships": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "end_date": {
+      "type": "timestamp with time zone",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "location_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "merchant_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "price": {
+      "type": "real",
+      "default": null
+    },
+    "start_date": {
+      "type": "timestamp with time zone",
+      "default": null
     },
     "updated_at": {
       "type": "timestamp with time zone",

@@ -36,13 +36,13 @@ const ClientCategory = () => {
   );
 };
 
-const ClientDiscount = () => {
+const ClientMembership = () => {
   const { record } = useEditContext();
 
   return (
     <ReferenceInput
-      source="discount_id"
-      reference="Discount"
+      source="membership_id"
+      reference="Membership"
       filter={{
         merchant_id: record.merchant_id,
       }}
@@ -91,8 +91,8 @@ const editClient = () => (
           validate={[required(), number()]}
         />
         <ClientCategory />
+        <ClientMembership />
         <ClientTags />
-        <ClientDiscount />
         <SelectInput
           source="status"
           validate={[required()]}

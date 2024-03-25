@@ -1,14 +1,14 @@
 import { GraphQLNonNull, GraphQLID, GraphQLList, GraphQLError } from "graphql";
 import { Database } from "@local/lib/index.js";
 import {
-  Discount as CategoryType,
+  Discount as DiscountType,
   DiscountFilter,
   ListMetadata,
 } from "@local/graphql/types/index.js";
 import paginationArgs from "@local/graphql/queries/shared/paginationArgs.js";
 
 const Discount = {
-  type: CategoryType,
+  type: DiscountType,
   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
   resolve: (_, { id }, { merchant }) =>
     Database("discounts")
@@ -20,7 +20,7 @@ const Discount = {
 };
 
 const allDiscounts = {
-  type: new GraphQLList(CategoryType),
+  type: new GraphQLList(DiscountType),
   args: { ...paginationArgs, filter: { type: DiscountFilter } },
   resolve: (
     _,

@@ -42,6 +42,13 @@ const createClient = () => {
             >
               <SelectInput optionText="name" optionValue="id" />
             </ReferenceInput>
+            <ReferenceInput
+              source="membership_id"
+              reference="Membership"
+              filter={{ merchant_id: selectedMerchant }}
+            >
+              <SelectInput optionText="name" optionValue="id" />
+            </ReferenceInput>
             <ReferenceArrayInput
               source="tag_ids"
               reference="Tag"
@@ -49,13 +56,6 @@ const createClient = () => {
             >
               <SelectArrayInput optionText="name" optionValue="id" />
             </ReferenceArrayInput>
-            <ReferenceInput
-              source="discount_id"
-              reference="Discount"
-              filter={{ merchant_id: selectedMerchant }}
-            >
-              <SelectInput optionText="name" optionValue="id" />
-            </ReferenceInput>
           </>
         )}
         <TextInput

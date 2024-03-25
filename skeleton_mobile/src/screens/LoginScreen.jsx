@@ -41,7 +41,7 @@ const LoginScreen = ({ navigation }) => {
         .post(`${Config.baseUrl}/client/auth/login`, {
           password: pinCode,
           phone: phone,
-          merchant: "Mango",
+          merchant: "gym1",
         })
         .then(async (res) =>
           AsyncStorage.setItem("token", res.data.token)
@@ -50,7 +50,7 @@ const LoginScreen = ({ navigation }) => {
                 .post(
                   `${Config.baseUrl}/client/graphql`,
                   {
-                    query: "{self {entity, first_name}}",
+                    query: "{self {first_name}}",
                     variables: {},
                   },
                   {
@@ -76,11 +76,12 @@ const LoginScreen = ({ navigation }) => {
                   setPhone("");
                   setPinCode("");
 
-                  return navigation.navigate("CardScreen", {
+                  return navigation.navigate("Profile", {
                     name: self?.first_name,
                   });
                 })
                 .catch((error) => {
+                  console.log(error);
                   if (error.message.includes("status code 423")) {
                     return Alert.alert(
                       t("LoginScreen.Error"),

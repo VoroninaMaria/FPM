@@ -102,8 +102,9 @@ const CardScreen = () => {
     AsyncStorage.getItem("token")
       .then((token) => {
         if (!token) {
+          console.log(token);
           Alert.alert(t("Session.session"), t("Session.finished"));
-          return navigation.navigate("Login");
+          // return navigation.navigate("Login");
         }
         if (token) {
           return axios

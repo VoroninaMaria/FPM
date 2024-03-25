@@ -20,8 +20,8 @@ export default {
     phone: { type: new GraphQLNonNull(GraphQLString) },
     email: { type: GraphQLString },
     status: { type: new GraphQLNonNull(GraphQLString) },
-    discount_id: { type: GraphQLID },
     category_id: { type: GraphQLID },
+    membership_id: { type: GraphQLID },
     tag_ids: { type: new GraphQLList(GraphQLID) },
     unconfirmed_changes: { type: new GraphQLList(GraphQLJSONObject) },
   },
@@ -54,7 +54,7 @@ export default {
         phone: args.phone,
         email: args.email,
         status: args.status,
-        discount_id: args.discount_id,
+        membership_id: args.membership_id,
         category_id: args.category_id,
         updated_at: Database.fn.now(),
       })

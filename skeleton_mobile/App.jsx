@@ -38,7 +38,7 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const { t } = useTranslation();
-  const [authToken, setAuthToken] = useState("");
+  const [authToken, setAuthToken] = useState("null");
   const [currentEntity, setCurrentEntity] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 

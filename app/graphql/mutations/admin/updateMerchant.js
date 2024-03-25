@@ -23,40 +23,6 @@ export default {
     return updateMerchantValidation
       .validate(args, { strict: true })
       .then(() => {
-        if (args.plugins.datex) {
-          return Database("merchants")
-            .where({
-              id: args.id,
-            })
-            .update({
-              status: args.status,
-              storage_capacity: args.storage_capacity,
-              design_id: args.design_id,
-              updated_at: Database.fn.now(),
-              plugins: {
-                datex: args.plugins.datex,
-                clients: true,
-                brandMerchants: true,
-                files: false,
-                gasBrandMerchants: true,
-                merchantPaymentGateways: true,
-                smsServices: true,
-                support: false,
-                notifications: false,
-                designEditor: false,
-                pageEditor: false,
-                blocksEditor: false,
-                categoriesEditor: false,
-                tagsEditor: false,
-              },
-            })
-            .returning("*")
-            .then(([merchant]) => merchant)
-            .catch(() => {
-              throw new GraphQLError("Forbidden");
-            });
-        }
-
         return Database("merchants")
           .where({
             id: args.id,

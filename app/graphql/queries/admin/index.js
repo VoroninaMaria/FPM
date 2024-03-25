@@ -7,6 +7,8 @@ import sms_services from "./sms_services.js";
 import tag from "./tag.js";
 import file from "./file.js";
 import discount from "./discount.js";
+import location from "./location.js";
+import membership from "./membership.js";
 
 export default {
   ...admin,
@@ -18,4 +20,6 @@ export default {
   ...tag,
   ...file,
   ...discount,
+  ...location,
+  ...membership,
 };
