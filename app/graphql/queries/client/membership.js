@@ -2,10 +2,11 @@ import { GraphQLList, GraphQLError } from "graphql";
 import { Database } from "@local/lib/index.js";
 import { Membership as MembershipType } from "@local/graphql/types/index.js";
 
-const membership = {
+const Membership = {
   type: MembershipType,
-  resolve: (_, __, { client }) => {
-    const membershipRes = Database("memberships")
+  resolve: async (_, __, { client }) => {
+    const membershipRes = await Database("memberships")
+      .select("*")
       .where({
         id: client.membership_id,
       })
@@ -36,7 +37,7 @@ const membership = {
   },
 };
 
-const memberships = {
+const allMemberships = {
   type: new GraphQLList(MembershipType),
   resolve: (_, __, { client }) =>
     Database("memberships")
@@ -63,4 +64,4 @@ const memberships = {
       }),
 };
 
-export { membership, memberships };
+export default { Membership, allMemberships };

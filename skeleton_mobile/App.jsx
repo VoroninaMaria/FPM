@@ -38,12 +38,12 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const { t } = useTranslation();
-  const [authToken, setAuthToken] = useState("null");
-  const [currentEntity, setCurrentEntity] = useState("");
+  const [authToken, setAuthToken] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     AsyncStorage.getItem("token").then((token) => {
+      console.log(token);
       if (!token && !authToken) {
         Alert.alert(t("Session.session"), t("Session.finished"));
         setTimeout(() => setIsLoading(false), 2000);
@@ -59,36 +59,6 @@ const App = () => {
           })
           .then((res) => {
             if (res.status === 200) {
-              axios
-                .post(
-                  `${Config.baseUrl}/client/graphql`,
-                  {
-                    query: "{self {entity, first_name}}",
-                    variables: {},
-                  },
-                  {
-                    headers: {
-                      "Content-Type": "application/json",
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }
-                )
-                .then(async (res) => {
-                  const {
-                    data: {
-                      data: { self },
-                    },
-                  } = res;
-
-                  return setCurrentEntity(self.entity);
-                })
-                .catch(() => {
-                  return AsyncStorage.removeItem("token").then(() => {
-                    setIsLoading(false);
-                    Alert.alert(t("Session.session"), t("Session.finished"));
-                    return setAuthToken("");
-                  });
-                });
               return setTimeout(() => setIsLoading(false), 2000);
             }
           })
@@ -109,11 +79,8 @@ const App = () => {
 
   let initialScreenName;
 
-  if (authToken && currentEntity === 1) {
+  if (authToken) {
     initialScreenName = "CardScreen";
-  }
-  if (authToken && currentEntity === 2) {
-    initialScreenName = "LegalEntity";
   }
   if (!authToken) {
     initialScreenName = "Login";

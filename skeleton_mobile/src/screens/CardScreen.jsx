@@ -20,83 +20,83 @@ import Config from "./config.js";
 import "../localization/i18n";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import moment from "moment";
 
-const Item = ({ stella }) => {
-  const { t } = useTranslation();
+// const Item = ({ stella }) => {
+//   const { t } = useTranslation();
 
-  return (
-    <ScrollView>
-      <View
-        style={{
-          flexDirection: "row",
-          width: "100%",
-          height: "35%",
-          justifyContent: "space-between",
-        }}
-      >
-        <View
-          style={{
-            width: "25%",
-            alignItems: "flex-start",
-            fontFamily: "Raleway",
-            fontWeight: "500",
-            color: "black",
-            justifyContent: "center",
-          }}
-        >
-          <Text style={styles.name}>{stella.name}</Text>
-        </View>
-        <View
-          style={{
-            width: "25%",
-            alignItems: "center",
-            fontFamily: "Raleway",
-            fontWeight: "500",
-            color: "black",
-            justifyContent: "center",
-          }}
-        >
-          <Text style={styles.cost}>{stella.regular_price / 100}</Text>
-        </View>
-        <View
-          style={{
-            width: "25%",
-            alignItems: "flex-end",
-            fontFamily: "Raleway",
-            fontWeight: "500",
-            color: "#18aa5e",
-            justifyContent: "center",
-          }}
-        >
-          <Text style={styles.costDi}>{stella.discount_price / 100}</Text>
-        </View>
-        <View
-          style={{
-            width: "25%",
-            alignItems: "flex-end",
-            fontFamily: "Raleway",
-            fontWeight: "500",
-            color: "#18aa5e",
-            justifyContent: "center",
-          }}
-        >
-          <Text style={styles.discount}>
-            {(stella.regular_price - stella.discount_price) / 100}
-          </Text>
-        </View>
-      </View>
-      <View style={styles.lineStyle} />
-    </ScrollView>
-  );
-};
+//   return (
+//     <ScrollView>
+//       <View
+//         style={{
+//           flexDirection: "row",
+//           width: "100%",
+//           height: "35%",
+//           justifyContent: "space-between",
+//         }}
+//       >
+//         <View
+//           style={{
+//             width: "25%",
+//             alignItems: "flex-start",
+//             fontFamily: "Raleway",
+//             fontWeight: "500",
+//             color: "black",
+//             justifyContent: "center",
+//           }}
+//         >
+//           <Text style={styles.name}>{stella.name}</Text>
+//         </View>
+//         <View
+//           style={{
+//             width: "25%",
+//             alignItems: "center",
+//             fontFamily: "Raleway",
+//             fontWeight: "500",
+//             color: "black",
+//             justifyContent: "center",
+//           }}
+//         >
+//           <Text style={styles.cost}>{stella.regular_price / 100}</Text>
+//         </View>
+//         <View
+//           style={{
+//             width: "25%",
+//             alignItems: "flex-end",
+//             fontFamily: "Raleway",
+//             fontWeight: "500",
+//             color: "#18aa5e",
+//             justifyContent: "center",
+//           }}
+//         >
+//           <Text style={styles.costDi}>{stella.discount_price / 100}</Text>
+//         </View>
+//         <View
+//           style={{
+//             width: "25%",
+//             alignItems: "flex-end",
+//             fontFamily: "Raleway",
+//             fontWeight: "500",
+//             color: "#18aa5e",
+//             justifyContent: "center",
+//           }}
+//         >
+//           <Text style={styles.discount}>
+//             {(stella.regular_price - stella.discount_price) / 100}
+//           </Text>
+//         </View>
+//       </View>
+//       <View style={styles.lineStyle} />
+//     </ScrollView>
+//   );
+// };
 
 const CardScreen = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const { t } = useTranslation();
   const [showQRCode, setShowQRCode] = useState(false);
-  const [balance, setBalance] = useState("");
-  const [stellaPrice, setStellaPrice] = useState([]);
-  const [card, setCard] = useState([]);
+  // const [stellaPrice, setStellaPrice] = useState([]);
+  const [card, setCard] = useState();
 
   const getClientData = () =>
     AsyncStorage.getItem("token")
@@ -111,7 +111,7 @@ const CardScreen = () => {
             .post(
               `${Config.baseUrl}/client/graphql`,
               {
-                query: "{qrCard {id, card_name, serial_external, pin1}}",
+                query: "{Membership{id, name, price, start_date, end_date}}",
                 variables: {},
               },
               {
@@ -124,70 +124,16 @@ const CardScreen = () => {
             .then((res) => {
               const {
                 data: {
-                  data: { qrCard },
+                  data: { Membership },
                 },
               } = res;
 
-              setCard(qrCard);
+              console.log(Membership);
 
-              return axios
-                .post(
-                  `${Config.baseUrl}/client/graphql`,
-                  {
-                    query: "{getBalance {balance}}",
-                    variables: {},
-                  },
-                  {
-                    headers: {
-                      "Content-Type": "application/json",
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }
-                )
-                .then((res) => {
-                  const {
-                    data: {
-                      data: { getBalance },
-                    },
-                  } = res;
-
-                  setBalance(getBalance?.balance);
-
-                  return axios
-                    .post(
-                      `${Config.baseUrl}/client/graphql`,
-                      {
-                        query: "{stella {id, name, fuels}}",
-                        variables: {},
-                      },
-                      {
-                        headers: {
-                          "Content-Type": "application/json",
-                          Authorization: `Bearer ${token}`,
-                        },
-                      }
-                    )
-                    .then((res) => {
-                      const {
-                        data: {
-                          data: { stella },
-                        },
-                      } = res;
-
-                      return setStellaPrice(stella[0]?.fuels);
-                    })
-                    .catch(() => {
-                      Alert.alert(t("Session.session"), t("Session.finished"));
-
-                      return navigation.navigate("Login");
-                    });
-                })
-                .catch(() => {
-                  Alert.alert(t("Session.session"), t("Session.finished"));
-                  return navigation.navigate("Login");
-                });
+              return setCard(Membership);
             })
-            .catch(() => {
+            .catch((error) => {
+              console.log(error);
               Alert.alert(t("Session.session"), t("Session.finished"));
               return navigation.navigate("Login");
             });
@@ -235,6 +181,11 @@ const CardScreen = () => {
 
   const renderItem = ({ item }) => <Item stella={item} />;
 
+  const formattedStartDate = moment(card?.start_date).format(
+    "DD.MM.YYYY HH:mm"
+  );
+  const formattedEndDate = moment(card?.end_date).format("DD.MM.YYYY HH:mm");
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <ScrollView
@@ -253,12 +204,10 @@ const CardScreen = () => {
             </View>
             {showQRCode ? (
               <TouchableOpacity style={styles.qrCode} onPress={toggleQRCode}>
-                <QRCode
-                  value={card?.serial_external}
-                  size={193}
-                  backgroundColor="white"
-                />
-                <Text style={styles.qrText}>pin-code: {card?.pin1}</Text>
+                <Text style={styles.qrText}>
+                  start_date: {formattedStartDate}
+                </Text>
+                <Text style={styles.qrText}>end_date: {formattedEndDate}</Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity onPress={openFuel}>
@@ -293,7 +242,7 @@ const CardScreen = () => {
                         <Text style={styles.cardText}>
                           {t("CardScreen.fuelCard")}
                         </Text>
-                        <Text style={styles.cardNumber}>{card?.card_name}</Text>
+                        <Text style={styles.cardNumber}>{card?.name}</Text>
                       </View>
                       <View style={styles.balanceText}>
                         <Text
@@ -318,7 +267,8 @@ const CardScreen = () => {
                             color: "black",
                           }}
                         >
-                          {balance} {t("CardScreen.currencyBalance")}
+                          {card?.price.toString()}
+                          {t("CardScreen.currencyBalance")}
                         </Text>
                       </View>
                     </LinearGradient>
@@ -400,13 +350,13 @@ const CardScreen = () => {
                 </View>
                 <View style={styles.lineStyle} />
               </View>
-              <View style={styles.containerr}>
+              {/* <View style={styles.containerr}>
                 <FlatList
                   data={stellaPrice}
                   renderItem={renderItem}
                   keyExtractor={(item) => item.id}
                 />
-              </View>
+              </View> */}
             </View>
           </View>
           <View style={styles.bottomContainer}>
@@ -580,7 +530,6 @@ const styles = StyleSheet.create({
     height: "30%",
     fontWeight: "500",
     flex: 1,
-    textAlign: "center",
     color: "black",
     marginLeft: "10%",
     marginTop: "15%",
@@ -628,11 +577,20 @@ const styles = StyleSheet.create({
   },
 
   qrCode: {
+    width: "90%",
+    height: 220,
+    overflow: "hidden",
+    position: "relative",
+    left: "5.5%",
+    borderRadius: 12,
+    borderWidth: 1,
+    borderColor: "black",
     alignItems: "center",
   },
   qrText: {
     color: "black",
     marginTop: "2%",
+    position: "relative",
   },
   lineStyle: {
     borderWidth: 0.7,
