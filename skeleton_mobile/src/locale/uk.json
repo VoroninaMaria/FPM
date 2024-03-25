@@ -12,7 +12,9 @@
       "disc": "Зі знижкою",
       "discount": "Знижка",
       "currency": " ₴/л",
-      "discount": "Знижка"
+      "discount": "Знижка",
+      "firstName": "Імʼя :",
+      "lastName": "Прізвище :"
     },
     "MenuScreen": {
       "home": "Головна",

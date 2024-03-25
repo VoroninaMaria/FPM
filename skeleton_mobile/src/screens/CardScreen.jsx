@@ -97,6 +97,53 @@ const CardScreen = () => {
   const [showQRCode, setShowQRCode] = useState(false);
   // const [stellaPrice, setStellaPrice] = useState([]);
   const [card, setCard] = useState();
+  const [client, setClient] = useState();
+
+  const getClient = () =>
+    AsyncStorage.getItem("token")
+      .then((token) => {
+        if (!token) {
+          console.log(token);
+          Alert.alert(t("Session.session"), t("Session.finished"));
+          // return navigation.navigate("Login");
+        }
+        if (token) {
+          return axios
+            .post(
+              `${Config.baseUrl}/client/graphql`,
+              {
+                query: "{self{id, first_name, last_name}}",
+                variables: {},
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((res) => {
+              const {
+                data: {
+                  data: { self },
+                },
+              } = res;
+
+              console.log(self);
+
+              return setClient(self);
+            })
+            .catch((error) => {
+              console.log(error);
+              Alert.alert(t("Session.session"), t("Session.finished"));
+              return navigation.navigate("Login");
+            });
+        }
+      })
+      .catch(() => {
+        Alert.alert(t("Session.session"), t("Session.finished"));
+        return navigation.navigate("Login");
+      });
 
   const getClientData = () =>
     AsyncStorage.getItem("token")
@@ -147,17 +194,23 @@ const CardScreen = () => {
   useEffect(() => {
     const delay = 300;
 
+    const loadClientWithDelay = async () => {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      getClient();
+    };
     const loadDataWithDelay = async () => {
       await new Promise((resolve) => setTimeout(resolve, delay));
       getClientData();
     };
 
+    loadClientWithDelay();
     loadDataWithDelay();
   }, []);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
     getClientData();
+    getClient();
     setTimeout(() => {
       setRefreshing(false);
     }, 2000);
@@ -239,9 +292,6 @@ const CardScreen = () => {
                           justifyContent: "space-between",
                         }}
                       >
-                        <Text style={styles.cardText}>
-                          {t("CardScreen.fuelCard")}
-                        </Text>
                         <Text style={styles.cardNumber}>{card?.name}</Text>
                       </View>
                       <View style={styles.balanceText}>
@@ -255,7 +305,7 @@ const CardScreen = () => {
                             fontFamily: "Inter",
                           }}
                         >
-                          {t("CardScreen.balance")}
+                          {t("CardScreen.firstName")}
                         </Text>
                         <Text
                           style={{
@@ -267,8 +317,33 @@ const CardScreen = () => {
                             color: "black",
                           }}
                         >
-                          {card?.price.toString()}
-                          {t("CardScreen.currencyBalance")}
+                          {client?.first_name.toString()}
+                        </Text>
+                      </View>
+                      <View style={styles.balanceText}>
+                        <Text
+                          style={{
+                            justifyContent: "flex-start",
+                            marginLeft: "5%",
+                            fontSize: 17,
+                            fontWeight: "700",
+                            color: "black",
+                            fontFamily: "Inter",
+                          }}
+                        >
+                          {t("CardScreen.lastName")}
+                        </Text>
+                        <Text
+                          style={{
+                            justifyContent: "flex-end",
+                            marginRight: "5%",
+                            fontSize: 17,
+                            fontWeight: "700",
+                            fontFamily: "Inter",
+                            color: "black",
+                          }}
+                        >
+                          {client?.last_name.toString()}
                         </Text>
                       </View>
                     </LinearGradient>
