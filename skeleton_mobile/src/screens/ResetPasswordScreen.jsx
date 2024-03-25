@@ -56,7 +56,7 @@ const ResetPasswordScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.containerImg}>
           <Image
-            source={require("../assets/images/horizontal_transp.png")}
+            source={require("../assets/images/gymLogo.png")}
             style={styles.logoLoginScreen}
           />
         </View>
@@ -123,7 +123,7 @@ const styles = StyleSheet.create({
   },
   logoLoginScreen: {
     width: 220,
-    height: 29,
+    height: 90,
   },
   logo: {
     fontWeight: "bold",
@@ -159,17 +159,17 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: "50%",
-    backgroundColor: "rgba(24, 170, 94, 1)",
+    backgroundColor: "#f2cb84",
     borderRadius: 6,
     height: 41,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 50,
     marginBottom: 3,
-    borderColor: "#00FF7F",
+    borderColor: "#e6ab00",
     borderWidth: 0.75,
     marginTop: "8%",
-    shadowColor: "rgba(24, 170, 94, 0.2)",
+    shadowColor: "rgba(246,199,112,0.26514355742296913)",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 15,

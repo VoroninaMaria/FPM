@@ -38,7 +38,7 @@ const RegisterScreen = ({ navigation }) => {
           firstName: firstName,
           lastName: lastName,
           phone: phone,
-          merchant: "Mango",
+          merchant: "Gym",
         })
         .then(async (res) => {
           if (res.status === 200) {
@@ -73,7 +73,7 @@ const RegisterScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.containerImg}>
           <Image
-            source={require("../assets/images/horizontal_transp.png")}
+            source={require("../assets/images/gymLogo.png")}
             style={styles.logoLoginScreen}
           />
         </View>
@@ -233,8 +233,8 @@ const styles = StyleSheet.create({
     padding: 10,
   },
   logoLoginScreen: {
-    width: 300,
-    height: 40,
+    width: 220,
+    height: 90,
   },
   textRegistration: {
     fontWeight: "700",
@@ -284,15 +284,15 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: 263,
-    backgroundColor: "rgba(24, 170, 94, 1)",
+    backgroundColor: "#f2cb84",
     borderRadius: 6,
     height: 41,
     alignItems: "center",
     justifyContent: "center",
     marginBottom: 3,
-    borderColor: "#00FF7F",
+    borderColor: "#e6ab00",
     borderWidth: 0.75,
-    shadowColor: "rgba(24, 170, 94, 0.2)",
+    shadowColor: "rgba(246,199,112,0.26514355742296913)",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 15,
@@ -303,7 +303,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
   },
   loginText: {
-    color: "white",
+    color: "black",
     fontSize: 14,
     fontWeight: "600",
   },

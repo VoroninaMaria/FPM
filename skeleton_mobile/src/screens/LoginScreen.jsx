@@ -124,7 +124,7 @@ const LoginScreen = ({ navigation }) => {
       <View style={styles.container}>
         <View style={styles.containerImg}>
           <Image
-            source={require("../assets/images/horizontal_transp.png")}
+            source={require("../assets/images/gymLogo.png")}
             style={styles.logoLoginScreen}
           />
         </View>
@@ -276,13 +276,13 @@ const styles = StyleSheet.create({
   },
   logoLoginScreen: {
     width: 220,
-    height: 29,
+    height: 90,
   },
   logo: {
     fontWeight: "bold",
     fontSize: 20,
     color: "black",
-    top: "15%",
+    top: "10%",
     marginBottom: "15%",
     textAlign: "center",
   },
@@ -297,7 +297,7 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     padding: 10,
-    marginTop: "2%",
+    marginTop: "1%",
   },
   inputText: {
     width: "90%",
@@ -305,7 +305,7 @@ const styles = StyleSheet.create({
     color: "white",
   },
   inputContainer: {
-    marginTop: "25%",
+    marginTop: "20%",
     width: "90%",
   },
   iconsInput: {
@@ -313,17 +313,17 @@ const styles = StyleSheet.create({
   },
   loginBtn: {
     width: 135,
-    backgroundColor: "rgba(24, 170, 94, 1)",
+    backgroundColor: "#f2cb84",
     borderRadius: 6,
     height: 41,
     alignItems: "center",
     justifyContent: "center",
     marginTop: 50,
     marginBottom: 3,
-    borderColor: "#00FF7F",
+    borderColor: "#e6ab00",
     borderWidth: 0.75,
     marginTop: "8%",
-    shadowColor: "rgba(24, 170, 94, 0.2)",
+    shadowColor: "rgba(246,199,112,0.26514355742296913)",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
     shadowRadius: 15,
@@ -334,7 +334,7 @@ const styles = StyleSheet.create({
   },
   loginText: {
     fontFamily: "Raleway",
-    color: "white",
+    color: "black",
     fontSize: 14,
     fontWeight: "600",
   },

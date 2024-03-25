@@ -19,7 +19,7 @@ const PartnersScreen = ({ navigation }) => {
           </View>
           <Text style={styles.partnerText}>
             {" "}
-            {t("PartnersScreen.ourPartners")}
+            {t("PartnersScreen.ourTrainers")}
           </Text>
           <View
             style={{
@@ -31,36 +31,64 @@ const PartnersScreen = ({ navigation }) => {
             }}
           >
             <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
-            </View>
-            <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
-            </View>
-            <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
-            </View>
-          </View>
-          <View style={styles.containerr}>
-            <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
-            </View>
-            <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
-            </View>
-            <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
-            </View>
-          </View>
-          <View style={styles.containerr}>
-            <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
-            </View>
-            <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
+              <Image
+                source={require("../assets/images/tr1.jpeg")}
+                style={styles.circleImage}
+              />
             </View>
 
             <View style={styles.circle}>
-              <Text style={styles.circleText}>{t("PartnersScreen.logo")}</Text>
+              <Image
+                source={require("../assets/images/tr2.jpeg")}
+                style={styles.circleImage}
+              />
+            </View>
+            <View style={styles.circle}>
+              <Image
+                source={require("../assets/images/tr3.jpeg")}
+                style={styles.circleImage}
+              />
+            </View>
+          </View>
+          <View style={styles.containerr}>
+            <View style={styles.circle}>
+              <Image
+                source={require("../assets/images/tr4.jpeg")}
+                style={styles.circleImage}
+              />
+            </View>
+            <View style={styles.circle}>
+              <Image
+                source={require("../assets/images/tr5.jpeg")}
+                style={styles.circleImage}
+              />
+            </View>
+            <View style={styles.circle}>
+              <Image
+                source={require("../assets/images/tr6.jpeg")}
+                style={styles.circleImage}
+              />
+            </View>
+          </View>
+          <View style={styles.containerr}>
+            <View style={styles.circle}>
+              <Image
+                source={require("../assets/images/tr7.jpeg")}
+                style={styles.circleImage}
+              />
+            </View>
+            <View style={styles.circle}>
+              <Image
+                source={require("../assets/images/tr8.jpeg")}
+                style={styles.circleImage}
+              />
+            </View>
+
+            <View style={styles.circle}>
+              <Image
+                source={require("../assets/images/tr9.jpeg")}
+                style={styles.circleImage}
+              />
             </View>
           </View>
         </View>
@@ -83,6 +111,7 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
     height: "90%",
   },
+
   bottomContainer: {
     flex: 1,
     width: "100%",
@@ -113,12 +142,21 @@ const styles = StyleSheet.create({
     fontSize: 20,
     top: 10,
   },
+
   circle: {
-    width: "27%",
-    height: 108,
-    borderRadius: 62,
+    width: 100,
+    height: 100,
+    borderRadius: 50,
+    overflow: "hidden",
+    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#d9d9d9",
+  },
+  circleImage: {
+    width: "100%",
+    height: "100%",
+  },
+  textBelow: {
+    marginTop: 10,
   },
   circleText: {
     color: "black",
