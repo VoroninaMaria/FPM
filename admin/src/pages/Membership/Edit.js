@@ -8,6 +8,8 @@ import {
   SelectInput,
   NumberInput,
   DateTimeInput,
+  ArrayInput,
+  SimpleFormIterator,
 } from "react-admin";
 import { Title, CustomToolbar } from "../../shared/components/index.js";
 
@@ -53,6 +55,22 @@ const editLocation = () => {
         )}
         <DateTimeInput source="start_date" validate={[required()]} />
         <DateTimeInput source="end_date" validate={[required()]} />
+        <ArrayInput source="abilities">
+          <SimpleFormIterator inline disableClear>
+            <TextInput
+              source="name"
+              inputProps={{ maxLength: 55, minLength: 1 }}
+              validate={[required()]}
+            />
+            <TextInput
+              source="description"
+              inputProps={{ maxLength: 55, minLength: 1 }}
+              validate={[required()]}
+            />
+            <NumberInput source="regular_price" validate={[required()]} />
+            <NumberInput source="discount_price" validate={[required()]} />
+          </SimpleFormIterator>
+        </ArrayInput>
       </SimpleForm>
     </Edit>
   );

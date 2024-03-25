@@ -1,4 +1,38 @@
 {
+  "abilities": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "description": {
+      "type": "character varying",
+      "default": null
+    },
+    "discount_price": {
+      "type": "integer",
+      "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "membership_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "regular_price": {
+      "type": "integer",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
   "admins": {
     "created_at": {
       "type": "timestamp with time zone",

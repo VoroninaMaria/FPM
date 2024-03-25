@@ -3,8 +3,10 @@ import {
   GraphQLID,
   GraphQLString,
   GraphQLFloat,
+  GraphQLList,
 } from "graphql";
 import GraphQLDateTime from "graphql-type-datetime";
+import { GraphQLJSONObject } from "graphql-type-json";
 
 export default new GraphQLObjectType({
   name: "Membership",
@@ -16,6 +18,7 @@ export default new GraphQLObjectType({
     location_id: { type: GraphQLID },
     start_date: { type: GraphQLDateTime },
     end_date: { type: GraphQLDateTime },
+    abilities: { type: new GraphQLList(GraphQLJSONObject) },
     created_at: { type: GraphQLString },
     updated_at: { type: GraphQLString },
   },

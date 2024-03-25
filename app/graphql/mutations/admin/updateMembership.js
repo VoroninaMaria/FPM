@@ -9,6 +9,8 @@ import {
   GraphQLError,
 } from "graphql";
 import GraphQLDateTime from "graphql-type-datetime";
+import { GraphQLList } from "graphql/index.js";
+import { GraphQLJSONObject } from "graphql-type-json";
 
 export default {
   type: Membership,
@@ -18,23 +20,69 @@ export default {
     price: { type: new GraphQLNonNull(GraphQLFloat) },
     merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
+    abilities: { type: new GraphQLList(GraphQLJSONObject) },
     start_date: { type: new GraphQLNonNull(GraphQLDateTime) },
     end_date: { type: new GraphQLNonNull(GraphQLDateTime) },
   },
-  resolve: (_, params) =>
-    updateMembershipValidation.validate({ ...params }).then(() =>
+  resolve: (_, args) =>
+    updateMembershipValidation.validate({ ...args }).then(() =>
       Database("memberships")
         .where({
-          id: params.id,
+          id: args.id,
         })
         .update({
-          ...params,
+          name: args.name,
+          price: args.price,
+          merchant_id: args.merchant_id,
+          location_id: args.location_id,
+          start_date: args.start_date,
+          end_date: args.end_date,
           updated_at: Database.fn.now(),
         })
         .returning("*")
-        .then(([location]) => location)
+        .then(async ([membership]) => {
+          if (args.abilities?.length > 0) {
+            await Promise.all(
+              args.abilities.map(
+                ({ id, name, description, regular_price, discount_price }) => {
+                  if (id) {
+                    return Database("abilities")
+                      .where({
+                        id,
+                        membership_id: membership.id,
+                      })
+                      .update({
+                        name,
+                        description,
+                        regular_price,
+                        discount_price,
+                      })
+                      .catch((e) => {
+                        throw new GraphQLError(e.message);
+                      });
+                  } else {
+                    return Database("abilities")
+                      .insert({
+                        membership_id: membership.id,
+                        name,
+                        description,
+                        regular_price,
+                        discount_price,
+                      })
+                      .catch((e) => {
+                        throw new GraphQLError(e.message);
+                      });
+                  }
+                }
+              )
+            );
+
+            return { ...membership, abilities: args.abilities ?? [] };
+          }
+          return membership;
+        })
         .catch(() => {
-          throw new GraphQLError("Forbidden");
+          throw new GraphQLError("Forbidden1");
         })
     ),
 };

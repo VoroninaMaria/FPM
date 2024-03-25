@@ -4,12 +4,15 @@ import {
   Show,
   SimpleShowLayout,
   TextField,
+  ArrayField,
+  Datagrid,
 } from "react-admin";
 import {
   DateField,
   Title,
   ShowOnlyTopToolbar,
 } from "../../shared/components/index.js";
+import * as React from "react";
 
 const showMembership = () => (
   <Show title={<Title source="name" />} actions={<ShowOnlyTopToolbar />}>
@@ -24,6 +27,15 @@ const showMembership = () => (
       </ReferenceField>
       <DateField source="start_date" />
       <DateField source="end_date" />
+      <ArrayField source="abilities">
+        <Datagrid optimized bulkActionButtons={null}>
+          <TextField source="name" />
+          <TextField source="regular_price" />
+          <TextField source="discount_price" />
+          <TextField source="description" />
+        </Datagrid>
+      </ArrayField>
+
       <DateField source="created_at" />
       <DateField source="updated_at" />
     </SimpleShowLayout>

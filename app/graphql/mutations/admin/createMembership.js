@@ -20,11 +20,11 @@ export default {
     start_date: { type: new GraphQLNonNull(GraphQLDateTime) },
     end_date: { type: new GraphQLNonNull(GraphQLDateTime) },
   },
-  resolve: (_, params) =>
-    createMembershipValidation.validate({ ...params }).then(() =>
+  resolve: (_, args) =>
+    createMembershipValidation.validate({ ...args }).then(() =>
       Database("memberships")
         .insert({
-          ...params,
+          ...args,
         })
         .returning("*")
         .then(([membership]) => membership)
