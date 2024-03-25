@@ -14,6 +14,21 @@ const Membership = {
     Database("memberships")
       .where({ id, merchant_id: merchant.id })
       .first()
+      .then(async (membership) => {
+        membership.abilities = await Database("abilities")
+          .select([
+            "id",
+            "name",
+            "description",
+            "regular_price",
+            "discount_price",
+          ])
+          .where({
+            membership_id: membership.id,
+          });
+
+        return membership;
+      })
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),
@@ -41,6 +56,23 @@ const allMemberships = {
       .limit(perPage)
       .offset(page * perPage)
       .orderBy(sortField, sortOrder)
+      .then((memberships) => {
+        return memberships.map(async (membership) => {
+          membership.abilities = await Database("abilities")
+            .select([
+              "id",
+              "name",
+              "description",
+              "regular_price",
+              "discount_price",
+            ])
+            .where({
+              membership_id: membership.id,
+            });
+
+          return membership;
+        });
+      })
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),

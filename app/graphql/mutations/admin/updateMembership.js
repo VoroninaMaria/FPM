@@ -82,7 +82,7 @@ export default {
           return membership;
         })
         .catch(() => {
-          throw new GraphQLError("Forbidden1");
+          throw new GraphQLError("Forbidden");
         })
     ),
 };

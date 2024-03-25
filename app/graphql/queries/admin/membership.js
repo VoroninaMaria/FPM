@@ -72,7 +72,6 @@ const allMemberships = {
           return membership;
         });
       })
-
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),
