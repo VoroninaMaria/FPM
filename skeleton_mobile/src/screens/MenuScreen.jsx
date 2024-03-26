@@ -33,15 +33,6 @@ const MenuScreen = ({ navigation }) => {
   const openExit = () => {
     navigation.navigate("Exit");
   };
-  const openLegalEntity = async () => {
-    await AsyncStorage.getItem("cardInfo").then((cardInfo) => {
-      if (cardInfo) {
-        return navigation.navigate("LegalEntity");
-      } else {
-        return navigation.navigate("SwitchAccount");
-      }
-    });
-  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -64,16 +55,6 @@ const MenuScreen = ({ navigation }) => {
               />
               <Text style={styles.listText}>{t("MenuScreen.home")}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.list} onPress={openLegalEntity}>
-              <Icon
-                name="exchange-alt"
-                size={28}
-                color="#e6ab00"
-                marginLeft="4%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("MenuScreen.legalEntity")}</Text>
-            </TouchableOpacity>
 
             <TouchableOpacity
               style={styles.list}
@@ -90,23 +71,7 @@ const MenuScreen = ({ navigation }) => {
               />
               <Text style={styles.listText}>{t("MenuScreen.site")}</Text>
             </TouchableOpacity>
-            <TouchableOpacity
-              style={styles.list}
-              onPress={() => {
-                Linking.openURL(
-                  "https://www.mango-oil.com.ua/templates/contract.pdf"
-                );
-              }}
-            >
-              <Icon
-                name="newspaper"
-                size={28}
-                color="#e6ab00"
-                marginLeft="4%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("MenuScreen.contract")}</Text>
-            </TouchableOpacity>
+
             <TouchableOpacity style={styles.list} onPress={openProfile}>
               <Icon
                 name="user"

@@ -12,21 +12,17 @@ import {
   PartnersScreen,
   RegisterScreen,
   RefillScreen,
-  LegalEntityScreen,
   ChangingPinScreen,
   LoginScreen,
   MenuScreen,
-  LegalEntityMenuScreen,
   SupportScreen,
   ExitScreen,
-  LegalEntityExitScreen,
   ConfirmationScreen,
   OtpScreen,
   LoaderScreen,
   ResetPasswordScreen,
   ConfirmResetOTPScreen,
   ConfirmationResetScreen,
-  ChangePinScreen,
   ChangePassword,
   SwitchAccountScreen,
 } from "./src/screens/index.js";
@@ -106,9 +102,9 @@ const App = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="OTPScreen" component={OtpScreen} />
-            <Stack.Screen name="LegalEntity" component={LegalEntityScreen} />
+
             <Stack.Screen name="Menu" component={MenuScreen} />
-            <Stack.Screen name="ChangePinCode" component={ChangePinScreen} />
+
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen
               name="SwitchAccount"
@@ -122,26 +118,14 @@ const App = () => {
               name="ConfirmResetOTP"
               component={ConfirmResetOTPScreen}
             />
-            <Stack.Screen
-              name="LegalEntityMenu"
-              component={LegalEntityMenuScreen}
-            />
+
             <Stack.Screen name="Support" component={SupportScreen} />
             <Stack.Screen name="Exit">
               {(props) => {
                 return <ExitScreen {...props} setAuthToken={setAuthToken} />;
               }}
             </Stack.Screen>
-            <Stack.Screen name="LegalEntityExit">
-              {(props) => {
-                return (
-                  <LegalEntityExitScreen
-                    {...props}
-                    setAuthToken={setAuthToken}
-                  />
-                );
-              }}
-            </Stack.Screen>
+
             <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
             <Stack.Screen
               name="ConfirmationReset"

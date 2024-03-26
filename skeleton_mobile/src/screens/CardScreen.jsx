@@ -4,7 +4,6 @@ import {
   Image,
   Text,
   TouchableOpacity,
-  FlatList,
   RefreshControl,
   SafeAreaView,
   ScrollView,
@@ -14,7 +13,6 @@ import React, { useState, useEffect } from "react";
 import LinearGradient from "react-native-linear-gradient";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useNavigation } from "@react-navigation/native";
-import QRCode from "react-native-qrcode-svg";
 import { useTranslation } from "react-i18next";
 import Config from "./config.js";
 import "../localization/i18n";
@@ -94,7 +92,7 @@ import moment from "moment";
 const CardScreen = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const { t } = useTranslation();
-  const [showQRCode, setShowQRCode] = useState(false);
+  const [showInfo, setShowInfo] = useState(false);
   // const [stellaPrice, setStellaPrice] = useState([]);
   const [card, setCard] = useState();
   const [client, setClient] = useState();
@@ -134,7 +132,6 @@ const CardScreen = () => {
               return setClient(self);
             })
             .catch((error) => {
-              console.log(error);
               Alert.alert(t("Session.session"), t("Session.finished"));
               return navigation.navigate("Login");
             });
@@ -149,7 +146,6 @@ const CardScreen = () => {
     AsyncStorage.getItem("token")
       .then((token) => {
         if (!token) {
-          console.log(token);
           Alert.alert(t("Session.session"), t("Session.finished"));
           // return navigation.navigate("Login");
         }
@@ -174,8 +170,6 @@ const CardScreen = () => {
                   data: { Membership },
                 },
               } = res;
-
-              console.log(Membership);
 
               return setCard(Membership);
             })
@@ -217,10 +211,10 @@ const CardScreen = () => {
   }, []);
 
   const toggleQRCode = () => {
-    setShowQRCode(!showQRCode);
+    setShowInfo(!showInfo);
   };
   const openFuel = () => {
-    setShowQRCode(true);
+    setShowInfo(true);
   };
 
   const navigation = useNavigation();
@@ -255,7 +249,7 @@ const CardScreen = () => {
                 style={styles.logoLoginScreen}
               />
             </View>
-            {showQRCode ? (
+            {showInfo ? (
               <TouchableOpacity style={styles.qrCode} onPress={toggleQRCode}>
                 <Text style={styles.qrText}>
                   start_date: {formattedStartDate}
