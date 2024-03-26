@@ -12,6 +12,18 @@ const Membership = {
       })
       .first()
       .then(async (membership) => {
+        const currentDate = new Date();
+
+        if (membership?.end_date < currentDate) {
+          await Database("memberships")
+            .where({
+              id: client.membership_id,
+            })
+            .update({
+              status: "disabled",
+            });
+          membership.status = "disabled";
+        }
         membership.abilities = await Database("abilities")
           .select([
             "id",
