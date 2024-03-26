@@ -352,6 +352,14 @@
       "type": "timestamp with time zone",
       "default": null
     },
+    "status": {
+      "type": "character varying",
+      "default": "'inactive'::character varying"
+    },
+    "term": {
+      "type": "integer",
+      "default": null
+    },
     "updated_at": {
       "type": "timestamp with time zone",
       "default": "now()"

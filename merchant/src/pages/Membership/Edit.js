@@ -12,6 +12,7 @@ import {
   SimpleFormIterator,
 } from "react-admin";
 import { Title, CustomToolbar } from "../../shared/components/index.js";
+import { MEMBERSHIP_STATUSES } from "@local/constants/index.js";
 
 const editMembership = () => (
   <Edit
@@ -26,6 +27,7 @@ const editMembership = () => (
         validate={[required()]}
       />
       <NumberInput source="price" validate={[required()]} />
+      <NumberInput source="term" validate={[required()]} />
       <ReferenceInput source="location_id" reference="Location">
         <SelectInput
           optionText="name"
@@ -33,8 +35,16 @@ const editMembership = () => (
           validate={[required()]}
         />
       </ReferenceInput>
-      <DateTimeInput source="start_date" validate={[required()]} />
-      <DateTimeInput source="end_date" validate={[required()]} />
+      <DateTimeInput source="start_date" />
+      <DateTimeInput source="end_date" />
+      <SelectInput
+        source="status"
+        validate={[required()]}
+        choices={Object.keys(MEMBERSHIP_STATUSES).map((status) => ({
+          id: status,
+          name: `resources.Membership.source.status.${status}`,
+        }))}
+      />
       <ArrayInput source="abilities">
         <SimpleFormIterator inline disableClear>
           <TextInput

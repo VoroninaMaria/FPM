@@ -9,7 +9,7 @@ import {
   GraphQLError,
 } from "graphql";
 import GraphQLDateTime from "graphql-type-datetime";
-import { GraphQLList } from "graphql/index.js";
+import { GraphQLInt, GraphQLList } from "graphql/index.js";
 import { GraphQLJSONObject } from "graphql-type-json";
 
 export default {
@@ -17,12 +17,14 @@ export default {
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
     name: { type: new GraphQLNonNull(GraphQLString) },
+    term: { type: new GraphQLNonNull(GraphQLInt) },
+    status: { type: new GraphQLNonNull(GraphQLString) },
     price: { type: new GraphQLNonNull(GraphQLFloat) },
     merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
     abilities: { type: new GraphQLList(GraphQLJSONObject) },
-    start_date: { type: new GraphQLNonNull(GraphQLDateTime) },
-    end_date: { type: new GraphQLNonNull(GraphQLDateTime) },
+    start_date: { type: GraphQLDateTime },
+    end_date: { type: GraphQLDateTime },
   },
   resolve: (_, args) =>
     updateMembershipValidation.validate({ ...args }).then(() =>
@@ -33,6 +35,8 @@ export default {
         .update({
           name: args.name,
           price: args.price,
+          term: args.term,
+          status: args.status,
           merchant_id: args.merchant_id,
           location_id: args.location_id,
           start_date: args.start_date,

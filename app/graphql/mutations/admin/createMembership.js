@@ -6,6 +6,7 @@ import {
   GraphQLNonNull,
   GraphQLID,
   GraphQLError,
+  GraphQLInt,
 } from "graphql";
 import { GraphQLFloat } from "graphql/index.js";
 import GraphQLDateTime from "graphql-type-datetime";
@@ -14,11 +15,13 @@ export default {
   type: Membership,
   args: {
     name: { type: new GraphQLNonNull(GraphQLString) },
+    term: { type: new GraphQLNonNull(GraphQLInt) },
+    status: { type: new GraphQLNonNull(GraphQLString) },
     price: { type: new GraphQLNonNull(GraphQLFloat) },
     merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
-    start_date: { type: new GraphQLNonNull(GraphQLDateTime) },
-    end_date: { type: new GraphQLNonNull(GraphQLDateTime) },
+    start_date: { type: GraphQLDateTime },
+    end_date: { type: GraphQLDateTime },
   },
   resolve: (_, args) =>
     createMembershipValidation.validate({ ...args }).then(() =>

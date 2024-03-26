@@ -10,6 +10,7 @@ import {
   SelectInput,
 } from "react-admin";
 import { CustomToolbar } from "../../shared/components/index.js";
+import { MEMBERSHIP_STATUSES } from "@local/constants/index.js";
 
 const createMembership = () => (
   <Create redirect="show">
@@ -20,6 +21,7 @@ const createMembership = () => (
         validate={[required()]}
       />
       <NumberInput source="price" validate={[required()]} />
+      <NumberInput source="term" validate={[required()]} />
       <ReferenceInput source="location_id" reference="Location">
         <SelectInput
           optionText="name"
@@ -27,8 +29,16 @@ const createMembership = () => (
           validate={[required()]}
         />
       </ReferenceInput>
-      <DateTimeInput source="start_date" validate={[required()]} />
-      <DateTimeInput source="end_date" validate={[required()]} />
+      <DateTimeInput source="start_date" />
+      <DateTimeInput source="end_date" />
+      <SelectInput
+        source="status"
+        validate={[required()]}
+        choices={Object.keys(MEMBERSHIP_STATUSES).map((status) => ({
+          id: status,
+          name: `resources.Membership.source.status.${status}`,
+        }))}
+      />
     </SimpleForm>
   </Create>
 );
