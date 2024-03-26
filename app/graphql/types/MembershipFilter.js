@@ -18,6 +18,7 @@ export default new GraphQLInputObjectType({
     location_id: { type: GraphQLID },
     start_date: { type: GraphQLDateTime },
     end_date: { type: GraphQLDateTime },
+    address: { type: GraphQLString },
     created_at: { type: GraphQLString },
     updated_at: { type: GraphQLString },
   }),

@@ -19,6 +19,7 @@ export default new GraphQLObjectType({
     start_date: { type: GraphQLDateTime },
     end_date: { type: GraphQLDateTime },
     abilities: { type: new GraphQLList(GraphQLJSONObject) },
+    address: { type: GraphQLString },
     created_at: { type: GraphQLString },
     updated_at: { type: GraphQLString },
   },

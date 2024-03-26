@@ -1,12 +1,12 @@
 import { GraphQLList, GraphQLError } from "graphql";
 import { Database } from "@local/lib/index.js";
 import { Membership as MembershipType } from "@local/graphql/types/index.js";
-import { GraphQLID, GraphQLNonNull } from "graphql/index.js";
 
-const ActiveMembership = {
+const Membership = {
   type: MembershipType,
   resolve: async (_, __, { client }) => {
-    const membershipRes = await "memberships"
+    const membershipRes = await Database("memberships")
+      .select("*")
       .where({
         id: client.membership_id,
       })
@@ -28,43 +28,19 @@ const ActiveMembership = {
           });
         return membership;
       })
-
-      .catch(() => {
-        throw new GraphQLError("Forbidden");
-      });
-
-    return membershipRes;
-  },
-};
-
-const Membership = {
-  type: MembershipType,
-  args: { id: { type: new GraphQLNonNull(GraphQLID) } },
-  resolve: async (_, { id }, { client }) => {
-    const membershipRes = await Database("memberships")
-      .where({
-        id,
-        merchant_id: client.merchant_id,
-      })
-      .first()
       .then(async (membership) => {
-        membership.abilities = await Database("abilities")
-          .select([
-            "id",
-            "name",
-            "description",
-            "regular_price",
-            "discount_price",
-          ])
+        const address = await Database("locations")
           .where({
-            membership_id: membership.id,
+            merchant_id: membership.merchant_id,
           })
+          .select("address")
           .catch(() => {
             throw new GraphQLError("Forbidden");
           });
+
+        membership.address = address[0].address;
         return membership;
       })
-
       .catch(() => {
         throw new GraphQLError("Forbidden");
       });
@@ -92,6 +68,17 @@ const allMemberships = {
               membership_id: membership.id,
             });
 
+          const address = await Database("locations")
+            .where({
+              merchant_id: membership.merchant_id,
+            })
+            .select("address")
+            .catch(() => {
+              throw new GraphQLError("Forbidden");
+            });
+
+          membership.address = address[0].address;
+
           return membership;
         });
       })
@@ -100,4 +87,4 @@ const allMemberships = {
       }),
 };
 
-export default { ActiveMembership, allMemberships, Membership };
+export default { Membership, allMemberships };
