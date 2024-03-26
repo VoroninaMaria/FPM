@@ -2,7 +2,7 @@ import HomeScreen from "./HomeScreen";
 import ProfileScreen from "./ProfileScreen";
 import HistoryScreen from "./HistoryScreen";
 import PartnersScreen from "./PartnersScreen";
-import RefillScreen from "./RefillScreen";
+
 import CardScreen from "./CardScreen";
 import ChangingPinScreen from "./ChangingPinScreen";
 import LoginScreen from "./LoginScreen";
@@ -26,7 +26,6 @@ export {
   ProfileScreen,
   HistoryScreen,
   PartnersScreen,
-  RefillScreen,
   CardScreen,
   ChangingPinScreen,
   LoginScreen,

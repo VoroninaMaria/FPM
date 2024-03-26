@@ -11,7 +11,6 @@ import {
   HistoryScreen,
   PartnersScreen,
   RegisterScreen,
-  RefillScreen,
   ChangingPinScreen,
   LoginScreen,
   MenuScreen,
@@ -94,7 +93,7 @@ const App = () => {
         {!isLoading && (
           <>
             <Stack.Screen name="CardScreen" component={CardScreen} />
-            <Stack.Screen name="Refill" component={RefillScreen} />
+
             <Stack.Screen name="History" component={HistoryScreen} />
             <Stack.Screen name="Settings" component={ChangingPinScreen} />
             <Stack.Screen name="Partners" component={PartnersScreen} />

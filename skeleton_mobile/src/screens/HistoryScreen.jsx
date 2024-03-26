@@ -27,7 +27,7 @@ const HistoryScreen = ({ navigation }) => {
             <View style={styles.topImage}>
               <Image
                 style={styles.tinyLogo}
-                source={require("../assets/images/horizontal_transp.png")}
+                source={require("../assets/images/gymLogo.png")}
               />
             </View>
             <View style={styles.topContainer}></View>
@@ -75,10 +75,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   tinyLogo: {
-    marginTop: 25,
-    width: 230,
-    height: 29,
-    resizeMode: "contain",
+    marginTop: "2%",
+    width: 180,
+    height: 74,
   },
   topContainer: {
     width: "100%",
