@@ -12,7 +12,7 @@ const SupportScreen = ({ navigation }) => {
         <View style={styles.containerBrands}>
           <View style={styles.containerImg}>
             <Image
-              source={require("../assets/images/horizontal_transp.png")}
+              source={require("../assets/images/gymLogo.png")}
               style={styles.logoLoginScreen}
             />
           </View>
@@ -21,6 +21,7 @@ const SupportScreen = ({ navigation }) => {
               <Text
                 style={{
                   marginLeft: "11%",
+                  marginTop: "11%",
                   fontWeight: "400",
                   color: "#222222",
                 }}
@@ -28,7 +29,7 @@ const SupportScreen = ({ navigation }) => {
                 {t("SupportScreen.customerSupport")}
               </Text>
             </View>
-            <View style={{ marginLeft: "2%" }}>
+            <View style={{ marginLeft: "2%", marginTop: "4%" }}>
               <Text
                 style={{
                   color: "#e6ab00",
@@ -125,8 +126,8 @@ const styles = StyleSheet.create({
     height: "5%",
   },
   logoLoginScreen: {
-    width: 220,
-    height: 29,
+    width: 180,
+    height: 74,
   },
   supportNumber: {
     width: "100%",

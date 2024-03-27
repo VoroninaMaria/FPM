@@ -7,17 +7,16 @@ import {
   GraphQLError,
   GraphQLFloat,
 } from "graphql";
-import { GraphQLID } from "graphql/index.js";
-import GraphQLDateTime from "graphql-type-datetime";
+import { GraphQLID, GraphQLInt } from "graphql/index.js";
 
 export default {
   type: Membership,
   args: {
     name: { type: new GraphQLNonNull(GraphQLString) },
     price: { type: new GraphQLNonNull(GraphQLFloat) },
+    term: { type: new GraphQLNonNull(GraphQLInt) },
+    status: { type: new GraphQLNonNull(GraphQLString) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
-    start_date: { type: new GraphQLNonNull(GraphQLDateTime) },
-    end_date: { type: new GraphQLNonNull(GraphQLDateTime) },
   },
   resolve: (_, params, { merchant }) =>
     createMembershipValidation

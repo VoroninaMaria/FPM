@@ -2,13 +2,12 @@ import { addPrimaryUuid, addTimestamps } from "../shared/index.js";
 import { MEMBERSHIP_STATUSES } from "../../app/constants/index.js";
 
 export const up = async (knex) => {
-  await knex.schema.createTable("memberships", (table) => {
+  await knex.schema.createTable("membership_log", (table) => {
     addPrimaryUuid(knex, table);
-    table.string("name").notNull();
-    table.float("price").notNull();
-    table.uuid("merchant_id").notNull().references("id").inTable("merchants");
-    table.uuid("location_id").references("id").inTable("locations");
-    table.integer("term").notNull();
+    table.uuid("client_id").notNull().references("id").inTable("clients");
+    table.uuid("membership_id").references("id").inTable("memberships");
+    table.timestamp("start_date");
+    table.timestamp("end_date");
     table
       .string("status")
       .notNull()
@@ -18,5 +17,5 @@ export const up = async (knex) => {
 };
 
 export const down = async (knex) => {
-  await knex.schema.dropTable("memberships");
+  await knex.schema.dropTable("membership_log");
 };

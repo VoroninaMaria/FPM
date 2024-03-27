@@ -18,11 +18,7 @@ const ConfirmationResetScreen = ({ navigation, route }) => {
   const { name, entity } = route.params;
 
   const openHome = () => {
-    if (entity === 1) {
-      return navigation.navigate("CardScreen");
-    } else {
-      return navigation.navigate("LegalEntity");
-    }
+    return navigation.navigate("CardScreen");
   };
 
   return (

@@ -28,9 +28,6 @@ const ChangingPinScreen = () => {
     navigation.navigate("ChangePassword");
   };
 
-  const openChangePin = () => {
-    navigation.navigate("ChangePinCode");
-  };
   const openExit = () => {
     navigation.navigate("Exit");
   };
@@ -58,16 +55,7 @@ const ChangingPinScreen = () => {
                 {t("SettingsScreen.savePassword")}
               </Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.list} onPress={openChangePin}>
-              <Icon
-                name="credit-card"
-                size={28}
-                color="#e6ab00"
-                marginLeft="4%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("SettingsScreen.savePin")}</Text>
-            </TouchableOpacity>
+
             <View style={styles.lineStyle} />
             <View style={styles.exitContainer}>
               <TouchableOpacity style={styles.exit} onPress={openExit}>

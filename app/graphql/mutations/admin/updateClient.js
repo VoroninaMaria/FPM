@@ -15,6 +15,7 @@ export default {
   type: Client,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
+    merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     first_name: { type: GraphQLString },
     last_name: { type: GraphQLString },
     phone: { type: new GraphQLNonNull(GraphQLString) },
@@ -55,6 +56,7 @@ export default {
         email: args.email,
         status: args.status,
         membership_id: args.membership_id,
+        merchant_id: args.merchant_id,
         category_id: args.category_id,
         updated_at: Database.fn.now(),
       })

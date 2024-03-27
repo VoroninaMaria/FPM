@@ -61,6 +61,20 @@ const uk = {
     end: "Праворуч",
   },
   resources: {
+    Membership: {
+      name: "Абонементи",
+      fields: {
+        name: "Назва",
+      },
+      source: {
+        status: {
+          active: "активний",
+          disabled: "деактивований",
+          blocked: "заблокований",
+          inactive: "неактивний",
+        },
+      },
+    },
     Dashboard: {
       name: "Головна",
       skip: "Пропустити",

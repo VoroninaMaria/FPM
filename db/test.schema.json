@@ -319,7 +319,11 @@
       "default": "now()"
     }
   },
-  "memberships": {
+  "membership_log": {
+    "client_id": {
+      "type": "uuid",
+      "default": null
+    },
     "created_at": {
       "type": "timestamp with time zone",
       "default": "now()"
@@ -327,6 +331,32 @@
     "end_date": {
       "type": "timestamp with time zone",
       "default": null
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "membership_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "start_date": {
+      "type": "timestamp with time zone",
+      "default": null
+    },
+    "status": {
+      "type": "character varying",
+      "default": "'inactive'::character varying"
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "memberships": {
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
     },
     "id": {
       "type": "uuid",
@@ -348,8 +378,12 @@
       "type": "real",
       "default": null
     },
-    "start_date": {
-      "type": "timestamp with time zone",
+    "status": {
+      "type": "character varying",
+      "default": "'inactive'::character varying"
+    },
+    "term": {
+      "type": "integer",
       "default": null
     },
     "updated_at": {
