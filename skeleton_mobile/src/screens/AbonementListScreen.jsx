@@ -1,7 +1,6 @@
 import {
   StyleSheet,
   View,
-  Image,
   Text,
   TouchableOpacity,
   RefreshControl,
@@ -9,6 +8,7 @@ import {
   ScrollView,
   Alert,
   FlatList,
+  Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import LinearGradient from "react-native-linear-gradient";
@@ -26,37 +26,42 @@ const Item = ({ allMemberships }) => {
   return (
     <ScrollView>
       <View style={styles.membershipContainer}>
-        <View style={styles.membershipDetailContainer}>
+        <View style={styles.containers}>
+          <View>
+            <Image
+              source={require("../assets/images/Sports.png")}
+              style={styles.logoLoginScreen}
+            />
+          </View>
+
           <View
             style={{
-              width: "25%",
-              alignItems: "flex-start",
+              width: "10%",
+
               fontFamily: "Raleway",
               fontWeight: "500",
               color: "black",
-              justifyContent: "center",
             }}
-          >
-            <Text style={styles.name}>{allMemberships.price}</Text>
-          </View>
-          <View
-            style={{
-              width: "25%",
-              alignItems: "center",
-              fontFamily: "Raleway",
-              fontWeight: "500",
-              color: "black",
-              justifyContent: "center",
-            }}
-          >
-            <Text style={styles.cost}>{allMemberships.name}</Text>
-          </View>
-          <View style={styles.membershipAbilitiesContainer}>
-            {allMemberships.abilities.map((ability, index) => (
-              <Text key={index} style={styles.membershipAbility}>
-                {ability.name}
-              </Text>
-            ))}
+          ></View>
+          <View style={styles.textInBox}>
+            <View
+              style={{
+                width: "100%",
+                marginTop: "4%",
+                fontFamily: "Raleway",
+                fontWeight: "500",
+                height: "30%",
+                color: "black",
+              }}
+            >
+              <Text style={styles.cost}>{allMemberships.name}</Text>
+            </View>
+
+            <Text style={styles.membershipAbilitiesContainer}>
+              {allMemberships?.abilities
+                .map((ability) => ability.name)
+                .join(", ")}
+            </Text>
           </View>
         </View>
         <View style={styles.lineStyle} />
@@ -152,9 +157,18 @@ const styles = StyleSheet.create({
     flex: 1,
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
   },
 
+  containers: {
+    padding: 10,
+    backgroundColor: "rgba(246, 199, 112, 0.2749445676274944)",
+    borderRadius: 15,
+    marginBottom: 15,
+
+    display: "flex",
+    flexDirection: "row",
+    ap: 10,
+  },
   containerBrands: {
     textAlign: "center",
     alignItems: "center",
@@ -186,74 +200,34 @@ const styles = StyleSheet.create({
   },
   containerr: {
     width: "100%",
+
     flex: 1,
     padding: 16,
     flexDirection: "column",
   },
-  topContainer: {
-    width: "100%",
-    height: "90%",
-  },
-  middleContainer: {
-    width: "100%",
-    height: "50%",
-    marginTop: 30,
-  },
-  bottomContainer: {
-    flex: 1,
-    width: "100%",
-    height: "10%",
-    backgroundColor: "#F5F5F5",
-  },
-  membershipContainer: {
-    flexDirection: "column",
-    marginVertical: 10,
-  },
-  membershipDetailContainer: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    paddingHorizontal: 10,
-  },
-  membershipName: {
-    fontFamily: "Raleway",
-    fontWeight: "500",
-    color: "black",
-  },
-  membershipPrice: {
-    fontFamily: "Raleway",
-    fontWeight: "500",
-    color: "black",
-  },
-  membershipAbilitiesContainer: {
-    flexDirection: "row",
-    flexWrap: "wrap",
-    paddingHorizontal: 10,
-  },
-  membershipAbility: {
-    fontFamily: "Raleway",
-    fontWeight: "500",
-    color: "#18aa5e",
-    marginVertical: 5,
-    marginHorizontal: 5,
-  },
-  lineStyle: {
-    borderBottomWidth: 1,
-    borderBottomColor: "black",
-    marginVertical: 10,
-  },
+
   container: {
     flex: 1,
   },
-  containerBrands: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
+
   textAbonement: {
     fontFamily: "Raleway",
     fontWeight: "500",
     color: "black",
     fontSize: 20,
     marginBottom: 10,
+  },
+  logoLoginScreen: {
+    width: 100,
+    height: 100,
+    borderRadius: 15,
+    resizeMode: "contain",
+  },
+  membershipAbilitiesContainer: {
+    marginTop: "12%",
+  },
+  textInBox: {
+    width: "60%",
+    height: "90%",
   },
 });
