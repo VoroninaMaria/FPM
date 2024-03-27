@@ -31,8 +31,6 @@ const showMembership = () => {
         <ReferenceField source="location_id" reference="Location" link="show">
           <TextField source="name" />
         </ReferenceField>
-        <DateField source="start_date" />
-        <DateField source="end_date" />
         <ArrayField source="abilities">
           <Datagrid optimized bulkActionButtons={null}>
             <TextField source="name" />

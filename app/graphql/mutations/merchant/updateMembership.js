@@ -4,7 +4,6 @@ import { createMembershipValidation } from "@local/graphql/validations/admin/ind
 import { GraphQLString, GraphQLNonNull, GraphQLError } from "graphql";
 import { GraphQLFloat } from "graphql/index.js";
 import { GraphQLID } from "graphql/index.js";
-import GraphQLDateTime from "graphql-type-datetime";
 import { GraphQLJSONObject } from "graphql-type-json";
 import { GraphQLList, GraphQLInt } from "graphql/index.js";
 
@@ -18,8 +17,6 @@ export default {
     abilities: { type: new GraphQLList(GraphQLJSONObject) },
     term: { type: new GraphQLNonNull(GraphQLInt) },
     status: { type: new GraphQLNonNull(GraphQLString) },
-    start_date: { type: GraphQLDateTime },
-    end_date: { type: GraphQLDateTime },
   },
   resolve: (_, args, { merchant }) =>
     createMembershipValidation
@@ -35,8 +32,6 @@ export default {
             location_id: args.location_id,
             start_date: args.start_date,
             term: args.term,
-            status: args.status,
-            end_date: args.end_date,
             updated_at: Database.fn.now(),
           })
           .returning("*")

@@ -7,7 +7,6 @@ import {
   NumberInput,
   ReferenceInput,
   SelectInput,
-  DateTimeInput,
   ArrayInput,
   SimpleFormIterator,
 } from "react-admin";
@@ -35,8 +34,6 @@ const editMembership = () => (
           validate={[required()]}
         />
       </ReferenceInput>
-      <DateTimeInput source="start_date" />
-      <DateTimeInput source="end_date" />
       <SelectInput
         source="status"
         validate={[required()]}

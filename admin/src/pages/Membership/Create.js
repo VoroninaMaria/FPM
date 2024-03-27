@@ -7,7 +7,6 @@ import {
   ReferenceInput,
   required,
   NumberInput,
-  DateTimeInput,
 } from "react-admin";
 import { CustomToolbar } from "../../shared/components/index.js";
 import { MEMBERSHIP_STATUSES } from "@local/constants/index.js";
@@ -57,8 +56,6 @@ const createMembership = () => {
             name: `resources.Membership.source.status.${status}`,
           }))}
         />
-        <DateTimeInput source="start_date" />
-        <DateTimeInput source="end_date" />
       </SimpleForm>
     </Create>
   );

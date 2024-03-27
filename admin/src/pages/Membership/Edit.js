@@ -7,7 +7,6 @@ import {
   required,
   SelectInput,
   NumberInput,
-  DateTimeInput,
   ArrayInput,
   SimpleFormIterator,
 } from "react-admin";
@@ -55,8 +54,6 @@ const editLocation = () => {
             </ReferenceInput>
           </>
         )}
-        <DateTimeInput source="start_date" />
-        <DateTimeInput source="end_date" />
         <SelectInput
           source="status"
           validate={[required()]}

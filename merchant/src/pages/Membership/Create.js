@@ -6,7 +6,6 @@ import {
   required,
   ReferenceInput,
   NumberInput,
-  DateTimeInput,
   SelectInput,
 } from "react-admin";
 import { CustomToolbar } from "../../shared/components/index.js";
@@ -29,8 +28,6 @@ const createMembership = () => (
           validate={[required()]}
         />
       </ReferenceInput>
-      <DateTimeInput source="start_date" />
-      <DateTimeInput source="end_date" />
       <SelectInput
         source="status"
         validate={[required()]}

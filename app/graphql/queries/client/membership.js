@@ -5,59 +5,97 @@ import { Membership as MembershipType } from "@local/graphql/types/index.js";
 const Membership = {
   type: MembershipType,
   resolve: async (_, __, { client }) => {
-    const membershipRes = await Database("memberships")
-      .select("*")
-      .where({
-        id: client.membership_id,
-      })
-      .first()
-      .then(async (membership) => {
+    let res = null;
+
+    if (client.membership_id !== null) {
+      res = await Database("memberships")
+        .where({ id: client.membership_id })
+        .select("*");
+      res[0].abilities = await Database("abilities")
+        .select([
+          "id",
+          "name",
+          "description",
+          "regular_price",
+          "discount_price",
+        ])
+        .where({
+          membership_id: client.membership_id,
+        })
+        .catch(() => {
+          throw new GraphQLError("Forbidden");
+        });
+
+      const address = await Database("locations")
+        .where({
+          merchant_id: client.merchant_id,
+        })
+        .select("address")
+        .catch(() => {
+          throw new GraphQLError("Forbidden");
+        });
+
+      res[0].address = address[0].address;
+
+      res[0].status = "inactive";
+      return res[0];
+    } else {
+      const ActiveMembership = await Database("membership_log")
+        .where({ client_id: client.id, status: "active" })
+        .returning("*");
+
+      if (ActiveMembership[0]?.end_date) {
         const currentDate = new Date();
 
-        if (membership?.end_date < currentDate) {
-          await Database("memberships")
+        if (ActiveMembership[0].end_date < currentDate) {
+          await Database("membership_log")
             .where({
-              id: client.membership_id,
+              id: ActiveMembership[0].id,
             })
             .update({
               status: "disabled",
             });
-          membership.status = "disabled";
+
+          return res;
+        } else {
+          res = await Database("memberships")
+            .where({ id: ActiveMembership[0].membership_id })
+            .select("*");
+
+          res[0].abilities = await Database("abilities")
+            .select([
+              "id",
+              "name",
+              "description",
+              "regular_price",
+              "discount_price",
+            ])
+            .where({
+              membership_id: ActiveMembership[0].membership_id,
+            })
+            .catch(() => {
+              throw new GraphQLError("Forbidden");
+            });
+
+          const address = await Database("locations")
+            .where({
+              merchant_id: client.merchant_id,
+            })
+            .select("address")
+            .catch(() => {
+              throw new GraphQLError("Forbidden");
+            });
+
+          res[0].address = address[0].address;
+
+          res[0].end_date = ActiveMembership[0].end_date;
+          res[0].start_date = ActiveMembership[0].start_date;
+          res[0].status = "active";
+          return res[0];
         }
-        membership.abilities = await Database("abilities")
-          .select([
-            "id",
-            "name",
-            "description",
-            "regular_price",
-            "discount_price",
-          ])
-          .where({
-            membership_id: membership.id,
-          })
-          .catch(() => {
-            throw new GraphQLError("Forbidden");
-          });
-        return membership;
-      })
-      .then(async (membership) => {
-        const address = await Database("locations")
-          .where({
-            merchant_id: membership.merchant_id,
-          })
-          .select("address")
-          .catch(() => {
-            throw new GraphQLError("Forbidden");
-          });
-
-        membership.address = address[0].address;
-        return membership;
-      })
-      .catch(() => {
-        throw new GraphQLError("Forbidden");
-      });
-
-    return membershipRes;
+      }
+    }
+    return res;
   },
 };
 

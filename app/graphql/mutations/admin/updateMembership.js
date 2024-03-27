@@ -8,7 +8,6 @@ import {
   GraphQLFloat,
   GraphQLError,
 } from "graphql";
-import GraphQLDateTime from "graphql-type-datetime";
 import { GraphQLInt, GraphQLList } from "graphql/index.js";
 import { GraphQLJSONObject } from "graphql-type-json";
 
@@ -23,8 +22,6 @@ export default {
     merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
     abilities: { type: new GraphQLList(GraphQLJSONObject) },
-    start_date: { type: GraphQLDateTime },
-    end_date: { type: GraphQLDateTime },
   },
   resolve: (_, args) =>
     updateMembershipValidation.validate({ ...args }).then(() =>
@@ -39,8 +36,6 @@ export default {
           status: args.status,
           merchant_id: args.merchant_id,
           location_id: args.location_id,
-          start_date: args.start_date,
-          end_date: args.end_date,
           updated_at: Database.fn.now(),
         })
         .returning("*")

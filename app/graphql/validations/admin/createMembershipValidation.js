@@ -10,8 +10,6 @@ export default yup.object({
     .required()
     .test("valid", "invalid_syntax", validateTextInput),
   price: yup.number().required(),
-  start_date: yup.date(),
-  end_date: yup.date(),
   location_id: yup
     .string()
     .required()
