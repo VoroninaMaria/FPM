@@ -11,22 +11,17 @@ import {
   HistoryScreen,
   PartnersScreen,
   RegisterScreen,
-  RefillScreen,
-  LegalEntityScreen,
   ChangingPinScreen,
   LoginScreen,
   MenuScreen,
-  LegalEntityMenuScreen,
   SupportScreen,
   ExitScreen,
-  LegalEntityExitScreen,
   ConfirmationScreen,
   OtpScreen,
   LoaderScreen,
   ResetPasswordScreen,
   ConfirmResetOTPScreen,
   ConfirmationResetScreen,
-  ChangePinScreen,
   ChangePassword,
   SwitchAccountScreen,
 } from "./src/screens/index.js";
@@ -38,12 +33,12 @@ const Stack = createNativeStackNavigator();
 
 const App = () => {
   const { t } = useTranslation();
-  const [authToken, setAuthToken] = useState("null");
-  const [currentEntity, setCurrentEntity] = useState("");
+  const [authToken, setAuthToken] = useState("");
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     AsyncStorage.getItem("token").then((token) => {
+      console.log(token);
       if (!token && !authToken) {
         Alert.alert(t("Session.session"), t("Session.finished"));
         setTimeout(() => setIsLoading(false), 2000);
@@ -59,36 +54,6 @@ const App = () => {
           })
           .then((res) => {
             if (res.status === 200) {
-              axios
-                .post(
-                  `${Config.baseUrl}/client/graphql`,
-                  {
-                    query: "{self {entity, first_name}}",
-                    variables: {},
-                  },
-                  {
-                    headers: {
-                      "Content-Type": "application/json",
-                      Authorization: `Bearer ${token}`,
-                    },
-                  }
-                )
-                .then(async (res) => {
-                  const {
-                    data: {
-                      data: { self },
-                    },
-                  } = res;
-
-                  return setCurrentEntity(self.entity);
-                })
-                .catch(() => {
-                  return AsyncStorage.removeItem("token").then(() => {
-                    setIsLoading(false);
-                    Alert.alert(t("Session.session"), t("Session.finished"));
-                    return setAuthToken("");
-                  });
-                });
               return setTimeout(() => setIsLoading(false), 2000);
             }
           })
@@ -109,11 +74,8 @@ const App = () => {
 
   let initialScreenName;
 
-  if (authToken && currentEntity === 1) {
+  if (authToken) {
     initialScreenName = "CardScreen";
-  }
-  if (authToken && currentEntity === 2) {
-    initialScreenName = "LegalEntity";
   }
   if (!authToken) {
     initialScreenName = "Login";
@@ -131,7 +93,7 @@ const App = () => {
         {!isLoading && (
           <>
             <Stack.Screen name="CardScreen" component={CardScreen} />
-            <Stack.Screen name="Refill" component={RefillScreen} />
+
             <Stack.Screen name="History" component={HistoryScreen} />
             <Stack.Screen name="Settings" component={ChangingPinScreen} />
             <Stack.Screen name="Partners" component={PartnersScreen} />
@@ -139,9 +101,9 @@ const App = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="OTPScreen" component={OtpScreen} />
-            <Stack.Screen name="LegalEntity" component={LegalEntityScreen} />
+
             <Stack.Screen name="Menu" component={MenuScreen} />
-            <Stack.Screen name="ChangePinCode" component={ChangePinScreen} />
+
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
             <Stack.Screen
               name="SwitchAccount"
@@ -155,26 +117,14 @@ const App = () => {
               name="ConfirmResetOTP"
               component={ConfirmResetOTPScreen}
             />
-            <Stack.Screen
-              name="LegalEntityMenu"
-              component={LegalEntityMenuScreen}
-            />
+
             <Stack.Screen name="Support" component={SupportScreen} />
             <Stack.Screen name="Exit">
               {(props) => {
                 return <ExitScreen {...props} setAuthToken={setAuthToken} />;
               }}
             </Stack.Screen>
-            <Stack.Screen name="LegalEntityExit">
-              {(props) => {
-                return (
-                  <LegalEntityExitScreen
-                    {...props}
-                    setAuthToken={setAuthToken}
-                  />
-                );
-              }}
-            </Stack.Screen>
+
             <Stack.Screen name="Confirmation" component={ConfirmationScreen} />
             <Stack.Screen
               name="ConfirmationReset"
