@@ -22,6 +22,9 @@ export default yup.object({
     .string()
     .required()
     .test("present", "location_not_found", validatePresence("locations", "id")),
+  file_id: yup
+    .string()
+    .test("present", "file_not_found", validatePresence("files", "id")),
   merchant_id: yup
     .string()
     .required()

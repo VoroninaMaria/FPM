@@ -358,6 +358,10 @@
       "type": "timestamp with time zone",
       "default": "now()"
     },
+    "file_id": {
+      "type": "uuid",
+      "default": null
+    },
     "id": {
       "type": "uuid",
       "default": "uuid_generate_v4()"

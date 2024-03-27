@@ -15,6 +15,7 @@ export default {
     price: { type: new GraphQLNonNull(GraphQLFloat) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
     abilities: { type: new GraphQLList(GraphQLJSONObject) },
+    file_id: { type: GraphQLID },
     term: { type: new GraphQLNonNull(GraphQLInt) },
     status: { type: new GraphQLNonNull(GraphQLString) },
   },
@@ -31,6 +32,7 @@ export default {
             price: args.price,
             location_id: args.location_id,
             start_date: args.start_date,
+            file_id: args.file_id,
             term: args.term,
             updated_at: Database.fn.now(),
           })

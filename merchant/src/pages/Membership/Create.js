@@ -28,6 +28,13 @@ const createMembership = () => (
           validate={[required()]}
         />
       </ReferenceInput>
+      <ReferenceInput source="file_id" reference="File">
+        <SelectInput
+          optionText="name"
+          optionValue="id"
+          validate={[required()]}
+        />
+      </ReferenceInput>
       <SelectInput
         source="status"
         validate={[required()]}
