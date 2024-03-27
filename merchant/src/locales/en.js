@@ -61,6 +61,20 @@ const en = {
     end: "Right",
   },
   resources: {
+    Membership: {
+      name: "Memberships",
+      fields: {
+        name: "Name",
+      },
+      source: {
+        status: {
+          active: "active",
+          disabled: "disabled",
+          blocked: "blocked",
+          inactive: "inactive",
+        },
+      },
+    },
     Dashboard: {
       name: "Dashboard",
       skip: "Skip",

@@ -4,9 +4,8 @@ import { createMembershipValidation } from "@local/graphql/validations/admin/ind
 import { GraphQLString, GraphQLNonNull, GraphQLError } from "graphql";
 import { GraphQLFloat } from "graphql/index.js";
 import { GraphQLID } from "graphql/index.js";
-import GraphQLDateTime from "graphql-type-datetime";
 import { GraphQLJSONObject } from "graphql-type-json";
-import { GraphQLList } from "graphql/index.js";
+import { GraphQLList, GraphQLInt } from "graphql/index.js";
 
 export default {
   type: Membership,
@@ -16,8 +15,8 @@ export default {
     price: { type: new GraphQLNonNull(GraphQLFloat) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
     abilities: { type: new GraphQLList(GraphQLJSONObject) },
-    start_date: { type: new GraphQLNonNull(GraphQLDateTime) },
-    end_date: { type: new GraphQLNonNull(GraphQLDateTime) },
+    term: { type: new GraphQLNonNull(GraphQLInt) },
+    status: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: (_, args, { merchant }) =>
     createMembershipValidation
@@ -32,7 +31,7 @@ export default {
             price: args.price,
             location_id: args.location_id,
             start_date: args.start_date,
-            end_date: args.end_date,
+            term: args.term,
             updated_at: Database.fn.now(),
           })
           .returning("*")

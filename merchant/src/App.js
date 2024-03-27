@@ -9,7 +9,6 @@ import {
   Tag,
   Class,
   AccountBox,
-  // AccountBalance,
 } from "@mui/icons-material/index.js";
 
 import Pages from "./pages/index.js";
@@ -109,6 +108,7 @@ export const App = () => {
         edit={Pages.Membership.Edit}
         icon={Tag}
       />
+
       <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
     </Admin>
   );
