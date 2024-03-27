@@ -3,8 +3,9 @@ import {
   GraphQLString,
   GraphQLID,
   GraphQLList,
+  GraphQLFloat,
+  GraphQLInt,
 } from "graphql";
-import { GraphQLFloat } from "graphql/index.js";
 import GraphQLDateTime from "graphql-type-datetime";
 
 export default new GraphQLInputObjectType({
@@ -18,6 +19,9 @@ export default new GraphQLInputObjectType({
     location_id: { type: GraphQLID },
     start_date: { type: GraphQLDateTime },
     end_date: { type: GraphQLDateTime },
+    address: { type: GraphQLString },
+    status: { type: GraphQLString },
+    term: { type: GraphQLInt },
     created_at: { type: GraphQLString },
     updated_at: { type: GraphQLString },
   }),

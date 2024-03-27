@@ -3,6 +3,7 @@ import CLIENT_STATUSES from "./client_statuses.js";
 import FILE_CONSTANTS from "./file_constants.js";
 import MERCHANT_STATUSES from "./merchant_statuses.js";
 import SMS_SERVICE_STATUSES from "./sms_service_statuses.js";
+import MEMBERSHIP_STATUSES from "./membership_statuses.js";
 
 export {
   CLIENT_CHANGE_STATUSES,
@@ -10,4 +11,5 @@ export {
   FILE_CONSTANTS,
   MERCHANT_STATUSES,
   SMS_SERVICE_STATUSES,
+  MEMBERSHIP_STATUSES,
 };

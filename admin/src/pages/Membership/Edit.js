@@ -7,11 +7,11 @@ import {
   required,
   SelectInput,
   NumberInput,
-  DateTimeInput,
   ArrayInput,
   SimpleFormIterator,
 } from "react-admin";
 import { Title, CustomToolbar } from "../../shared/components/index.js";
+import { MEMBERSHIP_STATUSES } from "@local/constants/index.js";
 
 const editLocation = () => {
   const [selectedMerchant, setSelectedMerchant] = React.useState("");
@@ -34,6 +34,7 @@ const editLocation = () => {
           validate={[required()]}
         />
         <NumberInput source="price" validate={[required()]} />
+        <NumberInput source="term" validate={[required()]} />
         <ReferenceInput source="merchant_id" reference="Merchant">
           <SelectInput
             optionText="name"
@@ -53,8 +54,14 @@ const editLocation = () => {
             </ReferenceInput>
           </>
         )}
-        <DateTimeInput source="start_date" validate={[required()]} />
-        <DateTimeInput source="end_date" validate={[required()]} />
+        <SelectInput
+          source="status"
+          validate={[required()]}
+          choices={Object.keys(MEMBERSHIP_STATUSES).map((status) => ({
+            id: status,
+            name: `resources.Membership.source.status.${status}`,
+          }))}
+        />
         <ArrayInput source="abilities">
           <SimpleFormIterator inline disableClear>
             <TextInput

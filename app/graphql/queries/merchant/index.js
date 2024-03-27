@@ -8,7 +8,6 @@ import file from "./file.js";
 import discount from "./discount.js";
 import location from "./location.js";
 import membership from "./membership.js";
-
 export default {
   self,
   ...merchant,
