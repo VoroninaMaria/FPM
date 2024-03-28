@@ -29,7 +29,7 @@ const Item = ({ allMemberships }) => {
         <View style={styles.containers}>
           <View>
             <Image
-              source={require("../assets/images/Sports.png")}
+              source={{ uri: allMemberships.url }}
               style={styles.logoLoginScreen}
             />
           </View>
@@ -85,7 +85,7 @@ const AbonementListScreen = ({ navigation }) => {
             .post(
               `${Config.baseUrl}/client/graphql`,
               {
-                query: "{allMemberships{id, name, price, abilities}}",
+                query: "{allMemberships{id, name, price, abilities, url}}",
                 variables: {},
               },
               {
@@ -101,7 +101,6 @@ const AbonementListScreen = ({ navigation }) => {
                   data: { allMemberships },
                 },
               } = res;
-              console.log(allMemberships);
 
               return setMembershipPrice(allMemberships);
             })
