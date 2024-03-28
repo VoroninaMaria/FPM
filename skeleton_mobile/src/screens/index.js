@@ -20,6 +20,8 @@ import ConfirmResetOTPScreen from "./ConfirmResetOTPScreen";
 import ConfirmationResetScreen from "./ConfirmationResetScreen";
 import ChangePassword from "./ChangePassword";
 import SwitchAccountScreen from "./SwitchAccountScreen";
+import AbonementListScreen from "./AbonementListScreen";
+import InformationScreen from "./InformationScreen";
 
 export {
   HomeScreen,
@@ -41,4 +43,6 @@ export {
   ConfirmationResetScreen,
   ChangePassword,
   SwitchAccountScreen,
+  AbonementListScreen,
+  InformationScreen,
 };

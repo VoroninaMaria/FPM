@@ -30,6 +30,12 @@ const MenuScreen = ({ navigation }) => {
   const openSupport = () => {
     navigation.navigate("Support");
   };
+  const openAbonement = () => {
+    navigation.navigate("AbonementListScreen");
+  };
+  const openInfo = () => {
+    navigation.navigate("InformationScreen");
+  };
   const openExit = () => {
     navigation.navigate("Exit");
   };
@@ -101,6 +107,26 @@ const MenuScreen = ({ navigation }) => {
                 justifyContent="space-between"
               />
               <Text style={styles.listText}>{t("MenuScreen.support")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.list} onPress={openAbonement}>
+              <Icon
+                name="headset"
+                size={28}
+                color="#f2cb84"
+                marginLeft="5%"
+                justifyContent="space-between"
+              />
+              <Text style={styles.listText}>{t("jjj")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.list} onPress={openInfo}>
+              <Icon
+                name="sliders-h"
+                size={25}
+                color="#e6ab00"
+                marginLeft="5%"
+                justifyContent="space-between"
+              />
+              <Text style={styles.listText}>{t("MenuScreen.settings")}</Text>
             </TouchableOpacity>
             <View style={styles.lineStyle} />
             <View style={styles.exitContainer}>

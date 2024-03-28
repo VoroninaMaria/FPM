@@ -24,6 +24,8 @@ import {
   ConfirmationResetScreen,
   ChangePassword,
   SwitchAccountScreen,
+  AbonementListScreen,
+  InformationScreen,
 } from "./src/screens/index.js";
 import Config from "./src/screens/config.js";
 import { useTranslation } from "react-i18next";
@@ -101,7 +103,14 @@ const App = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="OTPScreen" component={OtpScreen} />
-
+            <Stack.Screen
+              name="InformationScreen"
+              component={InformationScreen}
+            />
+            <Stack.Screen
+              name="AbonementListScreen"
+              component={AbonementListScreen}
+            />
             <Stack.Screen name="Menu" component={MenuScreen} />
 
             <Stack.Screen name="ChangePassword" component={ChangePassword} />

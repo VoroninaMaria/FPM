@@ -110,7 +110,7 @@ const CardScreen = () => {
             .post(
               `${Config.baseUrl}/client/graphql`,
               {
-                query: "{self{id, first_name, last_name}}",
+                query: "{self{id, first_name, last_name, phone}}",
                 variables: {},
               },
               {
@@ -131,6 +131,7 @@ const CardScreen = () => {
 
               return setClient(self);
             })
+
             .catch((error) => {
               Alert.alert(t("Session.session"), t("Session.finished"));
               return navigation.navigate("Login");
@@ -245,7 +246,7 @@ const CardScreen = () => {
           <View style={styles.topContainer}>
             <View style={styles.containerImg}>
               <Image
-                source={require("../assets/images/gymLogo.png")}
+                source={require("../assets/images/Sports.png")}
                 style={styles.logoLoginScreen}
               />
             </View>
@@ -275,25 +276,19 @@ const CardScreen = () => {
                       end={{ x: 0, y: 1 }}
                       style={styles.linearGradient}
                     >
-                      <Image
-                        source={require("../assets/images/cardText.png")}
-                        style={styles.textCard}
-                      />
                       <View
                         style={{
                           alignItems: "center",
-                          marginTop: "-2%",
+                          marginTop: "2%",
                           justifyContent: "space-between",
                         }}
-                      >
-                        <Text style={styles.cardNumber}>{card?.name}</Text>
-                      </View>
+                      ></View>
                       <View style={styles.balanceText}>
                         <Text
                           style={{
                             justifyContent: "flex-start",
                             marginLeft: "5%",
-                            fontSize: 17,
+                            fontSize: 15,
                             fontWeight: "700",
                             color: "black",
                             fontFamily: "Inter",
@@ -305,7 +300,7 @@ const CardScreen = () => {
                           style={{
                             justifyContent: "flex-end",
                             marginRight: "5%",
-                            fontSize: 17,
+                            fontSize: 15,
                             fontWeight: "700",
                             fontFamily: "Inter",
                             color: "black",
@@ -319,8 +314,8 @@ const CardScreen = () => {
                           style={{
                             justifyContent: "flex-start",
                             marginLeft: "5%",
-                            fontSize: 17,
-                            fontWeight: "700",
+                            fontSize: 15,
+                            fontWeight: "200",
                             color: "black",
                             fontFamily: "Inter",
                           }}
@@ -332,12 +327,38 @@ const CardScreen = () => {
                             justifyContent: "flex-end",
                             marginRight: "5%",
                             fontSize: 17,
-                            fontWeight: "700",
+                            fontWeight: "300",
                             fontFamily: "Inter",
                             color: "black",
                           }}
                         >
                           {client?.last_name.toString()}
+                        </Text>
+                      </View>
+                      <View style={styles.balanceText}>
+                        <Text
+                          style={{
+                            justifyContent: "flex-start",
+                            marginLeft: "5%",
+                            fontSize: 15,
+                            fontWeight: "200",
+                            color: "black",
+                            fontFamily: "Inter",
+                          }}
+                        >
+                          {t("CardScreen.phone")}
+                        </Text>
+                        <Text
+                          style={{
+                            justifyContent: "flex-end",
+                            marginRight: "5%",
+                            fontSize: 17,
+                            fontWeight: "300",
+                            fontFamily: "Inter",
+                            color: "black",
+                          }}
+                        >
+                          {client?.phone.toString()}
                         </Text>
                       </View>
                     </LinearGradient>
@@ -352,7 +373,7 @@ const CardScreen = () => {
 
               <TouchableOpacity style={styles.partner} onPress={openPartners}>
                 <Text style={styles.partnerText}>
-                  {t("CardScreen.trainers")}
+                  {t("CardScreen.gallery")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -402,7 +423,7 @@ const CardScreen = () => {
                       color: "black",
                     }}
                   >
-                    {t("CardScreen.disc")}
+                    {t("CardScreen.date")}
                   </Text>
                   <Text
                     style={{
@@ -414,7 +435,7 @@ const CardScreen = () => {
                       marginRight: "5%",
                     }}
                   >
-                    {t("CardScreen.discount")}
+                    {t("CardScreen.time")}
                   </Text>
                 </View>
                 <View style={styles.lineStyle} />
@@ -476,8 +497,9 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
   },
   logoLoginScreen: {
-    width: 220,
-    height: 90,
+    width: 300,
+    height: 50,
+    resizeMode: "contain",
   },
   card: {
     width: "90%",
