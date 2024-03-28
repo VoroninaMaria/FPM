@@ -21,6 +21,7 @@ import ConfirmationResetScreen from "./ConfirmationResetScreen";
 import ChangePassword from "./ChangePassword";
 import SwitchAccountScreen from "./SwitchAccountScreen";
 import AbonementListScreen from "./AbonementListScreen";
+import InformationScreen from "./InformationScreen";
 
 export {
   HomeScreen,
@@ -43,4 +44,5 @@ export {
   ChangePassword,
   SwitchAccountScreen,
   AbonementListScreen,
+  InformationScreen,
 };
