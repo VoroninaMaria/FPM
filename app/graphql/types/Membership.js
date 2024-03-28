@@ -19,6 +19,7 @@ export default new GraphQLObjectType({
     merchant_id: { type: GraphQLID },
     location_id: { type: GraphQLID },
     file_id: { type: GraphQLID },
+    url: { type: GraphQLString },
     start_date: { type: GraphQLDateTime },
     end_date: { type: GraphQLDateTime },
     abilities: { type: new GraphQLList(GraphQLJSONObject) },

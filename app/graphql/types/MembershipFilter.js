@@ -16,6 +16,7 @@ export default new GraphQLInputObjectType({
     name: { type: GraphQLString },
     price: { type: GraphQLFloat },
     file_id: { type: GraphQLID },
+    url: { type: GraphQLString },
     merchant_id: { type: GraphQLID },
     location_id: { type: GraphQLID },
     start_date: { type: GraphQLDateTime },
