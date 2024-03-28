@@ -18,6 +18,9 @@ const listMembership = () => (
     <Datagrid bulkActionButtons={false}>
       <TextField source="name" />
       <NumberField source="price" />
+      <ReferenceField source="file_id" reference="File" link="show">
+        <TextField source="name" />
+      </ReferenceField>
       <ReferenceField source="location_id" reference="Location" link="show">
         <TextField source="name" />
       </ReferenceField>

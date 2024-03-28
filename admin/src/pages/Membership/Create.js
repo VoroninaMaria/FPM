@@ -48,6 +48,17 @@ const createMembership = () => {
             </ReferenceInput>
           </>
         )}
+        {selectedMerchant && (
+          <>
+            <ReferenceInput
+              source="file_id"
+              reference="File"
+              filter={{ account_id: selectedMerchant }}
+            >
+              <SelectInput optionText="name" optionValue="id" />
+            </ReferenceInput>
+          </>
+        )}
         <SelectInput
           source="status"
           validate={[required()]}

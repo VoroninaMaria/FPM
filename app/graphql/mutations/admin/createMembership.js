@@ -16,6 +16,7 @@ export default {
     name: { type: new GraphQLNonNull(GraphQLString) },
     term: { type: new GraphQLNonNull(GraphQLInt) },
     status: { type: new GraphQLNonNull(GraphQLString) },
+    file_id: { type: GraphQLID },
     price: { type: new GraphQLNonNull(GraphQLFloat) },
     merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
@@ -24,7 +25,13 @@ export default {
     createMembershipValidation.validate({ ...args }).then(() =>
       Database("memberships")
         .insert({
-          ...args,
+          name: args.name,
+          price: args.price,
+          term: args.term,
+          status: args.status,
+          file_id: args.file_id,
+          merchant_id: args.merchant_id,
+          location_id: args.location_id,
         })
         .returning("*")
         .then(([membership]) => membership)

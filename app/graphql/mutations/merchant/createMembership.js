@@ -15,6 +15,7 @@ export default {
     name: { type: new GraphQLNonNull(GraphQLString) },
     price: { type: new GraphQLNonNull(GraphQLFloat) },
     term: { type: new GraphQLNonNull(GraphQLInt) },
+    file_id: { type: GraphQLID },
     status: { type: new GraphQLNonNull(GraphQLString) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
   },

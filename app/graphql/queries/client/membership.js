@@ -1,5 +1,5 @@
 import { GraphQLList, GraphQLError } from "graphql";
-import { Database } from "@local/lib/index.js";
+import { Database, Config } from "@local/lib/index.js";
 import { Membership as MembershipType } from "@local/graphql/types/index.js";
 
 const Membership = {
@@ -38,6 +38,11 @@ const Membership = {
       res[0].address = address[0].address;
 
       res[0].status = "inactive";
+      const file = await Database("files")
+        .where({ id: res[0].file_id })
+        .first();
+
+      res[0].url = `${Config.assetsUrl}/${file.id}`;
       return res[0];
     } else {
       const ActiveMembership = await Database("membership_log")
@@ -91,6 +96,13 @@ const Membership = {
           res[0].end_date = ActiveMembership[0].end_date;
           res[0].start_date = ActiveMembership[0].start_date;
           res[0].status = "active";
+
+          const file = await Database("files")
+            .where({ id: res[0].file_id })
+            .first();
+
+          res[0].url = `${Config.assetsUrl}/${file.id}`;
+
           return res[0];
         }
       }
@@ -127,7 +139,12 @@ const allMemberships = {
               throw new GraphQLError("Forbidden");
             });
 
+          const file = await Database("files")
+            .where({ id: membership.file_id })
+            .first();
+
           membership.address = address[0].address;
+          membership.url = `${Config.assetsUrl}/${file.id}`;
 
           return membership;
         });
