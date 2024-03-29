@@ -120,7 +120,7 @@ const MenuScreen = ({ navigation }) => {
             </TouchableOpacity>
             <TouchableOpacity style={styles.list} onPress={openInfo}>
               <Icon
-                name="sliders-h"
+                name="list"
                 size={25}
                 color="#e6ab00"
                 marginLeft="5%"

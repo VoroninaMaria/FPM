@@ -96,6 +96,67 @@ const CardScreen = () => {
   // const [stellaPrice, setStellaPrice] = useState([]);
   const [card, setCard] = useState();
   const [client, setClient] = useState();
+  const [startDate, setStartDate] = useState("");
+  const [endDate, setEndDate] = useState("");
+
+  // const handleConfirmPass = () => {
+  //   if (oldPasswordError === false && newPasswordError === false) {
+  //     return AsyncStorage.getItem("token")
+  //       .then((token) => {
+  //         return axios
+  //           .post(
+  //             `${Config.baseUrl}/client/graphql`,
+  //             {
+  //               query: `
+  //             mutation chamgeMembership($old_password: String!, $new_password: String!) {
+  //               updatePassword(old_password: $old_password, new_password: $new_password) {
+  //                 id
+  //               }
+  //             }
+  //           `,
+  //               variables: {
+  //                 old_password: oldPassword,
+  //                 new_password: newPassword,
+  //               },
+  //             },
+  //             {
+  //               headers: {
+  //                 "Content-Type": "application/json",
+  //                 Authorization: `Bearer ${token}`,
+  //               },
+  //             }
+  //           )
+  //           .then(async (res) => {
+  //             if (res.data.errors) {
+  //               if (
+  //                 res.data.errors[0].message.includes("old_password_invalid")
+  //               ) {
+  //                 setOldPasswordError(true);
+  //                 return Alert.alert(
+  //                   t("SettingsScreen.Errors.name"),
+  //                   t("SettingsScreen.Errors.invalid_old_password")
+  //                 );
+  //               }
+  //               return Alert.alert(t("InputErrors.error"), t("ErrorTXTDef"));
+  //             }
+
+  //             setOldPassword("");
+  //             setNewPassword("");
+  //             setNewPasswordError(false);
+
+  //             await AsyncStorage.removeItem("token");
+
+  //             return navigation.navigate("Login");
+  //           })
+  //           .catch(() => {
+  //             return Alert.alert(t("InputErrors.error"), t("ErrorTXTDef"));
+  //           });
+  //       })
+  //       .catch(() => {
+  //         Alert.alert(t("Session.session"), t("Session.finished"));
+  //       });
+  //   }
+  // };
 
   const getClient = () =>
     AsyncStorage.getItem("token")
@@ -223,8 +284,9 @@ const CardScreen = () => {
   const openPartners = () => {
     navigation.navigate("Partners");
   };
-  const openTopup = () => {
-    navigation.navigate("Refill");
+
+  const openAbonement = () => {
+    navigation.navigate("AbonementListScreen");
   };
 
   const renderItem = ({ item }) => <Item stella={item} />;
@@ -233,6 +295,17 @@ const CardScreen = () => {
     "DD.MM.YYYY HH:mm"
   );
   const formattedEndDate = moment(card?.end_date).format("DD.MM.YYYY HH:mm");
+
+  const handleActivationPress = async () => {
+    try {
+      const response = await axios.post(`${Config.baseUrl}/client/graphql`, {
+        status: "active",
+      });
+      console.log(activationDate);
+    } catch (error) {
+      console.error("Помилка при відправці даних до бази даних:", error);
+    }
+  };
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -261,11 +334,57 @@ const CardScreen = () => {
               <TouchableOpacity onPress={openFuel}>
                 <View style={styles.card}>
                   <View style={styles.cardTop}>
-                    <Image
-                      source={require("../assets/images/logoCard.png")}
-                      style={styles.imageCard}
-                    />
+                    <View>
+                      <Image
+                        source={require("../assets/images/logoCard.png")}
+                        style={styles.imageCard}
+                      />
+                    </View>
+                    <View
+                      style={{
+                        marginLeft: "0%",
+                        marginTop: "2%",
+                      }}
+                    >
+                      <Text
+                        style={{
+                          fontSize: 15,
+                          fontWeight: "700",
+                          fontFamily: "Inter",
+                          color: "black",
+                          textAlign: "center",
+                        }}
+                      >
+                        {client?.first_name.toString()}
+                      </Text>
+                      <Text
+                        style={{
+                          textAlign: "center",
+                          fontSize: 15,
+                          fontWeight: "700",
+                          fontFamily: "Inter",
+                          color: "black",
+                          marginTop: "10%",
+                          marginLe: "22%",
+                        }}
+                      >
+                        {client?.last_name.toString()}
+                      </Text>
+                      <Text
+                        style={{
+                          marginRight: "5%",
+                          fontSize: 14,
+                          marginTop: "10%",
+                          fontWeight: "400",
+                          fontFamily: "Inter",
+                          color: "black",
+                        }}
+                      >
+                        {client?.phone.toString()}
+                      </Text>
+                    </View>
                   </View>
+
                   <View style={styles.cardButtom}>
                     <LinearGradient
                       colors={[
@@ -283,82 +402,15 @@ const CardScreen = () => {
                           justifyContent: "space-between",
                         }}
                       ></View>
-                      <View style={styles.balanceText}>
-                        <Text
-                          style={{
-                            justifyContent: "flex-start",
-                            marginLeft: "5%",
-                            fontSize: 15,
-                            fontWeight: "700",
-                            color: "black",
-                            fontFamily: "Inter",
-                          }}
-                        >
-                          {t("CardScreen.firstName")}
-                        </Text>
-                        <Text
-                          style={{
-                            justifyContent: "flex-end",
-                            marginRight: "5%",
-                            fontSize: 15,
-                            fontWeight: "700",
-                            fontFamily: "Inter",
-                            color: "black",
-                          }}
-                        >
-                          {client?.first_name.toString()}
-                        </Text>
-                      </View>
-                      <View style={styles.balanceText}>
-                        <Text
-                          style={{
-                            justifyContent: "flex-start",
-                            marginLeft: "5%",
-                            fontSize: 15,
-                            fontWeight: "200",
-                            color: "black",
-                            fontFamily: "Inter",
-                          }}
-                        >
-                          {t("CardScreen.lastName")}
-                        </Text>
-                        <Text
-                          style={{
-                            justifyContent: "flex-end",
-                            marginRight: "5%",
-                            fontSize: 17,
-                            fontWeight: "300",
-                            fontFamily: "Inter",
-                            color: "black",
-                          }}
-                        >
-                          {client?.last_name.toString()}
-                        </Text>
-                      </View>
-                      <View style={styles.balanceText}>
-                        <Text
-                          style={{
-                            justifyContent: "flex-start",
-                            marginLeft: "5%",
-                            fontSize: 15,
-                            fontWeight: "200",
-                            color: "black",
-                            fontFamily: "Inter",
-                          }}
-                        >
-                          {t("CardScreen.phone")}
-                        </Text>
-                        <Text
-                          style={{
-                            justifyContent: "flex-end",
-                            marginRight: "5%",
-                            fontSize: 17,
-                            fontWeight: "300",
-                            fontFamily: "Inter",
-                            color: "black",
-                          }}
-                        >
-                          {client?.phone.toString()}
+                      <View
+                        style={{
+                          alignItems: "center",
+                          marginTop: "0%",
+                          justifyContent: "space-between",
+                        }}
+                      >
+                        <Text style={styles.cardText}>
+                          {t("CardScreen.fuelCard")}
                         </Text>
                       </View>
                     </LinearGradient>
@@ -367,11 +419,14 @@ const CardScreen = () => {
               </TouchableOpacity>
             )}
             <View style={styles.buttonCard}>
-              <TouchableOpacity style={styles.topup} onPress={openTopup}>
+              <TouchableOpacity style={styles.topup} onPress={openAbonement}>
                 <Text style={styles.topupText}>{t("CardScreen.topUp")}</Text>
               </TouchableOpacity>
 
-              <TouchableOpacity style={styles.partner} onPress={openPartners}>
+              <TouchableOpacity
+                style={styles.partner}
+                onPress={handleActivationPress}
+              >
                 <Text style={styles.partnerText}>
                   {t("CardScreen.gallery")}
                 </Text>
@@ -512,9 +567,11 @@ const styles = StyleSheet.create({
     borderColor: "black",
   },
   cardTop: {
-    width: "100%",
+    marginTop: "6%",
+    width: "80%",
+    height: "80%",
     flex: 1,
-    alignItems: "center",
+    flexDirection: "row",
   },
   cardButtom: {
     width: "100%",
@@ -528,7 +585,8 @@ const styles = StyleSheet.create({
   imageCard: {
     flex: 1,
     width: 230,
-    height: 60.08,
+    justifyContent: "center",
+    height: 90,
   },
   textCard: {
     marginTop: "1%",
