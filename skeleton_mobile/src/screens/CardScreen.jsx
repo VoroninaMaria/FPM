@@ -295,16 +295,31 @@ const CardScreen = () => {
     "DD.MM.YYYY HH:mm"
   );
   const formattedEndDate = moment(card?.end_date).format("DD.MM.YYYY HH:mm");
-
   const handleActivationPress = async () => {
-    try {
-      const response = await axios.post(`${Config.baseUrl}/client/graphql`, {
-        status: "active",
-      });
-      console.log(activationDate);
-    } catch (error) {
-      console.error("Помилка при відправці даних до бази даних:", error);
-    }
+    return AsyncStorage.getItem("token").then((token) => {
+      return axios.post(
+        `${Config.baseUrl}/client/graphql`,
+        {
+          query: `
+        mutation changeMembershipStatus($status: String!) {
+          changeMembershipStatus(status: $status) {
+            id
+          }
+        }
+      `,
+          variables: {
+            status: "active",
+          },
+        },
+        {
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
+      // console.log(activationDate);
+    });
   };
 
   return (
