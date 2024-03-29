@@ -100,7 +100,7 @@ const BookDetail = ({ route, navigation }) => {
     return (
       <View style={{ flex: 1 }}>
         <ImageBackground
-          source={require("../assets/images/Sports.png")}
+          source={require("../assets/images/other_words_for_home.jpg")}
           resizeMode="cover"
           style={{
             position: "absolute",
@@ -137,12 +137,10 @@ const BookDetail = ({ route, navigation }) => {
             onPress={() => navigation.goBack()}
           >
             <Image
-              source={"../assets/images/back_arrow_icon.png"}
-              resizeMode="contain"
+              source={require("../assets/images/back_arrow_icon.png")}
               style={{
-                width: 25,
-                height: 25,
-                tintColor: "#000",
+                width: 20,
+                height: 20,
               }}
             />
           </TouchableOpacity>
