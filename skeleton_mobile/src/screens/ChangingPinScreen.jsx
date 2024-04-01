@@ -66,7 +66,7 @@ const ChangingPinScreen = () => {
                 <Pressable
                   style={({ pressed }) => [
                     styles.btnUk,
-                    { backgroundColor: pressed ? "lightblue" : "#007bff" },
+                    { backgroundColor: pressed ? "#f6b170" : "#f6c770" },
                   ]}
                   onPress={() => changeLanguage("uk")}
                 >
@@ -77,7 +77,7 @@ const ChangingPinScreen = () => {
                 <Pressable
                   style={({ pressed }) => [
                     styles.btnEng,
-                    { backgroundColor: pressed ? "lightblue" : "#007bff" },
+                    { backgroundColor: pressed ? "#f6b170" : "#f6c770" },
                   ]}
                   onPress={() => changeLanguage("en")}
                 >
@@ -208,7 +208,6 @@ const styles = StyleSheet.create({
     borderRadius: 6,
     paddingVertical: 4,
     marginRight: 10,
-    backgroundColor: "#007bff",
   },
   lngUk: {
     color: "white",
@@ -218,7 +217,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 20,
     paddingVertical: 5,
     borderRadius: 5,
-    backgroundColor: "#007bff",
   },
   lngEng: {
     color: "white",
