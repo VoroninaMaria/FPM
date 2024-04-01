@@ -23,3 +23,5 @@ export { default as Location } from "./Location.js";
 export { default as LocationFilter } from "./LocationFilter.js";
 export { default as Membership } from "./Membership.js";
 export { default as MembershipFilter } from "./MembershipFilter.js";
+export { default as MembershipLog } from "./MembershipLog.js";
+export { default as MembershipLogFilter } from "./MembershipLogFilter.js";

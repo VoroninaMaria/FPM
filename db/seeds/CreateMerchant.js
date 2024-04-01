@@ -13,27 +13,12 @@ export const seed = async (knex) => {
         encrypted_password: await encryptPassword("123123"),
         login: "gym2",
       },
-      {
-        name: "gym3",
-        encrypted_password: await encryptPassword("123123"),
-        login: "gym3",
-      },
-      {
-        name: "gym4",
-        encrypted_password: await encryptPassword("123123"),
-        login: "gym4",
-      },
-      {
-        name: "gym5",
-        encrypted_password: await encryptPassword("123123"),
-        login: "gym5",
-      },
     ])
     .onConflict("name")
     .merge();
 
   const services = {
-    uklon: [
+    gym1: [
       {
         service_name: "flySms",
         config: {
@@ -48,7 +33,7 @@ export const seed = async (knex) => {
         status: SMS_SERVICE_STATUSES.active.name,
       },
     ],
-    bolt: [
+    gym2: [
       {
         service_name: "hicellSms",
         config: {
@@ -64,44 +49,6 @@ export const seed = async (knex) => {
           sender: "InfoCenter",
         },
         status: SMS_SERVICE_STATUSES.active.name,
-      },
-    ],
-    uber: [
-      {
-        service_name: "turboSms",
-        config: {
-          key: "e398b796f650e97128662073a43b7669c4c28826",
-          sender: "TAXI",
-        },
-        status: SMS_SERVICE_STATUSES.active.name,
-      },
-      {
-        service_name: "alphaSms",
-        config: {
-          key: "f86f4e3b8902dfa7787a59f7600c3d3013dc51d3",
-          sender: "TestAccount",
-        },
-        status: SMS_SERVICE_STATUSES.active.name,
-      },
-    ],
-    Mango: [
-      {
-        service_name: "turboSms",
-        config: {
-          key: "5b4125499088d6ad76f93c8b9a8d98ead14d7487",
-          sender: "TAXI",
-        },
-        status: SMS_SERVICE_STATUSES.active.name,
-      },
-    ],
-    other: [
-      {
-        service_name: "hicellSms",
-        config: {
-          key: "UwEA4v6sxP1ZMYCbKqKaMw2e1NmY4oGr",
-          sender: "DOSTAVKA",
-        },
-        status: SMS_SERVICE_STATUSES.disabled.name,
       },
     ],
   };

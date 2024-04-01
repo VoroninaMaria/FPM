@@ -110,6 +110,13 @@ export const App = () => {
         edit={Pages.Membership.Edit}
         icon={PictureAsPdf}
       />
+      <Resource
+        name="MembershipLog"
+        list={Pages.MembershipLog.List}
+        show={Pages.MembershipLog.Show}
+        edit={Pages.MembershipLog.Edit}
+        icon={PictureAsPdf}
+      />
     </Admin>
   );
 };
