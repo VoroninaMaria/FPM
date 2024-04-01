@@ -96,8 +96,6 @@ const CardScreen = () => {
   // const [stellaPrice, setStellaPrice] = useState([]);
   const [card, setCard] = useState();
   const [client, setClient] = useState();
-  const [startDate, setStartDate] = useState("");
-  const [endDate, setEndDate] = useState("");
 
   // const handleConfirmPass = () => {
   //   if (oldPasswordError === false && newPasswordError === false) {
@@ -216,7 +214,8 @@ const CardScreen = () => {
             .post(
               `${Config.baseUrl}/client/graphql`,
               {
-                query: "{Membership{id, name, price, start_date, end_date}}",
+                query:
+                  "{Membership{id, name, price, start_date, end_date, status}}",
                 variables: {},
               },
               {
@@ -372,6 +371,7 @@ const CardScreen = () => {
                       >
                         {client?.first_name.toString()}
                       </Text>
+
                       <Text
                         style={{
                           textAlign: "center",
@@ -380,7 +380,7 @@ const CardScreen = () => {
                           fontFamily: "Inter",
                           color: "black",
                           marginTop: "10%",
-                          marginLe: "22%",
+                          marginLeft: "5%",
                         }}
                       >
                         {client?.last_name.toString()}
