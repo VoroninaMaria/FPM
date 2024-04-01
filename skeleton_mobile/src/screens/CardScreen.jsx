@@ -372,7 +372,6 @@ const CardScreen = () => {
           },
         }
       );
-      // console.log(activationDate);
     });
   };
 
@@ -395,9 +394,11 @@ const CardScreen = () => {
             {showInfo ? (
               <TouchableOpacity style={styles.qrCode} onPress={toggleQRCode}>
                 <Text style={styles.qrText}>
-                  start_date: {formattedStartDate}
+                  {t("CardScreen.start_date")} {formattedStartDate}
                 </Text>
-                <Text style={styles.qrText}>end_date: {formattedEndDate}</Text>
+                <Text style={styles.qrText}>
+                  {t("CardScreen.end_date")} {formattedEndDate}
+                </Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity onPress={openFuel}>
@@ -482,9 +483,14 @@ const CardScreen = () => {
                         <Text style={styles.abonementName}>
                           {card?.name.toString()}
                         </Text>
-                        <Text style={styles.cardText}>
-                          {card?.status.toString()}
-                        </Text>
+                        <View style={styles.activationText}>
+                          <Text style={styles.activationStatus}>
+                            {t("CardScreen.status")}
+                          </Text>
+                          <Text style={styles.statusAct}>
+                            {card?.status.toString()}
+                          </Text>
+                        </View>
                       </View>
                     </LinearGradient>
                   </View>
@@ -814,11 +820,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     alignItems: "center",
+    justifyContent: "center",
   },
   qrText: {
     color: "black",
     marginTop: "2%",
+    fontSize: 15,
+    fontWeight: "500",
     position: "relative",
+    fontFamily: "Outfit",
   },
   lineStyle: {
     borderWidth: 0.7,
@@ -833,5 +843,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#18aa5e",
     marginTop: "2%",
+  },
+  activationText: {
+    marginTop: "4%",
+    flexDirection: "row",
+  },
+  activationStatus: {
+    fontFamily: "Raleway",
+    fontSize: 15,
+  },
+  statusAct: {
+    fontFamily: "Raleway",
+    fontSize: 15,
+    fontWeight: "bold",
   },
 });

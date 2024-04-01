@@ -31,8 +31,9 @@ const LineDivider = () => {
   );
 };
 
-const BookDetail = ({ route, navigation }) => {
+const BookDetail = ({ item, navigation }) => {
   const [client, setClient] = useState();
+  // const { item } = route.params;
 
   const [scrollViewWholeHeight, setScrollViewWholeHeight] = React.useState(1);
   const [scrollViewVisibleHeight, setScrollViewVisibleHeight] =
