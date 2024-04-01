@@ -5,7 +5,7 @@
       "balance": "Мій баланс :",
       "currencyBalance": "₴",
       "topUp": "Абонементи",
-      "gallery": "Галерея",
+      "gallery": "Активація",
       "subscriptionPrices": "Дійсні записи",
       "type": "Категорія",
       "not_disc": "Ціна",
@@ -25,8 +25,7 @@
       "exit": "Вийти з акаунту",
       "site": "Наш сайт",
       "contract": "Договір публічної оферти",
-      "legalEntity": "Юридична особа",
-      "legalEntity1": "Фізична особа"
+      "abonement": "Абонементи"
     },
     "HisrotyScreen": {
       "allTransactions": "Всі транзакції",

@@ -1,11 +1,14 @@
 import { Database } from "@local/lib/index.js";
 import { Membership } from "@local/graphql/types/index.js";
 import { changeMembershipStatusValidation } from "@local/graphql/validations/client/index.js";
-import { GraphQLError } from "graphql";
+import { GraphQLError, GraphQLString } from "graphql";
 
 export default {
   type: Membership,
-  resolve: async (_, __, { client }) => {
+  args: {
+    status: { type: GraphQLString },
+  },
+  resolve: async (_, args, { client }) => {
     const membership = await Database("memberships")
       .where({
         id: client.membership_id,
@@ -32,7 +35,7 @@ export default {
           .insert({
             client_id: client.id,
             membership_id: membership[0].id,
-            status: "active",
+            status: args.status,
             start_date: Database.fn.now(),
             end_date: futureDate,
           })
