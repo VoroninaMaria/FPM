@@ -8,6 +8,7 @@ import file from "./file.js";
 import discount from "./discount.js";
 import location from "./location.js";
 import membership from "./membership.js";
+import membership_log from "./membership_log.js";
 export default {
   self,
   ...merchant,
@@ -19,4 +20,5 @@ export default {
   ...discount,
   ...location,
   ...membership,
+  ...membership_log,
 };

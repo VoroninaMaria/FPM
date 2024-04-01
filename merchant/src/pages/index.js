@@ -9,6 +9,7 @@ import Dashboard from "./Dashboard/index.js";
 import Discount from "./Discount/index.js";
 import Location from "./Location/index.js";
 import Membership from "./Membership/index.js";
+import MembershipLog from "./MembershipLog/index.js";
 
 export default {
   Chat,
@@ -22,4 +23,5 @@ export default {
   Discount,
   Location,
   Membership,
+  MembershipLog,
 };
