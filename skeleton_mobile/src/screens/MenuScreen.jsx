@@ -36,6 +36,9 @@ const MenuScreen = ({ navigation }) => {
   const openInfo = () => {
     navigation.navigate("InformationScreen");
   };
+  const openIntroduction = () => {
+    navigation.navigate("IntroductionScreen");
+  };
   const openExit = () => {
     navigation.navigate("Exit");
   };
@@ -119,6 +122,16 @@ const MenuScreen = ({ navigation }) => {
               <Text style={styles.listText}>{t("jjj")}</Text>
             </TouchableOpacity>
             <TouchableOpacity style={styles.list} onPress={openInfo}>
+              <Icon
+                name="list"
+                size={25}
+                color="#e6ab00"
+                marginLeft="5%"
+                justifyContent="space-between"
+              />
+              <Text style={styles.listText}>{t("MenuScreen.settings")}</Text>
+            </TouchableOpacity>
+            <TouchableOpacity style={styles.list} onPress={openIntroduction}>
               <Icon
                 name="list"
                 size={25}

@@ -22,6 +22,7 @@ import ChangePassword from "./ChangePassword";
 import SwitchAccountScreen from "./SwitchAccountScreen";
 import AbonementListScreen from "./AbonementListScreen";
 import InformationScreen from "./InformationScreen";
+import IntroductionScreen from "./IntroductionScreen";
 
 export {
   HomeScreen,
@@ -45,4 +46,5 @@ export {
   SwitchAccountScreen,
   AbonementListScreen,
   InformationScreen,
+  IntroductionScreen,
 };
