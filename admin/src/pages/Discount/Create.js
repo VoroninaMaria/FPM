@@ -10,6 +10,11 @@ import {
 } from "react-admin";
 import { CustomToolbar } from "../../shared/components/index.js";
 
+const validatePercentage = (value) => {
+  if (value < 0 || value > 100) {
+    return "0 - 100";
+  }
+};
 const createDiscount = () => (
   <Create redirect="show">
     <SimpleForm toolbar={<CustomToolbar />}>
@@ -18,7 +23,10 @@ const createDiscount = () => (
         source="name"
         validate={[required()]}
       />
-      <NumberInput source="percent" validate={[required()]} />
+      <NumberInput
+        source="percent"
+        validate={[required(), validatePercentage]}
+      />
       <ReferenceInput source="merchant_id" reference="Merchant">
         <SelectInput
           optionText="name"

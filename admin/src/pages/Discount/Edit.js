@@ -10,6 +10,12 @@ import {
 } from "react-admin";
 import { Title, CustomToolbar } from "../../shared/components/index.js";
 
+const validatePercentage = (value) => {
+  if (value < 0 || value > 100) {
+    return "0 - 100";
+  }
+};
+
 const editDiscount = () => (
   <Edit
     title={<Title source="name" />}
@@ -22,7 +28,10 @@ const editDiscount = () => (
         source="name"
         validate={[required()]}
       />
-      <NumberInput source="percent" validate={[required()]} />
+      <NumberInput
+        source="percent"
+        validate={[required(), validatePercentage]}
+      />
       <ReferenceInput source="merchant_id" reference="Merchant">
         <SelectInput optionText="name" optionValue="id" />
       </ReferenceInput>

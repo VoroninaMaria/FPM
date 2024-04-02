@@ -13,6 +13,18 @@ import {
 import { Title, CustomToolbar } from "../../shared/components/index.js";
 import { MEMBERSHIP_STATUSES } from "@local/constants/index.js";
 
+const validatePrice = (value) => {
+  if (value < 0 || value > 100000) {
+    return "0 - 100000";
+  }
+};
+
+const validateTerm = (value) => {
+  if (value < 0 || value > 365) {
+    return "0 - 365";
+  }
+};
+
 const editLocation = () => {
   const [selectedMerchant, setSelectedMerchant] = React.useState("");
 
@@ -33,8 +45,8 @@ const editLocation = () => {
           source="name"
           validate={[required()]}
         />
-        <NumberInput source="price" validate={[required()]} />
-        <NumberInput source="term" validate={[required()]} />
+        <NumberInput source="price" validate={[required(), validatePrice]} />
+        <NumberInput source="term" validate={[required(), validateTerm]} />
         <ReferenceInput source="merchant_id" reference="Merchant">
           <SelectInput
             optionText="name"

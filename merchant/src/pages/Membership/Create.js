@@ -11,6 +11,18 @@ import {
 import { CustomToolbar } from "../../shared/components/index.js";
 import { MEMBERSHIP_STATUSES } from "@local/constants/index.js";
 
+const validatePrice = (value) => {
+  if (value < 0 || value > 100000) {
+    return "0 - 100000";
+  }
+};
+
+const validateTerm = (value) => {
+  if (value < 0 || value > 365) {
+    return "0 - 365";
+  }
+};
+
 const createMembership = () => (
   <Create redirect="show">
     <SimpleForm toolbar={<CustomToolbar />}>
@@ -19,8 +31,8 @@ const createMembership = () => (
         source="name"
         validate={[required()]}
       />
-      <NumberInput source="price" validate={[required()]} />
-      <NumberInput source="term" validate={[required()]} />
+      <NumberInput source="price" validate={[required(), validatePrice]} />
+      <NumberInput source="term" validate={[required(), validateTerm]} />
       <ReferenceInput source="location_id" reference="Location">
         <SelectInput
           optionText="name"

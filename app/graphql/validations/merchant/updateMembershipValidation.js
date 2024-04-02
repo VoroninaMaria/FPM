@@ -5,6 +5,7 @@ import {
 } from "@local/graphql/validations/shared/index.js";
 import { Database } from "@local/lib/index.js";
 import { GraphQLError } from "graphql";
+import validateUniquenessOnUpdateWithFields from "../shared/validateUniquenessOnUpdateWithFields.js";
 
 let id_validation_ability_name;
 
@@ -16,6 +17,14 @@ export default yup.object({
   name: yup
     .string()
     .required()
+    .test(
+      "address",
+      "already_exist",
+      validateUniquenessOnUpdateWithFields("memberships", [
+        "name",
+        "merchant_id",
+      ])
+    )
     .test("valid", "invalid_syntax", validateTextInput),
   price: yup.number().required(),
   location_id: yup
