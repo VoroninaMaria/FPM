@@ -165,12 +165,7 @@ const ProfileScreen = ({ navigation }) => {
               source={require("../assets/images/gymLogo.png")}
             />
           </View>
-          <View style={styles.avatarContainer}>
-            <Image
-              style={styles.avatar}
-              source={require("../assets/images/profile.jpeg")}
-            />
-          </View>
+
           <View style={styles.form}>
             <Text style={styles.label}>Імʼя</Text>
             <View style={[styles.input1, firstNameError && styles.inputError]}>
@@ -338,6 +333,7 @@ const styles = StyleSheet.create({
 
   form: {
     width: "80%",
+    marginTop: "15%",
   },
   label: {
     marginTop: 10,

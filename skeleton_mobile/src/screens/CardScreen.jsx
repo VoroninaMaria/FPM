@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
   Alert,
+  FlatList,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import LinearGradient from "react-native-linear-gradient";
@@ -20,7 +21,72 @@ import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import moment from "moment";
 
-// const Item = ({ stella }) => {
+const Item = ({ abonements }) => {
+  const { t } = useTranslation();
+
+  return (
+    <ScrollView>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "100%",
+          height: "35%",
+          justifyContent: "space-between",
+        }}
+      >
+        <View
+          style={{
+            width: "30%",
+            alignItems: "flex-start",
+            fontFamily: "Raleway",
+            fontWeight: "500",
+            color: "black",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.name}>{abonements.name}</Text>
+        </View>
+        <View
+          style={{
+            width: "25%",
+            alignItems: "center",
+            fontFamily: "Raleway",
+            fontWeight: "500",
+            color: "black",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.cost}>{abonements.description}</Text>
+        </View>
+        <View
+          style={{
+            width: "25%",
+            alignItems: "flex-end",
+            fontFamily: "Raleway",
+            fontWeight: "500",
+            color: "#18aa5e",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.costDi}>{abonements.name}</Text>
+        </View>
+        <View
+          style={{
+            width: "20%",
+            alignItems: "flex-end",
+            fontFamily: "Raleway",
+            fontWeight: "500",
+            color: "#18aa5e",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.discount}>{abonements.name}</Text>
+        </View>
+      </View>
+      <View style={styles.lineStyle} />
+    </ScrollView>
+  );
+};
 //   const { t } = useTranslation();
 
 //   return (
@@ -93,68 +159,9 @@ const CardScreen = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const { t } = useTranslation();
   const [showInfo, setShowInfo] = useState(false);
-  // const [stellaPrice, setStellaPrice] = useState([]);
+  const [membershipPrice, setMembershipPrice] = useState([]);
   const [card, setCard] = useState();
   const [client, setClient] = useState();
-
-  // const handleConfirmPass = () => {
-  //   if (oldPasswordError === false && newPasswordError === false) {
-  //     return AsyncStorage.getItem("token")
-  //       .then((token) => {
-  //         return axios
-  //           .post(
-  //             `${Config.baseUrl}/client/graphql`,
-  //             {
-  //               query: `
-  //             mutation chamgeMembership($old_password: String!, $new_password: String!) {
-  //               updatePassword(old_password: $old_password, new_password: $new_password) {
-  //                 id
-  //               }
-  //             }
-  //           `,
-  //               variables: {
-  //                 old_password: oldPassword,
-  //                 new_password: newPassword,
-  //               },
-  //             },
-  //             {
-  //               headers: {
-  //                 "Content-Type": "application/json",
-  //                 Authorization: `Bearer ${token}`,
-  //               },
-  //             }
-  //           )
-  //           .then(async (res) => {
-  //             if (res.data.errors) {
-  //               if (
-  //                 res.data.errors[0].message.includes("old_password_invalid")
-  //               ) {
-  //                 setOldPasswordError(true);
-  //                 return Alert.alert(
-  //                   t("SettingsScreen.Errors.name"),
-  //                   t("SettingsScreen.Errors.invalid_old_password")
-  //                 );
-  //               }
-  //               return Alert.alert(t("InputErrors.error"), t("ErrorTXTDef"));
-  //             }
-
-  //             setOldPassword("");
-  //             setNewPassword("");
-  //             setNewPasswordError(false);
-
-  //             await AsyncStorage.removeItem("token");
-
-  //             return navigation.navigate("Login");
-  //           })
-  //           .catch(() => {
-  //             return Alert.alert(t("InputErrors.error"), t("ErrorTXTDef"));
-  //           });
-  //       })
-  //       .catch(() => {
-  //         Alert.alert(t("Session.session"), t("Session.finished"));
-  //       });
-  //   }
-  // };
 
   const getClient = () =>
     AsyncStorage.getItem("token")
@@ -186,7 +193,7 @@ const CardScreen = () => {
                 },
               } = res;
 
-              console.log(self);
+              // console.log(self);
 
               return setClient(self);
             })
@@ -246,6 +253,51 @@ const CardScreen = () => {
         return navigation.navigate("Login");
       });
 
+  const getAbonement = () =>
+    AsyncStorage.getItem("token")
+      .then((token) => {
+        if (!token) {
+          Alert.alert(t("Session.session"), t("Session.finished"));
+          // return navigation.navigate("Login");
+        }
+        if (token) {
+          return axios
+            .post(
+              `${Config.baseUrl}/client/graphql`,
+              {
+                query: "{Membership{id, name, price, abilities, url}}",
+                variables: {},
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((res) => {
+              const {
+                data: {
+                  data: { Membership },
+                },
+              } = res;
+
+              // console.log(Membership);
+
+              return setMembershipPrice(Membership.abilities);
+            })
+
+            .catch((error) => {
+              Alert.alert(t("Session.session"), t("Session.finished"));
+              // return navigation.navigate("Login");
+            });
+        }
+      })
+      .catch(() => {
+        Alert.alert(t("Session.session"), t("Session.finished"));
+        // return navigation.navigate("Login");
+      });
+
   useEffect(() => {
     const delay = 300;
 
@@ -257,7 +309,11 @@ const CardScreen = () => {
       await new Promise((resolve) => setTimeout(resolve, delay));
       getClientData();
     };
-
+    const loadDataWithDelays = async () => {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      getAbonement();
+    };
+    loadDataWithDelays();
     loadClientWithDelay();
     loadDataWithDelay();
   }, []);
@@ -288,8 +344,7 @@ const CardScreen = () => {
     navigation.navigate("AbonementListScreen");
   };
 
-  const renderItem = ({ item }) => <Item stella={item} />;
-
+  const renderItem = ({ item }) => <Item abonements={item} />;
   const formattedStartDate = moment(card?.start_date).format(
     "DD.MM.YYYY HH:mm"
   );
@@ -317,7 +372,6 @@ const CardScreen = () => {
           },
         }
       );
-      // console.log(activationDate);
     });
   };
 
@@ -340,9 +394,11 @@ const CardScreen = () => {
             {showInfo ? (
               <TouchableOpacity style={styles.qrCode} onPress={toggleQRCode}>
                 <Text style={styles.qrText}>
-                  start_date: {formattedStartDate}
+                  {t("CardScreen.start_date")} {formattedStartDate}
                 </Text>
-                <Text style={styles.qrText}>end_date: {formattedEndDate}</Text>
+                <Text style={styles.qrText}>
+                  {t("CardScreen.end_date")} {formattedEndDate}
+                </Text>
               </TouchableOpacity>
             ) : (
               <TouchableOpacity onPress={openFuel}>
@@ -424,9 +480,17 @@ const CardScreen = () => {
                           justifyContent: "space-between",
                         }}
                       >
-                        <Text style={styles.cardText}>
-                          {t("CardScreen.fuelCard")}
+                        <Text style={styles.abonementName}>
+                          {card?.name.toString()}
                         </Text>
+                        <View style={styles.activationText}>
+                          <Text style={styles.activationStatus}>
+                            {t("CardScreen.status")}
+                          </Text>
+                          <Text style={styles.statusAct}>
+                            {card?.status.toString()}
+                          </Text>
+                        </View>
                       </View>
                     </LinearGradient>
                   </View>
@@ -510,13 +574,13 @@ const CardScreen = () => {
                 </View>
                 <View style={styles.lineStyle} />
               </View>
-              {/* <View style={styles.containerr}>
+              <View style={styles.containerr}>
                 <FlatList
-                  data={stellaPrice}
+                  data={membershipPrice}
                   renderItem={renderItem}
                   keyExtractor={(item) => item.id}
                 />
-              </View> */}
+              </View>
             </View>
           </View>
           <View style={styles.bottomContainer}>
@@ -602,6 +666,12 @@ const styles = StyleSheet.create({
     width: 230,
     justifyContent: "center",
     height: 90,
+  },
+  abonementName: {
+    fontWeight: "700",
+    fontSize: 16,
+    color: "black",
+    fontFamily: "Outfit",
   },
   textCard: {
     marginTop: "1%",
@@ -703,13 +773,13 @@ const styles = StyleSheet.create({
     textAlign: "center",
     alignItems: "center",
     height: "30%",
-    width: "50%",
+    width: "60%",
     fontSize: 15,
     fontWeight: "500",
     flex: 1,
     textAlign: "center",
     color: "black",
-    textDecorationLine: "line-through",
+
     marginRight: "30%",
     marginTop: "15%",
   },
@@ -750,11 +820,15 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     borderColor: "black",
     alignItems: "center",
+    justifyContent: "center",
   },
   qrText: {
     color: "black",
     marginTop: "2%",
+    fontSize: 15,
+    fontWeight: "500",
     position: "relative",
+    fontFamily: "Outfit",
   },
   lineStyle: {
     borderWidth: 0.7,
@@ -769,5 +843,18 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#18aa5e",
     marginTop: "2%",
+  },
+  activationText: {
+    marginTop: "4%",
+    flexDirection: "row",
+  },
+  activationStatus: {
+    fontFamily: "Raleway",
+    fontSize: 15,
+  },
+  statusAct: {
+    fontFamily: "Raleway",
+    fontSize: 15,
+    fontWeight: "bold",
   },
 });

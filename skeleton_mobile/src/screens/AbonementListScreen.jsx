@@ -73,6 +73,10 @@ const AbonementListScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const [membershipPrice, setMembershipPrice] = useState([]);
 
+  const openInfo = () => {
+    navigation.navigate("InformationScreen");
+  };
+
   const getAbonement = () =>
     AsyncStorage.getItem("token")
       .then((token) => {
@@ -127,6 +131,11 @@ const AbonementListScreen = ({ navigation }) => {
   }, []);
   const renderItem = ({ item }) => <Item allMemberships={item} />;
 
+  const openCard = (item) => {
+    openInfo(item);
+    navigation.navigate("BookDetail", { item });
+  };
+
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
@@ -134,11 +143,13 @@ const AbonementListScreen = ({ navigation }) => {
           <Text style={styles.textAbonement}></Text>
 
           <View style={styles.containerr}>
-            <FlatList
-              data={membershipPrice}
-              renderItem={renderItem}
-              keyExtractor={(item) => item.id}
-            />
+            <TouchableOpacity onPress={openCard}>
+              <FlatList
+                data={membershipPrice}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
+              />
+            </TouchableOpacity>
           </View>
         </View>
         <View style={styles.bottomContainer}>

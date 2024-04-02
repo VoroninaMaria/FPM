@@ -14,15 +14,21 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import AntIcon from "react-native-vector-icons/AntDesign";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useNavigation } from "@react-navigation/native";
-import { useTranslation } from "react-i18next";
 import Config from "./config.js";
-import "../localization/i18n";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
+import { useTranslation } from "react-i18next";
+import "../localization/i18n";
 
 const ChangingPinScreen = () => {
   const navigation = useNavigation();
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
+  const [selectedLanguage, setSelectedLanguage] = useState("uk");
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+    setSelectedLanguage(lng);
+  };
 
   const openChangePass = () => {
     navigation.navigate("ChangePassword");
@@ -55,6 +61,32 @@ const ChangingPinScreen = () => {
                 {t("SettingsScreen.savePassword")}
               </Text>
             </TouchableOpacity>
+            <View style={styles.lngContainer}>
+              <View style={styles.buttonContainer}>
+                <Pressable
+                  style={({ pressed }) => [
+                    styles.btnUk,
+                    { backgroundColor: pressed ? "#f6b170" : "#f6c770" },
+                  ]}
+                  onPress={() => changeLanguage("uk")}
+                >
+                  <Text style={styles.lngUk}>
+                    {t("SettingsScreen.ukLanguage")}
+                  </Text>
+                </Pressable>
+                <Pressable
+                  style={({ pressed }) => [
+                    styles.btnEng,
+                    { backgroundColor: pressed ? "#f6b170" : "#f6c770" },
+                  ]}
+                  onPress={() => changeLanguage("en")}
+                >
+                  <Text style={styles.lngEng}>
+                    {t("SettingsScreen.enLanguage")}
+                  </Text>
+                </Pressable>
+              </View>
+            </View>
 
             <View style={styles.lineStyle} />
             <View style={styles.exitContainer}>
@@ -155,5 +187,39 @@ const styles = StyleSheet.create({
     top: "1%",
     fontWeight: "300",
     fontSize: 14,
+  },
+  lngContainer: {
+    flexDirection: "row",
+
+    justifyContent: "space-between",
+    marginVertical: 10,
+    paddingHorizontal: 20,
+    justifyContent: "center",
+  },
+  textLang: {
+    fontSize: 18,
+    fontWeight: "bold",
+  },
+  buttonContainer: {
+    flexDirection: "row",
+  },
+  btnUk: {
+    paddingHorizontal: 15,
+    borderRadius: 6,
+    paddingVertical: 4,
+    marginRight: 10,
+  },
+  lngUk: {
+    color: "white",
+    fontSize: 16,
+  },
+  btnEng: {
+    paddingHorizontal: 20,
+    paddingVertical: 5,
+    borderRadius: 5,
+  },
+  lngEng: {
+    color: "white",
+    fontSize: 16,
   },
 });
