@@ -109,6 +109,14 @@ export const App = () => {
         icon={Tag}
       />
 
+      <Resource
+        name="MembershipLog"
+        list={Pages.MembershipLog.List}
+        show={Pages.MembershipLog.Show}
+        edit={Pages.MembershipLog.Edit}
+        icon={Tag}
+      />
+
       <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
     </Admin>
   );

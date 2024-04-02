@@ -50,7 +50,7 @@ const allClients = {
       page = 0,
       sortField = "id",
       sortOrder = "asc",
-      filter: { phone, ...filter },
+      filter: { phone, ids, ...filter },
     },
     { merchant }
   ) =>
@@ -62,6 +62,9 @@ const allClients = {
         ),
       ])
       .where({ merchant_id: merchant.id, ...filter })
+      .modify((queryBuilder) => {
+        if (ids?.length) queryBuilder.whereIn("id", ids);
+      })
       .whereLike("phone", `%${phone || ""}%`)
       .limit(perPage)
       .offset(page * perPage)
@@ -89,9 +92,12 @@ const allClients = {
 const _allClientsMeta = {
   type: ListMetadata,
   args: { ...paginationArgs, filter: { type: ClientFilter } },
-  resolve: (_, { filter: { phone, ...filter } }, { merchant }) =>
+  resolve: (_, { filter: { phone, ids, ...filter } }, { merchant }) =>
     Database("clients")
       .where({ merchant_id: merchant.id, ...filter })
+      .modify((queryBuilder) => {
+        if (ids?.length) queryBuilder.whereIn("id", ids);
+      })
       .whereLike("phone", `%${phone || ""}%`)
       .count()
       .first()

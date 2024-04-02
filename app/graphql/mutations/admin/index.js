@@ -22,6 +22,7 @@ import deleteLocation from "./deleteLocation.js";
 import createMembership from "./createMembership.js";
 import updateMembership from "./updateMembership.js";
 import deleteMembership from "./deleteMembership.js";
+import updateMembershipLog from "./updateMembershipLog.js";
 
 export default {
   updateMerchant,
@@ -48,4 +49,5 @@ export default {
   createMembership,
   updateMembership,
   deleteMembership,
+  updateMembershipLog,
 };
