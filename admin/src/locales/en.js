@@ -424,6 +424,8 @@ const en = {
         already_exist: "Element already exists!",
         name_of_abilities_already_exist: "Abilities already exists!",
         dublicate_name_of_abilities_update: "Entered duplicate abilities names",
+        location_wrong: "Selected location belongs to another merchant",
+        file_wrong: "Selected file belongs to another merchant",
         page_set_as_default:
           "Page is set as design's default, remove it from there before performing deletion",
         oversize: "File size shouldn't exceed 10MB",

@@ -24,13 +24,6 @@ export default yup.object({
     .test("valid", "invalid_syntax", validateTextInput),
 
   price: yup.number().required(),
-  location_id: yup
-    .string()
-    .required()
-    .test("present", "location_not_found", validatePresence("locations", "id")),
-  file_id: yup
-    .string()
-    .test("present", "file_not_found", validatePresence("files", "id")),
   merchant_id: yup
     .string()
     .required()
@@ -38,6 +31,37 @@ export default yup.object({
     .test("getId", "wrong_getId", async function (merchant_id) {
       id_validation_ability_name = merchant_id;
       return true;
+    }),
+  location_id: yup
+    .string()
+    .required()
+    .test("present", "location_not_found", validatePresence("locations", "id"))
+    .test("unique", "location_wrong", async function (location_id) {
+      const res = false;
+      const location = await Database("locations")
+        .where({ id: location_id })
+        .select("merchant_id");
+
+      if (location[0].merchant_id === id_validation_ability_name) {
+        return true;
+      } else {
+        return res;
+      }
+    }),
+  file_id: yup
+    .string()
+    .test("present", "file_not_found", validatePresence("files", "id"))
+    .test("unique", "file_wrong", async function (file_id) {
+      const res = false;
+      const file = await Database("files")
+        .where({ id: file_id })
+        .select("account_id");
+
+      if (file[0].account_id === id_validation_ability_name) {
+        return true;
+      } else {
+        return res;
+      }
     }),
   abilities: yup
     .array()
