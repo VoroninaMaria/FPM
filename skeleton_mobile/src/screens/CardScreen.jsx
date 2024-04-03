@@ -176,7 +176,7 @@ const CardScreen = () => {
             .post(
               `${Config.baseUrl}/client/graphql`,
               {
-                query: "{self{id, first_name, last_name, phone}}",
+                query: "{self{id, first_name, last_name, phone, membership}}",
                 variables: {},
               },
               {
@@ -193,56 +193,12 @@ const CardScreen = () => {
                 },
               } = res;
 
-              // console.log(self);
+              // console.log(self.membership);
 
               return setClient(self);
             })
 
             .catch((error) => {
-              Alert.alert(t("Session.session"), t("Session.finished"));
-              return navigation.navigate("Login");
-            });
-        }
-      })
-      .catch(() => {
-        Alert.alert(t("Session.session"), t("Session.finished"));
-        return navigation.navigate("Login");
-      });
-
-  const getClientData = () =>
-    AsyncStorage.getItem("token")
-      .then((token) => {
-        if (!token) {
-          Alert.alert(t("Session.session"), t("Session.finished"));
-          // return navigation.navigate("Login");
-        }
-        if (token) {
-          return axios
-            .post(
-              `${Config.baseUrl}/client/graphql`,
-              {
-                query:
-                  "{Membership{id, name, price, start_date, end_date, status}}",
-                variables: {},
-              },
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            )
-            .then((res) => {
-              const {
-                data: {
-                  data: { Membership },
-                },
-              } = res;
-
-              return setCard(Membership);
-            })
-            .catch((error) => {
-              console.log(error);
               Alert.alert(t("Session.session"), t("Session.finished"));
               return navigation.navigate("Login");
             });
@@ -305,22 +261,16 @@ const CardScreen = () => {
       await new Promise((resolve) => setTimeout(resolve, delay));
       getClient();
     };
-    const loadDataWithDelay = async () => {
-      await new Promise((resolve) => setTimeout(resolve, delay));
-      getClientData();
-    };
     const loadDataWithDelays = async () => {
       await new Promise((resolve) => setTimeout(resolve, delay));
       getAbonement();
     };
     loadDataWithDelays();
     loadClientWithDelay();
-    loadDataWithDelay();
   }, []);
 
   const onRefresh = React.useCallback(() => {
     setRefreshing(true);
-    getClientData();
     getClient();
     setTimeout(() => {
       setRefreshing(false);
@@ -481,14 +431,14 @@ const CardScreen = () => {
                         }}
                       >
                         <Text style={styles.abonementName}>
-                          {card?.name.toString()}
+                          {client?.membership[0].name}
                         </Text>
                         <View style={styles.activationText}>
                           <Text style={styles.activationStatus}>
                             {t("CardScreen.status")}
                           </Text>
                           <Text style={styles.statusAct}>
-                            {card?.status.toString()}
+                            {client?.membership[0].status}
                           </Text>
                         </View>
                       </View>
@@ -576,7 +526,7 @@ const CardScreen = () => {
               </View>
               <View style={styles.containerr}>
                 <FlatList
-                  data={membershipPrice}
+                  data={client?.membership[0].abilities}
                   renderItem={renderItem}
                   keyExtractor={(item) => item.id}
                 />
