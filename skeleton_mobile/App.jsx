@@ -26,7 +26,6 @@ import {
   SwitchAccountScreen,
   AbonementListScreen,
   InformationScreen,
-  IntroductionScreen,
 } from "./src/screens/index.js";
 import Config from "./src/screens/config.js";
 import { useTranslation } from "react-i18next";
@@ -112,10 +111,7 @@ const App = () => {
               name="AbonementListScreen"
               component={AbonementListScreen}
             />
-            <Stack.Screen
-              name="IntroductionScreen"
-              component={IntroductionScreen}
-            />
+
             <Stack.Screen name="Menu" component={MenuScreen} />
 
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
