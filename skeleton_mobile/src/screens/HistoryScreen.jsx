@@ -7,6 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
   ScrollView,
+  Alert,
 } from "react-native";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useTranslation } from "react-i18next";
@@ -18,6 +19,61 @@ import moment from "moment";
 
 const HistoryScreen = ({ navigation }) => {
   const { t } = useTranslation();
+  const [membershipPrice, setMembershipPrice] = useState([]);
+  const getAbonement = () =>
+    AsyncStorage.getItem("token")
+      .then((token) => {
+        if (!token) {
+          Alert.alert(t("Session.session"), t("Session.finished"));
+          // return navigation.navigate("Login");
+        }
+        if (token) {
+          return axios
+            .post(
+              `${Config.baseUrl}/client/graphql`,
+              {
+                query: "{allMembershipLogs {id, start_date}}",
+                variables: {},
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((res) => {
+              const {
+                data: {
+                  data: { allMembershipLogs },
+                },
+              } = res;
+
+              console.log(allMembershipLogs);
+
+              return setMembershipPrice(allMembershipLogs);
+            })
+
+            .catch((error) => {
+              Alert.alert(t("Session.session"), t("Session.finished"));
+              // return navigation.navigate("Login");
+            });
+        }
+      })
+      .catch(() => {
+        Alert.alert(t("Session.session"), t("Session.finished"));
+        // return navigation.navigate("Login");
+      });
+  useEffect(() => {
+    const delay = 300;
+
+    const loadDataWithDelays = async () => {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      getAbonement();
+    };
+    loadDataWithDelays();
+    getAbonement();
+  }, []);
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
