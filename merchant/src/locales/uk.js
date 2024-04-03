@@ -65,6 +65,14 @@ const uk = {
       name: "Абонементи",
       fields: {
         name: "Назва",
+        price: "Ціна",
+        file_id: "Файл",
+        location_id: "Локація",
+        term: "Термін",
+        location: "Локація",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
       },
       source: {
         status: {
@@ -308,6 +316,16 @@ const uk = {
       fields: {
         name: "Назва",
         percent: "Відсоток",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+      },
+    },
+
+    Location: {
+      name: "Локація",
+      fields: {
+        name: "Назва",
+        address: "Адреса",
         created_at: "Створено",
         updated_at: "Останні зміни",
       },
