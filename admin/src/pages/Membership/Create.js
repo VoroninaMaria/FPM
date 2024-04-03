@@ -56,7 +56,11 @@ const createMembership = () => {
               reference="Location"
               filter={{ merchant_id: selectedMerchant }}
             >
-              <SelectInput optionText="name" optionValue="id" />
+              <SelectInput
+                optionText="name"
+                optionValue="id"
+                validate={[required()]}
+              />
             </ReferenceInput>
           </>
         )}
@@ -67,7 +71,11 @@ const createMembership = () => {
               reference="File"
               filter={{ account_id: selectedMerchant }}
             >
-              <SelectInput optionText="name" optionValue="id" />
+              <SelectInput
+                optionText="name"
+                optionValue="id"
+                validate={[required()]}
+              />
             </ReferenceInput>
           </>
         )}

@@ -62,7 +62,11 @@ const editLocation = () => {
               reference="Location"
               filter={{ merchant_id: selectedMerchant }}
             >
-              <SelectInput optionText="name" optionValue="id" />
+              <SelectInput
+                optionText="name"
+                optionValue="id"
+                validate={[required()]}
+              />
             </ReferenceInput>
           </>
         )}
@@ -73,7 +77,11 @@ const editLocation = () => {
               reference="File"
               filter={{ account_id: selectedMerchant }}
             >
-              <SelectInput optionText="name" optionValue="id" />
+              <SelectInput
+                optionText="name"
+                optionValue="id"
+                validate={[required()]}
+              />
             </ReferenceInput>
           </>
         )}
