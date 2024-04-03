@@ -76,9 +76,7 @@ const LoginScreen = ({ navigation }) => {
                   setPhone("");
                   setPinCode("");
 
-                  return navigation.navigate("CardScreen", {
-                    name: self?.first_name,
-                  });
+                  return navigation.navigate("CardScreen");
                 })
                 .catch((error) => {
                   console.log(error);

@@ -91,10 +91,7 @@ const ConfirmResetOtpScreen = ({ navigation, route }) => {
                   },
                 } = result;
 
-                return navigation.navigate("ConfirmationReset", {
-                  name: self?.first_name,
-                  entity: self?.entity,
-                });
+                return navigation.navigate("OnBoardingScreen");
               })
               .catch(() => {
                 return Alert.alert(
