@@ -295,12 +295,13 @@ const CardScreen = () => {
   };
 
   const renderItem = ({ item }) => <Item abonements={item} />;
-  const formattedStartDate = moment(client?.membership[0].start_date).format(
-    "DD.MM.YYYY HH:mm"
-  );
-  const formattedEndDate = moment(client?.membership[0].end_date).format(
-    "DD.MM.YYYY HH:mm"
-  );
+  const formattedStartDate = client?.membership?.[0]?.start_date
+    ? moment(client.membership[0].start_date).format("DD.MM.YYYY HH:mm")
+    : null;
+
+  const formattedEndDate = client?.membership?.[0]?.end_date
+    ? moment(client.membership[0].end_date).format("DD.MM.YYYY HH:mm")
+    : null;
   const handleActivationPress = async () => {
     return AsyncStorage.getItem("token").then((token) => {
       return axios.post(
@@ -433,14 +434,14 @@ const CardScreen = () => {
                         }}
                       >
                         <Text style={styles.abonementName}>
-                          {client?.membership[0].name}
+                          {client?.membership?.[0]?.name ?? null}
                         </Text>
                         <View style={styles.activationText}>
                           <Text style={styles.activationStatus}>
                             {t("CardScreen.status")}
                           </Text>
                           <Text style={styles.statusAct}>
-                            {client?.membership[0].status}
+                            {client?.membership?.[0]?.status ?? null}
                           </Text>
                         </View>
                       </View>
@@ -456,6 +457,7 @@ const CardScreen = () => {
 
               <TouchableOpacity
                 style={styles.partner}
+                // feaa4ac7-8818-4fb9-8c13-eaffc7698c35
                 onPress={handleActivationPress}
               >
                 <Text style={styles.partnerText}>
@@ -528,9 +530,9 @@ const CardScreen = () => {
               </View>
               <View style={styles.containerr}>
                 <FlatList
-                  data={client?.membership[0].abilities}
+                  data={client?.membership?.[0]?.abilities ?? null}
                   renderItem={renderItem}
-                  keyExtractor={(item) => item.id}
+                  keyExtractor={(item) => item?.id ?? null}
                 />
               </View>
             </View>
