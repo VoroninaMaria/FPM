@@ -1,59 +1,5 @@
 import { gql } from "graphql-request";
 
-const ADMIN_CREATE_PROMOTION_MUTATION = gql`
-  mutation (
-    $title: String!
-    $text: String!
-    $merchant_id: ID!
-    $file_id: ID!
-    $start_date: DateTime!
-    $end_date: DateTime!
-  ) {
-    createPromotion(
-      title: $title
-      text: $text
-      merchant_id: $merchant_id
-      file_id: $file_id
-      start_date: $start_date
-      end_date: $end_date
-    ) {
-      id
-      title
-      text
-      merchant_id
-      file_id
-      start_date
-      end_date
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_COMPANY_MUTATION = gql`
-  mutation ($name: String!, $merchant_id: ID!) {
-    createCompany(name: $name, merchant_id: $merchant_id) {
-      id
-      merchant_id
-      name
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_MANAGER_MUTATION = gql`
-  mutation ($company_id: ID!, $client_id: ID!) {
-    createManager(company_id: $company_id, client_id: $client_id) {
-      id
-      company_id
-      client_id
-      created_at
-      updated_at
-    }
-  }
-`;
-
 const CREATE_CLIENT_CHANGE_REQUEST_MUTATION = gql`
   mutation ($field_name: String!, $value: String!) {
     createClientChangeRequest(field_name: $field_name, value: $value) {
@@ -61,92 +7,6 @@ const CREATE_CLIENT_CHANGE_REQUEST_MUTATION = gql`
       client_id
       field_name
       value
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const CLIENT_MARK_PROMOTION_AS_READ_MUTATION = gql`
-  mutation ($id: ID!) {
-    markPromotionAsRead(id: $id) {
-      id
-      title
-      text
-      merchant_id
-      file_id
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const MERCHANT_CREATE_PROMOTION_MUTATION = gql`
-  mutation (
-    $title: String!
-    $text: String!
-    $file_id: ID!
-    $start_date: DateTime!
-    $end_date: DateTime!
-  ) {
-    createPromotion(
-      title: $title
-      text: $text
-      file_id: $file_id
-      start_date: $start_date
-      end_date: $end_date
-    ) {
-      id
-      title
-      text
-      merchant_id
-      file_id
-      start_date
-      end_date
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const UPDATE_PROMOTION_MUTATION = gql`
-  mutation (
-    $title: String!
-    $text: String!
-    $id: ID!
-    $file_id: ID!
-    $start_date: DateTime!
-    $end_date: DateTime!
-  ) {
-    updatePromotion(
-      title: $title
-      text: $text
-      id: $id
-      file_id: $file_id
-      start_date: $start_date
-      end_date: $end_date
-    ) {
-      id
-      title
-      text
-      merchant_id
-      file_id
-      start_date
-      end_date
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const DELETE_PROMOTION_MUTATION = gql`
-  mutation ($id: ID!) {
-    deletePromotion(id: $id) {
-      id
-      title
-      text
-      merchant_id
-      file_id
       created_at
       updated_at
     }
@@ -223,6 +83,8 @@ const MERCHANT_UPDATE_CLIENT_MUTATION = gql`
 const ADMIN_UPDATE_CLIENT_MUTATION = gql`
   mutation (
     $id: ID!
+    $merchant_id: ID!
+    $membership_id: ID
     $status: String!
     $phone: String!
     $category_id: ID
@@ -231,6 +93,8 @@ const ADMIN_UPDATE_CLIENT_MUTATION = gql`
   ) {
     updateClient(
       id: $id
+      merchant_id: $merchant_id
+      membership_id: $membership_id
       phone: $phone
       status: $status
       category_id: $category_id
@@ -245,6 +109,7 @@ const ADMIN_UPDATE_CLIENT_MUTATION = gql`
       phone
       email
       category_id
+      membership_id
       tag_ids
       unconfirmed_changes
       created_at
@@ -254,17 +119,11 @@ const ADMIN_UPDATE_CLIENT_MUTATION = gql`
 `;
 
 const ADMIN_UPDATE_MERCHANT_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $status: String!
-    $storage_capacity: Int!
-    $plugins: JSONObject!
-  ) {
+  mutation ($id: ID!, $status: String!, $storage_capacity: Int!) {
     updateMerchant(
       id: $id
       status: $status
       storage_capacity: $storage_capacity
-      plugins: $plugins
     ) {
       id
       login
@@ -272,7 +131,6 @@ const ADMIN_UPDATE_MERCHANT_MUTATION = gql`
       status
       sms_fallback
       storage_capacity
-      plugins
       created_at
       updated_at
     }
@@ -301,22 +159,22 @@ const MERCHANT_CREATE_CLIENT_MUTATION = gql`
   mutation (
     $first_name: String!
     $last_name: String!
+    $membership_id: ID
     $email: String
     $phone: String!
     $password: String!
     $category_id: ID
     $tag_ids: [ID]
-    $entity: Int!
   ) {
     createClient(
       first_name: $first_name
       last_name: $last_name
+      membership_id: $membership_id
       email: $email
       phone: $phone
       password: $password
       category_id: $category_id
       tag_ids: $tag_ids
-      entity: $entity
     ) {
       id
       merchant_id
@@ -459,197 +317,6 @@ const ADMIN_CREATE_CATEGORY_MUTATION = gql`
   }
 `;
 
-const MERCHANT_CREATE_DESIGN_MUTATION = gql`
-  mutation ($name: String!, $styles: JSONObject!) {
-    createDesign(name: $name, styles: $styles) {
-      id
-      name
-      merchant_id
-      styles
-      default_page_id
-      error_page_id
-      loader_page_id
-      authenticated_page_id
-      updated_at
-      created_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_DESIGN_MUTATION = gql`
-  mutation ($name: String!, $merchant_id: ID!, $styles: JSONObject!) {
-    createDesign(name: $name, merchant_id: $merchant_id, styles: $styles) {
-      id
-      name
-      merchant_id
-      styles
-      default_page_id
-      error_page_id
-      loader_page_id
-      authenticated_page_id
-      updated_at
-      created_at
-    }
-  }
-`;
-
-const UPDATE_DESIGN_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $name: String!
-    $styles: JSONObject!
-    $default_page_id: ID
-    $authenticated_page_id: ID
-    $loader_page_id: ID
-    $error_page_id: ID
-  ) {
-    updateDesign(
-      id: $id
-      name: $name
-      styles: $styles
-      default_page_id: $default_page_id
-      authenticated_page_id: $authenticated_page_id
-      loader_page_id: $loader_page_id
-      error_page_id: $error_page_id
-    ) {
-      id
-      name
-      merchant_id
-      styles
-      default_page_id
-      error_page_id
-      loader_page_id
-      authenticated_page_id
-      updated_at
-      created_at
-    }
-  }
-`;
-
-const DELETE_DESIGN_MUTATION = gql`
-  mutation ($id: ID!) {
-    deleteDesign(id: $id) {
-      id
-    }
-  }
-`;
-
-const CREATE_PAGE_MUTATION = gql`
-  mutation ($name: String!, $design_id: ID!, $styles: JSONObject!) {
-    createPage(name: $name, design_id: $design_id, styles: $styles) {
-      id
-      design_id
-      name
-      styles
-      updated_at
-      created_at
-    }
-  }
-`;
-
-const UPDATE_PAGE_MUTATION = gql`
-  mutation ($id: ID!, $design_id: ID!, $name: String!, $styles: JSONObject!) {
-    updatePage(id: $id, design_id: $design_id, name: $name, styles: $styles) {
-      id
-      design_id
-      name
-      styles
-      updated_at
-      created_at
-    }
-  }
-`;
-
-const DELETE_PAGE_MUTATION = gql`
-  mutation ($id: ID!) {
-    deletePage(id: $id) {
-      id
-    }
-  }
-`;
-
-const CREATE_BLOCK_MUTATION = gql`
-  mutation (
-    $name: String!
-    $type: String!
-    $page_id: ID!
-    $position: Int!
-    $blocks: Int!
-    $container_styles: JSONObject
-    $styles: JSONObject
-    $props: JSONObject
-  ) {
-    createBlock(
-      name: $name
-      type: $type
-      page_id: $page_id
-      position: $position
-      blocks: $blocks
-      container_styles: $container_styles
-      styles: $styles
-      props: $props
-    ) {
-      id
-      name
-      type
-      page_id
-      props
-      blocks
-      container_styles
-      styles
-      position
-      updated_at
-      created_at
-    }
-  }
-`;
-
-const UPDATE_BLOCK_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $page_id: ID!
-    $name: String!
-    $type: String!
-    $position: Int!
-    $blocks: Int!
-    $container_styles: JSONObject
-    $styles: JSONObject
-    $props: JSONObject
-  ) {
-    updateBlock(
-      id: $id
-      page_id: $page_id
-      name: $name
-      type: $type
-      position: $position
-      blocks: $blocks
-      container_styles: $container_styles
-      styles: $styles
-      props: $props
-    ) {
-      id
-      name
-      type
-      page_id
-      props
-      blocks
-      container_styles
-      styles
-      position
-      updated_at
-      created_at
-    }
-  }
-`;
-
-const DELETE_BLOCK_MUTATION = gql`
-  mutation ($id: ID!) {
-    deleteBlock(id: $id) {
-      id
-    }
-  }
-`;
-
 const ADMIN_CREATE_TAG_MUTATION = gql`
   mutation ($name: String!, $merchant_id: ID!) {
     createTag(name: $name, merchant_id: $merchant_id) {
@@ -706,261 +373,6 @@ const DELETE_TAG_MUTATION = gql`
       id
       merchant_id
       name
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_BRAND_MUTATION = gql`
-  mutation ($name: String!, $default_config: JSONObject, $status: String!) {
-    createBrand(name: $name, default_config: $default_config, status: $status) {
-      id
-      name
-      default_config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_GAS_BRAND_MUTATION = gql`
-  mutation ($name: String!, $logo_file_id: ID!, $status: String!) {
-    createGasBrand(name: $name, logo_file_id: $logo_file_id, status: $status) {
-      id
-      name
-      logo_file_id
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_PAYMENT_GATEWAY_MUTATION = gql`
-  mutation ($name: String!, $status: String!) {
-    createPaymentGateway(name: $name, status: $status) {
-      id
-      name
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-const ADMIN_UPDATE_PAYMENT_GATEWAY_MUTATION = gql`
-  mutation ($id: ID!, $name: String!, $status: String!) {
-    updatePaymentGateway(id: $id, name: $name, status: $status) {
-      id
-      name
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_UPDATE_BRAND_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $name: String!
-    $default_config: JSONObject
-    $status: String!
-  ) {
-    updateBrand(
-      id: $id
-      name: $name
-      default_config: $default_config
-      status: $status
-    ) {
-      id
-      name
-      default_config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_UPDATE_GAS_BRAND_MUTATION = gql`
-  mutation ($id: ID!, $name: String!, $logo_file_id: ID!, $status: String!) {
-    updateGasBrand(
-      id: $id
-      name: $name
-      logo_file_id: $logo_file_id
-      status: $status
-    ) {
-      id
-      name
-      logo_file_id
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_BRAND_MERCHANT_MUTATION = gql`
-  mutation (
-    $merchant_id: ID!
-    $brand_id: ID!
-    $config: JSONObject
-    $status: String!
-  ) {
-    createBrandMerchant(
-      merchant_id: $merchant_id
-      brand_id: $brand_id
-      config: $config
-      status: $status
-    ) {
-      id
-      merchant_id
-      brand_id
-      config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_GAS_BRAND_MERCHANT_MUTATION = gql`
-  mutation ($merchant_id: ID!, $gas_brand_id: ID!, $status: String!) {
-    createGasBrandMerchant(
-      merchant_id: $merchant_id
-      gas_brand_id: $gas_brand_id
-      status: $status
-    ) {
-      id
-      merchant_id
-      gas_brand_id
-      fuels
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_UPDATE_GAS_BRAND_MERCHANT_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $merchant_id: ID!
-    $gas_brand_id: ID!
-    $fuels: [JSONObject]
-    $status: String!
-  ) {
-    updateGasBrandMerchant(
-      id: $id
-      merchant_id: $merchant_id
-      gas_brand_id: $gas_brand_id
-      fuels: $fuels
-      status: $status
-    ) {
-      id
-      merchant_id
-      gas_brand_id
-      fuels
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const MERCHANT_UPDATE_GAS_BRAND_MERCHANT_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $gas_brand_id: ID!
-    $fuels: [JSONObject]
-    $status: String!
-  ) {
-    updateGasBrandMerchant(
-      id: $id
-      gas_brand_id: $gas_brand_id
-      fuels: $fuels
-      status: $status
-    ) {
-      id
-      merchant_id
-      gas_brand_id
-      fuels
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const MERCHANT_CREATE_GAS_BRAND_MERCHANT_MUTATION = gql`
-  mutation ($gas_brand_id: ID!, $status: String!) {
-    createGasBrandMerchant(gas_brand_id: $gas_brand_id, status: $status) {
-      id
-      merchant_id
-      gas_brand_id
-      fuels
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_UPDATE_BRAND_MERCHANT_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $merchant_id: ID!
-    $brand_id: ID!
-    $config: JSONObject!
-    $status: String!
-  ) {
-    updateBrandMerchant(
-      id: $id
-      merchant_id: $merchant_id
-      brand_id: $brand_id
-      config: $config
-      status: $status
-    ) {
-      id
-      merchant_id
-      brand_id
-      config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const MERCHANT_CREATE_BRAND_MERCHANT_MUTATION = gql`
-  mutation ($brand_id: ID!, $config: JSONObject, $status: String!) {
-    createBrandMerchant(brand_id: $brand_id, config: $config, status: $status) {
-      id
-      merchant_id
-      brand_id
-      config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const MERCHANT_UPDATE_BRAND_MERCHANT_MUTATION = gql`
-  mutation ($id: ID!, $brand_id: ID!, $config: JSONObject!, $status: String!) {
-    updateBrandMerchant(
-      id: $id
-      brand_id: $brand_id
-      config: $config
-      status: $status
-    ) {
-      id
-      merchant_id
-      brand_id
-      config
-      status
       created_at
       updated_at
     }
@@ -1047,126 +459,13 @@ const CLIENT_UPDATE_PASSWORD_MUTATION = gql`
   }
 `;
 
-const MERCHANT_CREATE_MERCHANT_PAYMENT_GATEWAY_MUTATION = gql`
-  mutation (
-    $name: String!
-    $payment_gateway_id: ID!
-    $status: String!
-    $config: JSONObject!
-  ) {
-    createMerchantPaymentGateway(
-      name: $name
-      payment_gateway_id: $payment_gateway_id
-      status: $status
-      config: $config
-    ) {
-      id
-      name
-      merchant_id
-      payment_gateway_id
-      default
-      config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const MERCHANT_UPDATE_MERCHANT_PAYMENT_GATEWAY_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $name: String!
-    $config: JSONObject
-    $default: Boolean
-    $status: String!
-  ) {
-    updateMerchantPaymentGateway(
-      id: $id
-      name: $name
-      config: $config
-      default: $default
-      status: $status
-    ) {
-      id
-      name
-      merchant_id
-      payment_gateway_id
-      default
-      config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_CREATE_MERCHANT_PAYMENT_GATEWAY_MUTATION = gql`
-  mutation (
-    $name: String!
-    $merchant_id: ID!
-    $payment_gateway_id: ID!
-    $status: String!
-    $config: JSONObject!
-  ) {
-    createMerchantPaymentGateway(
-      name: $name
-      merchant_id: $merchant_id
-      payment_gateway_id: $payment_gateway_id
-      status: $status
-      config: $config
-    ) {
-      id
-      name
-      merchant_id
-      payment_gateway_id
-      default
-      config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
-const ADMIN_UPDATE_MERCHANT_PAYMENT_GATEWAY_MUTATION = gql`
-  mutation (
-    $id: ID!
-    $name: String!
-    $merchant_id: ID!
-    $config: JSONObject!
-    $default: Boolean
-    $status: String!
-  ) {
-    updateMerchantPaymentGateway(
-      id: $id
-      name: $name
-      merchant_id: $merchant_id
-      config: $config
-      default: $default
-      status: $status
-    ) {
-      id
-      name
-      merchant_id
-      payment_gateway_id
-      default
-      config
-      status
-      created_at
-      updated_at
-    }
-  }
-`;
-
 export {
   MERCHANT_UPDATE_PASSWORD_MUTATION,
-  MERCHANT_UPDATE_CLIENT_MUTATION,
+  ADMIN_UPDATE_MERCHANT_MUTATION,
   MERCHANT_CREATE_SMS_SERVICE_MUTATION,
   MERCHANT_UPDATE_SMS_SERVICE_MUTATION,
   ADMIN_UPDATE_MUTATION,
   ADMIN_UPDATE_CLIENT_MUTATION,
-  ADMIN_UPDATE_MERCHANT_MUTATION,
   ADMIN_CREATE_SMS_SERVICE_MUTATION,
   ADMIN_UPDATE_SMS_SERVICE_MUTATION,
   MERCHANT_CREATE_CATEGORY_MUTATION,
@@ -1177,47 +476,13 @@ export {
   ADMIN_CREATE_TAG_MUTATION,
   UPDATE_TAG_MUTATION,
   DELETE_TAG_MUTATION,
-  ADMIN_CREATE_BRAND_MUTATION,
-  ADMIN_UPDATE_BRAND_MUTATION,
-  ADMIN_CREATE_BRAND_MERCHANT_MUTATION,
-  ADMIN_UPDATE_BRAND_MERCHANT_MUTATION,
-  MERCHANT_CREATE_BRAND_MERCHANT_MUTATION,
-  MERCHANT_UPDATE_BRAND_MERCHANT_MUTATION,
-  MERCHANT_CREATE_DESIGN_MUTATION,
-  ADMIN_CREATE_DESIGN_MUTATION,
-  UPDATE_DESIGN_MUTATION,
-  DELETE_DESIGN_MUTATION,
-  CREATE_PAGE_MUTATION,
-  UPDATE_PAGE_MUTATION,
-  DELETE_PAGE_MUTATION,
-  CREATE_BLOCK_MUTATION,
-  UPDATE_BLOCK_MUTATION,
-  DELETE_BLOCK_MUTATION,
   MERCHANT_CREATE_FILE_MUTATION,
   ADMIN_CREATE_FILE_MUTATION,
   DELETE_FILE_MUTATION,
   MERCHANT_CREATE_CLIENT_MUTATION,
   ADMIN_CREATE_CLIENT_MUTATION,
-  ADMIN_CREATE_PROMOTION_MUTATION,
-  MERCHANT_CREATE_PROMOTION_MUTATION,
-  UPDATE_PROMOTION_MUTATION,
-  DELETE_PROMOTION_MUTATION,
-  CLIENT_MARK_PROMOTION_AS_READ_MUTATION,
   ADMIN_CREATE_MERCHANT_MUTATION,
-  ADMIN_CREATE_COMPANY_MUTATION,
-  ADMIN_CREATE_MANAGER_MUTATION,
   CLIENT_UPDATE_PASSWORD_MUTATION,
   CREATE_CLIENT_CHANGE_REQUEST_MUTATION,
-  ADMIN_CREATE_PAYMENT_GATEWAY_MUTATION,
-  ADMIN_UPDATE_PAYMENT_GATEWAY_MUTATION,
-  ADMIN_CREATE_GAS_BRAND_MUTATION,
-  ADMIN_UPDATE_GAS_BRAND_MUTATION,
-  ADMIN_CREATE_GAS_BRAND_MERCHANT_MUTATION,
-  MERCHANT_CREATE_GAS_BRAND_MERCHANT_MUTATION,
-  ADMIN_UPDATE_GAS_BRAND_MERCHANT_MUTATION,
-  MERCHANT_UPDATE_GAS_BRAND_MERCHANT_MUTATION,
-  MERCHANT_CREATE_MERCHANT_PAYMENT_GATEWAY_MUTATION,
-  MERCHANT_UPDATE_MERCHANT_PAYMENT_GATEWAY_MUTATION,
-  ADMIN_CREATE_MERCHANT_PAYMENT_GATEWAY_MUTATION,
-  ADMIN_UPDATE_MERCHANT_PAYMENT_GATEWAY_MUTATION,
+  MERCHANT_UPDATE_CLIENT_MUTATION,
 };

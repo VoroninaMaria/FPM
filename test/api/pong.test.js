@@ -5,7 +5,7 @@ import App from "@local/app/app.js";
 chai.use(chaiHttp);
 chai.should();
 describe("Ping", () => {
-  ["admin", "merchant", "client"].forEach((route) =>
+  ["admin", "merchant"].forEach((route) =>
     context(`GET /api/${route}/ping`, () => {
       it("should return pong", (done) => {
         chai
