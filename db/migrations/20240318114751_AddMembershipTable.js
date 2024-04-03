@@ -14,6 +14,7 @@ export const up = async (knex) => {
       .notNull()
       .defaultTo(MEMBERSHIP_STATUSES.inactive.name);
     addTimestamps(knex, table);
+    table.unique(["name", "merchant_id"]);
   });
 };
 

@@ -55,7 +55,7 @@
       const connect = () => {
         ws = new WebSocket(`ws://${window.document.location.host}/ws/client`, [
           "Authorization",
-          "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU2ODAwYWI2LWUwMzYtNGNkYS04YjQzLWRlOTU4Mzg1ZTkyYSIsInNlc3Npb25faWRlbnRpZmllciI6IjIzZTQwN2Q1MTdkNGQzOTBmODc4OTllMDMxMGU4ZTE3NDNiMzI1OGQzMmYxNzgwNzUzYzFhMWNjNmQ1OGM3YjAiLCJpYXQiOjE2OTkwMTE1MzF9.AnSBCBvuFEo8zlWZmk4-Qt16zLtosHwT_AOlWwrT6muMlVau9WBbmBzaAr-IUNs_6pCS5xsj77NvWICpNxqr3Q",
+          "eyJhbGciOiJIUzUxMiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImM4YTRmN2FiLTBhMzEtNDQ5MC1iZWMwLTljM2NhMTNlYjNkMSIsInNlc3Npb25faWRlbnRpZmllciI6ImMxN2QzODY5OGY5YmVkOTlhNjE3YmY1NTdmZGEwNjI1MjU2NDI3OTkzNGVkNGFmNDQxZTg5Nzc5OTBjZWYwNDEiLCJpYXQiOjE3MTIwNjA3Njd9.wg8lvivZrBsilfz7MnvQVXN03zWpbV_AMK-nxoXnVVUrpJdCyJSJH8XKYlM3ZWP0qURH93LcnKrZkq1tT_9vNA",
         ]);
         ws.binaryType = "blob";
         ws.addEventListener("open", (event) => {

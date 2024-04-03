@@ -3,11 +3,20 @@ import {
   validatePresence,
   validateTextInput,
 } from "@local/graphql/validations/shared/index.js";
+import validateUniquenessOnUpdateWithFields from "../shared/validateUniquenessOnUpdateWithFields.js";
 
 export default yup.object({
   name: yup
     .string()
     .required()
+    .test(
+      "address",
+      "already_exist",
+      validateUniquenessOnUpdateWithFields("memberships", [
+        "name",
+        "merchant_id",
+      ])
+    )
     .test("valid", "invalid_syntax", validateTextInput),
   price: yup.number().required(),
   location_id: yup

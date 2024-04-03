@@ -36,7 +36,7 @@ export default {
         .returning("*")
         .then(([membership]) => membership)
         .catch(() => {
-          throw new GraphQLError("Forbiddenlll");
+          throw new GraphQLError("Forbidden");
         })
     ),
 };
