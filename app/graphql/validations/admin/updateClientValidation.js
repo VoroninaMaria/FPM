@@ -19,6 +19,11 @@ export default yup.object({
     .required()
     .test("valid", "invalid_id_format", validateUUID)
     .test("present", "client_not_found", validatePresence("clients", "id")),
+  merchant_id: yup
+    .string()
+    .required()
+    .test("valid", "invalid_id_format", validateUUID)
+    .test("present", "merchant_not_found", validatePresence("merchants", "id")),
   first_name: yup
     .string()
     .notRequired()

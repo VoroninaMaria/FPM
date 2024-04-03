@@ -41,18 +41,12 @@ describe("Merchant GraphQL", () => {
             name: "uklon",
             encrypted_password,
             status: MERCHANT_STATUSES.active.name,
-            plugins: {
-              clients: true,
-            },
           },
           {
             login: "uber",
             name: "uber",
             encrypted_password,
             status: MERCHANT_STATUSES.active.name,
-            plugins: {
-              clients: true,
-            },
           },
         ])
         .returning("id");
