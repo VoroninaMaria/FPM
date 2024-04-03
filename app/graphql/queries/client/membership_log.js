@@ -4,12 +4,29 @@ import { MembershipLog as MembershipLogType } from "@local/graphql/types/index.j
 
 const allMembershipLogs = {
   type: new GraphQLList(MembershipLogType),
-  resolve: (_, __, { client }) =>
-    Database("membership_log")
-      .where({ client_id: client.id })
-      .catch(() => {
-        throw new GraphQLError("Forbidden");
-      }),
+  resolve: async (_, __, { client }) => {
+    try {
+      const membershipLogs = await Database("membership_log")
+        .where({ client_id: client.id })
+        .select();
+
+      const logsWithNames = await Promise.all(
+        membershipLogs.map(async (log) => {
+          const membership = await Database("memberships")
+            .where({ id: log.membership_id })
+            .select("name")
+            .first();
+
+          return { ...log, name: membership.name };
+        })
+      );
+
+      return logsWithNames;
+    } catch (error) {
+      console.error(error);
+      throw new GraphQLError("Forbidden");
+    }
+  },
 };
 
 export default { allMembershipLogs };

@@ -11,6 +11,7 @@ export default new GraphQLInputObjectType({
   fields: () => ({
     id: { type: GraphQLID },
     ids: { type: new GraphQLList(GraphQLID) },
+    name: { type: GraphQLString },
     client_id: { type: GraphQLID },
     membership_id: { type: GraphQLID },
     start_date: { type: GraphQLDateTime },
