@@ -295,10 +295,12 @@ const CardScreen = () => {
   };
 
   const renderItem = ({ item }) => <Item abonements={item} />;
-  const formattedStartDate = moment(card?.start_date).format(
+  const formattedStartDate = moment(client?.membership[0].start_date).format(
     "DD.MM.YYYY HH:mm"
   );
-  const formattedEndDate = moment(card?.end_date).format("DD.MM.YYYY HH:mm");
+  const formattedEndDate = moment(client?.membership[0].end_date).format(
+    "DD.MM.YYYY HH:mm"
+  );
   const handleActivationPress = async () => {
     return AsyncStorage.getItem("token").then((token) => {
       return axios.post(
