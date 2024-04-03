@@ -435,8 +435,8 @@ const en = {
         Forbidden: "An error has occured",
         delete_error: "Element can not be deleted!",
         already_exist: "Element already exists!",
-        name_of_fuel_already_exist: "Fuel already exists!",
-        dublicate_name_of_fuel_update: "Entered duplicate fuel names",
+        name_of_abilities_already_exist: "Abilities already exists!",
+        dublicate_name_of_abilities_update: "Entered duplicate abilities names",
         page_set_as_default:
           "Page is set as design's default, remove it from there before performing deletion",
         oversize: "File size shouldn't exceed 10MB",

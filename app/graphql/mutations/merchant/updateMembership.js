@@ -1,6 +1,6 @@
 import { Database } from "@local/lib/index.js";
 import { Membership } from "@local/graphql/types/index.js";
-import { createMembershipValidation } from "@local/graphql/validations/admin/index.js";
+import { updateMembershipValidation } from "@local/graphql/validations/merchant/index.js";
 import { GraphQLString, GraphQLNonNull, GraphQLError } from "graphql";
 import { GraphQLFloat } from "graphql/index.js";
 import { GraphQLID } from "graphql/index.js";
@@ -20,7 +20,7 @@ export default {
     status: { type: new GraphQLNonNull(GraphQLString) },
   },
   resolve: (_, args, { merchant }) =>
-    createMembershipValidation
+    updateMembershipValidation
       .validate({ ...args, merchant_id: merchant.id })
       .then(() =>
         Database("memberships")

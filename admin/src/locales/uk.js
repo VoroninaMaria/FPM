@@ -445,8 +445,9 @@ const uk = {
         Forbidden: "Виникла помилка",
         delete_error: "Елемент не може бути видалено!",
         already_exist: "Елемент вже існує",
-        name_of_fuel_already_exist: "Паливо вже існує",
-        dublicate_name_of_fuel_update: "Введено однакові назви палива",
+        name_of_abilities_already_exist: "Можливість вже існує",
+        dublicate_name_of_abilities_update:
+          "Введено однакові назви можливостей",
         page_set_as_default:
           "Сторінка встановлена в дизайні за замовчуванням, змініть налаштування дизайну, щоб мати можливість видалити цю сторінку",
         oversize: "Файл не може бути більше 10МВ",
