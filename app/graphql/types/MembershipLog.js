@@ -5,6 +5,7 @@ export default new GraphQLObjectType({
   name: "MembershipLog",
   fields: {
     id: { type: GraphQLID },
+    name: { type: GraphQLString },
     client_id: { type: GraphQLID },
     membership_id: { type: GraphQLID },
     start_date: { type: GraphQLDateTime },

@@ -64,9 +64,6 @@ describe("Admin GraphQL", () => {
       variables.id = id;
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         const {
@@ -90,9 +87,6 @@ describe("Admin GraphQL", () => {
     it("Should return error when no id provided", () => {
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -109,9 +103,6 @@ describe("Admin GraphQL", () => {
 
       variables.id = id;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -129,9 +120,6 @@ describe("Admin GraphQL", () => {
 
       variables.id = id;
       variables.status = MERCHANT_STATUSES.disabled.name;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -144,31 +132,10 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when no plugins provided", async () => {
-      const { id } = await Database("merchants").first();
-
-      variables.id = id;
-      variables.status = MERCHANT_STATUSES.disabled.name;
-      variables.storage_capacity = 100;
-
-      return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
-        expect(res).to.have.status(500);
-        expect(res.body).to.have.property("errors");
-        expect(res.body).not.to.have.property("data");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include(
-          'Variable "$plugins" of required type "JSONObject!" was not provided'
-        );
-      });
-    });
-
     it("Should return error when id is null", () => {
       variables.id = null;
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -184,9 +151,6 @@ describe("Admin GraphQL", () => {
       variables.id = id;
       variables.status = null;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -202,25 +166,6 @@ describe("Admin GraphQL", () => {
       variables.id = id;
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = null;
-      variables.plugins = {
-        designEditor: true,
-      };
-
-      return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
-        expect(res).to.have.status(500);
-        expect(res.body).to.have.property("errors");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include("must not be null.");
-      });
-    });
-
-    it("Should return error when plugins is null", async () => {
-      const { id } = await Database("merchants").first();
-
-      variables.id = id;
-      variables.status = MERCHANT_STATUSES.disabled.name;
-      variables.storage_capacity = 100;
-      variables.plugins = null;
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -234,9 +179,6 @@ describe("Admin GraphQL", () => {
       variables.id = "aaaa";
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(200);
@@ -250,9 +192,6 @@ describe("Admin GraphQL", () => {
       variables.id = 1;
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(200);
@@ -262,47 +201,10 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when plugins is not an object", () => {
-      variables.id = 1;
-      variables.status = MERCHANT_STATUSES.disabled.name;
-      variables.storage_capacity = 100;
-      variables.plugins = true;
-
-      return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
-        expect(res).to.have.status(500);
-        expect(res.body).to.have.property("errors");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include(
-          "JSONObject cannot represent non-object value"
-        );
-      });
-    });
-
-    it("Should return error when plugins.designEditor is not a boolean", () => {
-      variables.id = 1;
-      variables.status = MERCHANT_STATUSES.disabled.name;
-      variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: 13,
-      };
-
-      return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
-        expect(res).to.have.status(200);
-        expect(res.body).to.have.property("errors");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include(
-          "plugins.designEditor must be a `boolean`"
-        );
-      });
-    });
-
     it("Should return error when merchant not found by id", () => {
       variables.id = "11111111-1111-1111-1111-111111111111";
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(200);
@@ -318,9 +220,6 @@ describe("Admin GraphQL", () => {
       variables.id = id;
       variables.status = "idk";
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(200);
@@ -336,9 +235,6 @@ describe("Admin GraphQL", () => {
       variables.id = id;
       variables.status = true;
       variables.storage_capacity = 100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -356,9 +252,6 @@ describe("Admin GraphQL", () => {
       variables.id = id;
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = "three hundred";
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(500);
@@ -376,9 +269,6 @@ describe("Admin GraphQL", () => {
       variables.id = id;
       variables.status = MERCHANT_STATUSES.disabled.name;
       variables.storage_capacity = -100;
-      variables.plugins = {
-        designEditor: true,
-      };
 
       return accountGraphQLRequest(requestBody(UPDATE_MERCHANT), (res) => {
         expect(res).to.have.status(200);

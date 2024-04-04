@@ -20,51 +20,33 @@ const uk = {
     close_editing: "Закінчити редагування",
     delete: "Видалити",
   },
-  directions: {
-    center: "Центр",
-    top: "По верхньому краю",
-    bottom: "По нижньому краю",
-    left: "Ліворуч",
-    right: "Праворуч",
-  },
-  resizeMode: {
-    cover: "Повне покриття",
-    contain: "Збереження співвідношення",
-    stretch: "Розтягнення",
-    repeat: "Повторення",
-    center: "Центр",
-  },
-  objectFit: {
-    cover: "Повне покриття",
-    contain: "Збереження співвідношення",
-    fill: "Заповнення",
-    scaleDown: "Зменшення маштабу",
-  },
-  fontStyle: {
-    normal: "Звичайний",
-    italic: "Курсив",
-  },
-  alignItems: {
-    center: "По центру",
-    "flex-start": "По верхньому краю",
-    "flex-end": "По нижньому краю",
-  },
-  justifyContent: {
-    center: "По центру",
-    "flex-start": "Ліворуч",
-    "flex-end": "Праворуч",
-  },
-  textAlign: {
-    center: "По центру",
-    start: "Ліворуч",
-    end: "Праворуч",
-  },
   resources: {
     Membership: {
       name: "Абонементи",
       fields: {
         name: "Назва",
+        price: "Ціна",
+        file_id: "Файл",
+        location_id: "Локація",
+        term: "Термін",
+        merchant_id: "Мерчант",
+        location: "Локація",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
+        abilities: "Можливості",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
       },
+
+      abilities: {
+        name: "Назва",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
+      },
+
       source: {
         status: {
           active: "активний",
@@ -74,125 +56,24 @@ const uk = {
         },
       },
     },
-    Company: {
-      name: "Компанії",
+    MembershipLog: {
+      name: "Історія Абонементів",
       fields: {
-        ...shared,
-        name: "Компанії",
-        brand_merchant_id: "Інтеграції Мерчанта",
-      },
-    },
-    Manager: {
-      name: "Керівники",
-      fields: {
-        ...shared,
-        company_id: "Компанії",
-        client_id: "Користувачі",
-      },
-    },
-    Promotion: {
-      name: "Новини",
-      fields: {
-        ...shared,
-        file_id: "Файл",
-        title: "Назва",
-        text: "Текст",
+        membership_id: "Абонемент",
+        client_id: "Клієнт",
         start_date: "Початок дії",
         end_date: "Кінець дії",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
       },
-    },
-    Block: {
-      name: "Блоки",
-      fields: {
-        ...shared,
-        type: "Тип",
-        page_id: "Сторінка",
-        position: "Позиція",
-        blocks: "Кількість блоків",
-        container_styles: {
-          backgroundColor: "Колір фону контейнера",
-          alignItems: "Вертикаль",
-          justifyContent: "Горизонталь",
-        },
-        styles: {
-          textAlignVertical: "Вирівнювання тексту по вертикалі",
-          textAlign: "Вирівнювання тексту",
-          backgroundColor: "Колір фону",
-          color: "Колір тексту",
-          borderWidth: "Товщина обведення",
-          width: "Ширина %",
-          height: "Висота %",
-          borderRadius: "Радіус обведення",
-          fontSize: "Розмір шрифту",
-          fontWeight: "Товщина шрифту",
-          alignItems: "Вирівнювання",
-          resizeMode: "Маштабування",
-          objectFit: "Пропорційність об'єкта",
-          fontStyle: "Стиль шрифту",
-          placeholderTextColor: "Колір тексту плейсхолдера",
-          borderColor: "Колір обведення",
-        },
-        props: {
-          text: "Текст",
-          action: "Дія",
-          redirect_page_id: "Посилання на кліку",
-          uri: "Зображення",
-          file_id: "Файл",
-        },
-        tab: {
-          basic: "Базові налаштування",
-          containerStyles: "Стилі контейнера",
-          blockProps: "Налаштування блока",
-        },
-      },
+
       source: {
-        type: {
-          Button: "Кнопка",
-          EmptyBlock: "Пустий блок",
-          Image: "Зображення",
-          PhoneInput: "Поле для телефону",
-          Text: "Текст",
-          TextInput: "Текстове поле",
-        },
-        tab: {
-          basic: "Базові налаштування",
-          containerStyles: "Стилі контейнера",
-          blockProps: "Налаштування блока",
-        },
-      },
-    },
-    Design: {
-      name: "Дизайни",
-      fields: {
-        ...shared,
-        default_page_id: "Сторінка по замовчуванню",
-        error_page_id: "Сторінка помилки",
-        authenticated_page_id: "Авторизована сторінка",
-        loader_page_id: "Сторінка завантаження",
-        styles: {
-          backgroundColor: "Колір фону",
-          color: "Колір тексту",
-          justifyContent: "Горизонталь",
-          alignItems: "Вертикаль",
-        },
-      },
-    },
-    Page: {
-      name: "Сторінки",
-      fields: {
-        ...shared,
-        design_id: "Дизайн",
-        styles: {
-          backgroundColor: "Колір фону",
-          color: "Колір тексту",
-          justifyContent: "Горизонталь",
-          alignItems: "Вертикаль",
-        },
-      },
-      source: {
-        tab: {
-          basic: "Базові налаштування",
-          preview: "Попередній перегляд",
+        status: {
+          active: "активний",
+          disabled: "деактивований",
+          blocked: "заблокований",
+          inactive: "неактивний",
         },
       },
     },
@@ -253,56 +134,7 @@ const uk = {
         },
       },
     },
-    Brand: {
-      name: "Інтеграції",
-      fields: {
-        ...shared,
-        default_config: "Налаштування за замовчуванням",
-      },
-      source: {
-        status: {
-          active: "активний",
-          disabled: "деактивований",
-          blocked: "заблокований",
-          error: "помилка",
-        },
-      },
-    },
-    GasBrand: {
-      name: "Заправки",
-      fields: {
-        ...shared,
-        logo_file_id: "Логотип",
-      },
-      source: {
-        status: {
-          active: "активний",
-          disabled: "деактивований",
-          blocked: "заблокований",
-          error: "помилка",
-        },
-      },
-    },
-    GasBrandMerchant: {
-      name: "Заправки Мерчантів",
-      fields: {
-        ...shared,
-        fuels: "Паливо",
-      },
-      fuels: {
-        name: "Назва",
-        regular_price: "Ціна (коп)",
-        discount_price: "Ціна зі знижкою (коп)",
-        status: "Статус",
-      },
-      source: {
-        status: {
-          active: "активний",
-          disabled: "деактивований",
-          blocked: "заблокований",
-        },
-      },
-    },
+
     BrandMerchant: {
       name: "Інтеграції Мерчантів",
       fields: {
@@ -324,6 +156,7 @@ const uk = {
         first_name: "Ім'я",
         last_name: "Прізвище",
         email: "Пошта",
+        membership_id: "Абонемент",
         category_id: "Категорія",
         tag_ids: "Теги",
         company_id: "Компанії",
@@ -413,21 +246,7 @@ const uk = {
         },
       },
     },
-    Template: {
-      name: "Шаблони",
-      fields: {
-        ...shared,
-        value: "Назва",
-        default_config: "Налаштування за замовчуванням",
-      },
-    },
-    MerchantTemplate: {
-      name: "Шаблони Мерчанта",
-      fields: {
-        ...shared,
-        template_id: "Шаблон за замовчуванням",
-      },
-    },
+
     Category: {
       name: "Категорії",
       fields: {
@@ -440,15 +259,40 @@ const uk = {
         ...shared,
       },
     },
+    Discount: {
+      name: "Знижки",
+      fields: {
+        name: "Назва",
+        percent: "Відсоток",
+        merchant_id: "Мерчант",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+      },
+    },
+
+    Location: {
+      name: "Локація",
+      fields: {
+        name: "Назва",
+        merchant_id: "Мерчант",
+        address: "Адреса",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+      },
+    },
+
     notifications: {
       errors: {
         Forbidden: "Виникла помилка",
         delete_error: "Елемент не може бути видалено!",
         already_exist: "Елемент вже існує",
-        name_of_fuel_already_exist: "Паливо вже існує",
-        dublicate_name_of_fuel_update: "Введено однакові назви палива",
+        name_of_abilities_already_exist: "Можливість вже існує",
+        dublicate_name_of_abilities_update:
+          "Введено однакові назви можливостей",
         page_set_as_default:
           "Сторінка встановлена в дизайні за замовчуванням, змініть налаштування дизайну, щоб мати можливість видалити цю сторінку",
+        location_wrong: "Вибрана локація належить іншому мерчанту",
+        file_wrong: "Вибраний файл належить іншому мерчанту",
         oversize: "Файл не може бути більше 10МВ",
         min_length: "Пароль має бути мінімум 4 символи",
         max_length: "Пароль має бути меньше 10 символів",

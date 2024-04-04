@@ -15,12 +15,12 @@ export default {
   type: Membership,
   args: {
     id: { type: new GraphQLNonNull(GraphQLID) },
+    merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     name: { type: new GraphQLNonNull(GraphQLString) },
     term: { type: new GraphQLNonNull(GraphQLInt) },
     status: { type: new GraphQLNonNull(GraphQLString) },
     file_id: { type: GraphQLID },
     price: { type: new GraphQLNonNull(GraphQLFloat) },
-    merchant_id: { type: new GraphQLNonNull(GraphQLID) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
     abilities: { type: new GraphQLList(GraphQLJSONObject) },
   },

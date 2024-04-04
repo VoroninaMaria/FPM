@@ -8,7 +8,6 @@ import {
   GraphQLError,
   GraphQLInt,
 } from "graphql";
-import { GraphQLJSONObject } from "graphql-type-json";
 
 export default {
   type: Merchant,
@@ -17,7 +16,6 @@ export default {
     status: { type: new GraphQLNonNull(GraphQLString) },
     storage_capacity: { type: new GraphQLNonNull(GraphQLInt) },
     design_id: { type: GraphQLID },
-    plugins: { type: new GraphQLNonNull(GraphQLJSONObject) },
   },
   resolve: (_, args) => {
     return updateMerchantValidation
@@ -32,7 +30,6 @@ export default {
             storage_capacity: args.storage_capacity,
             design_id: args.design_id,
             updated_at: Database.fn.now(),
-            plugins: args.plugins,
           })
           .returning("*")
           .then(([merchant]) => merchant)

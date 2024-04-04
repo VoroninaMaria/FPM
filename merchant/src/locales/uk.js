@@ -65,7 +65,27 @@ const uk = {
       name: "Абонементи",
       fields: {
         name: "Назва",
+        price: "Ціна",
+        file_id: "Файл",
+        location_id: "Локація",
+        term: "Термін",
+        location: "Локація",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
+        abilities: "Можливості",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
       },
+
+      abilities: {
+        name: "Назва",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
+      },
+
       source: {
         status: {
           active: "активний",
@@ -75,6 +95,29 @@ const uk = {
         },
       },
     },
+
+    MembershipLog: {
+      name: "Історія Абонементів",
+      fields: {
+        membership_id: "Абонемент",
+        client_id: "Клієнт",
+        start_date: "Початок дії",
+        end_date: "Кінець дії",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
+      },
+
+      source: {
+        status: {
+          active: "активний",
+          disabled: "деактивований",
+          blocked: "заблокований",
+          inactive: "неактивний",
+        },
+      },
+    },
+
     Dashboard: {
       name: "Головна",
       skip: "Пропустити",
@@ -175,6 +218,7 @@ const uk = {
         address: "Адреса",
         entity: "Тип користувача",
         balance: "Баланс",
+        membership_id: "Абонемент",
         unconfirmed_changes: {
           name: "Зміни",
           field_name: "Назва поля",
@@ -272,8 +316,9 @@ const uk = {
         Forbidden: "Виникла помилка",
         delete_error: "Елемент не може бути видалено!",
         already_exist: "Елемент вже існує",
-        name_of_fuel_already_exist: "Паливо вже існує",
-        dublicate_name_of_fuel_update: "Введено однакові назви палива",
+        name_of_abilities_already_exist: "Можливість вже існує",
+        dublicate_name_of_abilities_update:
+          "Введено однакові назви можливостей",
         page_set_as_default:
           "Сторінка встановлена в дизайні за замовчуванням, змініть налаштування дизайну, щоб мати можливість видалити цю сторінку",
         oversize: "Файл не може бути більше 10МВ",
@@ -308,6 +353,16 @@ const uk = {
       fields: {
         name: "Назва",
         percent: "Відсоток",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+      },
+    },
+
+    Location: {
+      name: "Локація",
+      fields: {
+        name: "Назва",
+        address: "Адреса",
         created_at: "Створено",
         updated_at: "Останні зміни",
       },

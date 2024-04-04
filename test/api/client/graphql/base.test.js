@@ -99,16 +99,10 @@ describe("Client GraphQL", () => {
           .sort();
 
         expect(knownQueryNames).to.have.members([
-          "Promotion",
-          "_allPromotionsMeta",
-          "allPaymentTransactions",
-          "allPromotions",
-          "allTransactions",
-          "getBalance",
-          "getJurQRCard",
-          "qrCard",
+          "Membership",
+          "allMembershipLogs",
+          "allMemberships",
           "self",
-          "stella",
         ]);
       });
 
@@ -122,11 +116,8 @@ describe("Client GraphQL", () => {
           .sort();
 
         expect(knownMutationNames).to.have.members([
+          "changeMembershipStatus",
           "createClientChangeRequest",
-          "createTrunc",
-          "markPromotionAsRead",
-          "updateDatexClient",
-          "updatePinCode",
           "updatePassword",
         ]);
       });
@@ -141,48 +132,19 @@ describe("Client GraphQL", () => {
           .sort();
 
         expect(clientTypeFieldNames).to.eql([
-          "address",
-          "balance",
           "category_id",
-          "city",
-          "company_id",
           "created_at",
           "email",
-          "entity",
-          "external_id",
           "first_name",
           "id",
-          "id_clients",
           "last_name",
+          "membership",
+          "membership_id",
           "merchant_id",
-          "payment_transactions",
           "phone",
           "status",
           "tag_ids",
-          "transactions",
           "unconfirmed_changes",
-          "updated_at",
-        ]);
-      });
-
-      it("is expected to have proper fields for Promotion", () => {
-        // Check PromotionType
-        const promotionType = res.body.data.__schema.types.find(
-          (element) => element.name === "Promotion"
-        );
-        const promotionTypeFieldNames = promotionType.fields
-          .map(({ name }) => name)
-          .sort();
-
-        expect(promotionTypeFieldNames).to.eql([
-          "created_at",
-          "end_date",
-          "file_id",
-          "id",
-          "merchant_id",
-          "start_date",
-          "text",
-          "title",
           "updated_at",
         ]);
       });

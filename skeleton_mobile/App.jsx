@@ -26,6 +26,7 @@ import {
   SwitchAccountScreen,
   AbonementListScreen,
   InformationScreen,
+  OnBoardingScreen,
 } from "./src/screens/index.js";
 import Config from "./src/screens/config.js";
 import { useTranslation } from "react-i18next";
@@ -37,6 +38,7 @@ const App = () => {
   const { t } = useTranslation();
   const [authToken, setAuthToken] = useState("");
   const [isLoading, setIsLoading] = useState(true);
+  const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
 
   useEffect(() => {
     AsyncStorage.getItem("token").then((token) => {
@@ -95,7 +97,6 @@ const App = () => {
         {!isLoading && (
           <>
             <Stack.Screen name="CardScreen" component={CardScreen} />
-
             <Stack.Screen name="History" component={HistoryScreen} />
             <Stack.Screen name="Settings" component={ChangingPinScreen} />
             <Stack.Screen name="Partners" component={PartnersScreen} />
@@ -104,6 +105,10 @@ const App = () => {
             <Stack.Screen name="Register" component={RegisterScreen} />
             <Stack.Screen name="OTPScreen" component={OtpScreen} />
             <Stack.Screen
+              name="OnBoardingScreen"
+              component={OnBoardingScreen}
+            />
+            <Stack.Screen
               name="InformationScreen"
               component={InformationScreen}
             />
@@ -111,6 +116,7 @@ const App = () => {
               name="AbonementListScreen"
               component={AbonementListScreen}
             />
+
             <Stack.Screen name="Menu" component={MenuScreen} />
 
             <Stack.Screen name="ChangePassword" component={ChangePassword} />

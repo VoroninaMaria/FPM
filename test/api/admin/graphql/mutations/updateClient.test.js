@@ -157,10 +157,11 @@ describe("Admin GraphQL", () => {
   });
 
   describe("mutation { updateClient }", () => {
-    it("Should update client with valid id, phone and status provided", async () => {
+    it("Should update client with valid id, merchant_id, phone and status provided", async () => {
       const client = await Database("clients").first();
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -187,10 +188,11 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should update client with valid id, phone, status and non-null category_id provided", async () => {
+    it("Should update client with valid id, merchant_id, phone, status and non-null category_id provided", async () => {
       const client = await Database("clients").first();
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.category_id = client.category_id;
       variables.status = CLIENT_STATUSES.disabled.name;
@@ -221,10 +223,11 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should update client with valid id, phone, status and null category_id provided", async () => {
+    it("Should update client with valid id, merchant_id, phone, status and null category_id provided", async () => {
       const client = await Database("clients").first();
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.category_id = null;
       variables.status = CLIENT_STATUSES.disabled.name;
@@ -252,11 +255,12 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should update client with valid id, phone, status and list with tag_ids provided", async () => {
+    it("Should update client with valid id, merchant_id, phone, status and list with tag_ids provided", async () => {
       const client = await Database("clients").first();
       const { id: tag_id } = await Database("tags").first();
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.tag_ids = [tag_id];
       variables.status = CLIENT_STATUSES.disabled.name;
@@ -284,7 +288,10 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when no id provided", () => {
+    it("Should return error when no id provided", async () => {
+      const client = await Database("clients").first();
+
+      variables.merchant_id = client.merchant_id;
       variables.phone = "380630000000";
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -300,10 +307,30 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when no phone provided", async () => {
-      const { id } = await Database("clients").first();
+    it("Should return error when no merchant_id provided", async () => {
+      const client = await Database("clients").first();
 
-      variables.id = id;
+      variables.id = client.id;
+      variables.phone = "380630000000";
+      variables.status = CLIENT_STATUSES.disabled.name;
+      variables.tag_ids = [];
+      variables.unconfirmed_changes = [];
+
+      return accountGraphQLRequest(requestBody(UPDATE_CLIENT), (res) => {
+        expect(res).to.have.status(500);
+        expect(res.body).to.have.property("errors");
+        expect(res.body.errors[0]).to.have.property("message");
+        expect(res.body.errors[0].message).to.include(
+          'Variable "$merchant_id" of required type "ID!" was not provided'
+        );
+      });
+    });
+
+    it("Should return error when no phone provided", async () => {
+      const client = await Database("clients").first();
+
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
       variables.unconfirmed_changes = [];
@@ -319,10 +346,11 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when no status provided", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.tag_ids = [];
       variables.unconfirmed_changes = [];
 
@@ -337,7 +365,10 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when id is null", () => {
+    it("Should return error when id is null", async () => {
+      const client = await Database("clients").first();
+
+      variables.merchant_id = client.merchant_id;
       variables.id = null;
       variables.phone = "380630000000";
       variables.status = CLIENT_STATUSES.disabled.name;
@@ -352,10 +383,29 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when phone is null", async () => {
-      const { id } = await Database("clients").first();
+    it("Should return error when merchant_id is null", async () => {
+      const client = await Database("clients").first();
 
-      variables.id = id;
+      variables.id = client.id;
+      variables.merchant_id = null;
+      variables.phone = "380630000000";
+      variables.status = CLIENT_STATUSES.disabled.name;
+      variables.tag_ids = [];
+      variables.unconfirmed_changes = [];
+
+      return accountGraphQLRequest(requestBody(UPDATE_CLIENT), (res) => {
+        expect(res).to.have.status(500);
+        expect(res.body).to.have.property("errors");
+        expect(res.body.errors[0]).to.have.property("message");
+        expect(res.body.errors[0].message).to.include("must not be null.");
+      });
+    });
+
+    it("Should return error when phone is null", async () => {
+      const client = await Database("clients").first();
+
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = null;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -370,10 +420,11 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when status is null", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.status = null;
       variables.tag_ids = [];
       variables.unconfirmed_changes = [];
@@ -386,7 +437,10 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when id has wrong format", () => {
+    it("Should return error when id has wrong format", async () => {
+      const client = await Database("clients").first();
+
+      variables.merchant_id = client.merchant_id;
       variables.id = "aaaa";
       variables.phone = "380630000000";
       variables.status = CLIENT_STATUSES.disabled.name;
@@ -401,10 +455,29 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when phone has wrong format", async () => {
-      const { id } = await Database("clients").first();
+    it("Should return error when merchant_id has wrong format", async () => {
+      const client = await Database("clients").first();
 
-      variables.id = id;
+      variables.id = client.id;
+      variables.merchant_id = "aaaa";
+      variables.phone = "380630000000";
+      variables.status = CLIENT_STATUSES.disabled.name;
+      variables.tag_ids = [];
+      variables.unconfirmed_changes = [];
+
+      return accountGraphQLRequest(requestBody(UPDATE_CLIENT), (res) => {
+        expect(res).to.have.status(200);
+        expect(res.body).to.have.property("errors");
+        expect(res.body.errors[0]).to.have.property("message");
+        expect(res.body.errors[0].message).to.include("invalid_id_format");
+      });
+    });
+
+    it("Should return error when phone has wrong format", async () => {
+      const client = await Database("clients").first();
+
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = "aaaa";
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -418,8 +491,11 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when id is not string", () => {
+    it("Should return error when id is not string", async () => {
+      const client = await Database("clients").first();
+
       variables.id = 1;
+      variables.merchant_id = client.merchant_id;
       variables.phone = "380630000000";
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -434,9 +510,10 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when phone is not string", async () => {
-      const { id } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = 1;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -452,7 +529,10 @@ describe("Admin GraphQL", () => {
       });
     });
 
-    it("Should return error when client not found by id", () => {
+    it("Should return error when client not found by id", async () => {
+      const client = await Database("clients").first();
+
+      variables.merchant_id = client.merchant_id;
       variables.id = "11111111-1111-1111-1111-111111111111";
       variables.phone = "380630000000";
       variables.status = CLIENT_STATUSES.disabled.name;
@@ -468,10 +548,11 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when status doesn't exist", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.status = "idk";
       variables.tag_ids = [];
       variables.unconfirmed_changes = [];
@@ -485,10 +566,11 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when status is not string", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.status = true;
       variables.tag_ids = [];
       variables.unconfirmed_changes = [];
@@ -504,10 +586,11 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when category_id has wrong format", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.category_id = "twenty one";
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -521,10 +604,11 @@ describe("Admin GraphQL", () => {
       });
     });
     it("Should return error when tag_ids has wrong format", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.tag_ids = "twenty one";
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.unconfirmed_changes = [];
@@ -538,10 +622,11 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when category_id is not string", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.category_id = 1;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -555,10 +640,11 @@ describe("Admin GraphQL", () => {
       });
     });
     it("Should return error when tag_ids is not string", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.tag_ids = 1;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.unconfirmed_changes = [];
@@ -572,10 +658,11 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when category not found by category_id", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.category_id = "11111111-1111-1111-1111-111111111111";
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -589,10 +676,11 @@ describe("Admin GraphQL", () => {
       });
     });
     it("Should return error when category not found by tag_ids", async () => {
-      const { id, phone } = await Database("clients").first();
+      const client = await Database("clients").first();
 
-      variables.id = id;
-      variables.phone = phone;
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.tag_ids = ["11111111-1111-1111-1111-111111111111"];
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.unconfirmed_changes = [];
@@ -606,7 +694,6 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when accessing other merchant's category", async () => {
-      const { id, phone } = await Database("clients").first();
       const { id: category_id } = await Database("client_categories")
         .where({
           merchant_id: Database("merchants")
@@ -615,8 +702,11 @@ describe("Admin GraphQL", () => {
         })
         .first();
 
-      variables.id = id;
-      variables.phone = phone;
+      const client = await Database("clients").first();
+
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.category_id = category_id;
       variables.tag_ids = [];
@@ -631,11 +721,13 @@ describe("Admin GraphQL", () => {
     });
 
     it("Should return error when accessing other merchant's tag", async () => {
-      const { id, phone } = await Database("clients").first();
       const tags = await Database("tags");
 
-      variables.id = id;
-      variables.phone = phone;
+      const client = await Database("clients").first();
+
+      variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
+      variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = tags.map((tag) => tag.id);
       variables.unconfirmed_changes = [];
@@ -658,6 +750,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -689,6 +782,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -708,6 +802,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -736,6 +831,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -755,6 +851,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -783,6 +880,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -802,6 +900,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -830,6 +929,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -849,6 +949,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -877,6 +978,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -896,6 +998,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -924,6 +1027,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -943,6 +1047,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -971,6 +1076,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -990,6 +1096,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -1018,6 +1125,7 @@ describe("Admin GraphQL", () => {
           "first_name",
           "id",
           "last_name",
+          "membership_id",
           "merchant_id",
           "phone",
           "status",
@@ -1031,6 +1139,7 @@ describe("Admin GraphQL", () => {
       const client = await Database("clients").first();
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -1049,6 +1158,7 @@ describe("Admin GraphQL", () => {
       const client = await Database("clients").first();
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -1068,6 +1178,7 @@ describe("Admin GraphQL", () => {
       const client = await Database("clients").first();
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -1095,6 +1206,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -1119,6 +1231,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];
@@ -1144,6 +1257,7 @@ describe("Admin GraphQL", () => {
         .returning("id");
 
       variables.id = client.id;
+      variables.merchant_id = client.merchant_id;
       variables.phone = client.phone;
       variables.status = CLIENT_STATUSES.disabled.name;
       variables.tag_ids = [];

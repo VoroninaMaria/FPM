@@ -9,43 +9,25 @@ export default {
     id: { type: new GraphQLNonNull(GraphQLID) },
   },
   resolve: (_, params) =>
-    deleteFileValidation.validate({ ...params }).then(() =>
-      Database("blocks")
-        .whereRaw("props->>'file_id' = ?", params.id)
+    deleteFileValidation.validate({ ...params }).then(() => {
+      return Database("memberships")
+        .where({ file_id: params.id })
         .first()
         .then((file) => {
           if (file) {
             throw new GraphQLError("file_in_use");
           }
 
-          return Database("promotions")
-            .where({ file_id: params.id })
-            .first()
-            .then((file) => {
-              if (file) {
-                throw new GraphQLError("file_in_use");
-              }
-
-              return Database("gas_brands")
-                .where({ logo_file_id: params.id })
-                .first()
-                .then((file) => {
-                  if (file) {
-                    throw new GraphQLError("file_in_use");
-                  }
-
-                  return Database("files")
-                    .where({
-                      id: params.id,
-                    })
-                    .del()
-                    .returning("*")
-                    .then(([file]) => file)
-                    .catch(() => {
-                      throw new GraphQLError("Forbidden");
-                    });
-                });
+          return Database("files")
+            .where({
+              id: params.id,
+            })
+            .del()
+            .returning("*")
+            .then(([file]) => file)
+            .catch(() => {
+              throw new GraphQLError("Forbidden");
             });
-        })
-    ),
+        });
+    }),
 };

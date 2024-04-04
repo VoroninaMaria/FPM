@@ -45,18 +45,12 @@ describe("Merchant GraphQL", () => {
           name: "uklon",
           encrypted_password,
           status: MERCHANT_STATUSES.active.name,
-          plugins: {
-            clients: true,
-          },
         },
         {
           login: "opti",
           name: "opti",
           encrypted_password,
           status: MERCHANT_STATUSES.active.name,
-          plugins: {
-            clients: true,
-          },
         },
       ])
       .returning("id");
@@ -123,7 +117,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         const {
@@ -146,7 +139,6 @@ describe("Merchant GraphQL", () => {
       variables.first_name = "John";
       variables.last_name = "Smith";
       variables.email = "example@example.com";
-      variables.entity = 1;
       variables.category_id = category_ids[0];
       variables.tag_ids = [tag_ids[0]];
 
@@ -169,7 +161,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -187,7 +178,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -203,7 +193,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -221,7 +210,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -235,7 +223,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -253,7 +240,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -269,7 +255,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -287,7 +272,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -303,7 +287,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.first_name = "John";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -321,7 +304,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.first_name = "John";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -337,7 +319,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.first_name = "John";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -355,7 +336,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.password = "password";
       variables.first_name = "John";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -367,79 +347,10 @@ describe("Merchant GraphQL", () => {
       });
     });
 
-    it("Should return error when no entity provided", () => {
-      variables.phone = "380000000001";
-      variables.password = "password";
-      variables.first_name = "John";
-      variables.last_name = "Smith";
-
-      return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
-        expect(res).to.have.status(500);
-        expect(res.body).to.have.property("errors");
-        expect(res.body).not.to.have.property("data");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include(
-          'Variable "$entity" of required type "Int!" was not provided'
-        );
-      });
-    });
-
-    it("Should return error when entity is null", () => {
-      variables.entity = null;
-      variables.phone = "380000000001";
-      variables.password = "password";
-      variables.first_name = "John";
-      variables.last_name = "Smith";
-
-      return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
-        expect(res).to.have.status(500);
-        expect(res.body).to.have.property("errors");
-        expect(res.body).not.to.have.property("data");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include("must not be null.");
-      });
-    });
-
-    it("Should return error when entity is not integer", () => {
-      variables.entity = "380000000000";
-      variables.phone = "380000000001";
-      variables.password = "password";
-      variables.first_name = "John";
-      variables.last_name = "Smith";
-
-      return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
-        expect(res).to.have.status(500);
-        expect(res.body).to.have.property("errors");
-        expect(res.body).not.to.have.property("data");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include(
-          "Int cannot represent non-integer value"
-        );
-      });
-    });
-
-    it("Should return error when entity format is wrong", () => {
-      variables.entity = true;
-      variables.phone = "380000000001";
-      variables.password = "password";
-      variables.first_name = "John";
-      variables.last_name = "Smith";
-
-      return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
-        expect(res).to.have.status(500);
-        expect(res.body).to.have.property("errors");
-        expect(res.body.errors[0]).to.have.property("message");
-        expect(res.body.errors[0].message).to.include(
-          "nt cannot represent non-integer value"
-        );
-      });
-    });
-
     it("Should return error when no password provided", () => {
       variables.phone = "380000000001";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -457,7 +368,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -473,7 +383,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -491,7 +400,6 @@ describe("Merchant GraphQL", () => {
       variables.phone = "380000000001";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -507,7 +415,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(500);
@@ -526,7 +433,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -542,7 +448,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -558,7 +463,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -574,7 +478,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -590,7 +493,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -606,7 +508,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -622,7 +523,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);
@@ -637,7 +537,6 @@ describe("Merchant GraphQL", () => {
       variables.password = "password";
       variables.first_name = "John";
       variables.last_name = "Smith";
-      variables.entity = 1;
 
       return accountGraphQLRequest(requestBody(CREATE_CLIENT), (res) => {
         expect(res).to.have.status(200);

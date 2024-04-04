@@ -65,6 +65,12 @@ const en = {
       fields: {
         name: "Name",
       },
+      abilities: {
+        name: "Name",
+        regular_price: "Regular price",
+        discount_price: "Discount price",
+        description: "Description",
+      },
       source: {
         status: {
           active: "active",
@@ -422,8 +428,10 @@ const en = {
         Forbidden: "An error has occured",
         delete_error: "Element can not be deleted!",
         already_exist: "Element already exists!",
-        name_of_fuel_already_exist: "Fuel already exists!",
-        dublicate_name_of_fuel_update: "Entered duplicate fuel names",
+        name_of_abilities_already_exist: "Abilities already exists!",
+        dublicate_name_of_abilities_update: "Entered duplicate abilities names",
+        location_wrong: "Selected location belongs to another merchant",
+        file_wrong: "Selected file belongs to another merchant",
         page_set_as_default:
           "Page is set as design's default, remove it from there before performing deletion",
         oversize: "File size shouldn't exceed 10MB",
