@@ -73,7 +73,19 @@ const uk = {
         created_at: "Створено",
         updated_at: "Останні зміни",
         status: "Статус",
+        abilities: "Можливості",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
       },
+
+      abilities: {
+        name: "Назва",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
+      },
+
       source: {
         status: {
           active: "активний",
@@ -83,6 +95,29 @@ const uk = {
         },
       },
     },
+
+    MembershipLog: {
+      name: "Історія Абонементів",
+      fields: {
+        membership_id: "Абонемент",
+        client_id: "Клієнт",
+        start_date: "Початок дії",
+        end_date: "Кінець дії",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
+      },
+
+      source: {
+        status: {
+          active: "активний",
+          disabled: "деактивований",
+          blocked: "заблокований",
+          inactive: "неактивний",
+        },
+      },
+    },
+
     Dashboard: {
       name: "Головна",
       skip: "Пропустити",
@@ -183,6 +218,7 @@ const uk = {
         address: "Адреса",
         entity: "Тип користувача",
         balance: "Баланс",
+        membership_id: "Абонемент",
         unconfirmed_changes: {
           name: "Зміни",
           field_name: "Назва поля",

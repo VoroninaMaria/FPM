@@ -89,16 +89,26 @@ const editLocation = () => {
           <SimpleFormIterator inline disableClear>
             <TextInput
               source="name"
+              label="resources.Membership.abilities.name"
               inputProps={{ maxLength: 55, minLength: 1 }}
               validate={[required()]}
             />
             <TextInput
               source="description"
+              label="resources.Membership.abilities.description"
               inputProps={{ maxLength: 55, minLength: 1 }}
               validate={[required()]}
             />
-            <NumberInput source="regular_price" validate={[required()]} />
-            <NumberInput source="discount_price" validate={[required()]} />
+            <NumberInput
+              source="regular_price"
+              label="resources.Membership.abilities.regular_price"
+              validate={[required()]}
+            />
+            <NumberInput
+              source="discount_price"
+              label="resources.Membership.abilities.discount_price"
+              validate={[required()]}
+            />
           </SimpleFormIterator>
         </ArrayInput>
       </SimpleForm>

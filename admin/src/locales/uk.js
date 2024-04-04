@@ -25,7 +25,28 @@ const uk = {
       name: "Абонементи",
       fields: {
         name: "Назва",
+        price: "Ціна",
+        file_id: "Файл",
+        location_id: "Локація",
+        term: "Термін",
+        merchant_id: "Мерчант",
+        location: "Локація",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
+        abilities: "Можливості",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
       },
+
+      abilities: {
+        name: "Назва",
+        regular_price: "Ціна",
+        discount_price: "Ціна зі знижкою",
+        description: "Опис",
+      },
+
       source: {
         status: {
           active: "активний",
@@ -35,7 +56,27 @@ const uk = {
         },
       },
     },
+    MembershipLog: {
+      name: "Історія Абонементів",
+      fields: {
+        membership_id: "Абонемент",
+        client_id: "Клієнт",
+        start_date: "Початок дії",
+        end_date: "Кінець дії",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+        status: "Статус",
+      },
 
+      source: {
+        status: {
+          active: "активний",
+          disabled: "деактивований",
+          blocked: "заблокований",
+          inactive: "неактивний",
+        },
+      },
+    },
     File: {
       name: "Файли",
       fields: {
@@ -115,6 +156,7 @@ const uk = {
         first_name: "Ім'я",
         last_name: "Прізвище",
         email: "Пошта",
+        membership_id: "Абонемент",
         category_id: "Категорія",
         tag_ids: "Теги",
         company_id: "Компанії",
@@ -217,6 +259,28 @@ const uk = {
         ...shared,
       },
     },
+    Discount: {
+      name: "Знижки",
+      fields: {
+        name: "Назва",
+        percent: "Відсоток",
+        merchant_id: "Мерчант",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+      },
+    },
+
+    Location: {
+      name: "Локація",
+      fields: {
+        name: "Назва",
+        merchant_id: "Мерчант",
+        address: "Адреса",
+        created_at: "Створено",
+        updated_at: "Останні зміни",
+      },
+    },
+
     notifications: {
       errors: {
         Forbidden: "Виникла помилка",

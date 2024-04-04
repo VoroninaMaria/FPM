@@ -65,6 +65,12 @@ const en = {
       fields: {
         name: "Name",
       },
+      abilities: {
+        name: "Name",
+        regular_price: "Regular price",
+        discount_price: "Discount price",
+        description: "Description",
+      },
       source: {
         status: {
           active: "active",

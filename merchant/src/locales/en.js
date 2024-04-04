@@ -28,6 +28,12 @@ const en = {
       fields: {
         name: "Name",
       },
+      abilities: {
+        name: "Name",
+        regular_price: "Regular price",
+        discount_price: "Discount price",
+        description: "Description",
+      },
       source: {
         status: {
           active: "active",
@@ -182,6 +188,7 @@ const en = {
         address: "Address",
         entity: "Client entity",
         balance: "Balance",
+        membership_id: "Membership",
         unconfirmed_changes: {
           name: "Changes",
           field_name: "Field name",
