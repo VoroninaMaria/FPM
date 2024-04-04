@@ -21,50 +21,18 @@ const en = {
     edit: "Edit",
     close_editing: "Close editing",
   },
-  directions: {
-    center: "Center",
-    top: "Top",
-    bottom: "Bottom",
-    left: "Left",
-    right: "Right",
-  },
-  resizeMode: {
-    cover: "Cover",
-    contain: "Contain",
-    stretch: "Stretch",
-    repeat: "Repeat",
-    center: "Center",
-  },
-  objectFit: {
-    cover: "Cover",
-    contain: "Contain",
-    fill: "Fill",
-    scaleDown: "Scale-down",
-  },
-  fontStyle: {
-    normal: "Normal",
-    italic: "Italic",
-  },
-  alignItems: {
-    center: "Center",
-    "flex-start": "Top",
-    "flex-end": "Bottom",
-  },
-  justifyContent: {
-    center: "Center",
-    "flex-start": "Left",
-    "flex-end": "Right",
-  },
-  textAlign: {
-    center: "Center",
-    start: "Left",
-    end: "Right",
-  },
+
   resources: {
     Membership: {
       name: "Memberships",
       fields: {
         name: "Name",
+      },
+      abilities: {
+        name: "Name",
+        regular_price: "Regular price",
+        discount_price: "Discount price",
+        description: "Description",
       },
       source: {
         status: {
@@ -110,15 +78,7 @@ const en = {
         session_time: "Session time",
       },
     },
-    Promotion: {
-      name: "Promotion",
-      fields: {
-        ...shared,
-        file_id: "File",
-        title: "Title",
-        text: "Text",
-      },
-    },
+
     PaymentGateway: {
       name: "Payment Gateway",
       fields: {
@@ -133,96 +93,7 @@ const en = {
         payment_gateway_id: "Payment Gateway",
       },
     },
-    Design: {
-      name: "Design",
-      fields: {
-        ...shared,
-        default_page_id: "Default page",
-        error_page_id: "Error page",
-        authenticated_page_id: "Authenticated page",
-        loader_page_id: "Loader page",
-        styles: {
-          backgroundColor: "Background color",
-          color: "Text color",
-          borderColor: "Border color",
-          justifyContent: "Horizontal alignment",
-          alignItems: "Vertical alignment",
-        },
-      },
-    },
-    Page: {
-      name: "Page",
-      fields: {
-        ...shared,
-        design_id: "Design",
-        styles: {
-          backgroundColor: "Background color",
-          color: "Text color",
-          justifyContent: "Horizontal alignment",
-          alignItems: "Vertical alignment",
-        },
-      },
-      source: {
-        tab: {
-          basic: "Basic",
-          preview: "Preview",
-        },
-      },
-    },
-    Block: {
-      name: "Block",
-      fields: {
-        ...shared,
-        type: "Type",
-        position: "Position",
-        blocks: "Blocks",
-        container_styles: {
-          backgroundColor: "Background color",
-          alignItems: "Align items",
-          justifyContent: "Justify content",
-        },
-        styles: {
-          textAlignVertical: "Vertical text alignment",
-          textAlign: "Text alignment",
-          backgroundColor: "Background color",
-          color: "Color",
-          borderWidth: "Border width",
-          width: "Width %",
-          height: "Height %",
-          borderRadius: "Border radius",
-          fontSize: "Font size",
-          fontWeight: "Font weight",
-          alignItems: "Align Items",
-          fontStyle: "Font style",
-          placeholderTextColor: "Placeholder text color",
-          objectFit: "Object fit",
-          borderColor: "Border color",
-          resizeMode: "Resize mode",
-        },
-        props: {
-          text: "Text",
-          action: "Action",
-          redirect_page_id: "Redirect on click",
-          uri: "Image",
-          file_id: "File",
-        },
-      },
-      source: {
-        type: {
-          Button: "Button",
-          EmptyBlock: "Empty block",
-          Image: "Image",
-          PhoneInput: "Phone input",
-          Text: "Text",
-          TextInput: "Text input",
-        },
-        tab: {
-          basic: "Basic",
-          containerStyles: "Container styles",
-          blockProps: "Block props",
-        },
-      },
-    },
+
     File: {
       name: "Files",
       fields: {
@@ -301,26 +172,7 @@ const en = {
         },
       },
     },
-    GasBrandMerchant: {
-      name: "Gas Brand Merchant",
-      fields: {
-        ...shared,
-        fuels: "Fuels",
-      },
-      fuels: {
-        name: "Name",
-        regular_price: "Regular Price (kop)",
-        discount_price: "Discount Price (kop)",
-        status: "Status",
-      },
-      source: {
-        status: {
-          active: "active",
-          disabled: "disabled",
-          blocked: "blocked",
-        },
-      },
-    },
+
     Client: {
       name: "Clients",
       fields: {
@@ -336,6 +188,7 @@ const en = {
         address: "Address",
         entity: "Client entity",
         balance: "Balance",
+        membership_id: "Membership",
         unconfirmed_changes: {
           name: "Changes",
           field_name: "Field name",
