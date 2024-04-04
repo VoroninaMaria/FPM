@@ -8,6 +8,7 @@ import {
   SafeAreaView,
   ScrollView,
   Alert,
+  FlatList,
 } from "react-native";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useTranslation } from "react-i18next";
@@ -16,7 +17,71 @@ import "../localization/i18n";
 import axios from "axios";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import moment from "moment";
+const Item = ({ abonements }) => {
+  const { t } = useTranslation();
+  const formattedStartDate = abonements.start_date
+    ? moment(abonements.start_date).format("DD.MM.YYYY HH:mm")
+    : null;
+  console.log(formattedStartDate);
+  const formattedEndDate = abonements.end_date
+    ? moment(abonements.end_date).format("DD.MM.YYYY HH:mm")
+    : null;
 
+  return (
+    <ScrollView>
+      <View
+        style={{
+          flexDirection: "row",
+          width: "100%",
+          height: "85%",
+
+          justifyContent: "space-between",
+          backgroundColor: "pink",
+          borderColor: "red",
+        }}
+      >
+        <View
+          style={{
+            width: "27%",
+            alignItems: "flex-start",
+            fontFamily: "Raleway",
+
+            fontWeight: "500",
+            color: "black",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.name}>{formattedStartDate}</Text>
+        </View>
+        <View
+          style={{
+            width: "25%",
+            alignItems: "center",
+            fontFamily: "Raleway",
+            fontWeight: "500",
+            color: "black",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.cost}>{formattedStartDate}</Text>
+        </View>
+        <View
+          style={{
+            width: "25%",
+            alignItems: "flex-end",
+            fontFamily: "Raleway",
+            fontWeight: "500",
+            color: "#18aa5e",
+            justifyContent: "center",
+          }}
+        >
+          <Text style={styles.costDi}>{formattedStartDate}</Text>
+        </View>
+      </View>
+      <View style={styles.lineStyle} />
+    </ScrollView>
+  );
+};
 const HistoryScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const [membershipPrice, setMembershipPrice] = useState([]);
@@ -32,7 +97,7 @@ const HistoryScreen = ({ navigation }) => {
             .post(
               `${Config.baseUrl}/client/graphql`,
               {
-                query: "{allMembershipLogs {id, start_date}}",
+                query: "{allMembershipLogs {id, start_date, end_date, name}}",
                 variables: {},
               },
               {
@@ -74,6 +139,14 @@ const HistoryScreen = ({ navigation }) => {
     loadDataWithDelays();
     getAbonement();
   }, []);
+  const renderItem = ({ item }) => <Item abonements={item} />;
+  const formattedStartDate = setMembershipPrice.start_date
+    ? moment(setMembershipPrice.start_date).format("DD.MM.YYYY HH:mm")
+    : null;
+  console.log(formattedStartDate);
+  const formattedEndDate = setMembershipPrice.end_date
+    ? moment(setMembershipPrice.end_date).format("DD.MM.YYYY HH:mm")
+    : null;
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
@@ -84,6 +157,13 @@ const HistoryScreen = ({ navigation }) => {
               <Image
                 style={styles.tinyLogo}
                 source={require("../assets/images/gymLogo.png")}
+              />
+            </View>
+            <View style={styles.containerr}>
+              <FlatList
+                data={membershipPrice}
+                renderItem={renderItem}
+                keyExtractor={(item) => item.id}
               />
             </View>
             <View style={styles.topContainer}></View>
@@ -102,7 +182,7 @@ export default HistoryScreen;
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: "pink",
+
     alignItems: "center",
     justifyContent: "center",
   },
@@ -137,8 +217,16 @@ const styles = StyleSheet.create({
   },
   topContainer: {
     width: "100%",
-    height: "15%",
+    height: "5%",
     alignItems: "center",
+  },
+  containerr: {
+    width: "100%",
+    flex: 1,
+    marginTop: "13%",
+    padding: 10,
+    flexDirection: "column",
+    backgroundColor: "red",
   },
   buttonContainer: {
     top: 40,
@@ -150,5 +238,51 @@ const styles = StyleSheet.create({
     borderWidth: 2,
     borderColor: "#18AA5E",
     borderRadius: 6,
+  },
+  item: {
+    borderBottomWidth: 1,
+    borderBottomColor: "#e8e8e8",
+    flexDirection: "row",
+    justifyContent: "space-between",
+
+    color: "black",
+  },
+  name: {
+    textAlign: "center",
+    fontSize: 14,
+    width: "70%",
+    height: "20%",
+    fontWeight: "500",
+    flex: 1,
+    color: "black",
+    marginLeft: "10%",
+  },
+
+  cost: {
+    textAlign: "center",
+    fontSize: 14,
+    width: "70%",
+    height: "20%",
+    fontWeight: "500",
+    flex: 1,
+    color: "black",
+  },
+  costDi: {
+    textAlign: "center",
+    fontSize: 14,
+    width: "70%",
+    height: "20%",
+    fontWeight: "500",
+    flex: 1,
+    color: "black",
+  },
+  discount: {
+    textAlign: "center",
+    fontSize: 14,
+    width: "70%",
+    height: "20%",
+    fontWeight: "500",
+    flex: 1,
+    color: "black",
   },
 });
