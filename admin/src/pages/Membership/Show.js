@@ -40,6 +40,8 @@ const showMembership = () => {
             <TextField source="regular_price" />
             <TextField source="discount_price" />
             <TextField source="description" />
+            <TextField source="description1" />
+            <TextField source="description2" />
           </Datagrid>
         </ArrayField>
         <FunctionField

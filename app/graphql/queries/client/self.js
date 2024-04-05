@@ -48,6 +48,8 @@ const self = {
           "id",
           "name",
           "description",
+          "description1",
+          "description2",
           "regular_price",
           "discount_price",
         ])
@@ -101,6 +103,8 @@ const self = {
               "id",
               "name",
               "description",
+              "description1",
+              "description2",
               "regular_price",
               "discount_price",
             ])

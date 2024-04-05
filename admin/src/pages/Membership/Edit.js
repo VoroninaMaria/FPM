@@ -107,6 +107,18 @@ const editLocation = () => {
               inputProps={{ maxLength: 55, minLength: 1 }}
               validate={[required()]}
             />
+            <TextInput
+              source="description1"
+              label="resources.Membership.abilities.description1"
+              inputProps={{ maxLength: 55, minLength: 1 }}
+              validate={[required()]}
+            />
+            <TextInput
+              source="description2"
+              label="resources.Membership.abilities.description2"
+              inputProps={{ maxLength: 55, minLength: 1 }}
+              validate={[required()]}
+            />
             <NumberInput
               source="regular_price"
               label="resources.Membership.abilities.regular_price"

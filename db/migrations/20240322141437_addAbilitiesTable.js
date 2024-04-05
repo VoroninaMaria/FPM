@@ -10,6 +10,8 @@ export const up = async (knex) => {
       .inTable("memberships");
     table.string("name").notNull();
     table.string("description").notNull();
+    table.string("description1").notNull();
+    table.string("description2").notNull();
     table.integer("regular_price").notNull();
     table.integer("discount_price").notNull();
     addTimestamps(knex, table);
