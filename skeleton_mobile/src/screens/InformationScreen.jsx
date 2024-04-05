@@ -266,16 +266,6 @@ const BookDetail = ({ route, navigation }) => {
             backgroundColor: "rgba(0,0,0,0.3)",
           }}
         >
-          {/* Rating */}
-          <View style={{ flex: 1, alignItems: "center" }}>
-            <Text style={{ color: "white" }}>
-              {client?.last_name.toString()}
-            </Text>
-            <Text style={{ color: "white" }}>Rating</Text>
-          </View>
-
-          <LineDivider />
-
           {/* Pages */}
           <View
             style={{

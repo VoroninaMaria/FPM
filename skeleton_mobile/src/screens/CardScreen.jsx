@@ -30,8 +30,9 @@ const Item = ({ abonements }) => {
         style={{
           flexDirection: "row",
           width: "100%",
-          height: "35%",
-          justifyContent: "space-between",
+
+          height: "55%",
+          justifyContent: "center",
         }}
       >
         <View
@@ -48,39 +49,30 @@ const Item = ({ abonements }) => {
         </View>
         <View
           style={{
-            width: "25%",
+            width: "30%",
             alignItems: "center",
             fontFamily: "Raleway",
             fontWeight: "500",
             color: "black",
+
             justifyContent: "center",
           }}
         >
-          <Text style={styles.cost}>{abonements.description}</Text>
+          <Text style={styles.cost}>{abonements.description1}</Text>
         </View>
         <View
           style={{
-            width: "25%",
+            width: "30%",
+            fontSize: 12,
             alignItems: "flex-end",
             fontFamily: "Raleway",
             fontWeight: "500",
             color: "#18aa5e",
+            marginLeft: 20,
             justifyContent: "center",
           }}
         >
-          <Text style={styles.costDi}>{abonements.name}</Text>
-        </View>
-        <View
-          style={{
-            width: "20%",
-            alignItems: "flex-end",
-            fontFamily: "Raleway",
-            fontWeight: "500",
-            color: "#18aa5e",
-            justifyContent: "center",
-          }}
-        >
-          <Text style={styles.discount}>{abonements.name}</Text>
+          <Text style={styles.costDi}>{abonements.description2}</Text>
         </View>
       </View>
       <View style={styles.lineStyle} />
@@ -219,7 +211,8 @@ const CardScreen = () => {
             .post(
               `${Config.baseUrl}/client/graphql`,
               {
-                query: "{Membership{id, name, price, abilities, url}}",
+                query:
+                  "{Membership{id, name, price, abilities, url, description1, description2}}",
                 variables: {},
               },
               {
@@ -455,7 +448,6 @@ const CardScreen = () => {
 
               <TouchableOpacity
                 style={styles.partner}
-                // feaa4ac7-8818-4fb9-8c13-eaffc7698c35
                 onPress={handleActivationPress}
               >
                 <Text style={styles.partnerText}>
@@ -510,18 +502,6 @@ const CardScreen = () => {
                     }}
                   >
                     {t("CardScreen.date")}
-                  </Text>
-                  <Text
-                    style={{
-                      textAlign: "center",
-                      alignItems: "flex-end",
-                      fontFamily: "Raleway",
-                      fontWeight: "500",
-                      color: "black",
-                      marginRight: "5%",
-                    }}
-                  >
-                    {t("CardScreen.time")}
                   </Text>
                 </View>
                 <View style={styles.lineStyle} />
@@ -698,7 +678,7 @@ const styles = StyleSheet.create({
   containerr: {
     width: "100%",
     flex: 1,
-    padding: 16,
+    padding: 10,
     flexDirection: "column",
   },
 
@@ -712,53 +692,29 @@ const styles = StyleSheet.create({
   name: {
     textAlign: "center",
     fontSize: 15,
-    width: "50%",
-    height: "30%",
+
     fontWeight: "500",
     flex: 1,
-    color: "black",
-    marginLeft: "10%",
     marginTop: "15%",
+    color: "black",
   },
 
   cost: {
-    textAlign: "center",
-    alignItems: "center",
-    height: "30%",
-    width: "60%",
     fontSize: 15,
     fontWeight: "500",
     flex: 1,
-    textAlign: "center",
+
     color: "black",
 
-    marginRight: "30%",
     marginTop: "15%",
   },
   costDi: {
     textAlign: "center",
     alignItems: "center",
-    height: "30%",
-    width: "50%",
     fontSize: 15,
     fontWeight: "500",
-    textAlign: "right",
-    flex: 1,
+    flex: 2,
     color: "#e6ab00",
-    marginRight: "35%",
-    marginTop: "15%",
-  },
-  discount: {
-    textAlign: "center",
-    alignItems: "center",
-    height: "30%",
-    width: "50%",
-    fontSize: 15,
-    fontWeight: "500",
-    textAlign: "right",
-    flex: 1,
-    color: "#e6ab00",
-    marginRight: "20%",
     marginTop: "15%",
   },
 
@@ -786,7 +742,7 @@ const styles = StyleSheet.create({
     borderWidth: 0.7,
     borderColor: "rgba(226, 226, 226, 1)",
     width: "100%",
-    marginTop: "7%",
+    marginTop: "5%",
   },
   priceSer: {
     textAlign: "center",
