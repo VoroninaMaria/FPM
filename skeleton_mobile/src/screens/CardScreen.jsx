@@ -193,8 +193,6 @@ const CardScreen = () => {
                 },
               } = res;
 
-              // console.log(self.membership);
-
               return setClient(self);
             })
 
