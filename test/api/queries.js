@@ -66,50 +66,14 @@ const ALL_TAGS_META =
   "query _allTagsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: TagFilter) \
 {_allTagsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
 
-const ADMIN_BRAND =
-  "query Brand($id: ID!) {Brand (id: $id) {id name default_config status created_at updated_at}}";
-const ADMIN_ALL_BRANDS =
-  "query allBrands($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: BrandFilter) \
-{allBrands (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id name created_at updated_at}}";
-const ADMIN_ALL_BRANDS_META =
-  "query _allBrandsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: BrandFilter) \
-{_allBrandsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
-
-const ADMIN_GAS_BRAND =
-  "query GasBrand($id: ID!) {GasBrand (id: $id) {id name logo_file_id status created_at updated_at}}";
-const ADMIN_ALL_GAS_BRANDS =
-  "query allGasBrands($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: GasBrandFilter) \
-{allGasBrands (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id name logo_file_id created_at updated_at}}";
-const ADMIN_ALL_GAS_BRANDS_META =
-  "query _allGasBrandsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: GasBrandFilter) \
-{_allGasBrandsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
-
-const GAS_BRAND_MERCHANT =
-  "query GasBrandMerchant($id: ID!) {GasBrandMerchant (id: $id) {id merchant_id gas_brand_id fuels status created_at updated_at}}";
-const ALL_GAS_BRAND_MERCHANTS =
-  "query allGasBrandMerchants($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: GasBrandMerchantFilter) \
-{allGasBrandMerchants (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id merchant_id gas_brand_id fuels status created_at updated_at}}";
-const ALL_GAS_BRAND_MERCHANTS_META =
-  "query _allGasBrandMerchantsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: GasBrandMerchantFilter) \
-{_allGasBrandMerchantsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
-
-const MERCHANT_BRAND =
-  "query Brand($id: ID!) {Brand (id: $id) {id name status created_at updated_at}}";
-const MERCHANT_ALL_BRANDS =
-  "query allBrands($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: BrandFilter) \
-{allBrands (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id name created_at updated_at}}";
-const MERCHANT_ALL_BRANDS_META =
-  "query _allBrandsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: BrandFilter) \
-{_allBrandsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
-
-const BRAND_MERCHANT =
-  "query BrandMerchant($id: ID!) {BrandMerchant (id: $id) {id merchant_id brand_id config status created_at updated_at}}";
-const ALL_BRAND_MERCHANTS =
-  "query allBrandMerchants($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: BrandMerchantFilter) \
-{allBrandMerchants (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id merchant_id brand_id created_at updated_at}}";
-const ALL_BRAND_MERCHANTS_META =
-  "query _allBrandMerchantsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: BrandMerchantFilter) \
-{_allBrandMerchantsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
+const DISCOUNT =
+  "query Discount($id: ID!) {Discount (id: $id) {id merchant_id name percent created_at updated_at}}";
+const ALL_DISCOUNTS =
+  "query allDiscounts($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: DiscountFilter) \
+{allDiscounts (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id merchant_id name percent created_at updated_at}}";
+const ALL_DISCOUNTS_META =
+  "query _allDiscountsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: DiscountFilter) \
+{_allDiscountsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
 
 const FILE =
   "query File($id: ID!) {File (id: $id) {id name account_id mimetype url created_at updated_at}}";
@@ -244,23 +208,11 @@ export {
   TAG,
   ALL_TAGS,
   ALL_TAGS_META,
-  ADMIN_BRAND,
-  ADMIN_ALL_BRANDS,
-  ADMIN_ALL_BRANDS_META,
-  MERCHANT_BRAND,
-  MERCHANT_ALL_BRANDS,
-  MERCHANT_ALL_BRANDS_META,
-  BRAND_MERCHANT,
-  ALL_BRAND_MERCHANTS,
-  ALL_BRAND_MERCHANTS_META,
+  DISCOUNT,
+  ALL_DISCOUNTS,
+  ALL_DISCOUNTS_META,
   FILE,
   ALL_FILES,
   INTROSPECTION_QUERY,
   ALL_FILES_META,
-  ADMIN_GAS_BRAND,
-  ADMIN_ALL_GAS_BRANDS,
-  ADMIN_ALL_GAS_BRANDS_META,
-  GAS_BRAND_MERCHANT,
-  ALL_GAS_BRAND_MERCHANTS,
-  ALL_GAS_BRAND_MERCHANTS_META,
 };
