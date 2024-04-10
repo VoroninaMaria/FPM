@@ -459,6 +459,76 @@ const CLIENT_UPDATE_PASSWORD_MUTATION = gql`
   }
 `;
 
+const ADMIN_CREATE_DISCOUNT_MUTATION = gql`
+  mutation ($merchant_id: ID!, $name: String!, $percent: Float!) {
+    createDiscount(name: $name, merchant_id: $merchant_id, percent: $percent) {
+      id
+      name
+      merchant_id
+      percent
+      created_at
+      updated_at
+    }
+  }
+`;
+
+const MERCHANT_CREATE_DISCOUNT_MUTATION = gql`
+  mutation ($name: String!, $percent: Float!) {
+    createDiscount(name: $name, percent: $percent) {
+      id
+      name
+      merchant_id
+      percent
+      created_at
+      updated_at
+    }
+  }
+`;
+
+const ADMIN_UPDATE_DISCOUNT_MUTATION = gql`
+  mutation ($id: ID!, $merchant_id: ID!, $name: String!, $percent: Float!) {
+    updateDiscount(
+      id: $id
+      name: $name
+      merchant_id: $merchant_id
+      percent: $percent
+    ) {
+      id
+      name
+      merchant_id
+      percent
+      created_at
+      updated_at
+    }
+  }
+`;
+
+const MERCHANT_UPDATE_DISCOUNT_MUTATION = gql`
+  mutation ($id: ID!, $name: String!, $percent: Float!) {
+    updateDiscount(id: $id, name: $name, percent: $percent) {
+      id
+      name
+      merchant_id
+      percent
+      created_at
+      updated_at
+    }
+  }
+`;
+
+const DELETE_DISCOUNT_MUTATION = gql`
+  mutation ($id: ID!) {
+    deleteDiscount(id: $id) {
+      id
+      name
+      merchant_id
+      percent
+      created_at
+      updated_at
+    }
+  }
+`;
+
 export {
   MERCHANT_UPDATE_PASSWORD_MUTATION,
   ADMIN_UPDATE_MERCHANT_MUTATION,
@@ -485,4 +555,9 @@ export {
   CLIENT_UPDATE_PASSWORD_MUTATION,
   CREATE_CLIENT_CHANGE_REQUEST_MUTATION,
   MERCHANT_UPDATE_CLIENT_MUTATION,
+  ADMIN_CREATE_DISCOUNT_MUTATION,
+  ADMIN_UPDATE_DISCOUNT_MUTATION,
+  MERCHANT_UPDATE_DISCOUNT_MUTATION,
+  DELETE_DISCOUNT_MUTATION,
+  MERCHANT_CREATE_DISCOUNT_MUTATION,
 };
