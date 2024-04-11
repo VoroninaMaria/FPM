@@ -291,13 +291,13 @@ const CardScreen = () => {
                   <View style={styles.cardTop}>
                     <View>
                       <Image
-                        source={require("../assets/images/logoCard.png")}
+                        source={require("../assets/images/IinGym.png")}
                         style={styles.imageCard}
                       />
                     </View>
                     <View
                       style={{
-                        marginLeft: "0%",
+                        marginLeft: "10%",
                         marginTop: "2%",
                       }}
                     >
@@ -538,7 +538,7 @@ const styles = StyleSheet.create({
   },
   imageCard: {
     flex: 1,
-    width: 230,
+    width: 170,
     justifyContent: "center",
     height: 90,
   },

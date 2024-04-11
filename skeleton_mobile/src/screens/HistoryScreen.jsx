@@ -4,13 +4,13 @@ import {
   View,
   Text,
   Image,
-  TouchableOpacity,
   SafeAreaView,
   ScrollView,
   Alert,
   FlatList,
 } from "react-native";
 import NavigationTabs from "../Elements/NavigationTabs";
+
 import { useTranslation } from "react-i18next";
 import Config from "./config.js";
 import "../localization/i18n";
@@ -34,55 +34,50 @@ const Item = ({ abonements }) => {
           flexDirection: "row",
           width: "100%",
           height: "100%",
-          marginTop: "4%",
-          borderWidth: 1,
-
+          marginTop: "0%",
+          borderWidth: 0.4,
+          justifyContent: "center",
           justifyContent: "space-between",
-          backgroundColor: "rgba(218,216,216,0.4962359943977591)",
-          borderColor: "rgba(200,200,200,1)",
-          shadowColor: "rgba(246,199,112,0.26514355742296913)",
-          shadowOffset: { width: 15, height: 40 },
-          shadowOpacity: 1,
-          shadowRadius: 15,
-          elevation: 5,
+          backgroundColor: "#e9dcd8",
+          borderColor: "#cbb7c3",
         }}
       >
         <View
           style={{
-            width: "35%",
-            marginLeft: "3%",
+            width: "33%",
             fontFamily: "Raleway",
+            alignItems: "center",
             fontWeight: "500",
+
             color: "#18aa5e",
             justifyContent: "center",
           }}
         >
-          <Text style={styles.costDi}>{abonements.name}</Text>
+          <Text style={styles.name}>{abonements.name}</Text>
         </View>
         <View
           style={{
-            width: "27%",
+            width: "33%",
 
-            fontFamily: "Raleway",
-
-            fontWeight: "500",
             color: "black",
-            justifyContent: "center",
+
+            alignItems: "center",
           }}
         >
           <Text style={styles.name}>{formattedStartDate}</Text>
         </View>
         <View
           style={{
-            width: "25%",
+            width: "33%",
             alignItems: "center",
             fontFamily: "Raleway",
             fontWeight: "500",
             color: "black",
+
             justifyContent: "center",
           }}
         >
-          <Text style={styles.cost}>{formattedEndDate}</Text>
+          <Text style={styles.name}>{formattedEndDate}</Text>
         </View>
       </View>
       <View style={styles.lineStyle} />
@@ -163,28 +158,28 @@ const HistoryScreen = ({ navigation }) => {
             <View style={styles.topImage}>
               <Image
                 style={styles.tinyLogo}
-                source={require("../assets/images/gymLogo.png")}
+                source={require("../assets/images/Sports.png")}
               />
             </View>
 
-            <View style={styles.containerr}>
+            <View style={styles.containerList}>
               <View>
                 <View
                   style={{
                     flexDirection: "row",
-                    width: "98%",
-                    marginTop: "5%",
+                    width: "90%",
+                    marginTop: "4%",
+                    marginHorizontal: "4%",
+
+                    marginBottom: "4%",
                     justifyContent: "space-between",
                   }}
                 >
                   <Text
                     style={{
-                      textAlign: "center",
-                      alignItems: "flex-start",
                       fontFamily: "Raleway",
-                      fontWeight: "500",
+                      fontWeight: "600",
                       color: "black",
-                      marginLeft: "5%",
                     }}
                   >
                     {t("CardScreen.type")}
@@ -193,21 +188,17 @@ const HistoryScreen = ({ navigation }) => {
                   <Text
                     style={{
                       fontFamily: "Raleway",
-                      fontWeight: "500",
+                      fontWeight: "600",
                       color: "black",
-                      marginRight: "5%",
                     }}
                   >
                     {t("CardScreen.date")}
                   </Text>
                   <Text
                     style={{
-                      textAlign: "center",
-                      alignItems: "flex-end",
                       fontFamily: "Raleway",
-                      fontWeight: "500",
+                      fontWeight: "600",
                       color: "black",
-                      marginRight: "5%",
                     }}
                   >
                     {t("CardScreen.time")}
@@ -263,20 +254,18 @@ const styles = StyleSheet.create({
     height: "5%",
     width: "100%",
     alignItems: "center",
-    justifyContent: "flex-start",
-    backgroundColor: "white",
   },
   tinyLogo: {
-    marginTop: "2%",
-    width: 180,
-    height: 74,
+    marginTop: "10%",
+    width: "32%",
+    height: "100%",
   },
   topContainer: {
     width: "100%",
     height: "5%",
     alignItems: "center",
   },
-  containerr: {
+  containerList: {
     width: "100%",
     flex: 1,
     marginTop: "13%",
@@ -306,20 +295,21 @@ const styles = StyleSheet.create({
   name: {
     textAlign: "center",
     fontSize: 14,
-    width: "70%",
-    height: "20%",
+    padding: "7%",
+    width: "100%",
     fontFamily: "Raleway",
     fontWeight: "500",
     flex: 1,
     color: "black",
-
-    marginTop: "5%",
+    fontFamily: "Raleway",
+    fontWeight: "400",
+    marginTop: "0%",
   },
 
   cost: {
     textAlign: "center",
     fontSize: 14,
-    width: "70%",
+    width: "100%",
     height: "20%",
     fontWeight: "500",
     marginTop: "5%",
@@ -329,12 +319,14 @@ const styles = StyleSheet.create({
   },
   costDi: {
     fontSize: 17,
-    width: "70%",
+    width: "100%",
     fontFamily: "Raleway",
     height: "20%",
     fontWeight: "500",
     flex: 1,
     marginTop: "5%",
+    textAlign: "center",
+    justifyContent: "center",
     color: "black",
   },
   discount: {

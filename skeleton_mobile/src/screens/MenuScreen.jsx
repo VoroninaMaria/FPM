@@ -7,13 +7,10 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Linking,
-  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import AntIcon from "react-native-vector-icons/AntDesign";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useTranslation } from "react-i18next";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import "../localization/i18n";
 
 const MenuScreen = ({ navigation }) => {
@@ -30,12 +27,7 @@ const MenuScreen = ({ navigation }) => {
   const openSupport = () => {
     navigation.navigate("Support");
   };
-  const openAbonement = () => {
-    navigation.navigate("AbonementListScreen");
-  };
-  const openInfo = () => {
-    navigation.navigate("InformationScreen");
-  };
+
   const openOnBoarding = () => {
     navigation.navigate("OnBoardingScreen");
   };
@@ -112,26 +104,7 @@ const MenuScreen = ({ navigation }) => {
               />
               <Text style={styles.listText}>{t("MenuScreen.support")}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.list} onPress={openAbonement}>
-              <Icon
-                name="headset"
-                size={28}
-                color="#f2cb84"
-                marginLeft="5%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("jjj")}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.list} onPress={openInfo}>
-              <Icon
-                name="list"
-                size={25}
-                color="#e6ab00"
-                marginLeft="5%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("MenuScreen.settings")}</Text>
-            </TouchableOpacity>
+
             <TouchableOpacity style={styles.list} onPress={openOnBoarding}>
               <Icon
                 name="list"
