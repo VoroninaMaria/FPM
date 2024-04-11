@@ -49,7 +49,7 @@ const Item = ({ allMemberships }) => {
                 width: "100%",
                 marginTop: "4%",
                 fontFamily: "Raleway",
-                fontWeight: "500",
+
                 height: "30%",
                 color: "black",
               }}
@@ -230,9 +230,16 @@ const styles = StyleSheet.create({
   },
   membershipAbilitiesContainer: {
     marginTop: "12%",
+    fontFamily: "Raleway",
+    fontWeight: "400",
   },
   textInBox: {
     width: "60%",
     height: "90%",
+  },
+  cost: {
+    fontFamily: "Raleway",
+    fontWeight: "700",
+    color: "black",
   },
 });
