@@ -19,13 +19,13 @@ const NavigationTabs = () => {
   return (
     <View style={styles.footerContainer}>
       <Pressable style={styles.HomeButtonLeft} onPress={openHome}>
-        <Icon name="home" size={30} color="#e6ab00" />
+        <Icon name="home" size={31} color="#84739a" />
       </Pressable>
       <Pressable style={styles.HomeButtonCenter} onPress={openHistory}>
-        <Icon name="history" size={30} color="black" />
+        <Icon name="history" size={31} color="black" />
       </Pressable>
       <Pressable style={styles.HomeButtonRight} onPress={openMenu}>
-        <Icon name="bars" size={30} color="black" />
+        <Icon name="bars" size={31} color="black" />
       </Pressable>
     </View>
   );
