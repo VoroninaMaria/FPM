@@ -45,7 +45,15 @@ export default {
           if (args.abilities?.length > 0) {
             await Promise.all(
               args.abilities.map(
-                ({ id, name, description, regular_price, discount_price }) => {
+                ({
+                  id,
+                  name,
+                  description,
+                  description1,
+                  description2,
+                  regular_price,
+                  discount_price,
+                }) => {
                   if (id) {
                     return Database("abilities")
                       .where({
@@ -55,6 +63,8 @@ export default {
                       .update({
                         name,
                         description,
+                        description1,
+                        description2,
                         regular_price,
                         discount_price,
                       })
@@ -67,6 +77,8 @@ export default {
                         membership_id: membership.id,
                         name,
                         description,
+                        description1,
+                        description2,
                         regular_price,
                         discount_price,
                       })

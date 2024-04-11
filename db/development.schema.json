@@ -8,6 +8,14 @@
       "type": "character varying",
       "default": null
     },
+    "description1": {
+      "type": "character varying",
+      "default": null
+    },
+    "description2": {
+      "type": "character varying",
+      "default": null
+    },
     "discount_price": {
       "type": "integer",
       "default": null

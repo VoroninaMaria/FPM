@@ -16,6 +16,8 @@ const Membership = {
             "id",
             "name",
             "description",
+            "description1",
+            "description2",
             "regular_price",
             "discount_price",
           ])
@@ -58,6 +60,8 @@ const allMemberships = {
               "id",
               "name",
               "description",
+              "description1",
+              "description2",
               "regular_price",
               "discount_price",
             ])

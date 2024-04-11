@@ -45,6 +45,8 @@ export default {
                     id,
                     name,
                     description,
+                    description1,
+                    description2,
                     regular_price,
                     discount_price,
                   }) => {
@@ -57,6 +59,8 @@ export default {
                         .update({
                           name,
                           description,
+                          description1,
+                          description2,
                           regular_price,
                           discount_price,
                         })
@@ -69,6 +73,8 @@ export default {
                           membership_id: membership.id,
                           name,
                           description,
+                          description1,
+                          description2,
                           regular_price,
                           discount_price,
                         })

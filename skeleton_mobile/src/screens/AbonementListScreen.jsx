@@ -62,6 +62,7 @@ const Item = ({ allMemberships }) => {
                 .map((ability) => ability.name)
                 .join(", ")}
             </Text>
+            <Text style={styles.cost}>{allMemberships.price}</Text>
           </View>
         </View>
         <View style={styles.lineStyle} />
@@ -73,8 +74,8 @@ const AbonementListScreen = ({ navigation }) => {
   const { t } = useTranslation();
   const [membershipPrice, setMembershipPrice] = useState([]);
 
-  const openInfo = () => {
-    navigation.navigate("InformationScreen");
+  const openCard = (id) => {
+    navigation.navigate("InformationScreen", { id });
   };
 
   const getAbonement = () =>
@@ -82,7 +83,6 @@ const AbonementListScreen = ({ navigation }) => {
       .then((token) => {
         if (!token) {
           Alert.alert(t("Session.session"), t("Session.finished"));
-          // return navigation.navigate("Login");
         }
         if (token) {
           return axios
@@ -105,51 +105,45 @@ const AbonementListScreen = ({ navigation }) => {
                   data: { allMemberships },
                 },
               } = res;
-
-              return setMembershipPrice(allMemberships);
+              setMembershipPrice(allMemberships);
             })
-
             .catch((error) => {
               Alert.alert(t("Session.session"), t("Session.finished"));
-              return navigation.navigate("Login");
+              navigation.navigate("Login");
             });
         }
       })
       .catch(() => {
         Alert.alert(t("Session.session"), t("Session.finished"));
-        return navigation.navigate("Login");
+        navigation.navigate("Login");
       });
+
   useEffect(() => {
     const delay = 300;
-
-    const loadClientWithDelay = async () => {
+    const loadAbonementWithDelay = async () => {
       await new Promise((resolve) => setTimeout(resolve, delay));
       getAbonement();
     };
-
-    loadClientWithDelay();
+    loadAbonementWithDelay();
   }, []);
-  const renderItem = ({ item }) => <Item allMemberships={item} />;
 
-  const openCard = (item) => {
-    openInfo(item);
-    navigation.navigate("BookDetail", { item });
-  };
+  const renderItem = ({ item }) => (
+    <TouchableOpacity onPress={() => openCard(item.id)}>
+      <Item allMemberships={item} />
+    </TouchableOpacity>
+  );
 
   return (
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.containerBrands}>
           <Text style={styles.textAbonement}></Text>
-
           <View style={styles.containerr}>
-            <TouchableOpacity onPress={openCard}>
-              <FlatList
-                data={membershipPrice}
-                renderItem={renderItem}
-                keyExtractor={(item) => item.id}
-              />
-            </TouchableOpacity>
+            <FlatList
+              data={membershipPrice}
+              renderItem={renderItem}
+              keyExtractor={(item) => item.id}
+            />
           </View>
         </View>
         <View style={styles.bottomContainer}>
@@ -159,6 +153,7 @@ const AbonementListScreen = ({ navigation }) => {
     </SafeAreaView>
   );
 };
+
 export default AbonementListScreen;
 
 const styles = StyleSheet.create({

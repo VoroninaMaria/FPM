@@ -6,6 +6,7 @@ import {
   Image,
   ScrollView,
   Animated,
+  Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
 import LinearGradient from "react-native-linear-gradient";
@@ -31,9 +32,10 @@ const LineDivider = () => {
   );
 };
 
-const BookDetail = ({ item, navigation }) => {
+const BookDetail = ({ route, navigation }) => {
+  const { id } = route.params;
   const [client, setClient] = useState();
-  // const { item } = route.params;
+  const [membershipPrice, setMembershipPrice] = useState([]);
 
   const [scrollViewWholeHeight, setScrollViewWholeHeight] = React.useState(1);
   const [scrollViewVisibleHeight, setScrollViewVisibleHeight] =
@@ -71,8 +73,6 @@ const BookDetail = ({ item, navigation }) => {
                 },
               } = res;
 
-              console.log(self);
-
               return setClient(self);
             })
 
@@ -86,6 +86,60 @@ const BookDetail = ({ item, navigation }) => {
         Alert.alert(t("Session.session"), t("Session.finished"));
         return navigation.navigate("Login");
       });
+  const getAbonement = () =>
+    AsyncStorage.getItem("token")
+      .then((token) => {
+        if (!token) {
+          Alert.alert(t("Session.session"), t("Session.finished"));
+          // return navigation.navigate("Login");
+        }
+        if (token) {
+          return axios
+            .post(
+              `${Config.baseUrl}/client/graphql`,
+              {
+                query: `query GetMembership($id: ID!) {
+                  Membership(id: $id) {
+                    id
+                    name
+                    price
+                    abilities
+                    url
+                    address
+                  }
+                }`,
+                variables: {
+                  id: id,
+                },
+              },
+              {
+                headers: {
+                  "Content-Type": "application/json",
+                  Authorization: `Bearer ${token}`,
+                },
+              }
+            )
+            .then((res) => {
+              const {
+                data: {
+                  data: { Membership },
+                },
+              } = res;
+              console.log(Membership);
+
+              return setMembershipPrice(Membership);
+            })
+
+            .catch((error) => {
+              Alert.alert(t("Session.session"), t("Session.finished"));
+              // return navigation.navigate("Login");
+            });
+        }
+      })
+      .catch(() => {
+        Alert.alert(t("Session.session"), t("Session.finished"));
+        // return navigation.navigate("Login");
+      });
   useEffect(() => {
     const delay = 300;
 
@@ -93,15 +147,22 @@ const BookDetail = ({ item, navigation }) => {
       await new Promise((resolve) => setTimeout(resolve, delay));
       getClient();
     };
+    const loadDataWithDelay = async () => {
+      await new Promise((resolve) => setTimeout(resolve, delay));
+      getAbonement();
+    };
 
     loadClientWithDelay();
+    loadDataWithDelay();
   }, []);
+
+  // console.log()
 
   function renderBookInfoSection() {
     return (
       <View style={{ flex: 1 }}>
         <ImageBackground
-          source={require("../assets/images/other_words_for_home.jpg")}
+          source={require("../assets/images/backgroundForAbout.jpeg")}
           resizeMode="cover"
           style={{
             position: "absolute",
@@ -149,7 +210,7 @@ const BookDetail = ({ item, navigation }) => {
           <View
             style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
           >
-            <Text style={{ color: "#000" }}>Book Detail</Text>
+            <Text style={{ color: "#000" }}>Деталі абонемента</Text>
           </View>
 
           <TouchableOpacity
@@ -186,8 +247,13 @@ const BookDetail = ({ item, navigation }) => {
         <View
           style={{ flex: 1.8, alignItems: "center", justifyContent: "center" }}
         >
-          <Text style={{ color: "#000" }}>{client?.last_name.toString()}</Text>
-          <Text style={{ color: "#000" }}>{client?.last_name.toString()}</Text>
+          <Text>
+            {membershipPrice?.abilities
+              ? membershipPrice.abilities
+                  .map((ability) => ability.name)
+                  .join(", ")
+              : "Немає даних"}
+          </Text>
         </View>
 
         {/* Book Info */}
@@ -200,16 +266,6 @@ const BookDetail = ({ item, navigation }) => {
             backgroundColor: "rgba(0,0,0,0.3)",
           }}
         >
-          {/* Rating */}
-          <View style={{ flex: 1, alignItems: "center" }}>
-            <Text style={{ color: "white" }}>
-              {client?.last_name.toString()}
-            </Text>
-            <Text style={{ color: "white" }}>Rating</Text>
-          </View>
-
-          <LineDivider />
-
           {/* Pages */}
           <View
             style={{
@@ -218,20 +274,16 @@ const BookDetail = ({ item, navigation }) => {
               alignItems: "center",
             }}
           >
-            <Text style={{ color: "white" }}>
-              {client?.last_name.toString()}
-            </Text>
-            <Text style={{ color: "white" }}>Number of Page</Text>
+            <Text style={{ color: "white" }}>{membershipPrice?.address}</Text>
+            <Text style={{ color: "white" }}>Локація</Text>
           </View>
 
           <LineDivider />
 
           {/* Language */}
           <View style={{ flex: 1, alignItems: "center" }}>
-            <Text style={{ color: "white" }}>
-              {client?.last_name.toString()}
-            </Text>
-            <Text style={{ color: "white" }}>Language</Text>
+            <Text style={{ color: "white" }}>{membershipPrice?.price}</Text>
+            <Text style={{ color: "white" }}>Ціна</Text>
           </View>
         </View>
       </View>
@@ -252,7 +304,6 @@ const BookDetail = ({ item, navigation }) => {
 
     return (
       <View style={{ flex: 1, flexDirection: "row", padding: 24 }}>
-        {/* Custom Scrollbar */}
         <View style={{ width: 4, height: "100%", backgroundColor: "gray" }}>
           <Animated.View
             style={{
@@ -301,10 +352,16 @@ const BookDetail = ({ item, navigation }) => {
               marginBottom: 24,
             }}
           >
-            Description
+            Опис
           </Text>
           <Text style={{ color: "#64676D" }}>
-            {client?.last_name.toString()}
+            <Text style={{ color: "white" }}>
+              {membershipPrice?.abilities
+                ? membershipPrice.abilities
+                    .map((ability) => ability.description)
+                    .join(", ")
+                : "Немає даних"}
+            </Text>
           </Text>
         </ScrollView>
       </View>
