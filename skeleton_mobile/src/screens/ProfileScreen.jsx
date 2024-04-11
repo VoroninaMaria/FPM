@@ -10,7 +10,6 @@ import {
   ScrollView,
   TouchableOpacity,
   Alert,
-  KeyboardAvoidingView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome";
 import NavigationTabs from "../Elements/NavigationTabs";
@@ -162,7 +161,7 @@ const ProfileScreen = ({ navigation }) => {
           <View style={styles.topImage}>
             <Image
               style={styles.tinyLogo}
-              source={require("../assets/images/gymLogo.png")}
+              source={require("../assets/images/Sports.png")}
             />
           </View>
 
@@ -177,7 +176,7 @@ const ProfileScreen = ({ navigation }) => {
                     : "First name"
                 }
                 value={changeFirstName}
-                placeholderTextColor="#A9A9A9"
+                placeholderTextColor="#cbb7c3"
                 maxLength={35}
                 onChangeText={(text) => {
                   const textInputRegex = /^(?!\s).*/;
@@ -196,7 +195,7 @@ const ProfileScreen = ({ navigation }) => {
                 style={styles.icons}
                 name="edit"
                 size={20}
-                color="#e6ab00"
+                color="#84739a"
               />
             </View>
             {firstNameError && (
@@ -212,7 +211,7 @@ const ProfileScreen = ({ navigation }) => {
                   profileInfo?.last_name ? profileInfo?.last_name : "Last name"
                 }
                 value={changeLastName}
-                placeholderTextColor="#A9A9A9"
+                placeholderTextColor="#cbb7c3"
                 maxLength={35}
                 onChangeText={(text) => {
                   const textInputRegex = /^(?!\s).*/;
@@ -231,7 +230,7 @@ const ProfileScreen = ({ navigation }) => {
                 style={styles.icons}
                 name="edit"
                 size={20}
-                color="#e6ab00"
+                color="#84739a"
               />
             </View>
             {lastNameError && (
@@ -246,7 +245,7 @@ const ProfileScreen = ({ navigation }) => {
                 placeholder={profileInfo?.email ? profileInfo?.email : "Email"}
                 value={changeEmail}
                 maxLength={36}
-                placeholderTextColor="#A9A9A9"
+                placeholderTextColor="#cbb7c3"
                 onChangeText={(text) => {
                   const emailRegex =
                     /^[zA-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
@@ -265,7 +264,7 @@ const ProfileScreen = ({ navigation }) => {
                 style={styles.icons}
                 name="edit"
                 size={20}
-                color="#e6ab00"
+                color="#84739a"
               />
             </View>
             {emailError && (
@@ -326,9 +325,9 @@ const styles = StyleSheet.create({
     backgroundColor: "white",
   },
   tinyLogo: {
-    marginTop: 20,
+    marginTop: "10%",
     width: 200,
-    height: 95,
+    height: 60,
   },
 
   form: {
@@ -347,14 +346,17 @@ const styles = StyleSheet.create({
   },
   button: {
     marginTop: 40,
-    backgroundColor: "#e6ab00",
+    backgroundColor: "#e9dcd8",
     borderRadius: 5,
     paddingVertical: 10,
     paddingHorizontal: 20,
   },
   buttonText: {
-    color: "#fff",
+    color: "black",
     fontSize: 18,
+    fontWeight: "300",
+    fontFamily: "Raleway",
+
     textAlign: "center",
   },
   avatarContainer: {
