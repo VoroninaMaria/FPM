@@ -29,7 +29,7 @@ const styles = StyleSheet.create({
     resizeMode: "cover",
   },
   logoLoginScreen: {
-    width: 400,
-    height: 250,
+    width: 350,
+    height: 100,
   },
 });

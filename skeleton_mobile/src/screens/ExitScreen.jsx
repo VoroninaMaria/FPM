@@ -7,8 +7,7 @@ import {
   TouchableOpacity,
   SafeAreaView,
 } from "react-native";
-import Icon from "react-native-vector-icons/FontAwesome";
-import AntIcon from "react-native-vector-icons/AntDesign";
+
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useTranslation } from "react-i18next";
 import "../localization/i18n";

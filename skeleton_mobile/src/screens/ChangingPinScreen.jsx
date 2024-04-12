@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
@@ -12,16 +12,44 @@ import Icon from "react-native-vector-icons/FontAwesome5";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
-import "../localization/i18n";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ChangingPinScreen = () => {
   const navigation = useNavigation();
   const { t, i18n } = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState("uk");
+  const [, setSelectedLanguage] = useState("uk");
+  const [, forceUpdate] = useState({});
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    setSelectedLanguage(lng);
+  useEffect(() => {
+    const loadSelectedLanguage = async () => {
+      try {
+        const language = await AsyncStorage.getItem("selectedLanguage");
+        if (language) {
+          setSelectedLanguage(language);
+          i18n.changeLanguage(language);
+        } else {
+          const defaultLanguage = "uk";
+          setSelectedLanguage(defaultLanguage);
+          i18n.changeLanguage(defaultLanguage);
+          await AsyncStorage.setItem("selectedLanguage", defaultLanguage);
+        }
+      } catch (error) {
+        console.error("Error loading language from AsyncStorage:", error);
+      }
+    };
+
+    loadSelectedLanguage();
+  }, []);
+
+  const changeLanguage = async (lng) => {
+    try {
+      await AsyncStorage.setItem("selectedLanguage", lng);
+      i18n.changeLanguage(lng);
+      setSelectedLanguage(lng);
+      forceUpdate({});
+    } catch (error) {
+      console.error("Error changing language:", error);
+    }
   };
 
   const openChangePass = () => {
