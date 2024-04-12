@@ -19,7 +19,7 @@ const OtpScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
   const [code, setCode] = useState("");
   const [secondSecret, setSecondSecret] = useState("");
-  const [internalVal, setInternalVal] = useState("");
+
   const [enableResend, setEnableResend] = useState(false);
   const [countdown, setCountdown] = useState(120);
 

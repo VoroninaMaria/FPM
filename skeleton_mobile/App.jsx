@@ -9,7 +9,6 @@ import {
   ProfileScreen,
   SettingScreen,
   HistoryScreen,
-  PartnersScreen,
   RegisterScreen,
   ChangingPinScreen,
   LoginScreen,
@@ -98,7 +97,7 @@ const App = () => {
             <Stack.Screen name="CardScreen" component={CardScreen} />
             <Stack.Screen name="History" component={HistoryScreen} />
             <Stack.Screen name="Settings" component={ChangingPinScreen} />
-            <Stack.Screen name="Partners" component={PartnersScreen} />
+
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
