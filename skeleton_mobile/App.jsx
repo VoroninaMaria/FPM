@@ -23,7 +23,6 @@ import {
   ConfirmResetOTPScreen,
   ConfirmationResetScreen,
   ChangePassword,
-  SwitchAccountScreen,
   AbonementListScreen,
   InformationScreen,
   OnBoardingScreen,
@@ -120,10 +119,7 @@ const App = () => {
             <Stack.Screen name="Menu" component={MenuScreen} />
 
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
-            <Stack.Screen
-              name="SwitchAccount"
-              component={SwitchAccountScreen}
-            />
+
             <Stack.Screen
               name="ResetPassword"
               component={ResetPasswordScreen}

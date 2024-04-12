@@ -105,16 +105,6 @@ const MenuScreen = ({ navigation }) => {
               <Text style={styles.listText}>{t("MenuScreen.support")}</Text>
             </TouchableOpacity>
 
-            <TouchableOpacity style={styles.list} onPress={openOnBoarding}>
-              <Icon
-                name="list"
-                size={25}
-                color="#f5e5bc"
-                marginLeft="5%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("MenuScreen.settings")}</Text>
-            </TouchableOpacity>
             <View style={styles.lineStyle} />
             <View style={styles.exitContainer}>
               <TouchableOpacity style={styles.exit} onPress={openExit}>

@@ -16,7 +16,7 @@ import ResetPasswordScreen from "./ResetPasswordScreen";
 import ConfirmResetOTPScreen from "./ConfirmResetOTPScreen";
 import ConfirmationResetScreen from "./ConfirmationResetScreen";
 import ChangePassword from "./ChangePassword";
-import SwitchAccountScreen from "./SwitchAccountScreen";
+
 import AbonementListScreen from "./AbonementListScreen";
 import InformationScreen from "./InformationScreen";
 import OnBoardingScreen from "./OnBoardingScreen";
@@ -40,7 +40,6 @@ export {
   ConfirmResetOTPScreen,
   ConfirmationResetScreen,
   ChangePassword,
-  SwitchAccountScreen,
   AbonementListScreen,
   InformationScreen,
   OnBoardingScreen,
