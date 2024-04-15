@@ -386,7 +386,7 @@ const CardScreen = () => {
                 onPress={openAbonement}
               >
                 <Text style={styles.abonementListText}>
-                  {t("CardScreen.topUp")}
+                  {t("CardScreen.abonements")}
                 </Text>
               </TouchableOpacity>
 
@@ -395,7 +395,7 @@ const CardScreen = () => {
                 onPress={handleActivationPress}
               >
                 <Text style={styles.activationTexts}>
-                  {t("CardScreen.gallery")}
+                  {t("CardScreen.activation")}
                 </Text>
               </TouchableOpacity>
             </View>
@@ -434,7 +434,7 @@ const CardScreen = () => {
                       color: "black",
                     }}
                   >
-                    {t("CardScreen.not_disc")}
+                    {t("CardScreen.weekdays")}
                   </Text>
                   <Text
                     style={{
@@ -445,7 +445,7 @@ const CardScreen = () => {
                       color: "black",
                     }}
                   >
-                    {t("CardScreen.date")}
+                    {t("CardScreen.weekends")}
                   </Text>
                 </View>
                 <View style={styles.lineStyle} />

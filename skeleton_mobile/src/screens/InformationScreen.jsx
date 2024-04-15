@@ -12,6 +12,7 @@ import React, { useState, useEffect } from "react";
 import Config from "./config.js";
 import "../localization/i18n";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
 const LineDivider = () => {
   return (
@@ -29,6 +30,7 @@ const LineDivider = () => {
 
 const InformationScreen = ({ route, navigation }) => {
   const { id } = route.params;
+  const { t } = useTranslation();
   const [client, setClient] = useState();
   const [membershipPrice, setMembershipPrice] = useState([]);
 
@@ -205,7 +207,7 @@ const InformationScreen = ({ route, navigation }) => {
                 fontWeight: "500",
               }}
             >
-              Про абонемента
+              {t("InformationScreen.about")}
             </Text>
           </View>
         </View>
@@ -240,7 +242,7 @@ const InformationScreen = ({ route, navigation }) => {
               ? membershipPrice.abilities
                   .map((ability) => ability.name)
                   .join(", ")
-              : "Дані відсутні"}
+              : t("Session.finished")}
           </Text>
         </View>
 
@@ -277,7 +279,7 @@ const InformationScreen = ({ route, navigation }) => {
                 fontWeight: "400",
               }}
             >
-              Локація
+              {t("InformationScreen.location")}
             </Text>
           </View>
 
@@ -301,7 +303,7 @@ const InformationScreen = ({ route, navigation }) => {
                 fontWeight: "400",
               }}
             >
-              Ціна
+              {t("InformationScreen.price")}
             </Text>
           </View>
         </View>
@@ -379,7 +381,7 @@ const InformationScreen = ({ route, navigation }) => {
               fontWeight: "700",
             }}
           >
-            Деталі абонемента
+            {t("InformationScreen.subscriptionDetails")}
           </Text>
           <Text style={{ color: "white" }}>
             <Text

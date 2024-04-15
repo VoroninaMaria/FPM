@@ -192,7 +192,7 @@ const HistoryScreen = ({ navigation }) => {
                       color: "black",
                     }}
                   >
-                    {t("CardScreen.date")}
+                    {t("HisrotyScreen.start_date")}
                   </Text>
                   <Text
                     style={{
@@ -201,7 +201,7 @@ const HistoryScreen = ({ navigation }) => {
                       color: "black",
                     }}
                   >
-                    {t("CardScreen.time")}
+                    {t("HisrotyScreen.end_date")}
                   </Text>
                 </View>
                 <View style={styles.lineStyle} />

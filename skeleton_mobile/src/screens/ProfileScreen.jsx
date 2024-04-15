@@ -166,7 +166,7 @@ const ProfileScreen = ({ navigation }) => {
           </View>
 
           <View style={styles.form}>
-            <Text style={styles.label}>Імʼя</Text>
+            <Text style={styles.label}> {t("ProfileScreen.name")}</Text>
             <View style={[styles.input1, firstNameError && styles.inputError]}>
               <TextInput
                 style={styles.input}
@@ -203,7 +203,7 @@ const ProfileScreen = ({ navigation }) => {
                 {t("InputErrors.invalid_fn")}
               </Text>
             )}
-            <Text style={styles.label}>Прізвище</Text>
+            <Text style={styles.label}> {t("ProfileScreen.lastName")}</Text>
             <View style={[styles.input1, lastNameError && styles.inputError]}>
               <TextInput
                 style={styles.input}
@@ -238,7 +238,7 @@ const ProfileScreen = ({ navigation }) => {
                 {t("InputErrors.invalid_ln")}
               </Text>
             )}
-            <Text style={styles.label}>Email</Text>
+            <Text style={styles.label}> {t("ProfileScreen.email")}</Text>
             <View style={[styles.input1, emailError && styles.inputError]}>
               <TextInput
                 style={styles.input}

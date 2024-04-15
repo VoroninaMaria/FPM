@@ -58,7 +58,7 @@ const Item = ({ allMemberships }) => {
                 ? allMemberships?.abilities
                     .map((ability) => ability.name)
                     .join(", ")
-                : "Дані відсутні"}
+                : t("Session.finished")}
             </Text>
             <Text style={styles.nameAndPrice}>{allMemberships.price}</Text>
           </View>
@@ -134,7 +134,9 @@ const AbonementListScreen = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.containerBrands}>
-          <Text style={styles.textAbonement}> Список абонементів</Text>
+          <Text style={styles.textAbonement}>
+            {t("AbonementListScreen.lists")}
+          </Text>
           <View style={styles.containerList}>
             <FlatList
               data={membershipPrice}
