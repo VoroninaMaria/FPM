@@ -18,7 +18,7 @@ describe("File tab tests", () => {
   afterEach(() => driver.quit());
 
   it("Create file", async () => {
-    const photoPath = path.resolve("./test/features/images/test.webp");
+    const photoPath = path.resolve("./test/features/images/wriotheley.png");
 
     await driver.get(`${Config.serverUrl}/#/File`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/File`), 2000);
@@ -145,7 +145,7 @@ describe("File tab tests", () => {
       ),
       2000
     );
-    await driver.sleep(20);
+    await driver.sleep(60);
     return checkTexts(driver, "td.column-name > span ", ["habibi"]);
   });
 
