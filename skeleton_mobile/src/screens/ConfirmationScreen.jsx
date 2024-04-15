@@ -25,12 +25,7 @@ const ConfirmationScreen = ({ navigation, route }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.containerBrands}>
-          <View style={styles.containerImg}>
-            <Image
-              source={require("../assets/images/horizontal_transp.png")}
-              style={styles.logoLoginScreen}
-            />
-          </View>
+          <View style={styles.containerImg}></View>
           <View style={styles.check}>
             <Icon name="check-circle" color="#18aa5e" size={60} />
           </View>

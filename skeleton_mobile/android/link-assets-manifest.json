@@ -89,18 +89,9 @@
       "path": "src/assets/images/gymLogo.png",
       "sha1": "8297c4bdbb7201c67afbebc4017de2bc80bcffe3"
     },
-    {
-      "path": "src/assets/images/horizontal.png",
-      "sha1": "cf1b49460ffdeeea01e614c4976fae8c384c2d0b"
-    },
-    {
-      "path": "src/assets/images/horizontal_transp.png",
-      "sha1": "1ea85cf7ce1278272c8c1762a63982830b5fdd11"
-    },
-    {
-      "path": "src/assets/images/logo.png",
-      "sha1": "328ba6b847f2a83887f7599f8182357a710b84a5"
-    },
+ 
+   
+ 
     {
       "path": "src/assets/images/logoCard.png",
       "sha1": "59b66cffc9a7d2a5e6d6b8bac4f87a1c8ad313d3"

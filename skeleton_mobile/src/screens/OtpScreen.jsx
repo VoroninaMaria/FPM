@@ -158,7 +158,7 @@ const OtpScreen = ({ navigation, route }) => {
       <View style={styles.container}>
         <View style={styles.containerImg}>
           <Image
-            source={require("../assets/images/horizontal_transp.png")}
+            source={require("../assets/images/Sports.png")}
             style={styles.logoLoginScreen}
           />
         </View>
