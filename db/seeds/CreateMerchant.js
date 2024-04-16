@@ -20,33 +20,10 @@ export const seed = async (knex) => {
   const services = {
     gym1: [
       {
-        service_name: "flySms",
+        service_name: "turboSms",
         config: {
-          key: "JaME7O57E6fTzh3zJcNgOBEtrgASM98d",
-          sender: "InfoCenter",
-        },
-        status: SMS_SERVICE_STATUSES.active.name,
-      },
-      {
-        service_name: "smsClub",
-        config: { key: "VfdhzEAwOp4kMO2", sender: "Shop Zakaz" },
-        status: SMS_SERVICE_STATUSES.active.name,
-      },
-    ],
-    gym2: [
-      {
-        service_name: "hicellSms",
-        config: {
-          key: "9212efb2306359181a14c02ba54f23d433ba34e9",
-          sender: "DOSTAVKA",
-        },
-        status: SMS_SERVICE_STATUSES.active.name,
-      },
-      {
-        service_name: "flySms",
-        config: {
-          key: "JaME7O57E6fTzh3zJcNgOBEtrgASM98d",
-          sender: "InfoCenter",
+          key: "141e321c61ca8118fb30399fa8f504ca74c9b56d",
+          sender: "TAXI",
         },
         status: SMS_SERVICE_STATUSES.active.name,
       },
