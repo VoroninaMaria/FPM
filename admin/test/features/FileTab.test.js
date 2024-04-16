@@ -18,7 +18,7 @@ describe("File tab tests", () => {
   afterEach(() => driver.quit());
 
   it("Create file", async () => {
-    const photoPath = path.resolve("./test/features/images/wriotheley.png");
+    const photoPath = path.resolve("./test/features/images/test.webp");
 
     await driver.get(`${Config.serverUrl}/#/File`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/File`), 2000);
