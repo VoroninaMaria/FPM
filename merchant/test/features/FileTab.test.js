@@ -20,12 +20,12 @@ describe("File tab tests", () => {
   afterEach(() => driver.quit());
 
   it("Create file", async () => {
-    const photoPath = path.resolve("./test/features/images/test.webp");
+    const photoPath = path.resolve("./test/features/images/unicorn.webp");
     const newName = generateRandomString();
 
     await driver.get(`${Config.serverUrl}/#/File`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/File`), 2000);
-    await driver.sleep(40);
+    await driver.sleep(100);
     await driver
       .wait(until.elementLocated(By.css("a[aria-label^='Створити']")), 3000)
       .click();
@@ -131,6 +131,8 @@ describe("File tab tests", () => {
     expect(fileType1).to.not.be.empty;
     await driver.get(`${Config.serverUrl}/#/File`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/File`), 2500);
+    await driver.sleep(50);
+
     const finalTableRows = await driver.findElements(By.css("td.column-name"));
 
     await driver.sleep(60);
@@ -141,7 +143,7 @@ describe("File tab tests", () => {
   it("Find file by name", async () => {
     await driver.get(`${Config.serverUrl}/#/File`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/File`), 2000);
-    const photoPath = path.resolve("./test/features/images/test.webp");
+    const photoPath = path.resolve("./test/features/images/unicorn.webp");
 
     await driver.sleep(100);
     await driver
@@ -284,7 +286,7 @@ describe("File tab tests", () => {
   });
 
   it("Element already exist", async () => {
-    const photoPath = path.resolve("./test/features/images/test.webp");
+    const photoPath = path.resolve("./test/features/images/unicorn.webp");
 
     await driver.get(`${Config.serverUrl}/#/File`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/File`), 2500);

@@ -8,7 +8,7 @@ const performLogin = async (driver) => {
   const usernameInput = await driver.findElement(By.id("username"));
   const passwordInput = await driver.findElement(By.id("password"));
 
-  await usernameInput.sendKeys("uklon");
+  await usernameInput.sendKeys("gym1");
   await passwordInput.sendKeys("123123", Key.RETURN);
   await driver.wait(until.urlIs(`${Config.serverUrl}/#/`), 2000);
 };

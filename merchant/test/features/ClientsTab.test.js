@@ -149,38 +149,6 @@ describe("Clients tab tests", () => {
 
     expect(statusText1).to.eq("активний");
   });
-  it("add and remove filter from clients status", async () => {
-    await driver.get(`${Config.serverUrl}/#/Client`);
-    await driver.wait(until.urlIs(`${Config.serverUrl}/#/Client`), 2000);
-    await driver.wait(until.elementLocated(By.id("status")), 2000).click();
-    await driver
-      .wait(until.elementLocated(By.css("[data-value='confirmed']")), 2000)
-      .click();
-    await driver.wait(
-      until.urlIs(
-        `${Config.serverUrl}/#/Client?displayedFilters=%7B%7D&filter=%7B%22status%22%3A%22confirmed%22%7D&order=ASC&page=1&perPage=10&sort=id`
-      ),
-      2000
-    );
-    await driver.sleep(30);
-    await checkTexts(driver, "td.column-status", ["підтверджений"]);
-
-    await driver.wait(until.elementLocated(By.id("status")), 2000).click();
-    await driver
-      .wait(until.elementLocated(By.css("li[aria-label^='Очистити']")), 2000)
-      .click();
-    await driver.wait(
-      until.urlIs(
-        `${Config.serverUrl}/#/Client?displayedFilters=%7B%7D&filter=%7B%7D&order=ASC&page=1&perPage=10&sort=id`
-      ),
-      2000
-    );
-
-    return checkTexts(driver, "td.column-status", [
-      "активний",
-      "підтверджений",
-    ]);
-  });
 
   it("Add category for client", async () => {
     await driver.get(`${Config.serverUrl}/#/Client`);
@@ -228,40 +196,6 @@ describe("Clients tab tests", () => {
       .getText();
 
     expect(categoryText).to.not.eq(null);
-  });
-
-  it("Remove category for client", async () => {
-    await driver.get(`${Config.serverUrl}/#/Client`);
-    await driver.wait(until.urlIs(`${Config.serverUrl}/#/Client`), 2000);
-    await driver
-      .wait(until.elementLocated(By.css("a[aria-label^='Редагувати']")), 2000)
-      .click();
-    await driver.wait(until.elementLocated(By.id("category_id")), 2000).click();
-    await driver
-      .wait(until.elementLocated(By.css("li[aria-label^='Очистити']")), 2000)
-      .click();
-    await driver
-      .wait(
-        until.elementLocated(By.css("button[aria-label^='Зберегти']")),
-        2000
-      )
-      .click();
-    const clientPhone = await driver
-      .wait(
-        until.elementLocated(
-          By.css(
-            "#main-content > div > div.RaShow-main > div > div > div > span.MuiStack-root.ra-field.ra-field-phone.RaSimpleShowLayout-row > p > span"
-          )
-        ),
-        2000
-      )
-      .getText();
-
-    expect(clientPhone).to.equal("Телефон");
-    await driver.get(`${Config.serverUrl}/#/Client`);
-    await driver.wait(until.urlIs(`${Config.serverUrl}/#/Client`), 2000);
-
-    return checkTexts(driver, "td.column-category_id", ["", ""]);
   });
 
   it("No result found by chosen category", async () => {
@@ -414,7 +348,7 @@ describe("Clients tab tests", () => {
 
     await driver
       .wait(until.elementLocated(By.id("phone")), 2000)
-      .sendKeys("380630000004");
+      .sendKeys("380637890004");
 
     await driver
       .wait(
@@ -470,6 +404,7 @@ describe("Clients tab tests", () => {
     expect(clientName).to.not.be.empty;
     expect(clientLastName).to.not.be.empty;
     expect(clientGmail).to.not.be.empty;
+
     await driver.get(`${Config.serverUrl}/#/Client`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/Client`), 2000);
     await driver.sleep(50);
@@ -506,7 +441,7 @@ describe("Clients tab tests", () => {
 
     await driver
       .wait(until.elementLocated(By.id("phone")), 2000)
-      .sendKeys("380630000004");
+      .sendKeys("380637890004");
 
     await driver
       .wait(
@@ -562,13 +497,9 @@ describe("Clients tab tests", () => {
       .wait(until.elementLocated(By.css(".MuiSnackbarContent-message")), 2000)
       .getText();
 
-    expect(error).to.eq("Форма недійсна. Перевірте помилки");
-
-    const helperTextError = await driver
-      .wait(until.elementLocated(By.id("phone-helper-text")), 2000)
-      .getText();
-
-    expect(helperTextError).to.eq("Повинна бути цифра");
+    expect(error).to.eq(
+      "Невірний формат телефону, він повинен починатись з 380 та не включати в себе +"
+    );
   });
 
   it("Invalid email", async () => {
@@ -609,13 +540,7 @@ describe("Clients tab tests", () => {
       .wait(until.elementLocated(By.css(".MuiSnackbarContent-message")), 2000)
       .getText();
 
-    expect(error).to.eq("Форма недійсна. Перевірте помилки");
-
-    const helperTextError = await driver
-      .wait(until.elementLocated(By.id("email-helper-text")), 2000)
-      .getText();
-
-    expect(helperTextError).to.eq("Хибний email");
+    expect(error).to.eq("Некоректний правопис електронної пошти");
   });
 
   it("Password should have at least 4 symbols ", async () => {

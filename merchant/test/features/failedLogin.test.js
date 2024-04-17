@@ -19,7 +19,7 @@ describe("Failed Login attempts", () => {
     const usernameInput = await driver.findElement(By.id("username"));
     const passwordInput = await driver.findElement(By.id("password"));
 
-    await usernameInput.sendKeys("uklon");
+    await usernameInput.sendKeys("gym1");
     await passwordInput.sendKeys("1231234", Key.RETURN);
 
     const errorNotification = await driver.findElement(
