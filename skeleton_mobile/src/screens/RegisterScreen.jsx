@@ -38,7 +38,7 @@ const RegisterScreen = ({ navigation }) => {
           firstName: firstName,
           lastName: lastName,
           phone: phone,
-          merchant: "Gym",
+          merchant: "gym1",
         })
         .then(async (res) => {
           if (res.status === 200) {
