@@ -136,7 +136,7 @@ describe("Category tab tests", () => {
     await driver.get(`${Config.serverUrl}/#/Category`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/Category`), 2000);
     await driver.wait(until.elementLocated(By.css("th.column-name")), 2000);
-
+    await driver.sleep(50);
     const finalTableRows = await driver.findElements(By.css("td.column-name"));
 
     expect(finalTableRows).to.have.lengthOf(initialTableLength + 1);

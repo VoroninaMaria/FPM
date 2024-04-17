@@ -131,6 +131,8 @@ describe("File tab tests", () => {
     expect(fileType1).to.not.be.empty;
     await driver.get(`${Config.serverUrl}/#/File`);
     await driver.wait(until.urlIs(`${Config.serverUrl}/#/File`), 2500);
+    await driver.sleep(50);
+
     const finalTableRows = await driver.findElements(By.css("td.column-name"));
 
     await driver.sleep(60);
