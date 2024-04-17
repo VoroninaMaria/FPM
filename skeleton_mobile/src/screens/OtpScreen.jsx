@@ -19,7 +19,7 @@ const OtpScreen = ({ navigation, route }) => {
   const { t } = useTranslation();
   const [code, setCode] = useState("");
   const [secondSecret, setSecondSecret] = useState("");
-  const [internalVal, setInternalVal] = useState("");
+
   const [enableResend, setEnableResend] = useState(false);
   const [countdown, setCountdown] = useState(120);
 
@@ -158,7 +158,7 @@ const OtpScreen = ({ navigation, route }) => {
       <View style={styles.container}>
         <View style={styles.containerImg}>
           <Image
-            source={require("../assets/images/horizontal_transp.png")}
+            source={require("../assets/images/Sports.png")}
             style={styles.logoLoginScreen}
           />
         </View>

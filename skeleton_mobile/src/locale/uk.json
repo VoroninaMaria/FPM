@@ -1,18 +1,15 @@
 {
   "translation": {
     "CardScreen": {
-      "fuelCard": "Спорт картка",
       "balance": "Мій баланс :",
-      "currencyBalance": "₴",
-      "topUp": "Абонементи",
-      "gallery": "Активація",
+
+      "abonements": "Абонементи",
+      "activation": "Активація",
       "subscriptionPrices": "Дійсні записи",
       "type": "Категорія",
-      "not_disc": "Понеділок - Пятниця",
-      "date": "Субота - Неділя",
-      "time": "Час",
-      "currency": " ₴/л",
-      "discount": "Знижка",
+      "weekdays": "Понеділок - Пятниця",
+      "weekends": "Субота - Неділя",
+
       "firstName": "Імʼя :",
       "lastName": "Прізвище :",
       "phone": "Номер телефону",
@@ -27,14 +24,21 @@
       "support": "Підтримка",
       "exit": "Вийти з акаунту",
       "site": "Наш сайт",
-      "contract": "Договір публічної оферти",
+
       "abonement": "Абонементи"
     },
+    "AbonementListScreen": {
+      "lists": "Список абонементів"
+    },
+    "InformationScreen": {
+      "subscriptionDetails": "Деталі абонемента",
+      "location": "Локація",
+      "price": "Ціна",
+      "about": "Про абонемента"
+    },
     "HisrotyScreen": {
-      "allTransactions": "Всі транзакції",
-      "topUp": "Поповнення",
-      "writingOff": "Списання",
-      "null": "У вас ще немає транзакцій"
+      "start_date": "Початок :",
+      "end_date": "Кінець :"
     },
     "ProfileScreen": {
       "addPhoto": "Додати фото",
@@ -42,7 +46,11 @@
       "Error": "Помилка",
       "ErrorTXT": "Щось пішло не так. Будь ласка, спробуйте пізніше.",
       "ErrorInfo": "Неправильний телефон/пошта або імʼя. Перевірте свою інформацію та повторіть спробу.",
-      "ChangesInProgress": "Очікує підтвердження"
+      "ChangesInProgress": "Очікує підтвердження",
+
+      "email": "Email",
+      "name": "Імʼя",
+      "lastName": "Прізвище"
     },
     "SettingsScreen": {
       "changePassword": "Змінити пароль :",
@@ -73,10 +81,7 @@
       "exit": "Так, вийти з акаунту",
       "notExit": "Ні, залишитись тут"
     },
-    "PartnersScreen": {
-      "ourTrainers": "Наші тренери",
-      "logo": "Лого"
-    },
+
     "RegisterScreen": {
       "register": "Реєстрація",
       "number": "Номер телефону",
@@ -109,17 +114,7 @@
       "ErrorTXT": "Неправильний телефон або пароль. Перевірте свою інформацію та повторіть спробу пізніше.",
       "Blocked": "Ваш акаунт було заблоковано. Будь ласка, зв'яжіться з адміністратором"
     },
-    "ConfirmScreen": {
-      "greating": "Вітаємо, ",
-      "accs": "Ваш акаунт успішно створено!",
-      "button": "Перейти"
-    },
-    "ReffilScreen": {
-      "title": "Поповнити",
-      "amountPlaceholferText": "Введіть суму",
-      "descriptionPlaceholferText": "Введіть призначення платежу",
-      "topUpBtn": "Поповнити"
-    },
+
     "ErrorTXTDef": "Щось пішло не так. Будь ласка, спробуйте пізніше.",
     "InputErrors": {
       "error": "Помилка",
@@ -128,7 +123,8 @@
       "invalid_fn": "Неправильно введено імʼя",
       "invalid_ln": "Неправильно введено фамілію",
       "invalid_email": "Неправильно введено пошту",
-      "cannot_be_empty": "Не може бути пустим"
+      "cannot_be_empty": "Не може бути пустим",
+      "noDataAvailable": "Немає даних"
     },
     "Session": {
       "session": "Поточна сесія",

@@ -1,33 +1,55 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   StyleSheet,
   View,
   Pressable,
   Image,
   Text,
-  TextInput,
   SafeAreaView,
-  Alert,
   TouchableOpacity,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import AntIcon from "react-native-vector-icons/AntDesign";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useNavigation } from "@react-navigation/native";
-import Config from "./config.js";
-import axios from "axios";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { useTranslation } from "react-i18next";
-import "../localization/i18n";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 const ChangingPinScreen = () => {
   const navigation = useNavigation();
   const { t, i18n } = useTranslation();
-  const [selectedLanguage, setSelectedLanguage] = useState("uk");
+  const [, setSelectedLanguage] = useState("uk");
+  const [, forceUpdate] = useState({});
 
-  const changeLanguage = (lng) => {
-    i18n.changeLanguage(lng);
-    setSelectedLanguage(lng);
+  useEffect(() => {
+    const loadSelectedLanguage = async () => {
+      try {
+        const language = await AsyncStorage.getItem("selectedLanguage");
+        if (language) {
+          setSelectedLanguage(language);
+          i18n.changeLanguage(language);
+        } else {
+          const defaultLanguage = "uk";
+          setSelectedLanguage(defaultLanguage);
+          i18n.changeLanguage(defaultLanguage);
+          await AsyncStorage.setItem("selectedLanguage", defaultLanguage);
+        }
+      } catch (error) {
+        console.error("Error loading language from AsyncStorage:", error);
+      }
+    };
+
+    loadSelectedLanguage();
+  }, []);
+
+  const changeLanguage = async (lng) => {
+    try {
+      await AsyncStorage.setItem("selectedLanguage", lng);
+      i18n.changeLanguage(lng);
+      setSelectedLanguage(lng);
+      forceUpdate({});
+    } catch (error) {
+      console.error("Error changing language:", error);
+    }
   };
 
   const openChangePass = () => {
@@ -44,7 +66,7 @@ const ChangingPinScreen = () => {
         <View style={styles.containerBrands}>
           <View style={styles.containerImg}>
             <Image
-              source={require("../assets/images/gymLogo.png")}
+              source={require("../assets/images/Sports.png")}
               style={styles.logoLoginScreen}
             />
           </View>
@@ -53,7 +75,7 @@ const ChangingPinScreen = () => {
               <Icon
                 name="user"
                 size={28}
-                color="#e6ab00"
+                color="#cbb7c3"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -66,7 +88,7 @@ const ChangingPinScreen = () => {
                 <Pressable
                   style={({ pressed }) => [
                     styles.btnUk,
-                    { backgroundColor: pressed ? "#f6b170" : "#f6c770" },
+                    { backgroundColor: pressed ? "#cbb7c3" : "#84739a" },
                   ]}
                   onPress={() => changeLanguage("uk")}
                 >
@@ -77,7 +99,7 @@ const ChangingPinScreen = () => {
                 <Pressable
                   style={({ pressed }) => [
                     styles.btnEng,
-                    { backgroundColor: pressed ? "#f6b170" : "#f6c770" },
+                    { backgroundColor: pressed ? "#cbb7c3" : "#84739a" },
                   ]}
                   onPress={() => changeLanguage("en")}
                 >
@@ -134,8 +156,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   logoLoginScreen: {
-    width: 200,
-    height: 85,
+    width: 150,
+    height: 45,
   },
   containerImg: {
     resizeMode: "contain",
@@ -179,7 +201,6 @@ const styles = StyleSheet.create({
   },
   exitContainer: {
     height: "30%",
-
     marginRight: "30%",
   },
   exitText: {
@@ -190,7 +211,6 @@ const styles = StyleSheet.create({
   },
   lngContainer: {
     flexDirection: "row",
-
     justifyContent: "space-between",
     marginVertical: 10,
     paddingHorizontal: 20,

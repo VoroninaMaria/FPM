@@ -10,18 +10,18 @@
       "contract": "Public offer agreement"
     },
     "HisrotyScreen": {
-      "allTransactions": "All transactions",
-      "topUp": "Top Up",
-      "writingOff": "Writing Off",
-      "null": "You haven't transactions yet"
+      "start_date": "Start date:",
+      "end_date": "End date:"
     },
     "ProfileScreen": {
-      "addPhoto": "Add Photo",
       "button": "Confirm",
       "Error": "Error",
       "ErrorTXT": "Something went wrong. Please try again later.",
       "ErrorInfo": "First name or phone/email incorrect. Please check your information and try again.",
-      "ChangesInProgress": "Changes in progress"
+      "ChangesInProgress": "Changes in progress",
+      "email": "Email",
+      "name": "Name",
+      "lastName": "Last Name"
     },
     "SettingsScreen": {
       "applanguage": "Application language",
@@ -51,21 +51,29 @@
     },
 
     "CardScreen": {
-      "fuelCard": "Fuel card",
-      "balance": "My balance : ",
-      "currencyBalance": "₴",
-      "topUp": "Top Up",
-      "partners": "Partners",
-      "fuelPrices": "Fuel Prices",
-      "type": "Fuel type",
-      "not_disc": "Without discount",
-      "disc": "With discount",
-      "discount": "Discount",
-      "currency": " ₴/L"
+      "abonements": "Abonements",
+
+      "type": "Category",
+
+      "activation": "Activation",
+      "weekdays": "Monday - Friday",
+      "status": "Subscription status: ",
+      "weekends": "Saturday - Sunday",
+      "start_date": "Subscription activation:",
+      "end_date": "Subscription expiration:"
+    },
+    "AbonementListScreen": {
+      "lists": "Subscription list"
     },
     "PartnersScreen": {
       "ourPartners": "Our partners",
       "logo": "Logo"
+    },
+    "InformationScreen": {
+      "subscriptionDetails": "Subscription details",
+      "location": "Location",
+      "price": "Price",
+      "about": "About"
     },
     "RegisterScreen": {
       "register": "Register",
@@ -103,12 +111,7 @@
       "accs": "Your account has been successfully created",
       "button": "Continue"
     },
-    "ReffilScreen": {
-      "title": "Top Up",
-      "amountPlaceholferText": "Enter your amount",
-      "descriptionPlaceholferText": "Enter description",
-      "topUpBtn": "Top up"
-    },
+
     "ErrorTXTDef": "Something went wrong. Please try again later.",
     "InputErrors": {
       "error": "Error",
@@ -117,7 +120,8 @@
       "invalid_fn": "First name incorrect. Please check your info and try again",
       "invalid_ln": "Last name incorrect. Please check your info and try again",
       "invalid_email": "Email incorrect. Please check your info and try again",
-      "cannot_be_empty": "Can not be empty"
+      "cannot_be_empty": "Can not be empty",
+      "noDataAvailable": "No data available"
     },
     "Session": {
       "session": "Current session",

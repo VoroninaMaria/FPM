@@ -9,7 +9,6 @@ import {
   ProfileScreen,
   SettingScreen,
   HistoryScreen,
-  PartnersScreen,
   RegisterScreen,
   ChangingPinScreen,
   LoginScreen,
@@ -23,13 +22,13 @@ import {
   ConfirmResetOTPScreen,
   ConfirmationResetScreen,
   ChangePassword,
-  SwitchAccountScreen,
   AbonementListScreen,
   InformationScreen,
   OnBoardingScreen,
 } from "./src/screens/index.js";
 import Config from "./src/screens/config.js";
 import { useTranslation } from "react-i18next";
+import i18n from "./src/localization/i18n";
 import "./src/localization/i18n";
 
 const Stack = createNativeStackNavigator();
@@ -38,7 +37,7 @@ const App = () => {
   const { t } = useTranslation();
   const [authToken, setAuthToken] = useState("");
   const [isLoading, setIsLoading] = useState(true);
-  const [isAppFirstLaunched, setIsAppFirstLaunched] = React.useState(null);
+  const [selectedLanguage, setSelectedLanguage] = useState("");
 
   useEffect(() => {
     AsyncStorage.getItem("token").then((token) => {
@@ -70,6 +69,23 @@ const App = () => {
           });
       }
     });
+    const checkLanguage = async () => {
+      try {
+        const language = await AsyncStorage.getItem("selectedLanguage");
+        if (language) {
+          i18n.changeLanguage(language);
+        } else {
+          await AsyncStorage.setItem("selectedLanguage", "uk");
+          i18n.changeLanguage("uk");
+        }
+      } catch (error) {
+        console.error("Error checking selected language:", error);
+      } finally {
+        setIsLoading(false);
+      }
+    };
+
+    checkLanguage();
   }, []);
 
   if (isLoading) {
@@ -99,7 +115,7 @@ const App = () => {
             <Stack.Screen name="CardScreen" component={CardScreen} />
             <Stack.Screen name="History" component={HistoryScreen} />
             <Stack.Screen name="Settings" component={ChangingPinScreen} />
-            <Stack.Screen name="Partners" component={PartnersScreen} />
+
             <Stack.Screen name="Profile" component={ProfileScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={RegisterScreen} />
@@ -120,10 +136,7 @@ const App = () => {
             <Stack.Screen name="Menu" component={MenuScreen} />
 
             <Stack.Screen name="ChangePassword" component={ChangePassword} />
-            <Stack.Screen
-              name="SwitchAccount"
-              component={SwitchAccountScreen}
-            />
+
             <Stack.Screen
               name="ResetPassword"
               component={ResetPasswordScreen}

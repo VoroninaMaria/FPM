@@ -30,7 +30,6 @@ const Item = ({ abonements }) => {
         style={{
           flexDirection: "row",
           width: "100%",
-
           height: "55%",
           justifyContent: "center",
         }}
@@ -54,105 +53,32 @@ const Item = ({ abonements }) => {
             fontFamily: "Raleway",
             fontWeight: "500",
             color: "black",
-
             justifyContent: "center",
           }}
         >
-          <Text style={styles.cost}>{abonements.description1}</Text>
+          <Text style={styles.description1}>{abonements.description1}</Text>
         </View>
         <View
           style={{
             width: "30%",
-            fontSize: 12,
             alignItems: "flex-end",
-            fontFamily: "Raleway",
-            fontWeight: "500",
-            color: "#18aa5e",
             marginLeft: 20,
             justifyContent: "center",
           }}
         >
-          <Text style={styles.costDi}>{abonements.description2}</Text>
+          <Text style={styles.description2}>{abonements.description2}</Text>
         </View>
       </View>
       <View style={styles.lineStyle} />
     </ScrollView>
   );
 };
-//   const { t } = useTranslation();
-
-//   return (
-//     <ScrollView>
-//       <View
-//         style={{
-//           flexDirection: "row",
-//           width: "100%",
-//           height: "35%",
-//           justifyContent: "space-between",
-//         }}
-//       >
-//         <View
-//           style={{
-//             width: "25%",
-//             alignItems: "flex-start",
-//             fontFamily: "Raleway",
-//             fontWeight: "500",
-//             color: "black",
-//             justifyContent: "center",
-//           }}
-//         >
-//           <Text style={styles.name}>{stella.name}</Text>
-//         </View>
-//         <View
-//           style={{
-//             width: "25%",
-//             alignItems: "center",
-//             fontFamily: "Raleway",
-//             fontWeight: "500",
-//             color: "black",
-//             justifyContent: "center",
-//           }}
-//         >
-//           <Text style={styles.cost}>{stella.regular_price / 100}</Text>
-//         </View>
-//         <View
-//           style={{
-//             width: "25%",
-//             alignItems: "flex-end",
-//             fontFamily: "Raleway",
-//             fontWeight: "500",
-//             color: "#18aa5e",
-//             justifyContent: "center",
-//           }}
-//         >
-//           <Text style={styles.costDi}>{stella.discount_price / 100}</Text>
-//         </View>
-//         <View
-//           style={{
-//             width: "25%",
-//             alignItems: "flex-end",
-//             fontFamily: "Raleway",
-//             fontWeight: "500",
-//             color: "#18aa5e",
-//             justifyContent: "center",
-//           }}
-//         >
-//           <Text style={styles.discount}>
-//             {(stella.regular_price - stella.discount_price) / 100}
-//           </Text>
-//         </View>
-//       </View>
-//       <View style={styles.lineStyle} />
-//     </ScrollView>
-//   );
-// };
 
 const CardScreen = () => {
   const [refreshing, setRefreshing] = React.useState(false);
   const { t } = useTranslation();
   const [showInfo, setShowInfo] = useState(false);
-  const [membershipPrice, setMembershipPrice] = useState([]);
-  const [card, setCard] = useState();
+
   const [client, setClient] = useState();
 
   const getClient = () =>
@@ -199,52 +125,6 @@ const CardScreen = () => {
         return navigation.navigate("Login");
       });
 
-  const getAbonement = () =>
-    AsyncStorage.getItem("token")
-      .then((token) => {
-        if (!token) {
-          Alert.alert(t("Session.session"), t("Session.finished"));
-          // return navigation.navigate("Login");
-        }
-        if (token) {
-          return axios
-            .post(
-              `${Config.baseUrl}/client/graphql`,
-              {
-                query:
-                  "{Membership{id, name, price, abilities, url, description1, description2}}",
-                variables: {},
-              },
-              {
-                headers: {
-                  "Content-Type": "application/json",
-                  Authorization: `Bearer ${token}`,
-                },
-              }
-            )
-            .then((res) => {
-              const {
-                data: {
-                  data: { Membership },
-                },
-              } = res;
-
-              // console.log(Membership);
-
-              return setMembershipPrice(Membership.abilities);
-            })
-
-            .catch((error) => {
-              Alert.alert(t("Session.session"), t("Session.finished"));
-              // return navigation.navigate("Login");
-            });
-        }
-      })
-      .catch(() => {
-        Alert.alert(t("Session.session"), t("Session.finished"));
-        // return navigation.navigate("Login");
-      });
-
   useEffect(() => {
     const delay = 300;
 
@@ -252,11 +132,7 @@ const CardScreen = () => {
       await new Promise((resolve) => setTimeout(resolve, delay));
       getClient();
     };
-    const loadDataWithDelays = async () => {
-      await new Promise((resolve) => setTimeout(resolve, delay));
-      getAbonement();
-    };
-    loadDataWithDelays();
+
     loadClientWithDelay();
   }, []);
 
@@ -268,18 +144,14 @@ const CardScreen = () => {
     }, 2000);
   }, []);
 
-  const toggleQRCode = () => {
+  const toggleData = () => {
     setShowInfo(!showInfo);
   };
-  const openFuel = () => {
+  const openAbonements = () => {
     setShowInfo(true);
   };
 
   const navigation = useNavigation();
-
-  const openPartners = () => {
-    navigation.navigate("Partners");
-  };
 
   const openAbonement = () => {
     navigation.navigate("AbonementListScreen");
@@ -336,27 +208,30 @@ const CardScreen = () => {
               />
             </View>
             {showInfo ? (
-              <TouchableOpacity style={styles.qrCode} onPress={toggleQRCode}>
-                <Text style={styles.qrText}>
+              <TouchableOpacity
+                style={styles.dataAbonement}
+                onPress={toggleData}
+              >
+                <Text style={styles.dataText}>
                   {t("CardScreen.start_date")} {formattedStartDate}
                 </Text>
-                <Text style={styles.qrText}>
+                <Text style={styles.dataText}>
                   {t("CardScreen.end_date")} {formattedEndDate}
                 </Text>
               </TouchableOpacity>
             ) : (
-              <TouchableOpacity onPress={openFuel}>
+              <TouchableOpacity onPress={openAbonements}>
                 <View style={styles.card}>
                   <View style={styles.cardTop}>
                     <View>
                       <Image
-                        source={require("../assets/images/logoCard.png")}
+                        source={require("../assets/images/IinGym.png")}
                         style={styles.imageCard}
                       />
                     </View>
                     <View
                       style={{
-                        marginLeft: "0%",
+                        marginLeft: "10%",
                         marginTop: "2%",
                       }}
                     >
@@ -369,7 +244,9 @@ const CardScreen = () => {
                           textAlign: "center",
                         }}
                       >
-                        {client?.first_name.toString()}
+                        {client?.first_name
+                          ? client.first_name.toString()
+                          : t("InputErrors.noDataAvailable")}
                       </Text>
 
                       <Text
@@ -383,7 +260,9 @@ const CardScreen = () => {
                           marginLeft: "5%",
                         }}
                       >
-                        {client?.last_name.toString()}
+                        {client?.last_name
+                          ? client.last_name.toString()
+                          : t("InputErrors.noDataAvailable")}
                       </Text>
                       <Text
                         style={{
@@ -395,19 +274,19 @@ const CardScreen = () => {
                           color: "black",
                         }}
                       >
-                        {client?.phone.toString()}
+                        {client?.phone
+                          ? client.phone.toString()
+                          : t("InputErrors.noDataAvailable")}
                       </Text>
                     </View>
                   </View>
 
                   <View style={styles.cardButtom}>
                     <LinearGradient
-                      colors={[
-                        "rgba(246,199,112,0.8813900560224089)",
-                        "rgba(241,201,85,0.6965161064425771)",
-                      ]}
+                      colors={["rgba(255,244,228,1)", "rgba(240,246,238,1)"]}
                       start={{ x: 0, y: 0 }}
-                      end={{ x: 0, y: 1 }}
+                      end={{ x: 1, y: 1 }}
+                      locations={[0.071, 0.674]}
                       style={styles.linearGradient}
                     >
                       <View
@@ -442,21 +321,26 @@ const CardScreen = () => {
               </TouchableOpacity>
             )}
             <View style={styles.buttonCard}>
-              <TouchableOpacity style={styles.topup} onPress={openAbonement}>
-                <Text style={styles.topupText}>{t("CardScreen.topUp")}</Text>
+              <TouchableOpacity
+                style={styles.abonementList}
+                onPress={openAbonement}
+              >
+                <Text style={styles.abonementListText}>
+                  {t("CardScreen.abonements")}
+                </Text>
               </TouchableOpacity>
 
               <TouchableOpacity
-                style={styles.partner}
+                style={styles.activation}
                 onPress={handleActivationPress}
               >
-                <Text style={styles.partnerText}>
-                  {t("CardScreen.gallery")}
+                <Text style={styles.activationTexts}>
+                  {t("CardScreen.activation")}
                 </Text>
               </TouchableOpacity>
             </View>
             <View style={styles.middleContainer}>
-              <Text style={styles.fuelPrices}>
+              <Text style={styles.registrationList}>
                 {t("CardScreen.subscriptionPrices")}
               </Text>
 
@@ -490,7 +374,7 @@ const CardScreen = () => {
                       color: "black",
                     }}
                   >
-                    {t("CardScreen.not_disc")}
+                    {t("CardScreen.weekdays")}
                   </Text>
                   <Text
                     style={{
@@ -501,12 +385,12 @@ const CardScreen = () => {
                       color: "black",
                     }}
                   >
-                    {t("CardScreen.date")}
+                    {t("CardScreen.weekends")}
                   </Text>
                 </View>
                 <View style={styles.lineStyle} />
               </View>
-              <View style={styles.containerr}>
+              <View style={styles.listAbout}>
                 <FlatList
                   data={client?.membership?.[0]?.abilities ?? null}
                   renderItem={renderItem}
@@ -529,16 +413,15 @@ export default CardScreen;
 const styles = StyleSheet.create({
   scrollView: {
     flex: 1,
-    backgroundColor: "pink",
     alignItems: "center",
     justifyContent: "center",
   },
   container: {
-    flexDirection: "column",
     flex: 1,
+    flexDirection: "column",
+    backgroundColor: "white",
     width: "100%",
     height: "100%",
-    backgroundColor: "white",
   },
   topContainer: {
     width: "100%",
@@ -569,7 +452,7 @@ const styles = StyleSheet.create({
   },
   card: {
     width: "90%",
-    height: 220,
+    height: 215,
     overflow: "hidden",
     position: "relative",
     left: "5.5%",
@@ -595,7 +478,7 @@ const styles = StyleSheet.create({
   },
   imageCard: {
     flex: 1,
-    width: 230,
+    width: 170,
     justifyContent: "center",
     height: 90,
   },
@@ -603,122 +486,96 @@ const styles = StyleSheet.create({
     fontWeight: "700",
     fontSize: 16,
     color: "black",
-    fontFamily: "Outfit",
+    fontFamily: "Relaway",
   },
   textCard: {
     marginTop: "1%",
-    width: "22%",
-    height: "30%",
-  },
-  cardText: {
-    fontWeight: "500",
-    fontSize: 16,
-    color: "black",
-  },
-  cardNumber: {
-    fontWeight: "400",
-    fontSize: 14,
-    color: "black",
-  },
-  balanceText: {
-    marginTop: "3%",
-    flexDirection: "row",
-    width: "100%",
-
-    justifyContent: "space-between",
+    width: "23%",
+    height: "31%",
+    olor: "black",
   },
   buttonCard: {
     flexDirection: "row",
     top: "5%",
   },
-  topup: {
+  abonementList: {
     width: "42%",
     height: "100%",
     marginLeft: "5%",
     padding: "3%",
-    backgroundColor: "#f2cb84",
+    backgroundColor: "rgba(253,226,177,0.44021358543417366)",
     borderRadius: 6,
     borderWidth: 1,
-    borderColor: "#e6ab00",
+    borderColor: "#e9dcd8",
   },
-  topupText: {
+  abonementListText: {
     fontSize: 15,
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
   },
-  partner: {
+  activation: {
     width: "42%",
     height: "100%",
     marginLeft: "5%",
     padding: "3%",
     backgroundColor: "white",
-    borderColor: "#f2cb84",
+    borderColor: "#cbb7c3",
     borderWidth: 1,
     borderRadius: 6,
-    shadowColor: "rgba(246,199,112,0.26514355742296913)",
+    shadowColor: "rgba(203,183,195,0.5410539215686274)",
     shadowOffset: { width: 0, height: 4 },
     shadowOpacity: 1,
-    shadowRadius: 15,
+    shadowRadius: 10,
     elevation: 5,
   },
-  partnerText: {
+  activationTexts: {
     fontSize: 15,
     fontWeight: "bold",
     color: "black",
     textAlign: "center",
   },
-  fuelPrices: {
+  registrationList: {
     textAlign: "center",
     fontFamily: "Raleway",
     fontSize: 20,
     fontWeight: "bold",
     color: "black",
   },
-  containerr: {
+  listAbout: {
     width: "100%",
     flex: 1,
     padding: 10,
     flexDirection: "column",
   },
 
-  item: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#e8e8e8",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    color: "black",
-  },
   name: {
     textAlign: "center",
     fontSize: 15,
-
     fontWeight: "500",
     flex: 1,
     marginTop: "15%",
     color: "black",
   },
 
-  cost: {
+  description1: {
     fontSize: 15,
     fontWeight: "500",
     flex: 1,
-
     color: "black",
-
     marginTop: "15%",
   },
-  costDi: {
+  description2: {
     textAlign: "center",
     alignItems: "center",
     fontSize: 15,
     fontWeight: "500",
     flex: 2,
-    color: "#e6ab00",
+    color: "#787D46",
     marginTop: "15%",
   },
 
-  qrCode: {
+  dataAbonement: {
     width: "90%",
     height: 220,
     overflow: "hidden",
@@ -730,7 +587,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  qrText: {
+  dataText: {
     color: "black",
     marginTop: "2%",
     fontSize: 15,
@@ -744,14 +601,7 @@ const styles = StyleSheet.create({
     width: "100%",
     marginTop: "5%",
   },
-  priceSer: {
-    textAlign: "center",
-    fontFamily: "Raleway",
-    fontSize: 10,
-    fontWeight: "bold",
-    color: "#18aa5e",
-    marginTop: "2%",
-  },
+
   activationText: {
     marginTop: "4%",
     flexDirection: "row",

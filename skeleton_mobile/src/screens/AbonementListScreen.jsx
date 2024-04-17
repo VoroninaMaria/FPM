@@ -3,7 +3,6 @@ import {
   View,
   Text,
   TouchableOpacity,
-  RefreshControl,
   SafeAreaView,
   ScrollView,
   Alert,
@@ -11,9 +10,7 @@ import {
   Image,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import LinearGradient from "react-native-linear-gradient";
 import NavigationTabs from "../Elements/NavigationTabs";
-import { useNavigation } from "@react-navigation/native";
 import { useTranslation } from "react-i18next";
 import Config from "./config.js";
 import "../localization/i18n";
@@ -37,7 +34,6 @@ const Item = ({ allMemberships }) => {
           <View
             style={{
               width: "10%",
-
               fontFamily: "Raleway",
               fontWeight: "500",
               color: "black",
@@ -49,23 +45,24 @@ const Item = ({ allMemberships }) => {
                 width: "100%",
                 marginTop: "4%",
                 fontFamily: "Raleway",
-                fontWeight: "500",
+
                 height: "30%",
                 color: "black",
               }}
             >
-              <Text style={styles.cost}>{allMemberships.name}</Text>
+              <Text style={styles.nameAndPrice}>{allMemberships.name}</Text>
             </View>
 
             <Text style={styles.membershipAbilitiesContainer}>
               {allMemberships?.abilities
-                .map((ability) => ability.name)
-                .join(", ")}
+                ? allMemberships?.abilities
+                    .map((ability) => ability.name)
+                    .join(", ")
+                : t("Session.finished")}
             </Text>
-            <Text style={styles.cost}>{allMemberships.price}</Text>
+            <Text style={styles.nameAndPrice}>{allMemberships.price}</Text>
           </View>
         </View>
-        <View style={styles.lineStyle} />
       </View>
     </ScrollView>
   );
@@ -137,8 +134,10 @@ const AbonementListScreen = ({ navigation }) => {
     <SafeAreaView style={{ flex: 1 }}>
       <View style={styles.container}>
         <View style={styles.containerBrands}>
-          <Text style={styles.textAbonement}></Text>
-          <View style={styles.containerr}>
+          <Text style={styles.textAbonement}>
+            {t("AbonementListScreen.lists")}
+          </Text>
+          <View style={styles.containerList}>
             <FlatList
               data={membershipPrice}
               renderItem={renderItem}
@@ -166,10 +165,9 @@ const styles = StyleSheet.create({
 
   containers: {
     padding: 10,
-    backgroundColor: "rgba(246, 199, 112, 0.2749445676274944)",
+    backgroundColor: "#F1EBD8",
     borderRadius: 15,
     marginBottom: 15,
-
     display: "flex",
     flexDirection: "row",
     ap: 10,
@@ -182,30 +180,16 @@ const styles = StyleSheet.create({
     marginTop: "3%",
     display: "flex",
   },
-  textAbonement: {
-    fontSize: 25,
-    fontFamily: "Outfit-medium",
-  },
+
   bottomContainer: {
     flex: 1,
     width: "100%",
     height: "10%",
     backgroundColor: "#F5F5F5",
   },
-  text: {
-    color: "white",
-    fontSize: 30,
-  },
-  item: {
-    borderBottomWidth: 1,
-    borderBottomColor: "#e8e8e8",
-    flexDirection: "row",
-    justifyContent: "space-between",
-    color: "black",
-  },
-  containerr: {
-    width: "100%",
 
+  containerList: {
+    width: "100%",
     flex: 1,
     padding: 16,
     flexDirection: "column",
@@ -217,9 +201,10 @@ const styles = StyleSheet.create({
 
   textAbonement: {
     fontFamily: "Raleway",
-    fontWeight: "500",
+    fontWeight: "400",
     color: "black",
-    fontSize: 20,
+    fontSize: 22,
+    marginTop: "5%",
     marginBottom: 10,
   },
   logoLoginScreen: {
@@ -230,9 +215,16 @@ const styles = StyleSheet.create({
   },
   membershipAbilitiesContainer: {
     marginTop: "12%",
+    fontFamily: "Raleway",
+    fontWeight: "400",
   },
   textInBox: {
     width: "60%",
     height: "90%",
+  },
+  nameAndPrice: {
+    fontFamily: "Raleway",
+    fontWeight: "700",
+    color: "black",
   },
 });

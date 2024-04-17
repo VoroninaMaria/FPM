@@ -13,26 +13,25 @@ import {
 
 const { width, height } = Dimensions.get("window");
 
-const COLORS = { primary: "#282534", white: "#fff" };
-
 const slides = [
   {
     id: "1",
-    image: require("../assets/images/logoCard.png"),
-    title: "Best Digital Solution",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: require("../assets/images/onBoard1.png"),
+    title: "Ласкаво просимо!",
+    subtitle:
+      "У нашому клубі ми не лише займаємося фізичною активністю, а й формуємо справжніх чемпіонів та підтримуємо кожного у здоровому способі життя.",
   },
   {
     id: "2",
-    image: require("../assets/images/logoCard.png"),
-    title: "Achieve Your Goals",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: require("../assets/images/onBoard2.png"),
+    title: "Швидко та легко",
+    subtitle: "Цей програмний додаток допоможе вам зберігати свій час",
   },
   {
     id: "3",
-    image: require("../assets/images/logoCard.png"),
-    title: "Increase Your Value",
-    subtitle: "Lorem ipsum dolor sit amet, consectetur adipiscing elit.",
+    image: require("../assets/images/onBoard3.png"),
+    title: "Проста зміна даних",
+    subtitle: "В додатку ви маєте змогу зміти свої дані для спорт клубу",
   },
 ];
 
@@ -41,7 +40,7 @@ const Slide = ({ item }) => {
     <View style={{ alignItems: "center" }}>
       <Image
         source={item?.image}
-        style={{ height: "75%", width, resizeMode: "contain" }}
+        style={{ height: "60%", width, resizeMode: "contain" }}
       />
       <View>
         <Text style={styles.title}>{item?.title}</Text>
@@ -87,7 +86,6 @@ const OnBoardingScreen = ({ navigation }) => {
           paddingHorizontal: 20,
         }}
       >
-        {/* Indicator container */}
         <View
           style={{
             flexDirection: "row",
@@ -95,14 +93,13 @@ const OnBoardingScreen = ({ navigation }) => {
             marginTop: 20,
           }}
         >
-          {/* Render indicator */}
           {slides.map((_, index) => (
             <View
               key={index}
               style={[
                 styles.indicator,
                 currentSlideIndex == index && {
-                  backgroundColor: COLORS.white,
+                  backgroundColor: "white",
                   width: 25,
                 },
               ]}
@@ -110,13 +107,19 @@ const OnBoardingScreen = ({ navigation }) => {
           ))}
         </View>
 
-        {/* Render buttons */}
         <View style={{ marginBottom: 20 }}>
           {currentSlideIndex == slides.length - 1 ? (
             <View style={{ height: 50 }}>
               <TouchableOpacity style={styles.btn} onPress={openCard}>
-                <Text style={{ fontWeight: "bold", fontSize: 15 }}>
-                  GET STARTED
+                <Text
+                  style={{
+                    fontWeight: "bold",
+                    fontSize: 15,
+                    color: "#945D87",
+                    fontFamily: "Raleway",
+                  }}
+                >
+                  РОЗПОЧНЕМО
                 </Text>
               </TouchableOpacity>
             </View>
@@ -127,7 +130,7 @@ const OnBoardingScreen = ({ navigation }) => {
                 style={[
                   styles.btn,
                   {
-                    borderColor: COLORS.white,
+                    borderColor: "#FEE3A2",
                     borderWidth: 1,
                     backgroundColor: "transparent",
                   },
@@ -137,26 +140,29 @@ const OnBoardingScreen = ({ navigation }) => {
                 <Text
                   style={{
                     fontWeight: "bold",
-                    fontSize: 15,
-                    color: COLORS.white,
+                    fontSize: 16,
+                    fontFamily: "Raleway",
+                    color: "#FEE3A2",
                   }}
                 >
-                  SKIP
+                  ПРОПУСТИТИ
                 </Text>
               </TouchableOpacity>
               <View style={{ width: 15 }} />
               <TouchableOpacity
-                activeOpacity={0.8}
+                activeOpacity={0.9}
                 onPress={goToNextSlide}
                 style={styles.btn}
               >
                 <Text
                   style={{
                     fontWeight: "bold",
-                    fontSize: 15,
+                    fontSize: 16,
+                    color: "#945D87",
+                    fontFamily: "Raleway",
                   }}
                 >
-                  NEXT
+                  ДАЛІ
                 </Text>
               </TouchableOpacity>
             </View>
@@ -167,8 +173,8 @@ const OnBoardingScreen = ({ navigation }) => {
   };
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor: COLORS.primary }}>
-      <StatusBar backgroundColor={COLORS.primary} />
+    <SafeAreaView style={styles.SafeAreaView}>
+      <StatusBar style={styles.StatusBar} />
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
@@ -186,17 +192,20 @@ const OnBoardingScreen = ({ navigation }) => {
 
 const styles = StyleSheet.create({
   subtitle: {
-    color: COLORS.white,
+    color: "white",
     fontSize: 13,
     marginTop: 10,
+    width: 350,
     maxWidth: "70%",
     textAlign: "center",
+    fontFamily: "Raleway",
     lineHeight: 23,
   },
   title: {
-    color: COLORS.white,
+    color: "white",
     fontSize: 22,
     fontWeight: "bold",
+    fontFamily: "Raleway",
     marginTop: 20,
     textAlign: "center",
   },
@@ -216,9 +225,18 @@ const styles = StyleSheet.create({
     flex: 1,
     height: 50,
     borderRadius: 5,
-    backgroundColor: "#fff",
+    backgroundColor: "#FEE3A2",
     justifyContent: "center",
+    fontFamily: "Raleway",
     alignItems: "center",
+  },
+  SafeAreaView: {
+    flex: 1,
+    fontFamily: "Raleway",
+    backgroundColor: "#9A7EA6",
+  },
+  StatusBar: {
+    backgroundColor: "#9A7EA6",
   },
 });
 export default OnBoardingScreen;

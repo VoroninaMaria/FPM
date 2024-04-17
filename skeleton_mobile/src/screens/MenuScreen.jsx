@@ -7,13 +7,10 @@ import {
   TouchableOpacity,
   SafeAreaView,
   Linking,
-  ScrollView,
 } from "react-native";
 import Icon from "react-native-vector-icons/FontAwesome5";
-import AntIcon from "react-native-vector-icons/AntDesign";
 import NavigationTabs from "../Elements/NavigationTabs";
 import { useTranslation } from "react-i18next";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import "../localization/i18n";
 
 const MenuScreen = ({ navigation }) => {
@@ -30,12 +27,7 @@ const MenuScreen = ({ navigation }) => {
   const openSupport = () => {
     navigation.navigate("Support");
   };
-  const openAbonement = () => {
-    navigation.navigate("AbonementListScreen");
-  };
-  const openInfo = () => {
-    navigation.navigate("InformationScreen");
-  };
+
   const openOnBoarding = () => {
     navigation.navigate("OnBoardingScreen");
   };
@@ -50,16 +42,16 @@ const MenuScreen = ({ navigation }) => {
         <View style={styles.containerBrands}>
           <View style={styles.containerImg}>
             <Image
-              source={require("../assets/images/gymLogo.png")}
+              source={require("../assets/images/Sports.png")}
               style={styles.logoLoginScreen}
             />
           </View>
           <View style={styles.menuList}>
             <TouchableOpacity style={styles.list} onPress={openHome}>
               <Icon
-                name="house-user"
+                name="home"
                 size={28}
-                color="#f2cb84"
+                color="#cbb7c3"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -73,9 +65,9 @@ const MenuScreen = ({ navigation }) => {
               }}
             >
               <Icon
-                name="th-list"
+                name="list"
                 size={28}
-                color="#f2cb84"
+                color="#f5e5bc"
                 marginLeft="4%"
                 justifyContent="space-between"
               />
@@ -84,9 +76,9 @@ const MenuScreen = ({ navigation }) => {
 
             <TouchableOpacity style={styles.list} onPress={openProfile}>
               <Icon
-                name="user"
+                name="user-alt"
                 size={28}
-                color="#f2cb84"
+                color="#cbb7c3"
                 marginLeft="5%"
                 justifyContent="space-between"
               />
@@ -96,7 +88,7 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="sliders-h"
                 size={25}
-                color="#e6ab00"
+                color="#f5e5bc"
                 marginLeft="5%"
                 justifyContent="space-between"
               />
@@ -106,49 +98,20 @@ const MenuScreen = ({ navigation }) => {
               <Icon
                 name="headset"
                 size={28}
-                color="#f2cb84"
+                color="#cbb7c3"
                 marginLeft="5%"
                 justifyContent="space-between"
               />
               <Text style={styles.listText}>{t("MenuScreen.support")}</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.list} onPress={openAbonement}>
-              <Icon
-                name="headset"
-                size={28}
-                color="#f2cb84"
-                marginLeft="5%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("jjj")}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.list} onPress={openInfo}>
-              <Icon
-                name="list"
-                size={25}
-                color="#e6ab00"
-                marginLeft="5%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("MenuScreen.settings")}</Text>
-            </TouchableOpacity>
-            <TouchableOpacity style={styles.list} onPress={openOnBoarding}>
-              <Icon
-                name="list"
-                size={25}
-                color="#e6ab00"
-                marginLeft="5%"
-                justifyContent="space-between"
-              />
-              <Text style={styles.listText}>{t("MenuScreen.settings")}</Text>
-            </TouchableOpacity>
+
             <View style={styles.lineStyle} />
             <View style={styles.exitContainer}>
               <TouchableOpacity style={styles.exit} onPress={openExit}>
                 <Icon
                   name="door-open"
                   size={28}
-                  color="#e6ab00"
+                  color="#84739a"
                   marginRight="5%"
                   justifyContent="space-between"
                 />
@@ -194,8 +157,8 @@ const styles = StyleSheet.create({
     fontSize: 30,
   },
   logoLoginScreen: {
-    width: 180,
-    height: 74,
+    width: 120,
+    height: 35,
   },
   containerImg: {
     resizeMode: "contain",

@@ -9,15 +9,11 @@ import {
   Alert,
 } from "react-native";
 import React, { useState, useEffect } from "react";
-import LinearGradient from "react-native-linear-gradient";
-import NavigationTabs from "../Elements/NavigationTabs";
-import { useNavigation } from "@react-navigation/native";
-import { useTranslation } from "react-i18next";
 import Config from "./config.js";
 import "../localization/i18n";
 import axios from "axios";
+import { useTranslation } from "react-i18next";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import moment from "moment";
 const LineDivider = () => {
   return (
     <View style={{ width: 1, paddingVertical: 5 }}>
@@ -32,8 +28,9 @@ const LineDivider = () => {
   );
 };
 
-const BookDetail = ({ route, navigation }) => {
+const InformationScreen = ({ route, navigation }) => {
   const { id } = route.params;
+  const { t } = useTranslation();
   const [client, setClient] = useState();
   const [membershipPrice, setMembershipPrice] = useState([]);
 
@@ -49,7 +46,6 @@ const BookDetail = ({ route, navigation }) => {
         if (!token) {
           console.log(token);
           Alert.alert(t("Session.session"), t("Session.finished"));
-          // return navigation.navigate("Login");
         }
         if (token) {
           return axios
@@ -91,7 +87,6 @@ const BookDetail = ({ route, navigation }) => {
       .then((token) => {
         if (!token) {
           Alert.alert(t("Session.session"), t("Session.finished"));
-          // return navigation.navigate("Login");
         }
         if (token) {
           return axios
@@ -132,13 +127,11 @@ const BookDetail = ({ route, navigation }) => {
 
             .catch((error) => {
               Alert.alert(t("Session.session"), t("Session.finished"));
-              // return navigation.navigate("Login");
             });
         }
       })
       .catch(() => {
         Alert.alert(t("Session.session"), t("Session.finished"));
-        // return navigation.navigate("Login");
       });
   useEffect(() => {
     const delay = 300;
@@ -156,13 +149,11 @@ const BookDetail = ({ route, navigation }) => {
     loadDataWithDelay();
   }, []);
 
-  // console.log()
-
-  function renderBookInfoSection() {
+  function renderAbonementInfoSection() {
     return (
       <View style={{ flex: 1 }}>
         <ImageBackground
-          source={require("../assets/images/backgroundForAbout.jpeg")}
+          source={require("../assets/images/sports4.jpeg")}
           resizeMode="cover"
           style={{
             position: "absolute",
@@ -173,7 +164,6 @@ const BookDetail = ({ route, navigation }) => {
           }}
         />
 
-        {/* Color Overlay */}
         <View
           style={{
             position: "absolute",
@@ -181,57 +171,48 @@ const BookDetail = ({ route, navigation }) => {
             right: 0,
             bottom: 0,
             left: 0,
-            backgroundColor: "rgba(240,240,232,0.9)",
+            backgroundColor: "rgba(241,242,233,0.8)",
           }}
         ></View>
 
-        {/* Navigation header */}
         <View
           style={{
-            flexDirection: "row",
-            paddingHorizontal: 12,
-            height: 80,
             alignItems: "flex-end",
+            flexDirection: "row",
+            paddingHorizontal: 13,
+            height: 85,
           }}
         >
           <TouchableOpacity
-            style={{ marginLeft: 8 }}
+            style={{ marginLeft: 10 }}
             onPress={() => navigation.goBack()}
           >
             <Image
               source={require("../assets/images/back_arrow_icon.png")}
               style={{
-                width: 20,
-                height: 20,
+                width: 21,
+                height: 21,
               }}
             />
           </TouchableOpacity>
 
           <View
-            style={{ flex: 1, alignItems: "center", justifyContent: "center" }}
+            style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
           >
-            <Text style={{ color: "#000" }}>Деталі абонемента</Text>
-          </View>
-
-          <TouchableOpacity
-            style={{ marginRigth: 8 }}
-            onPress={() => console.log("Click More")}
-          >
-            <Image
-              source={"../assets/images/back_arrow_icon.png"}
-              resizeMode="contain"
+            <Text
               style={{
-                width: 30,
-                height: 30,
-                tintColor: "#000",
-                alignSelf: "flex-end",
+                color: "#000",
+                fontFamily: "Raleway",
+                fontSize: 17,
+                fontWeight: "500",
               }}
-            />
-          </TouchableOpacity>
+            >
+              {t("InformationScreen.about")}
+            </Text>
+          </View>
         </View>
 
-        {/* Book Cover */}
-        <View style={{ flex: 5, paddingTop: 36, alignItems: "center" }}>
+        <View style={{ flex: 5, paddingTop: 42, alignItems: "center" }}>
           <Image
             source={require("../assets/images/Sports.png")}
             resizeMode="contain"
@@ -243,30 +224,37 @@ const BookDetail = ({ route, navigation }) => {
           />
         </View>
 
-        {/* Book Name and Author */}
         <View
-          style={{ flex: 1.8, alignItems: "center", justifyContent: "center" }}
+          style={{
+            flex: 1.8,
+            alignItems: "center",
+            justifyContent: "center",
+          }}
         >
-          <Text>
+          <Text
+            style={{
+              fontFamily: "Raleway",
+              fontSize: 18,
+              fontWeight: "500",
+            }}
+          >
             {membershipPrice?.abilities
               ? membershipPrice.abilities
                   .map((ability) => ability.name)
                   .join(", ")
-              : "Немає даних"}
+              : t("Session.finished")}
           </Text>
         </View>
 
-        {/* Book Info */}
         <View
           style={{
             flexDirection: "row",
-            paddingVertical: 20,
-            margin: 24,
-            borderRadius: 12,
-            backgroundColor: "rgba(0,0,0,0.3)",
+            paddingVertical: 21,
+            margin: 25,
+            borderRadius: 13,
+            backgroundColor: "#BC2041",
           }}
         >
-          {/* Pages */}
           <View
             style={{
               flex: 1,
@@ -274,23 +262,56 @@ const BookDetail = ({ route, navigation }) => {
               alignItems: "center",
             }}
           >
-            <Text style={{ color: "white" }}>{membershipPrice?.address}</Text>
-            <Text style={{ color: "white" }}>Локація</Text>
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "Raleway",
+                fontWeight: "700",
+                fontSize: 17,
+              }}
+            >
+              {membershipPrice?.address}
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "Raleway",
+                fontWeight: "400",
+              }}
+            >
+              {t("InformationScreen.location")}
+            </Text>
           </View>
 
           <LineDivider />
 
-          {/* Language */}
           <View style={{ flex: 1, alignItems: "center" }}>
-            <Text style={{ color: "white" }}>{membershipPrice?.price}</Text>
-            <Text style={{ color: "white" }}>Ціна</Text>
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "Raleway",
+                fontWeight: "800",
+                fontSize: 19,
+              }}
+            >
+              {membershipPrice?.price}
+            </Text>
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "Raleway",
+                fontWeight: "400",
+              }}
+            >
+              {t("InformationScreen.price")}
+            </Text>
           </View>
         </View>
       </View>
     );
   }
 
-  function renderBookDescription() {
+  function renderAbonementDescription() {
     const indicatorSize =
       scrollViewWholeHeight > scrollViewVisibleHeight
         ? (scrollViewVisibleHeight * scrollViewVisibleHeight) /
@@ -303,13 +324,20 @@ const BookDetail = ({ route, navigation }) => {
         : 1;
 
     return (
-      <View style={{ flex: 1, flexDirection: "row", padding: 24 }}>
-        <View style={{ width: 4, height: "100%", backgroundColor: "gray" }}>
+      <View
+        style={{
+          flex: 1,
+          flexDirection: "row",
+          padding: 24,
+          backgroundColor: "#564C55",
+        }}
+      >
+        <View style={{ width: 4, height: "100%" }}>
           <Animated.View
             style={{
               width: 4,
               height: indicatorSize,
-              backgroundColor: "#7D7E84",
+              backgroundColor: "white",
               transform: [
                 {
                   translateY: Animated.multiply(
@@ -326,7 +354,6 @@ const BookDetail = ({ route, navigation }) => {
           />
         </View>
 
-        {/* Description */}
         <ScrollView
           contentContainerStyle={{ paddingLeft: 36 }}
           showsVerticalScrollIndicator={false}
@@ -350,17 +377,26 @@ const BookDetail = ({ route, navigation }) => {
             style={{
               color: "white",
               marginBottom: 24,
+              fontFamily: "Raleway",
+              fontWeight: "700",
             }}
           >
-            Опис
+            {t("InformationScreen.subscriptionDetails")}
           </Text>
-          <Text style={{ color: "#64676D" }}>
-            <Text style={{ color: "white" }}>
+          <Text style={{ color: "white" }}>
+            <Text
+              style={{
+                color: "white",
+                fontFamily: "Raleway",
+                fontWeight: "400",
+                fontSize: 16,
+              }}
+            >
               {membershipPrice?.abilities
                 ? membershipPrice.abilities
                     .map((ability) => ability.description)
                     .join(", ")
-                : "Немає даних"}
+                : "Інформація відсутня"}
             </Text>
           </Text>
         </ScrollView>
@@ -368,65 +404,12 @@ const BookDetail = ({ route, navigation }) => {
     );
   }
 
-  function renderBottomButton() {
-    return (
-      <View style={{ flex: 1, flexDirection: "row" }}>
-        {/* Bookmark */}
-        <TouchableOpacity
-          style={{
-            width: 60,
-            backgroundColor: "#25282F",
-            marginLeft: 24,
-            marginVertical: 8,
-            borderRadius: 12,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          onPress={() => console.log("Bookmark")}
-        >
-          <Image
-            source={"../assets/images/back_arrow_icon.png"}
-            resizeMode="contain"
-            style={{
-              width: 25,
-              height: 25,
-              tintColor: "#EFEFF0",
-            }}
-          />
-        </TouchableOpacity>
-
-        {/* Start Reading */}
-        <TouchableOpacity
-          style={{
-            flex: 1,
-            backgroundColor: "#F96D41",
-            marginHorizontal: 8,
-            marginVertical: 8,
-            borderRadius: 12,
-            alignItems: "center",
-            justifyContent: "center",
-          }}
-          onPress={() => console.log("Start Reading")}
-        >
-          <Text style={{ color: "white" }}>Start Reading</Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
-
   if (client) {
     return (
-      <View style={{ flex: 1, backgroundColor: "black" }}>
-        {/* Book Cover Section */}
-        <View style={{ flex: 4 }}>{renderBookInfoSection()}</View>
+      <View style={{ flex: 1 }}>
+        <View style={{ flex: 4 }}>{renderAbonementInfoSection()}</View>
 
-        {/* Description */}
-        <View style={{ flex: 2 }}>{renderBookDescription()}</View>
-
-        {/* Buttons */}
-        <View style={{ height: 70, marginBottom: 30 }}>
-          {renderBottomButton()}
-        </View>
+        <View style={{ flex: 2 }}>{renderAbonementDescription()}</View>
       </View>
     );
   } else {
@@ -434,4 +417,4 @@ const BookDetail = ({ route, navigation }) => {
   }
 };
 
-export default BookDetail;
+export default InformationScreen;
