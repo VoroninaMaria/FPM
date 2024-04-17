@@ -244,7 +244,9 @@ const CardScreen = () => {
                           textAlign: "center",
                         }}
                       >
-                        {client?.first_name.toString()}
+                        {client?.first_name
+                          ? client.first_name.toString()
+                          : t("InputErrors.noDataAvailable")}
                       </Text>
 
                       <Text
@@ -258,7 +260,9 @@ const CardScreen = () => {
                           marginLeft: "5%",
                         }}
                       >
-                        {client?.last_name.toString()}
+                        {client?.last_name
+                          ? client.last_name.toString()
+                          : t("InputErrors.noDataAvailable")}
                       </Text>
                       <Text
                         style={{
@@ -270,7 +274,9 @@ const CardScreen = () => {
                           color: "black",
                         }}
                       >
-                        {client?.phone.toString()}
+                        {client?.phone
+                          ? client.phone.toString()
+                          : t("InputErrors.noDataAvailable")}
                       </Text>
                     </View>
                   </View>
