@@ -45,7 +45,7 @@ describe("Merchant tab tests", () => {
     const usernameValue = await username.getAttribute("value");
 
     expect(usernameValue).to.equal("");
-    await username.sendKeys("uklon");
+    await username.sendKeys("gym1");
 
     const userpassword = await driver.findElement(By.css("#password"));
     const passwordValue = await userpassword.getAttribute("value");
