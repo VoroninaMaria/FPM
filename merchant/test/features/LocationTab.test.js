@@ -32,12 +32,6 @@ describe("Location tab tests", () => {
     const text1 = (Math.random() + 1).toString(36).substring(10);
 
     await driver.findElement(By.css("#name")).sendKeys(text1);
-
-    await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
-    await driver
-      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
-      .click();
-
     await driver
       .wait(until.elementLocated(By.id("address")), 2000)
       .sendKeys("Des pid dubom");
@@ -58,16 +52,6 @@ describe("Location tab tests", () => {
         2000
       )
       .getText();
-    const locationMerchant = await driver
-      .wait(
-        until.elementLocated(
-          By.css(
-            "#main-content > div > div.RaShow-main > div > div > div > span.MuiStack-root.ra-field.ra-field-merchant_id.RaSimpleShowLayout-row > span > a > span"
-          )
-        ),
-        2000
-      )
-      .getText();
 
     const locationAddress = await driver
       .wait(
@@ -81,7 +65,6 @@ describe("Location tab tests", () => {
       .getText();
 
     expect(locationName).to.not.be.empty;
-    expect(locationMerchant).to.not.be.empty;
     expect(locationAddress).to.not.be.empty;
 
     await driver.get(`${Config.serverUrl}/#/Location`);
@@ -107,11 +90,6 @@ describe("Location tab tests", () => {
     const text = (Math.random() + 1).toString(36).substring(10);
 
     await driver.findElement(By.css("#name")).sendKeys(text);
-
-    await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
-    await driver
-      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
-      .click();
     await driver
       .wait(until.elementLocated(By.id("address")), 2000)
       .sendKeys("Des na berezy");
@@ -132,17 +110,6 @@ describe("Location tab tests", () => {
         2000
       )
       .getText();
-    const locMerchant = await driver
-      .wait(
-        until.elementLocated(
-          By.css(
-            "#main-content > div > div.RaShow-main > div > div > div > span.MuiStack-root.ra-field.ra-field-merchant_id.RaSimpleShowLayout-row > span > a > span"
-          )
-        ),
-        2000
-      )
-      .getText();
-
     const locationAddress1 = await driver
       .wait(
         until.elementLocated(
@@ -155,7 +122,6 @@ describe("Location tab tests", () => {
       .getText();
 
     expect(locName).to.not.be.empty;
-    expect(locMerchant).to.not.be.empty;
     expect(locationAddress1).to.not.be.empty;
 
     await driver.get(`${Config.serverUrl}/#/Location`);
@@ -243,11 +209,6 @@ describe("Location tab tests", () => {
     await driver
       .wait(until.elementLocated(By.id("name")), 2000)
       .sendKeys("Voda");
-    await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
-    await driver
-      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
-      .click();
-
     await driver
       .wait(until.elementLocated(By.id("address")), 2000)
       .sendKeys("Des y vody");
@@ -268,17 +229,6 @@ describe("Location tab tests", () => {
         2000
       )
       .getText();
-    const locationMerchant1 = await driver
-      .wait(
-        until.elementLocated(
-          By.css(
-            "#main-content > div > div.RaShow-main > div > div > div > span.MuiStack-root.ra-field.ra-field-merchant_id.RaSimpleShowLayout-row > span > a > span"
-          )
-        ),
-        2000
-      )
-      .getText();
-
     const locationAddress = await driver
       .wait(
         until.elementLocated(
@@ -291,7 +241,6 @@ describe("Location tab tests", () => {
       .getText();
 
     expect(locationName1).to.not.be.empty;
-    expect(locationMerchant1).to.not.be.empty;
     expect(locationAddress).to.not.be.empty;
 
     await driver
@@ -309,11 +258,6 @@ describe("Location tab tests", () => {
     await driver
       .wait(until.elementLocated(By.id("name")), 2000)
       .sendKeys("Voda");
-    await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
-    await driver
-      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
-      .click();
-
     await driver
       .wait(until.elementLocated(By.id("address")), 2000)
       .sendKeys("Des y vody");
