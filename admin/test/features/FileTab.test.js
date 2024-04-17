@@ -31,7 +31,10 @@ describe("File tab tests", () => {
     await driver
       .wait(until.elementLocated(By.id("name")), 2000)
       .sendKeys("bibi");
-
+    await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
+    await driver
+      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
+      .click();
     const fileInput = await driver.wait(
       until.elementLocated(By.xpath("//input[@id='attachments']")),
       2000
@@ -87,7 +90,10 @@ describe("File tab tests", () => {
     await driver
       .wait(until.elementLocated(By.id("name")), 2000)
       .sendKeys("habibi");
-
+    await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
+    await driver
+      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
+      .click();
     const fileInput1 = await driver.wait(
       until.elementLocated(By.xpath("//input[@id='attachments']")),
       2000

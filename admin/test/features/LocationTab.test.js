@@ -35,12 +35,7 @@ describe("Location tab tests", () => {
 
     await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
     await driver
-      .wait(
-        until.elementLocated(
-          By.css("#menu-merchant_id > div > ul > li:nth-child(2)")
-        ),
-        2000
-      )
+      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
       .click();
 
     await driver
@@ -115,14 +110,8 @@ describe("Location tab tests", () => {
 
     await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
     await driver
-      .wait(
-        until.elementLocated(
-          By.css("#menu-merchant_id > div > ul > li:nth-child(1)")
-        ),
-        2000
-      )
+      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
       .click();
-
     await driver
       .wait(until.elementLocated(By.id("address")), 2000)
       .sendKeys("Des na berezy");
@@ -256,12 +245,7 @@ describe("Location tab tests", () => {
       .sendKeys("Voda");
     await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
     await driver
-      .wait(
-        until.elementLocated(
-          By.css("#menu-merchant_id > div > ul > li:nth-child(1)")
-        ),
-        2000
-      )
+      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
       .click();
 
     await driver
@@ -327,12 +311,7 @@ describe("Location tab tests", () => {
       .sendKeys("Voda");
     await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
     await driver
-      .wait(
-        until.elementLocated(
-          By.css("#menu-merchant_id > div > ul > li:nth-child(1)")
-        ),
-        2000
-      )
+      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
       .click();
 
     await driver
@@ -351,5 +330,49 @@ describe("Location tab tests", () => {
       .getText();
 
     expect(error).to.eq("Елемент вже існує");
+  });
+
+  it("Percent value must be less than 100 ", async () => {
+    await driver.get(`${Config.serverUrl}/#/Discount`);
+    await driver.wait(until.urlIs(`${Config.serverUrl}/#/Discount`), 2000);
+    await driver.sleep(100);
+
+    await driver
+      .wait(until.elementLocated(By.css("a[aria-label^='Створити']")), 2000)
+      .click();
+
+    await driver.wait(
+      until.urlIs(`${Config.serverUrl}/#/Discount/create`),
+      2000
+    );
+    await driver
+      .wait(until.elementLocated(By.id("name")), 2000)
+      .sendKeys("haaa");
+    await driver.wait(until.elementLocated(By.id("merchant_id")), 2000).click();
+    await driver
+      .wait(until.elementLocated(By.xpath("//*[text()='gym1']")), 2000)
+      .click();
+    await driver
+      .wait(until.elementLocated(By.id("percent")), 2000)
+      .sendKeys("120");
+
+    await driver
+      .wait(
+        until.elementLocated(By.css("button[aria-label^='Зберегти']")),
+        2000
+      )
+      .click();
+    await driver.sleep(100);
+    const error = await driver
+      .wait(until.elementLocated(By.css(".MuiSnackbarContent-message")), 2000)
+      .getText();
+
+    expect(error).to.eq("Форма недійсна. Перевірте помилки");
+
+    const errorPercent = await driver
+      .wait(until.elementLocated(By.id("percent-helper-text")), 2000)
+      .getText();
+
+    expect(errorPercent).to.eq("0 - 100");
   });
 });
