@@ -44,7 +44,7 @@ describe("Admin tab tests", () => {
     const usernameValue = await username.getAttribute("value");
 
     expect(usernameValue).to.equal("");
-    await username.sendKeys("offtop");
+    await username.sendKeys("mainbos");
 
     const userpassword = await driver.findElement(By.css("#password"));
     const passwordValue = await userpassword.getAttribute("value");
