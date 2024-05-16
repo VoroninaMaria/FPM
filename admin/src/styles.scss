@@ -12,48 +12,20 @@
 }
 
 .RaSidebar-fixed a:focus {
-  background: rgb(221, 191, 167);
-  background: linear-gradient(
-    90deg,
-    rgba(221, 191, 167, 0.33441880170036764) 62%,
-    rgba(0, 0, 0, 0.2167717428768382) 93%
-  );
+  background: rgb(161, 186, 219);
 }
 
 .RaSidebar-fixed a:hover {
-  background: rgb(221, 191, 167);
-
-  background: linear-gradient(
-    90deg,
-    rgba(221, 191, 167, 0.33441880170036764) 62%,
-    rgba(0, 0, 0, 0.2167717428768382) 93%
-  );
+  background: rgb(240, 248, 255);
 }
 .RaSidebar-fixed {
-  background: linear-gradient(
-    90deg,
-    rgba(234, 205, 163, 0.5248949921765581) 0%,
-    rgba(236, 192, 133, 0.49968490814294464) 41%,
-    rgba(237, 186, 119, 0.5304972330729167) 82%,
-    rgba(241, 158, 52, 0.3904412106639531) 100%
-  );
+  background: rgb(206, 218, 235);
 }
 #root > div > div > div > div > main > div.RaSidebar-docked > div > div {
   height: 100%;
 }
 .MuiPaper-root.MuiAppBar-positionFixed {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(255, 255, 255, 1) 100%,
-    rgba(255, 255, 253, 0.13273812943146013) 100%
-  );
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 62%,
-    rgba(83, 64, 49, 1) 93%
-  );
+  background: rgb(91, 122, 164);
 }
 
 .RaDatagrid-tableWrapper thead tr {
@@ -61,25 +33,18 @@
   text-align: left;
 }
 
-.RaDatagrid-tableWrapper tbody tr:nth-of-type(even) {
-  background: rgb(0, 0, 0);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.07111347957151615) 0%,
-    rgba(212, 170, 140, 0.06271011822697825) 30%,
-    rgba(212, 170, 140, 0.07391460001969541) 76%,
-    rgba(0, 0, 0, 0.054306756882440466) 100%
-  );
+/*.RaDatagrid-tableWrapper tbody tr:nth-of-type(even) {
+  background: rgb(230, 235, 242);
 }
 .RaDatagrid-tableWrapper a {
-  color: rgb(136, 93, 61);
+  color: rgb(1, 122, 164);
 }
-
+*/
 .css-17tmrxl a {
-  color: rgb(136, 93, 61);
+  color: rgb(1, 122, 164);
 }
 css-17tmrxl button {
-  color: rgb(136, 93, 61);
+  color: rgb(11, 122, 164);
 }
 .css-16zittn.MuiButton-sizeSmall {
   color: rgb(136, 93, 61);
@@ -319,7 +284,7 @@ table {
   > div
   > div
   > a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.show-tab.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
-  color: rgb(110, 57, 0);
+  color: rgb(25, 25, 112);
 }
 
 #main-content
@@ -330,22 +295,22 @@ table {
   > div.MuiTabs-root.css-1ujnqem-MuiTabs-root
   > div
   > span.css-1aquho2-MuiTabs-indicator {
-  background-color: rgb(110, 57, 0);
+  background-color: rgb(25, 25, 112);
 }
 
 .MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.form-tab.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
-  color: rgb(110, 57, 0);
+  color: rgb(25, 25, 112);
 }
 
 .MuiTabs-indicator.css-1aquho2-MuiTabs-indicator {
-  background-color: rgb(110, 57, 0);
+  background-color: rgb(25, 25, 112);
 }
 
 #main-content
   > div
   > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1q2ae6k-MuiToolbar-root-RaTopToolbar-root
   > a {
-  color: rgb(110, 57, 0);
+  color: rgb(224, 255, 255);
 }
 
 .page-preview-container {
@@ -387,8 +352,8 @@ table {
   background: rgb(255, 255, 255);
   background: linear-gradient(
     90deg,
-    rgba(255, 255, 255, 1) 100%,
-    rgba(255, 255, 253, 0.13273812943146013) 100%
+    rgba(224, 255, 255) 100%,
+    rgba(224, 255, 255, 0.13273812943146013) 100%
   );
   background: rgb(0, 0, 0);
   background: linear-gradient(
@@ -441,6 +406,6 @@ table {
   box-shadow: rgba(0, 0, 0, 0.3) 2px 8px 4px -6px;
 }
 #main-content > div > div > div > div > div > table > thead > tr > th {
-  background: rgba(99, 111, 164, 0.127);
+  background: rgba(206, 218, 235);
   position: relative;
 }

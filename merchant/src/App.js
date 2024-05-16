@@ -9,6 +9,10 @@ import {
   Tag,
   Class,
   AccountBox,
+  LocationOn,
+  Discount,
+  CardMembership,
+  WorkHistory,
 } from "@mui/icons-material/index.js";
 
 import Pages from "./pages/index.js";
@@ -88,7 +92,7 @@ export const App = () => {
         show={Pages.Discount.Show}
         edit={Pages.Discount.Edit}
         create={Pages.Discount.Create}
-        icon={PictureAsPdf}
+        icon={Discount}
       />
 
       <Resource
@@ -97,7 +101,7 @@ export const App = () => {
         show={Pages.Location.Show}
         create={Pages.Location.Create}
         edit={Pages.Location.Edit}
-        icon={Tag}
+        icon={LocationOn}
       />
 
       <Resource
@@ -106,7 +110,7 @@ export const App = () => {
         show={Pages.Membership.Show}
         create={Pages.Membership.Create}
         edit={Pages.Membership.Edit}
-        icon={Tag}
+        icon={CardMembership}
       />
 
       <Resource
@@ -114,7 +118,7 @@ export const App = () => {
         list={Pages.MembershipLog.List}
         show={Pages.MembershipLog.Show}
         edit={Pages.MembershipLog.Edit}
-        icon={Tag}
+        icon={WorkHistory}
       />
 
       <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
