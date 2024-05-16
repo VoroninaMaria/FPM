@@ -9,6 +9,10 @@ import {
   Class,
   AccountBox,
   Diversity3,
+  LocationOn,
+  Discount,
+  CardMembership,
+  WorkHistory,
 } from "@mui/icons-material/index.js";
 
 import Pages from "./pages/index.js";
@@ -91,7 +95,7 @@ export const App = () => {
         show={Pages.Discount.Show}
         edit={Pages.Discount.Edit}
         create={Pages.Discount.Create}
-        icon={PictureAsPdf}
+        icon={Discount}
       />
       <Resource
         name="Location"
@@ -99,7 +103,7 @@ export const App = () => {
         show={Pages.Location.Show}
         edit={Pages.Location.Edit}
         create={Pages.Location.Create}
-        icon={PictureAsPdf}
+        icon={LocationOn}
       />
 
       <Resource
@@ -108,14 +112,14 @@ export const App = () => {
         show={Pages.Membership.Show}
         create={Pages.Membership.Create}
         edit={Pages.Membership.Edit}
-        icon={PictureAsPdf}
+        icon={CardMembership}
       />
       <Resource
         name="MembershipLog"
         list={Pages.MembershipLog.List}
         show={Pages.MembershipLog.Show}
         edit={Pages.MembershipLog.Edit}
-        icon={PictureAsPdf}
+        icon={WorkHistory}
       />
     </Admin>
   );
