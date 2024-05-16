@@ -1,11 +1,9 @@
 .MuiButtonBase-root a:link {
-  background-image: linear-gradient(to bottom right, #0100ec, #fb36f4);
-  border-bottom: 1px solid rgba(237, 186, 119, 0.24478294735863093);
+  border-bottom: 1px solid rgba(58, 100, 155, 0.24478294735863093);
 }
 
 .RaSidebar-fixed a:visited {
-  background-image: linear-gradient(to bottom right, #0100ec, #fb36f4);
-  border-bottom: 1px solid rgba(237, 186, 119, 0.24478294735863093);
+  border-bottom: 1px solid rgba(206, 218, 235, 0.24478294735863093);
 }
 .RaSidebar-fixed a {
   border-bottom: 1px solid;
@@ -28,37 +26,25 @@
   background: rgb(91, 122, 164);
 }
 
-.RaDatagrid-tableWrapper thead tr {
-  color: #ffffff;
-  text-align: left;
-}
-
-/*.RaDatagrid-tableWrapper tbody tr:nth-of-type(even) {
-  background: rgb(230, 235, 242);
-}
-.RaDatagrid-tableWrapper a {
-  color: rgb(1, 122, 164);
-}
-*/
 .css-17tmrxl a {
-  color: rgb(1, 122, 164);
+  color: rgb(206, 218, 235);
 }
 css-17tmrxl button {
-  color: rgb(11, 122, 164);
+  color: rgb(206, 218, 235);
 }
 .css-16zittn.MuiButton-sizeSmall {
-  color: rgb(136, 93, 61);
+  color: rgb(206, 218, 235);
 }
 .css-1n0ba4w .RaReferenceField-link span {
-  color: rgb(136, 93, 61);
+  color: rgb(58, 100, 155);
 }
 
 .react-json-view path {
-  color: rgb(136, 93, 61);
+  color: rgb(206, 218, 235);
 }
 
 .RaDatagrid-tableWrapper a {
-  color: rgb(136, 93, 61);
+  color: rgb(206, 218, 235);
 }
 
 #block_select_page_id {
@@ -69,6 +55,19 @@ css-17tmrxl button {
   border-radius: 0%;
   color: #d10000;
 }
+#main-content
+  > div
+  > div.MuiToolbar-root.MuiToolbar-dense.css-8czsxw-MuiToolbar-root-RaTopToolbar-root
+  > a.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.css-rnc1tl-MuiButtonBase-root-MuiButton-root-RaButton-root {
+  color: rgb(58, 100, 155);
+}
+
+#main-content
+  > div
+  > div.MuiToolbar-root.MuiToolbar-dense.css-8czsxw-MuiToolbar-root-RaTopToolbar-root
+  > a.MuiButtonBase-root.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeSmall.MuiButton-textSizeSmall.RaEditButton-root.css-xpj79q-MuiButtonBase-root-MuiButton-root-RaButton-root-RaEditButton-root {
+  color: rgb(58, 100, 155);
+}
 
 #main-content
   > div
@@ -78,31 +77,13 @@ css-17tmrxl button {
   > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-16qrmh1-MuiToolbar-root-RaToolbar-root
   > button {
   border: 1px;
-  background: linear-gradient(
-    30deg,
-    rgba(86, 171, 47, 0.037500034193364895) 2%,
-    rgba(168, 224, 99, 0.04310227508972342) 100%
-  );
-  color: black;
+  background: rgb(91, 122, 164);
+  color: white;
 }
 
 .css-t039ty-MuiButtonBase-root-MuiButton-root-RaSaveButton-root.Mui-disabled:active {
   background-color: white;
 }
-/*#main-content > div > div.RaEdit-main > div > form > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.RaToolbar-desktopToolbar.css-16qrmh1-MuiToolbar-root-RaToolbar-root > button:hover{
-  
-
-  background: linear-gradient(
-    30deg,
-    rgba(29, 151, 108, 0.46887258321297265) 0%,
-    rgba(147, 249, 185, 0.4660714627647934) 48%,
-    rgba(0, 0, 0, 0.4660714627647934) 100%
-  );
-  transition: 0.9s ease;
-
- 
-  
-}*/
 
 #main-content > div > div > div > form > div > button {
   background: white;
@@ -125,14 +106,8 @@ css-17tmrxl button {
   top: 0;
   left: 0;
 
-  background: rgb(241, 39, 17);
-  background: linear-gradient(
-    30deg,
-    rgba(241, 39, 17, 0.3512255243894433) 0%,
-    rgba(244, 145, 23, 0.3680322470785189) 39%,
-    rgba(243, 106, 21, 0.36523112663033963) 72%,
-    rgba(245, 175, 25, 0.40164569245667014) 100%
-  );
+  background: rgb(113, 147, 192);
+  color: black;
   transition: 0.5s ease;
   display: block;
   z-index: -1;
@@ -156,13 +131,13 @@ css-17tmrxl button {
 }
 
 .RaList-main a {
-  color: rgba(110, 57, 0, 1);
+  color: rgba(58, 100, 155);
 }
 .RaList-actions button {
-  color: #291680;
+  color: rgb(58, 100, 155);
 }
 .RaList-content {
-  background: rgba(245, 245, 245, 0.5024860285911239);
+  background: rgba(58, 100, 155);
 }
 
 #main-content > div > div > div > div > div > table > tbody > tr > td > button {
@@ -184,11 +159,7 @@ table {
 
 .button-show::before {
   content: "";
-  background: linear-gradient(
-    90deg,
-    rgba(255, 224, 0, 0.2755952722886029) 0%,
-    rgba(121, 159, 12, 0.2391807064622724) 100%
-  );
+  background: rgb(206, 218, 235);
   transition: 0.5s ease;
   width: 0;
   height: 100%;
@@ -214,11 +185,7 @@ table {
 
 .button-edit::before {
   content: "";
-  background: linear-gradient(
-    90deg,
-    rgba(252, 234, 187, 0.37923672887123594) 0%,
-    rgba(204, 128, 29, 0.48567930590204833) 100%
-  );
+  background: rgb(206, 218, 235);
   transition: 0.5s ease;
   width: 0;
   height: 100%;
@@ -245,12 +212,7 @@ table {
 
 .button-delete::before {
   content: "";
-  background: linear-gradient(
-    30deg,
-    rgba(255, 251, 213, 0.8442227232689951) 0%,
-    rgba(227, 163, 151, 1) 72%,
-    rgba(178, 10, 44, 0.6033263647255778) 100%
-  );
+  background: rgb(255, 228, 225);
   transition: 0.5s ease;
   width: 0;
   height: 100%;
@@ -272,7 +234,7 @@ table {
   border-radius: 0%;
 }
 #main-content > div > div > div > div > div > table > thead > tr > th {
-  background: rgba(240, 211, 125, 0.03189779329700626);
+  background: rgba(206, 218, 235, 0.03189779329700626);
 }
 
 #main-content
@@ -284,7 +246,7 @@ table {
   > div
   > div
   > a.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.show-tab.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
-  color: rgb(25, 25, 112);
+  color: rgb(58, 100, 155);
 }
 
 #main-content
@@ -295,22 +257,18 @@ table {
   > div.MuiTabs-root.css-1ujnqem-MuiTabs-root
   > div
   > span.css-1aquho2-MuiTabs-indicator {
-  background-color: rgb(25, 25, 112);
-}
-
-.MuiButtonBase-root.MuiTab-root.MuiTab-textColorPrimary.Mui-selected.form-tab.css-1h9z7r5-MuiButtonBase-root-MuiTab-root {
-  color: rgb(25, 25, 112);
+  background-color: rgb(206, 218, 235);
 }
 
 .MuiTabs-indicator.css-1aquho2-MuiTabs-indicator {
-  background-color: rgb(25, 25, 112);
+  background-color: rgb(58, 100, 155);
 }
 
 #main-content
   > div
   > div.MuiToolbar-root.MuiToolbar-gutters.MuiToolbar-regular.css-1q2ae6k-MuiToolbar-root-RaTopToolbar-root
   > a {
-  color: rgb(224, 255, 255);
+  color: rgb(206, 218, 235);
 }
 
 .page-preview-container {
@@ -348,22 +306,14 @@ table {
   }
 }
 
-.css-hip9hq-MuiPaper-root-MuiAppBar-root {
-  background: rgb(255, 255, 255);
-  background: linear-gradient(
-    90deg,
-    rgba(224, 255, 255) 100%,
-    rgba(224, 255, 255, 0.13273812943146013) 100%
-  );
+/*.css-hip9hq-MuiPaper-root-MuiAppBar-root {
+  background: rgb(206, 218, 235);
+
   background: rgb(0, 0, 0);
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 1) 62%,
-    rgba(83, 64, 49, 1) 93%
-  );
+
   margin-top: -48px;
 }
-
+*/
 .block-edit-button {
   align-self: center;
   background-color: #fff;
@@ -376,7 +326,7 @@ table {
   border-width: 2px;
   box-shadow: rgba(0, 0, 0, 0.2) 7px 20px 17px -10px;
   box-sizing: border-box;
-  color: #41403e;
+  color: rgb(58, 100, 155);
   cursor: pointer;
   display: inline-block;
   font-family: Neucha, sans-serif;
