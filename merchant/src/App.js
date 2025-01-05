@@ -2,17 +2,12 @@ import React from "react";
 import { Admin, Resource } from "react-admin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
-  SupportAgent,
-  Sms,
-  People,
   PictureAsPdf,
   Tag,
   Class,
   AccountBox,
   LocationOn,
   Discount,
-  CardMembership,
-  WorkHistory,
 } from "@mui/icons-material/index.js";
 
 import Pages from "./pages/index.js";
@@ -34,7 +29,6 @@ export const App = () => {
       authProvider={Providers.authProvider}
       dataProvider={Providers.dataProvider()}
       i18nProvider={Providers.i18nProvider}
-      dashboard={Pages.Dashboard}
       disableTelemetry
     >
       <Resource
@@ -44,23 +38,6 @@ export const App = () => {
         edit={Pages.Merchant.Edit}
         icon={AccountBox}
       />
-      <Resource
-        name="Client"
-        list={Pages.Client.List}
-        show={Pages.Client.Show}
-        edit={Pages.Client.Edit}
-        create={Pages.Client.Create}
-        icon={People}
-      />
-
-      <Resource
-        name="SmsService"
-        create={Pages.SmsService.Create}
-        list={Pages.SmsService.List}
-        edit={Pages.SmsService.Edit}
-        icon={Sms}
-      />
-
       <Resource
         name="Category"
         list={Pages.Category.List}
@@ -103,25 +80,6 @@ export const App = () => {
         edit={Pages.Location.Edit}
         icon={LocationOn}
       />
-
-      <Resource
-        name="Membership"
-        list={Pages.Membership.List}
-        show={Pages.Membership.Show}
-        create={Pages.Membership.Create}
-        edit={Pages.Membership.Edit}
-        icon={CardMembership}
-      />
-
-      <Resource
-        name="MembershipLog"
-        list={Pages.MembershipLog.List}
-        show={Pages.MembershipLog.Show}
-        edit={Pages.MembershipLog.Edit}
-        icon={WorkHistory}
-      />
-
-      <Resource name="Chat" list={Pages.Chat.List} icon={SupportAgent} />
     </Admin>
   );
 };

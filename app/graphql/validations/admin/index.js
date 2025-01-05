@@ -1,9 +1,5 @@
 import createMerchantValidation from "./createMerchantValidation.js";
 import updateMerchantValidation from "./updateMerchantValidation.js";
-import createClientValidation from "./createClientValidation.js";
-import updateClientValidation from "./updateClientValidation.js";
-import updateSmsServiceValidation from "./updateSmsServiceValidation.js";
-import createSmsServiceValidation from "./createSmsServiceValidation.js";
 import updateAdminValidation from "./updateAdminValidation.js";
 import createCategoryValidation from "./createCategoryValidation.js";
 import updateCategoryValidation from "./updateCategoryValidation.js";
@@ -19,18 +15,10 @@ import deleteDiscountValidation from "./deleteDiscountValidation.js";
 import createLocationValidation from "./createLocationValidation.js";
 import updateLocationValidation from "./updateLocationValidation.js";
 import deleteLocationValidation from "./deleteLocationValidation.js";
-import createMembershipValidation from "./createMembershipValidation.js";
-import updateMembershipValidation from "./updateMembershipValidation.js";
-import deleteMembershipValidation from "./deleteMembershipValidation.js";
-import updateMembershipLogValidation from "./updateMembershipLogValidation.js";
 
 export {
   createMerchantValidation,
   updateMerchantValidation,
-  createClientValidation,
-  updateClientValidation,
-  updateSmsServiceValidation,
-  createSmsServiceValidation,
   updateAdminValidation,
   createCategoryValidation,
   updateCategoryValidation,
@@ -46,8 +34,4 @@ export {
   createLocationValidation,
   updateLocationValidation,
   deleteLocationValidation,
-  createMembershipValidation,
-  updateMembershipValidation,
-  deleteMembershipValidation,
-  updateMembershipLogValidation,
 };

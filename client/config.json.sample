@@ -1,5 +1,0 @@
-{
-  "baseUrl": "http://192.168.0.48:5001/api/client",
-  "wsUrl": "ws://192.168.0.48:5001/client/ws",
-  "merchant": "opti"
-}

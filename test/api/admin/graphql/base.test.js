@@ -114,36 +114,24 @@ describe("Admin GraphQL", () => {
         expect(knownQueryNames).to.have.members([
           "Admin",
           "Category",
-          "Client",
           "Discount",
           "File",
           "Location",
-          "Membership",
-          "MembershipLog",
           "Merchant",
-          "SmsService",
           "Tag",
           "_allAdminsMeta",
           "_allCategoriesMeta",
-          "_allClientsMeta",
           "_allDiscountsMeta",
           "_allFilesMeta",
           "_allLocationsMeta",
-          "_allMembershipLogsMeta",
-          "_allMembershipsMeta",
           "_allMerchantsMeta",
-          "_allSmsServicesMeta",
           "_allTagsMeta",
           "allAdmins",
           "allCategories",
-          "allClients",
           "allDiscounts",
           "allFiles",
           "allLocations",
-          "allMembershipLogs",
-          "allMemberships",
           "allMerchants",
-          "allSmsServices",
           "allTags",
           "self",
         ]);
@@ -181,33 +169,6 @@ describe("Admin GraphQL", () => {
           "id",
           "merchant_id",
           "name",
-          "updated_at",
-        ]);
-      });
-
-      it("is expected to have proper fields for Client", () => {
-        // Check ClientType
-        const clientType = res.body.data.__schema.types.find(
-          (element) => element.name === "Client"
-        );
-        const clientTypeFieldNames = clientType.fields
-          .map(({ name }) => name)
-          .sort();
-
-        expect(clientTypeFieldNames).to.eql([
-          "category_id",
-          "created_at",
-          "email",
-          "first_name",
-          "id",
-          "last_name",
-          "membership",
-          "membership_id",
-          "merchant_id",
-          "phone",
-          "status",
-          "tag_ids",
-          "unconfirmed_changes",
           "updated_at",
         ]);
       });
@@ -252,27 +213,6 @@ describe("Admin GraphQL", () => {
           "sms_fallback",
           "status",
           "storage_capacity",
-          "updated_at",
-        ]);
-      });
-
-      it("is expected to have proper fields for smsService", () => {
-        // Check SmsServiceType
-        const smsServiceType = res.body.data.__schema.types.find(
-          (element) => element.name === "SmsService"
-        );
-        const smsServiceTypeFieldNames = smsServiceType.fields
-          .map(({ name }) => name)
-          .sort();
-
-        expect(smsServiceTypeFieldNames).to.eql([
-          "balance",
-          "config",
-          "created_at",
-          "id",
-          "merchant_id",
-          "service_name",
-          "status",
           "updated_at",
         ]);
       });

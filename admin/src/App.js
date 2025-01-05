@@ -2,8 +2,6 @@ import React from "react";
 import { Admin, Resource } from "react-admin";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import {
-  Sms,
-  People,
   PictureAsPdf,
   Tag,
   Class,
@@ -11,8 +9,6 @@ import {
   Diversity3,
   LocationOn,
   Discount,
-  CardMembership,
-  WorkHistory,
 } from "@mui/icons-material/index.js";
 
 import Pages from "./pages/index.js";
@@ -44,27 +40,12 @@ export const App = () => {
         icon={AccountBox}
       />
       <Resource
-        name="Client"
-        list={Pages.Client.List}
-        show={Pages.Client.Show}
-        edit={Pages.Client.Edit}
-        create={Pages.Client.Create}
-        icon={People}
-      />
-      <Resource
         name="Merchant"
         create={Pages.Merchant.Create}
         list={Pages.Merchant.List}
         show={Pages.Merchant.Show}
         edit={Pages.Merchant.Edit}
         icon={Diversity3}
-      />
-      <Resource
-        name="SmsService"
-        list={Pages.SmsService.List}
-        edit={Pages.SmsService.Edit}
-        create={Pages.SmsService.Create}
-        icon={Sms}
       />
       <Resource
         name="Category"
@@ -104,22 +85,6 @@ export const App = () => {
         edit={Pages.Location.Edit}
         create={Pages.Location.Create}
         icon={LocationOn}
-      />
-
-      <Resource
-        name="Membership"
-        list={Pages.Membership.List}
-        show={Pages.Membership.Show}
-        create={Pages.Membership.Create}
-        edit={Pages.Membership.Edit}
-        icon={CardMembership}
-      />
-      <Resource
-        name="MembershipLog"
-        list={Pages.MembershipLog.List}
-        show={Pages.MembershipLog.Show}
-        edit={Pages.MembershipLog.Edit}
-        icon={WorkHistory}
       />
     </Admin>
   );
