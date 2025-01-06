@@ -17,7 +17,7 @@ export default yup.object({
     .test(
       "present",
       "category_not_found",
-      validatePresenceWithFields("client_categories", ["id", "merchant_id"])
+      validatePresenceWithFields("categories", ["id", "merchant_id"])
     )
     .test("empty", "delete_error", (category_id) =>
       Database("clients")

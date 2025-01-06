@@ -16,7 +16,7 @@ export default {
   },
   resolve: (_, params) =>
     createCategoryValidation.validate({ ...params }).then(() =>
-      Database("client_categories")
+      Database("categories")
         .insert({
           ...params,
         })

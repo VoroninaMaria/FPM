@@ -5,6 +5,8 @@ import Tag from "./Tag/index.js";
 import File from "./File/index.js";
 import Discount from "./Discount/index.js";
 import Location from "./Location/index.js";
+import Hall from "./Hall/index.js";
+import Movie from "./Movie/index.js";
 
 export default {
   Admin,
@@ -14,4 +16,6 @@ export default {
   Tag,
   Discount,
   Location,
+  Hall,
+  Movie,
 };

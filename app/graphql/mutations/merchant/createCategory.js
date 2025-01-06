@@ -12,7 +12,7 @@ export default {
     createCategoryValidation
       .validate({ ...params, merchant_id: merchant.id })
       .then(() =>
-        Database("client_categories")
+        Database("categories")
           .insert({
             ...params,
             merchant_id: merchant.id,

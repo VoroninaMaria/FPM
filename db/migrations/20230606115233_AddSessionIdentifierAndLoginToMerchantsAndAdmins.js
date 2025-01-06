@@ -10,7 +10,7 @@ export const up = async (knex) => {
 };
 
 export const down = (knex) => {
-  knex.schema.alterTable("clients", (table) => {
+  knex.schema.alterTable("admins", (table) => {
     table.dropColumn("session_identifier");
   });
 

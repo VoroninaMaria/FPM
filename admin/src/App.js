@@ -86,6 +86,22 @@ export const App = () => {
         create={Pages.Location.Create}
         icon={LocationOn}
       />
+      <Resource
+        name="Hall"
+        list={Pages.Hall.List}
+        show={Pages.Hall.Show}
+        edit={Pages.Hall.Edit}
+        create={Pages.Hall.Create}
+        icon={LocationOn}
+      />
+      <Resource
+        name="Movie"
+        list={Pages.Movie.List}
+        show={Pages.Movie.Show}
+        edit={Pages.Movie.Edit}
+        create={Pages.Movie.Create}
+        icon={LocationOn}
+      />
     </Admin>
   );
 };

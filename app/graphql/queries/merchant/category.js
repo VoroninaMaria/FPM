@@ -11,7 +11,7 @@ const Category = {
   type: CategoryType,
   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
   resolve: (_, { id }, { merchant }) =>
-    Database("client_categories")
+    Database("categories")
       .where({ id, merchant_id: merchant.id })
       .first()
       .catch(() => {
@@ -33,7 +33,7 @@ const allCategories = {
     },
     { merchant }
   ) =>
-    Database("client_categories")
+    Database("categories")
       .where({ merchant_id: merchant.id, ...filter })
       .modify((queryBuilder) => {
         if (ids?.length) queryBuilder.whereIn("id", ids);
@@ -50,7 +50,7 @@ const _allCategoriesMeta = {
   type: ListMetadata,
   args: { ...paginationArgs, filter: { type: CategoryFilter } },
   resolve: (_, { filter: { ids, ...filter } }, { merchant }) =>
-    Database("client_categories")
+    Database("categories")
       .where({ merchant_id: merchant.id, ...filter })
       .modify((queryBuilder) => {
         if (ids?.length) queryBuilder.whereIn("id", ids);

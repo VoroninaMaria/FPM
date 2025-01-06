@@ -16,3 +16,7 @@ export { default as Discount } from "./Discount.js";
 export { default as DiscountFilter } from "./DiscountFilter.js";
 export { default as Location } from "./Location.js";
 export { default as LocationFilter } from "./LocationFilter.js";
+export { default as Hall } from "./Hall.js";
+export { default as HallFilter } from "./HallFilter.js";
+export { default as Movie } from "./Movie.js";
+export { default as MovieFilter } from "./MovieFilter.js";

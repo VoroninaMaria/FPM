@@ -1,6 +1,6 @@
 export const seed = (knex) =>
   knex("merchants").then((merchants) =>
-    knex("client_categories")
+    knex("categories")
       .insert(
         merchants
           .map(({ id: merchant_id }) => [

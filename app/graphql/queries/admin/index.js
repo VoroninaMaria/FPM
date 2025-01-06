@@ -6,9 +6,12 @@ import tag from "./tag.js";
 import file from "./file.js";
 import discount from "./discount.js";
 import location from "./location.js";
+import hall from "./hall.js";
+import movie from "./movie.js";
 
 export default {
   ...admin,
+  ...hall,
   self,
   ...merchants,
   ...category,
@@ -16,4 +19,5 @@ export default {
   ...file,
   ...discount,
   ...location,
+  ...movie,
 };

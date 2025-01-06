@@ -13,17 +13,17 @@ export default yup.object({
     .test(
       "present",
       "category_not_found",
-      validatePresence("client_categories", "id")
+      validatePresence("categories", "id")
     ),
   name: yup
     .string()
     .required()
     .test("valid", "invalid_syntax", validateTextInput)
     .test("unique", "already_exist", async function (name) {
-      return Database("client_categories")
+      return Database("categories")
         .where({
           name,
-          merchant_id: await Database("client_categories")
+          merchant_id: await Database("categories")
             .select("merchant_id")
             .where({ id: this.parent.id })
             .first()

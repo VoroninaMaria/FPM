@@ -10,7 +10,7 @@ export default {
   },
   resolve: (_, params) =>
     deleteCategoryValidation.validate({ ...params }).then(() =>
-      Database("client_categories")
+      Database("categories")
         .where({
           ...params,
         })

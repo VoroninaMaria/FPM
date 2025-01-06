@@ -15,6 +15,12 @@ import deleteDiscountValidation from "./deleteDiscountValidation.js";
 import createLocationValidation from "./createLocationValidation.js";
 import updateLocationValidation from "./updateLocationValidation.js";
 import deleteLocationValidation from "./deleteLocationValidation.js";
+import createHallValidation from "./createHallValidation.js";
+import updateHallValidation from "./updateHallValidation.js";
+import deleteHallValidation from "./deleteHallValidation.js";
+import createMovieValidation from "./createMovieValidation.js";
+import updateMovieValidation from "./updateMovieValidation.js";
+import deleteMovieValidation from "./deleteMovieValidation.js";
 
 export {
   createMerchantValidation,
@@ -34,4 +40,10 @@ export {
   createLocationValidation,
   updateLocationValidation,
   deleteLocationValidation,
+  createHallValidation,
+  updateHallValidation,
+  deleteHallValidation,
+  createMovieValidation,
+  updateMovieValidation,
+  deleteMovieValidation,
 };

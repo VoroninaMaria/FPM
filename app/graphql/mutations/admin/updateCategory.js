@@ -16,7 +16,7 @@ export default {
   },
   resolve: (_, params) =>
     updateCategoryValidation.validate({ ...params }).then(() =>
-      Database("client_categories")
+      Database("categories")
         .where({
           id: params.id,
         })

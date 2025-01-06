@@ -11,7 +11,7 @@ const Category = {
   type: CategoryType,
   args: { id: { type: new GraphQLNonNull(GraphQLID) } },
   resolve: (_, { id }) =>
-    Database("client_categories")
+    Database("categories")
       .where({ id })
       .first()
       .catch(() => {
@@ -32,7 +32,7 @@ const allCategories = {
       filter: { ids, ...filter },
     }
   ) =>
-    Database("client_categories")
+    Database("categories")
       .where({ ...filter })
       .modify((queryBuilder) => {
         if (ids?.length) queryBuilder.whereIn("id", ids);
@@ -49,7 +49,7 @@ const _allCategoriesMeta = {
   type: ListMetadata,
   args: { ...paginationArgs, filter: { type: CategoryFilter } },
   resolve: (_, { filter: { ids, ...filter } }) =>
-    Database("client_categories")
+    Database("categories")
       .where({ ...filter })
       .modify((queryBuilder) => {
         if (ids?.length) queryBuilder.whereIn("id", ids);

@@ -15,6 +15,12 @@ import deleteDiscount from "./deleteDiscount.js";
 import createLocation from "./createLocation.js";
 import updateLocation from "./updateLocation.js";
 import deleteLocation from "./deleteLocation.js";
+import createHall from "./createHall.js";
+import updateHall from "./updateHall.js";
+import deleteHall from "./deleteHall.js";
+import createMovie from "./createMovie.js";
+import updateMovie from "./updateMovie.js";
+import deleteMovie from "./deleteMovie.js";
 
 export default {
   updateMerchant,
@@ -34,4 +40,10 @@ export default {
   createLocation,
   updateLocation,
   deleteLocation,
+  createHall,
+  updateHall,
+  deleteHall,
+  createMovie,
+  updateMovie,
+  deleteMovie,
 };

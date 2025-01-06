@@ -13,7 +13,7 @@ export default yup.object({
     .test(
       "unique",
       "already_exist",
-      validateUniquenessWithFields("client_categories", ["name", "merchant_id"])
+      validateUniquenessWithFields("categories", ["name", "merchant_id"])
     ),
   merchant_id: yup
     .string()

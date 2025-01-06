@@ -12,7 +12,7 @@ export default {
     deleteCategoryValidation
       .validate({ ...params, merchant_id: merchant.id })
       .then(() =>
-        Database("client_categories")
+        Database("categories")
           .where({
             id: params.id,
             merchant_id: merchant.id,

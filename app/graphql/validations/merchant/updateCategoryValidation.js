@@ -17,7 +17,7 @@ export default yup.object({
     .test(
       "present",
       "category_not_found",
-      validatePresenceWithFields("client_categories", ["id", "merchant_id"])
+      validatePresenceWithFields("categories", ["id", "merchant_id"])
     ),
   name: yup
     .string()
@@ -26,6 +26,6 @@ export default yup.object({
     .test(
       "unique",
       "already_exist",
-      validateUniquenessWithFields("client_categories", ["name", "merchant_id"])
+      validateUniquenessWithFields("categories", ["name", "merchant_id"])
     ),
 });

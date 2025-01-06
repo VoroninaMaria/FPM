@@ -34,12 +34,6 @@ export const up = async (knex) => {
     table.string("name").notNull().unique();
     addTimestamps(knex, table);
   });
-
-  await knex.schema.createTable("clients", (table) => {
-    addPrimaryUuid(knex, table);
-    table.uuid("merchant_id").notNull();
-    addTimestamps(knex, table);
-  });
 };
 
 export const down = async (knex) => {
@@ -47,5 +41,4 @@ export const down = async (knex) => {
   await knex.schema.dropTable("account_contacts");
   await knex.schema.dropTable("admins");
   await knex.schema.dropTable("merchants");
-  await knex.schema.dropTable("clients");
 };

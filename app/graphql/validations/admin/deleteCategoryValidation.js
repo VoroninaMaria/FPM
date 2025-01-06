@@ -7,11 +7,7 @@ export default yup.object({
   id: yup
     .string()
     .required()
-    .test(
-      "present",
-      "category_not_found",
-      validatePresence("client_categories", "id")
-    )
+    .test("present", "category_not_found", validatePresence("categories", "id"))
     .test("empty", "delete_error", (category_id) =>
       Database("clients")
         .where({ category_id })
