@@ -16,10 +16,7 @@ function App() {
 					path="/sessions/:movieId/:locationId"
 					element={<SessionDetails />}
 				/>
-				<Route
-					path="/session/:sessionId" // Add new route for session details
-					element={<SessionDetailPage />}
-				/>
+				<Route path="/session/:sessionId" element={<SessionDetailPage />} />
 			</Routes>
 		</Router>
 	);

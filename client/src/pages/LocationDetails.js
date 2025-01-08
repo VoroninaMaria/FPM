@@ -1,11 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import "../styles/locationDetails.css";
 
 const LocationDetails = () => {
 	const { name } = useParams();
 	const [location, setLocation] = useState(null);
 	const [movies, setMovies] = useState([]);
 	const [htmlResponse, setHtmlResponse] = useState("");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchLocationDetails = async () => {
@@ -109,10 +111,13 @@ const LocationDetails = () => {
 	}, [name]);
 
 	return (
-		<div>
+		<div className="container">
+			<button className="back-button" onClick={() => navigate(-1)}>
+				Back
+			</button>
 			<h1>Location Details</h1>
 			{location ? (
-				<div>
+				<div className="location-info">
 					<p>
 						<strong>Name:</strong> {location.name}
 					</p>
@@ -125,18 +130,24 @@ const LocationDetails = () => {
 			)}
 			<h2>Movies</h2>
 			{movies.length > 0 ? (
-				<ul>
+				<ul className="movie-list">
 					{movies.map((movie, index) => (
-						<li key={index}>
-							<p>
-								<strong>Category:</strong> {movie.categoryName}
-							</p>
-							<Link to={`/sessions/${movie.id}/${location.id}`}>
-								<img src={movie.fileUrl} alt={movie.name} />
+						<li key={index} className="movie-item">
+							<img
+								src={movie.fileUrl}
+								alt={movie.name}
+								className="movie-image"
+							/>
+							<div className="movie-info">
 								<p>
-									<strong>Name:</strong> {movie.name}
+									<strong>Category:</strong> {movie.categoryName}
 								</p>
-							</Link>
+								<Link to={`/sessions/${movie.id}/${location.id}`}>
+									<p>
+										<strong>Name:</strong> {movie.name}
+									</p>
+								</Link>
+							</div>
 						</li>
 					))}
 				</ul>

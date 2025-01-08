@@ -1,0 +1,70 @@
+/* locationDetails.css */
+
+body {
+	margin: 0;
+	font-family: Arial, sans-serif;
+	background-color: #f4f4f4;
+	color: #333;
+}
+
+.container {
+	padding: 20px;
+}
+
+h1,
+h2 {
+	color: #333;
+}
+
+.location-info {
+	background-color: #fff;
+	padding: 20px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+	margin-bottom: 20px;
+}
+
+.movie-list {
+	list-style: none;
+	padding: 0;
+}
+
+.movie-item {
+	display: flex;
+	align-items: center;
+	background-color: #fff;
+	margin-bottom: 10px;
+	padding: 10px;
+	border-radius: 5px;
+	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.movie-image {
+	width: 100px;
+	height: 100px;
+	object-fit: cover;
+	margin-right: 20px;
+}
+
+.movie-info {
+	flex: 1;
+}
+
+.movie-info p {
+	margin: 0;
+}
+
+.back-button {
+	background-color: #007bff;
+	color: white;
+	border: none;
+	padding: 10px 20px;
+	font-size: 16px;
+	border-radius: 5px;
+	cursor: pointer;
+	margin-bottom: 20px;
+}
+
+.back-button:hover {
+	background-color: #0056b3;
+}

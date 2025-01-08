@@ -1,6 +1,6 @@
-// SessionDetails.js
 import React, { useEffect, useState } from "react";
-import { useParams, Link } from "react-router-dom";
+import { useParams, Link, useNavigate } from "react-router-dom";
+import "../styles/sessionDetails.css"; // Ensure you have this CSS file
 
 const SessionDetails = () => {
 	const { movieId, locationId } = useParams();
@@ -9,6 +9,7 @@ const SessionDetails = () => {
 	const [locationName, setLocationName] = useState("");
 	const [hallNames, setHallNames] = useState({});
 	const [htmlResponse, setHtmlResponse] = useState("");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchDetails = async () => {
@@ -61,7 +62,10 @@ const SessionDetails = () => {
 	}, [movieId, locationId]);
 
 	return (
-		<div>
+		<div className="container">
+			<button className="back-button" onClick={() => navigate(-1)}>
+				Back
+			</button>
 			<h1>Session Details</h1>
 			<p>
 				<strong>Movie:</strong> {movieName}
@@ -70,9 +74,9 @@ const SessionDetails = () => {
 				<strong>Location:</strong> {locationName}
 			</p>
 			{sessions.length > 0 ? (
-				<ul>
+				<ul className="session-list">
 					{sessions.map((session, index) => (
-						<li key={index}>
+						<li key={index} className="session-item">
 							<p>
 								<strong>Day:</strong> {session.day}
 							</p>

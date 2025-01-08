@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import "../styles/home.css"; // Ensure you have this CSS file
 
 const Home = () => {
 	const [locations, setLocations] = useState([]);
@@ -22,14 +23,13 @@ const Home = () => {
 					if (jsonResult.data && jsonResult.data.allLocations) {
 						setLocations(jsonResult.data.allLocations);
 					} else {
-						console.error("Ошибка при получении локаций:", jsonResult.errors);
+						console.error(jsonResult.errors);
 					}
 				} catch (e) {
-					// Если не удалось распарсить как JSON, выводим как текст
 					setHtmlResponse(textResult);
 				}
 			} catch (error) {
-				console.error("Ошибка при получении локаций:", error);
+				console.error(error);
 			}
 		};
 
@@ -37,22 +37,28 @@ const Home = () => {
 	}, []);
 
 	return (
-		<div>
-			<h1>Locations</h1>
-			{locations.length > 0 ? (
-				<ul>
-					{locations.map((location, index) => (
-						<li key={index}>
-							<Link to={`/location/${location.name}`}>
-								<strong>Name:</strong> {location.name} <br />
-								<strong>Address:</strong> {location.address}
-							</Link>
-						</li>
-					))}
-				</ul>
-			) : (
-				<p>HTML Response: {htmlResponse}</p>
-			)}
+		<div className="container">
+			<main className="main-content">
+				<h2>Locations</h2>
+				{locations.length > 0 ? (
+					<ul className="location-list">
+						{locations.map((location, index) => (
+							<li key={index} className="location-item">
+								<Link to={`/location/${location.name}`}>
+									<strong>Name:</strong> {location.name} <br />
+									<strong>Address:</strong> {location.address}
+								</Link>
+							</li>
+						))}
+					</ul>
+				) : (
+					<p>HTML Response: {htmlResponse}</p>
+				)}
+			</main>
+
+			<footer className="footer">
+				<p>&copy; Your Best Movies</p>
+			</footer>
 		</div>
 	);
 };

@@ -1,6 +1,6 @@
-// SessionDetailPage.js
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, useNavigate } from "react-router-dom";
+import "../styles/sessionDetailsPage.css";
 
 const SessionDetailPage = () => {
 	const { sessionId } = useParams();
@@ -14,6 +14,7 @@ const SessionDetailPage = () => {
 	const [locationName, setLocationName] = useState("");
 	const [hallName, setHallName] = useState("");
 	const [movieName, setMovieName] = useState("");
+	const navigate = useNavigate();
 
 	useEffect(() => {
 		const fetchSessionDetails = async () => {
@@ -41,11 +42,9 @@ const SessionDetailPage = () => {
 						query: `{ locationById(id: "${jsonResult.data.sessionById.location_id}") { name } }`,
 					}),
 				});
-				const locationTextResult = await locationResponse.text();
-				const locationJsonResult = JSON.parse(locationTextResult);
+				const locationJsonResult = await locationResponse.json();
 				setLocationName(locationJsonResult.data.locationById.name);
 
-				// Fetch hall name
 				const hallResponse = await fetch("http://localhost:5001/graphql", {
 					method: "POST",
 					headers: {
@@ -55,8 +54,7 @@ const SessionDetailPage = () => {
 						query: `{ hallById(id: "${jsonResult.data.sessionById.hall_id}") { name } }`,
 					}),
 				});
-				const hallTextResult = await hallResponse.text();
-				const hallJsonResult = JSON.parse(hallTextResult);
+				const hallJsonResult = await hallResponse.json();
 				setHallName(hallJsonResult.data.hallById.name);
 
 				// Fetch movie name
@@ -69,14 +67,10 @@ const SessionDetailPage = () => {
 						query: `{ movieById(id: "${jsonResult.data.sessionById.movie_id}") { name } }`,
 					}),
 				});
-				const movieTextResult = await movieResponse.text();
-				const movieJsonResult = JSON.parse(movieTextResult);
+				const movieJsonResult = await movieResponse.json();
 				setMovieName(movieJsonResult.data.movieById.name);
 			} catch (error) {
-				console.error(
-					"Ошибка при получении информации о сессии, локации, зале или фильме:",
-					error
-				);
+				console.error("Ошибка при получении данных:", error);
 			}
 		};
 
@@ -128,7 +122,7 @@ const SessionDetailPage = () => {
 			rows.push(row);
 		}
 		return rows.map((row, rowIndex) => (
-			<div key={rowIndex} style={{ display: "flex", marginBottom: "10px" }}>
+			<div key={rowIndex} className="places-row">
 				{row.map((place, index) => {
 					const actualIndex = rowIndex * 5 + index;
 					const isDisabled = place === "true";
@@ -139,20 +133,9 @@ const SessionDetailPage = () => {
 							key={actualIndex}
 							onClick={() => handlePlaceClick(actualIndex)}
 							disabled={isDisabled}
-							style={{
-								width: "40px",
-								height: "40px",
-								margin: "5px",
-								backgroundColor: isDisabled
-									? "#ddd"
-									: isSelected
-									? "#f44336"
-									: "#4caf50",
-								cursor: isDisabled ? "not-allowed" : "pointer",
-								color: "#fff",
-								border: "none",
-								borderRadius: "4px",
-							}}
+							className={`place-button ${
+								isDisabled ? "disabled" : isSelected ? "selected" : "available"
+							}`}
 						>
 							{actualIndex + 1}
 						</button>
@@ -174,7 +157,7 @@ const SessionDetailPage = () => {
 				selectedPlaces.forEach((index) => {
 					newPlaceArr[index] = "true";
 				});
-				const response = await fetch("http://localhost:5001/graphql", {
+				await fetch("http://localhost:5001/graphql", {
 					method: "POST",
 					headers: {
 						"Content-Type": "application/json",
@@ -193,10 +176,6 @@ const SessionDetailPage = () => {
                         }`,
 					}),
 				});
-				const textResult = await response.text();
-				const jsonResult = JSON.parse(textResult);
-				console.log("Updated session:", jsonResult.data.updateSessionPlace);
-				// Implement further logic based on the response
 			} catch (error) {
 				console.error("Ошибка при обновлении сессии:", error);
 			}
@@ -204,7 +183,10 @@ const SessionDetailPage = () => {
 	};
 
 	return (
-		<div>
+		<div className="session-container">
+			<button className="back-button" onClick={() => navigate(-1)}>
+				Back
+			</button>
 			<h1>Session Detail</h1>
 			<p>
 				<strong>Day:</strong> {session.day}
@@ -221,7 +203,7 @@ const SessionDetailPage = () => {
 			<p>
 				<strong>Movie:</strong> {movieName}
 			</p>
-			<div>
+			<div className="places-container">
 				<strong>Places:</strong>
 				{renderPlaces()}
 			</div>
@@ -229,74 +211,39 @@ const SessionDetailPage = () => {
 				<div>
 					<p>
 						<strong>Selected Places:</strong>{" "}
-						{selectedPlaces.map((index) => index + 1).join(", ")}
+						{selectedPlaces.map((i) => i + 1).join(", ")}
 					</p>
-					<button
-						onClick={handleBuyClick}
-						style={{
-							marginTop: "10px",
-							padding: "10px 20px",
-							backgroundColor: "#4caf50",
-							color: "#fff",
-							border: "none",
-							borderRadius: "4px",
-							cursor: "pointer",
-						}}
-					>
+					<button onClick={handleBuyClick} className="buy-button">
 						Buy
 					</button>
 				</div>
 			)}
 			{showForm && (
-				<form onSubmit={handleFormSubmit} style={{ marginTop: "20px" }}>
-					<div>
-						<label>
-							Phone:
-							<input
-								type="text"
-								value={phone}
-								onChange={(e) => setPhone(e.target.value)}
-								required
-								style={{
-									marginLeft: "10px",
-									padding: "5px",
-									borderRadius: "4px",
-									border: `1px solid ${errors.phone ? "red" : "#ddd"}`,
-								}}
-							/>
-						</label>
-						{errors.phone && <p style={{ color: "red" }}>{errors.phone}</p>}
-					</div>
-					<div style={{ marginTop: "10px" }}>
-						<label>
-							Email:
-							<input
-								type="email"
-								value={email}
-								onChange={(e) => setEmail(e.target.value)}
-								required
-								style={{
-									marginLeft: "10px",
-									padding: "5px",
-									borderRadius: "4px",
-									border: `1px solid ${errors.email ? "red" : "#ddd"}`,
-								}}
-							/>
-						</label>
-						{errors.email && <p style={{ color: "red" }}>{errors.email}</p>}
-					</div>
+				<form onSubmit={handleFormSubmit} className="session-form">
+					<label>
+						Phone:
+						<input
+							type="text"
+							value={phone}
+							onChange={(e) => setPhone(e.target.value)}
+							className={errors.phone ? "error" : ""}
+						/>
+					</label>
+					{errors.phone && <p className="error-message">{errors.phone}</p>}
+					<label>
+						Email:
+						<input
+							type="email"
+							value={email}
+							onChange={(e) => setEmail(e.target.value)}
+							className={errors.email ? "error" : ""}
+						/>
+					</label>
+					{errors.email && <p className="error-message">{errors.email}</p>}
 					<button
 						type="submit"
 						disabled={isSubmitDisabled}
-						style={{
-							marginTop: "20px",
-							padding: "10px 20px",
-							backgroundColor: "#4caf50",
-							color: "#fff",
-							border: "none",
-							borderRadius: "4px",
-							cursor: isSubmitDisabled ? "not-allowed" : "pointer",
-						}}
+						className={`submit-button ${isSubmitDisabled ? "disabled" : ""}`}
 					>
 						Submit
 					</button>
