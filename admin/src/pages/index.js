@@ -7,6 +7,7 @@ import Discount from "./Discount/index.js";
 import Location from "./Location/index.js";
 import Hall from "./Hall/index.js";
 import Movie from "./Movie/index.js";
+import Session from "./Session/index.js";
 
 export default {
   Admin,
@@ -18,4 +19,5 @@ export default {
   Location,
   Hall,
   Movie,
+  Session,
 };

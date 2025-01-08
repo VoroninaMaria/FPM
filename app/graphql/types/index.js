@@ -20,3 +20,5 @@ export { default as Hall } from "./Hall.js";
 export { default as HallFilter } from "./HallFilter.js";
 export { default as Movie } from "./Movie.js";
 export { default as MovieFilter } from "./MovieFilter.js";
+export { default as Session } from "./Session.js";
+export { default as SessionFilter } from "./SessionFilter.js";

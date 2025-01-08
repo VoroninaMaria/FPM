@@ -27,7 +27,7 @@ const allMovies = {
 		{
 			perPage = 20,
 			page = 0,
-			sortField = "merchant_id",
+			sortField = "name",
 			sortOrder = "asc",
 			filter: { ids, ...filter },
 		}

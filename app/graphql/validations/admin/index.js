@@ -21,6 +21,9 @@ import deleteHallValidation from "./deleteHallValidation.js";
 import createMovieValidation from "./createMovieValidation.js";
 import updateMovieValidation from "./updateMovieValidation.js";
 import deleteMovieValidation from "./deleteMovieValidation.js";
+import createSessionValidation from "./createSessionValidation.js";
+import updateSessionValidation from "./updateSessionValidation.js";
+import deleteSessionValidation from "./deleteSessionValidation.js";
 
 export {
   createMerchantValidation,
@@ -46,4 +49,7 @@ export {
   createMovieValidation,
   updateMovieValidation,
   deleteMovieValidation,
+  createSessionValidation,
+  updateSessionValidation,
+  deleteSessionValidation,
 };

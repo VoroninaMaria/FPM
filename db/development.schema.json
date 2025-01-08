@@ -314,6 +314,10 @@
       "type": "uuid",
       "default": "uuid_generate_v4()"
     },
+    "location_id": {
+      "type": "uuid",
+      "default": null
+    },
     "movie_id": {
       "type": "uuid",
       "default": null

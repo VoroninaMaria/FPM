@@ -102,6 +102,14 @@ export const App = () => {
         create={Pages.Movie.Create}
         icon={LocationOn}
       />
+      <Resource
+        name="Session"
+        list={Pages.Session.List}
+        show={Pages.Session.Show}
+        edit={Pages.Session.Edit}
+        create={Pages.Session.Create}
+        icon={LocationOn}
+      />
     </Admin>
   );
 };

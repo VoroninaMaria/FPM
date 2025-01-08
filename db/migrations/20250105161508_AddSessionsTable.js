@@ -5,6 +5,12 @@ export const up = async (knex) => {
     addPrimaryUuid(knex, table);
     table.string("time").notNull();
     table.string("day").notNull();
+    table
+      .uuid("location_id")
+      .index()
+      .notNull()
+      .references("id")
+      .inTable("locations");
     table.uuid("hall_id").index().notNull().references("id").inTable("halls");
     table.uuid("movie_id").index().notNull().references("id").inTable("movies");
     table.specificType("place_arr", "text[]").notNull();

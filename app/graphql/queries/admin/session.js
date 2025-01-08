@@ -1,17 +1,17 @@
 import { GraphQLNonNull, GraphQLID, GraphQLList, GraphQLError } from "graphql";
 import { Database } from "@local/lib/index.js";
 import {
-	Hall as HallType,
-	HallFilter,
+	Session as SessionType,
+	SessionFilter,
 	ListMetadata,
 } from "@local/graphql/types/index.js";
 import paginationArgs from "@local/graphql/queries/shared/paginationArgs.js";
 
-const Hall = {
-	type: HallType,
+const Session = {
+	type: SessionType,
 	args: { id: { type: new GraphQLNonNull(GraphQLID) } },
 	resolve: (_, { id }) =>
-		Database("halls")
+		Database("sessions")
 			.where({ id })
 			.first()
 			.catch(() => {
@@ -19,9 +19,9 @@ const Hall = {
 			}),
 };
 
-const allHalls = {
-	type: new GraphQLList(HallType),
-	args: { ...paginationArgs, filter: { type: HallFilter } },
+const allSessions = {
+	type: new GraphQLList(SessionType),
+	args: { ...paginationArgs, filter: { type: SessionFilter } },
 	resolve: (
 		_,
 		{
@@ -32,7 +32,7 @@ const allHalls = {
 			filter: { ids, ...filter },
 		}
 	) =>
-		Database("halls")
+		Database("sessions")
 			.where({ ...filter })
 			.modify((queryBuilder) => {
 				if (ids?.length) queryBuilder.whereIn("id", ids);
@@ -41,15 +41,15 @@ const allHalls = {
 			.offset(page * perPage)
 			.orderBy(sortField, sortOrder)
 			.catch(() => {
-				throw new GraphQLError("Forbidden1");
+				throw new GraphQLError("Forbidden");
 			}),
 };
 
-const _allHallsMeta = {
+const _allSessionsMeta = {
 	type: ListMetadata,
-	args: { ...paginationArgs, filter: { type: HallFilter } },
+	args: { ...paginationArgs, filter: { type: SessionFilter } },
 	resolve: (_, { filter: { ids, ...filter } }) =>
-		Database("halls")
+		Database("sessions")
 			.where({ ...filter })
 			.modify((queryBuilder) => {
 				if (ids?.length) queryBuilder.whereIn("id", ids);
@@ -61,4 +61,4 @@ const _allHallsMeta = {
 			}),
 };
 
-export default { Hall, allHalls, _allHallsMeta };
+export default { Session, allSessions, _allSessionsMeta };

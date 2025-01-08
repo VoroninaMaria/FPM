@@ -21,6 +21,9 @@ import deleteHall from "./deleteHall.js";
 import createMovie from "./createMovie.js";
 import updateMovie from "./updateMovie.js";
 import deleteMovie from "./deleteMovie.js";
+import createSession from "./createSession.js";
+import updateSession from "./updateSession.js";
+import deleteSession from "./deleteSession.js";
 
 export default {
   updateMerchant,
@@ -46,4 +49,7 @@ export default {
   createMovie,
   updateMovie,
   deleteMovie,
+  createSession,
+  updateSession,
+  deleteSession,
 };
