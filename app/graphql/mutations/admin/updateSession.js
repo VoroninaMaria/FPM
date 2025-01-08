@@ -36,7 +36,7 @@ export default {
 					updated_at: Database.fn.now(),
 				})
 				.returning("*")
-				.then(([hall]) => hall)
+				.then(([session]) => session)
 				.catch(() => {
 					throw new GraphQLError("Forbidden");
 				})

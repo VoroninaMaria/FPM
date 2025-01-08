@@ -8,6 +8,7 @@ import { File as FileType } from "@local/graphql/types/index.js";
 import { GraphQLNonNull, GraphQLString } from "graphql";
 import { Location as LocationType } from "@local/graphql/types/index.js";
 import { Session as SessionType } from "@local/graphql/types/index.js";
+import { Hall as HallType } from "@local/graphql/types/index.js";
 import { Config } from "@local/lib/index.js";
 import { FILE_CONSTANTS } from "@local/constants/index.js";
 
@@ -78,6 +79,54 @@ const fileById = {
       }),
 };
 
+const movieById = {
+  type: MovieType,
+  args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+  resolve: (_, { id }) =>
+    Database("movies")
+      .where({ id })
+      .first()
+      .catch(() => {
+        throw new GraphQLError("Forbidden");
+      }),
+};
+
+const locationById = {
+  type: LocationType,
+  args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+  resolve: (_, { id }) =>
+    Database("locations")
+      .where({ id })
+      .first()
+      .catch(() => {
+        throw new GraphQLError("Forbidden");
+      }),
+};
+
+const hallById = {
+  type: HallType,
+  args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+  resolve: (_, { id }) =>
+    Database("halls")
+      .where({ id })
+      .first()
+      .catch(() => {
+        throw new GraphQLError("Forbidden");
+      }),
+};
+
+const sessionById = {
+  type: SessionType,
+  args: { id: { type: new GraphQLNonNull(GraphQLID) } },
+  resolve: (_, { id }) =>
+    Database("sessions")
+      .where({ id })
+      .first()
+      .catch(() => {
+        throw new GraphQLError("Forbidden");
+      }),
+};
+
 const movieByLocation = {
   type: new GraphQLList(MovieType),
   args: { location_id: { type: new GraphQLNonNull(GraphQLString) } },
@@ -99,7 +148,7 @@ const movieByLocation = {
   },
 };
 
-const sessionByMovieAndLocation = {
+const allSessionByMovieAndLocation = {
   type: new GraphQLList(SessionType),
   args: {
     movie_id: { type: new GraphQLNonNull(GraphQLID) },
@@ -124,9 +173,13 @@ const sessionByMovieAndLocation = {
 export default {
   allTags,
   allLocations,
+  allSessionByMovieAndLocation,
   location,
   movieByLocation,
   categoryById,
   fileById,
-  sessionByMovieAndLocation,
+  movieById,
+  locationById,
+  hallById,
+  sessionById,
 };

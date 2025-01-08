@@ -27,16 +27,13 @@ const LocationDetails = () => {
 						setLocation(jsonResult.data.location);
 						fetchMovies(jsonResult.data.location.id);
 					} else {
-						console.error(
-							"Ошибка при получении информации о локации:",
-							jsonResult.errors
-						);
+						console.error(jsonResult.errors);
 					}
 				} catch (e) {
 					setHtmlResponse(textResult);
 				}
 			} catch (error) {
-				console.error("Ошибка при получении информации о локации:", error);
+				console.error(error);
 			}
 		};
 
@@ -98,16 +95,13 @@ const LocationDetails = () => {
 						);
 						setMovies(moviesWithDetails);
 					} else {
-						console.error(
-							"Ошибка при получении информации о фильмах:",
-							jsonResult.errors
-						);
+						console.error(jsonResult.errors);
 					}
 				} catch (e) {
 					setHtmlResponse(textResult);
 				}
 			} catch (error) {
-				console.error("Ошибка при получении информации о фильмах:", error);
+				console.error(error);
 			}
 		};
 

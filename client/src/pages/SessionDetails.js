@@ -1,49 +1,74 @@
+// SessionDetails.js
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, Link } from "react-router-dom";
 
 const SessionDetails = () => {
 	const { movieId, locationId } = useParams();
 	const [sessions, setSessions] = useState([]);
+	const [movieName, setMovieName] = useState("");
+	const [locationName, setLocationName] = useState("");
+	const [hallNames, setHallNames] = useState({});
 	const [htmlResponse, setHtmlResponse] = useState("");
 
 	useEffect(() => {
-		const fetchSessions = async () => {
+		const fetchDetails = async () => {
 			try {
-				const response = await fetch("http://localhost:5001/graphql", {
-					method: "POST",
-					headers: {
-						"Content-Type": "application/json",
-					},
-					body: JSON.stringify({
-						query: `{ sessionByMovieAndLocation(movie_id: "${movieId}", location_id: "${locationId}") { day, time, movie_id, location_id, hall_id } }`,
-					}),
-				});
-				const textResult = await response.text();
-
-				try {
+				const fetchGraphQL = async (query) => {
+					const response = await fetch("http://localhost:5001/graphql", {
+						method: "POST",
+						headers: {
+							"Content-Type": "application/json",
+						},
+						body: JSON.stringify({ query }),
+					});
+					const textResult = await response.text();
 					const jsonResult = JSON.parse(textResult);
-					if (jsonResult.data && jsonResult.data.sessionByMovieAndLocation) {
-						setSessions(jsonResult.data.sessionByMovieAndLocation);
-					} else {
-						console.error(
-							"Ошибка при получении информации о сессиях:",
-							jsonResult.errors
-						);
+					return jsonResult.data;
+				};
+
+				// Fetch sessions
+				const sessionQuery = `{ allSessionByMovieAndLocation(movie_id: "${movieId}", location_id: "${locationId}") { id, day, time, movie_id, location_id, hall_id } }`;
+				const sessionData = await fetchGraphQL(sessionQuery);
+				const fetchedSessions = sessionData.allSessionByMovieAndLocation;
+				setSessions(fetchedSessions);
+
+				// Fetch movie name
+				const movieQuery = `{ movieById(id: "${movieId}") { name } }`;
+				const movieData = await fetchGraphQL(movieQuery);
+				setMovieName(movieData.movieById.name);
+
+				// Fetch location name
+				const locationQuery = `{ locationById(id: "${locationId}") { name } }`;
+				const locationData = await fetchGraphQL(locationQuery);
+				setLocationName(locationData.locationById.name);
+
+				// Fetch hall names
+				const hallNamesMap = {};
+				for (const session of fetchedSessions) {
+					if (!hallNamesMap[session.hall_id]) {
+						const hallQuery = `{ hallById(id: "${session.hall_id}") { name } }`;
+						const hallData = await fetchGraphQL(hallQuery);
+						hallNamesMap[session.hall_id] = hallData.hallById.name;
 					}
-				} catch (e) {
-					setHtmlResponse(textResult);
 				}
+				setHallNames(hallNamesMap);
 			} catch (error) {
-				console.error("Ошибка при получении информации о сессиях:", error);
+				console.error("Ошибка при получении информации о деталях:", error);
 			}
 		};
 
-		fetchSessions();
+		fetchDetails();
 	}, [movieId, locationId]);
 
 	return (
 		<div>
 			<h1>Session Details</h1>
+			<p>
+				<strong>Movie:</strong> {movieName}
+			</p>
+			<p>
+				<strong>Location:</strong> {locationName}
+			</p>
 			{sessions.length > 0 ? (
 				<ul>
 					{sessions.map((session, index) => (
@@ -55,13 +80,17 @@ const SessionDetails = () => {
 								<strong>Time:</strong> {session.time}
 							</p>
 							<p>
-								<strong>Movie ID:</strong> {session.movie_id}
+								<strong>Movie:</strong> {movieName}
 							</p>
 							<p>
-								<strong>Location ID:</strong> {session.location_id}
+								<strong>Location:</strong> {locationName}
 							</p>
 							<p>
-								<strong>Hall ID:</strong> {session.hall_id}
+								<strong>Hall:</strong> {hallNames[session.hall_id]}
+							</p>
+							<p>
+								<strong>Details:</strong>{" "}
+								<Link to={`/session/${session.id}`}>View Details</Link>
 							</p>
 						</li>
 					))}
