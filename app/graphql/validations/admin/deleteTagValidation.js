@@ -7,14 +7,5 @@ export default yup.object({
   id: yup
     .string()
     .required()
-    .test("present", "tag_not_found", validatePresence("tags", "id"))
-    .test("empty", "delete_error", (tag_id) =>
-      Database("client_tags")
-        .where({ tag_id })
-        .first()
-        .then((client_tag) => !client_tag)
-        .catch(() => {
-          throw new GraphQLError("Forbidden");
-        })
-    ),
+    .test("present", "tag_not_found", validatePresence("tags", "id")),
 });

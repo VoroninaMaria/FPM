@@ -16,6 +16,7 @@ export default {
 		location_id: { type: new GraphQLNonNull(GraphQLID) },
 		name: { type: new GraphQLNonNull(GraphQLString) },
 		places: { type: new GraphQLNonNull(GraphQLFloat) },
+		min_price: { type: new GraphQLNonNull(GraphQLFloat) },
 	},
 	resolve: (_, params) =>
 		updateHallValidation.validate({ ...params }).then(() =>
@@ -26,6 +27,7 @@ export default {
 				.update({
 					name: params.name,
 					places: params.places,
+					min_price: params.min_price,
 					location_id: params.location_id,
 					updated_at: Database.fn.now(),
 				})

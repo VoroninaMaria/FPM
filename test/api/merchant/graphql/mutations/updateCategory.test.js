@@ -51,7 +51,7 @@ describe("Merchant GraphQL", () => {
         ])
         .returning("id");
 
-    await Database("client_categories").insert([
+    await Database("categories").insert([
       {
         name: "nice guy",
         merchant_id: current_merchant_id,
@@ -71,14 +71,14 @@ describe("Merchant GraphQL", () => {
   });
 
   afterEach(async () => {
-    await Database("client_categories").del();
+    await Database("categories").del();
     await Database("merchants").del();
     variables = {};
   });
 
   describe("mutation { updateCategory }", () => {
     it("Should update category with valid id and name provided", async () => {
-      const { id } = await Database("client_categories").first();
+      const { id } = await Database("categories").first();
 
       variables.id = id;
       variables.name = "fucker";
@@ -113,7 +113,7 @@ describe("Merchant GraphQL", () => {
     });
 
     it("Should return error when no name provided", async () => {
-      const { id } = await Database("client_categories").first();
+      const { id } = await Database("categories").first();
 
       variables.id = id;
 
@@ -141,7 +141,7 @@ describe("Merchant GraphQL", () => {
     });
 
     it("Should return error when name is null", async () => {
-      const { id } = await Database("client_categories").first();
+      const { id } = await Database("categories").first();
 
       variables.id = id;
       variables.name = null;
@@ -192,7 +192,7 @@ describe("Merchant GraphQL", () => {
     });
 
     it("Should return error when name is not string", async () => {
-      const { id } = await Database("client_categories").first();
+      const { id } = await Database("categories").first();
 
       variables.id = id;
       variables.name = true;
@@ -208,7 +208,7 @@ describe("Merchant GraphQL", () => {
     });
 
     it("Should return error when accessing other merchant's category", async () => {
-      const { id } = await Database("client_categories")
+      const { id } = await Database("categories")
         .where({
           merchant_id: Database("merchants")
             .select("id")
@@ -228,7 +228,7 @@ describe("Merchant GraphQL", () => {
     });
 
     it("Should return error when new name is already used", async () => {
-      const { id } = await Database("client_categories").first();
+      const { id } = await Database("categories").first();
 
       variables.id = id;
       variables.name = "nice guy";

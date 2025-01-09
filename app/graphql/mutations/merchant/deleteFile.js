@@ -12,26 +12,17 @@ export default {
     deleteFileValidation
       .validate({ ...params, merchant_id: merchant.id })
       .then(() => {
-        return Database("memberships")
-          .where({ file_id: params.id })
-          .first()
-          .then((file) => {
-            if (file) {
-              throw new GraphQLError("file_in_use");
-            }
-
-            return Database("files")
-              .where({
-                id: params.id,
-                account_type: "merchants",
-                account_id: merchant.id,
-              })
-              .del()
-              .returning("*")
-              .then(([file]) => file)
-              .catch(() => {
-                throw new GraphQLError("Forbidden");
-              });
+        return Database("files")
+          .where({
+            id: params.id,
+            account_type: "merchants",
+            account_id: merchant.id,
+          })
+          .del()
+          .returning("*")
+          .then(([file]) => file)
+          .catch(() => {
+            throw new GraphQLError("Forbidden");
           });
       }),
 };

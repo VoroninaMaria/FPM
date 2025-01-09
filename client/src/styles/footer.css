@@ -1,0 +1,30 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap");
+
+.footer {
+	font-family: "Lexend", sans-serif; /* Применение шрифта Lexend */
+	position: relative;
+	background-color: #191919;
+	color: #fff;
+	padding: 20px 0;
+	text-align: center;
+	overflow: hidden;
+}
+
+.footer::before {
+	content: "";
+	background: url("../img/mainHeaderBackground.jpg") no-repeat center center;
+	background-size: cover;
+	opacity: 0.3; /* Прозрачность изображения */
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	z-index: 0;
+}
+
+.footer p {
+	position: relative;
+	z-index: 1;
+	margin: 0;
+}

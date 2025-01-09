@@ -1,0 +1,99 @@
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap");
+
+.header {
+  font-family: "Lexend", sans-serif; /* Применение шрифта Lexend */
+  position: relative;
+  background-color: #191919;
+  color: #fff;
+  padding: 50px 0 50px;
+  text-align: center;
+  overflow: hidden;
+}
+
+.header::before {
+  content: "";
+  background: url("../img/mainHeaderBackground.jpg") no-repeat center center;
+  background-size: cover;
+  opacity: 0.2;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+}
+
+.nav-container {
+  width: 100%;
+  max-width: 1200px; /* Максимальная ширина для контейнера */
+  margin: 0 auto; /* Центрирование контейнера */
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 20px; /* Отступы для контейнера */
+}
+
+.nav,
+.header-content {
+  position: relative;
+  z-index: 1;
+}
+
+.nav {
+  background-color: none;
+  padding: 10px 210px;
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.left-align {
+  margin-right: 50px; /* Уменьшенный отступ между левой и правой частью */
+}
+
+.nav-right {
+  display: flex;
+  margin-left: 760px; /* Уменьшенный отступ между левой и правой частью */
+}
+
+.nav-item {
+  margin: 0 20px; /* Уменьшенный отступ между пунктами меню */
+}
+
+.nav-item a {
+  color: #ffffff; /* Белый цвет */
+  text-decoration: none;
+  font-size: 24px; /* Увеличенный размер шрифта */
+  transition: color 0.3s, text-decoration 0.3s; /* Добавляем плавный переход */
+}
+
+.nav-item a:hover {
+  color: #ff2079; /* Ярко-розовый цвет при наведении */
+  opacity: 0.7;
+  text-decoration: underline; /* Подчеркивание при наведении */
+}
+
+.header-content {
+  margin-top: 120px;
+}
+
+.header-title {
+  font-size: 128px; /* Увеличенный размер шрифта для заголовка */
+  margin: 0;
+  font-weight: 200; /* Начертание Regular */
+}
+
+.header-description {
+  color: lightgrey;
+  font-size: 16px;
+  margin: 10px 300px 100px 200px;
+  font-weight: 50;
+}

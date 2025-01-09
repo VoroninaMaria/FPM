@@ -51,7 +51,6 @@ describe("Admin GraphQL", () => {
   });
 
   afterEach(async () => {
-    await Database("sms_services").del();
     await Database("merchants").del();
     await Database("admins").del();
     variables = {};

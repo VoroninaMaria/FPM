@@ -11,6 +11,7 @@ export default new GraphQLInputObjectType({
 	fields: () => ({
 		id: { type: GraphQLID },
 		ids: { type: new GraphQLList(GraphQLID) },
+		min_price: { type: GraphQLFloat },
 		location_id: { type: GraphQLString },
 		name: { type: GraphQLString },
 		places: { type: GraphQLFloat },

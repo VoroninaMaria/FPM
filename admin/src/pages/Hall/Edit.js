@@ -23,6 +23,7 @@ const editHall = () => (
 				validate={[required()]}
 			/>
 			<NumberInput source="places" validate={[required()]} />
+			<NumberInput source="min_price" validate={[required()]} />
 			<ReferenceInput source="location_id" reference="Location">
 				<SelectInput optionText="name" optionValue="id" />
 			</ReferenceInput>

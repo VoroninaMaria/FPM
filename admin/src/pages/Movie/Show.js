@@ -5,12 +5,12 @@ import {
 	SimpleShowLayout,
 	TextField,
 	ReferenceField,
-	NumberField,
-	FunctionField,
-	useTranslate,
 	useRecordContext,
 	FileField,
 	Labeled,
+	ReferenceArrayField,
+	SingleFieldList,
+	ChipField,
 } from "react-admin";
 import {
 	DateField,
@@ -41,9 +41,17 @@ const showMovie = () => (
 	<Show title={<Title source="name" />} actions={<ShowOnlyTopToolbar />}>
 		<SimpleShowLayout>
 			<TextField source="name" />
-			<ReferenceField source="category_id" reference="Category" link="show">
-				<TextField source="name" />
-			</ReferenceField>
+			<TextField source="description" />
+			<TextField source="start_date" />
+			<TextField source="age" />
+			<TextField source="duration" />
+			<TextField source="main_roles" />
+			<TextField source="name" />
+			<ReferenceArrayField source="categories_ids" reference="Category">
+				<SingleFieldList linkType="show">
+					<ChipField source="name" size="small" />
+				</SingleFieldList>
+			</ReferenceArrayField>
 			<ReferenceField source="file_id" reference="File" link="show">
 				<TextField source="name" />
 			</ReferenceField>

@@ -44,7 +44,7 @@ describe("Admin GraphQL", () => {
       })
       .returning("id");
 
-    await Database("client_categories").insert({
+    await Database("categories").insert({
       name: "nice guy",
       merchant_id: current_merchant_id,
     });
@@ -58,7 +58,7 @@ describe("Admin GraphQL", () => {
   });
 
   afterEach(async () => {
-    await Database("client_categories").del();
+    await Database("categories").del();
     await Database("merchants").del();
     await Database("admins").del();
     variables = {};
@@ -66,7 +66,7 @@ describe("Admin GraphQL", () => {
 
   describe("mutation { deleteCategory }", () => {
     it("Should delete category with valid id provided", async () => {
-      const { id } = await Database("client_categories").first();
+      const { id } = await Database("categories").first();
 
       variables.id = id;
 

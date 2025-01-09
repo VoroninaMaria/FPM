@@ -10,6 +10,7 @@ const showHall = () => (
 		<SimpleShowLayout>
 			<TextField source="name" />
 			<TextField source="places" />
+			<TextField source="min_price" />
 			<ReferenceField source="location_id" reference="Location" link="show">
 				<TextField source="name" />
 			</ReferenceField>

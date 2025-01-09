@@ -15,6 +15,7 @@ export default {
 		name: { type: new GraphQLNonNull(GraphQLString) },
 		places: { type: new GraphQLNonNull(GraphQLFloat) },
 		location_id: { type: new GraphQLNonNull(GraphQLID) },
+		min_price: { type: new GraphQLNonNull(GraphQLFloat) },
 	},
 	resolve: (_, params) =>
 		createHallValidation.validate({ ...params }).then(() =>

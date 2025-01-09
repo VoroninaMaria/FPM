@@ -55,17 +55,17 @@ describe("Merchant GraphQL", () => {
         })
         .returning("*");
 
-      await Database("client_categories").insert({
+      await Database("categories").insert({
         name: "businki",
         merchant_id: merchant.id,
       });
 
-      await Database("client_categories").insert({
+      await Database("categories").insert({
         name: "bubochki",
         merchant_id: merchant.id,
       });
 
-      await Database("client_categories").insert({
+      await Database("categories").insert({
         name: "pidori",
         merchant_id: merchant.id,
       });
@@ -79,7 +79,7 @@ describe("Merchant GraphQL", () => {
     });
 
     after(async () => {
-      await Database("client_categories").del();
+      await Database("categories").del();
       await Database("merchants").del();
     });
     afterEach(() => (variables = {}));
@@ -130,7 +130,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get category with valid id", async () => {
-        const { id } = await Database("client_categories")
+        const { id } = await Database("categories")
           .where({ merchant_id: merchant.id })
           .first();
 
@@ -198,7 +198,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid filter(id) and without pagination", async () => {
-        const category = await Database("client_categories").first();
+        const category = await Database("categories").first();
 
         variables.filter = {
           id: category.id,
@@ -238,7 +238,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid filter(ids) and without pagination", async () => {
-        const categories = await Database("client_categories").where({
+        const categories = await Database("categories").where({
           merchant_id: merchant.id,
         });
 
@@ -315,7 +315,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid pagination and filter(id)", async () => {
-        const category = await Database("client_categories").first();
+        const category = await Database("categories").first();
 
         variables.filter = {
           id: category.id,
@@ -360,7 +360,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid pagination and filter(ids)", async () => {
-        const categories = await Database("client_categories").where({
+        const categories = await Database("categories").where({
           merchant_id: merchant.id,
         });
 
@@ -684,7 +684,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid filter id", async () => {
-        const { id } = await Database("client_categories")
+        const { id } = await Database("categories")
           .where({ merchant_id: merchant.id })
           .first();
 
@@ -762,7 +762,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid filter ids", async () => {
-        const categories = await Database("client_categories").where({
+        const categories = await Database("categories").where({
           merchant_id: merchant.id,
         });
 
@@ -837,7 +837,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid filter merchant_id", async () => {
-        const { merchant_id } = await Database("client_categories").first();
+        const { merchant_id } = await Database("categories").first();
 
         variables.filter = { merchant_id };
 
@@ -910,7 +910,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategories with valid filter name", async () => {
-        const { name } = await Database("client_categories")
+        const { name } = await Database("categories")
           .where({ merchant_id: merchant.id })
           .first();
 
@@ -1005,7 +1005,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid filter(id) and without pagination", async () => {
-        const category = await Database("client_categories")
+        const category = await Database("categories")
           .where({ merchant_id: merchant.id })
           .first();
 
@@ -1039,7 +1039,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid filter(ids) and without pagination", async () => {
-        const categories = await Database("client_categories").where({
+        const categories = await Database("categories").where({
           merchant_id: merchant.id,
         });
 
@@ -1071,7 +1071,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid pagination and filter(id)", async () => {
-        const category = await Database("client_categories")
+        const category = await Database("categories")
           .where({ merchant_id: merchant.id })
           .first();
 
@@ -1110,7 +1110,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid pagination and filter(ids)", async () => {
-        const categories = await Database("client_categories").where({
+        const categories = await Database("categories").where({
           merchant_id: merchant.id,
         });
 
@@ -1401,7 +1401,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid filter id", async () => {
-        const { id } = await Database("client_categories")
+        const { id } = await Database("categories")
           .where({ merchant_id: merchant.id })
           .first();
 
@@ -1463,7 +1463,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid filter ids", async () => {
-        const categories = await Database("client_categories").where({
+        const categories = await Database("categories").where({
           merchant_id: merchant.id,
         });
 
@@ -1527,7 +1527,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid filter merchant_id", async () => {
-        const { merchant_id } = await Database("client_categories").first();
+        const { merchant_id } = await Database("categories").first();
 
         variables.filter = { merchant_id };
 
@@ -1590,7 +1590,7 @@ describe("Merchant GraphQL", () => {
       });
 
       it("Get allCategoriesMeta with valid filter name", async () => {
-        const { name } = await Database("client_categories")
+        const { name } = await Database("categories")
           .where({ merchant_id: merchant.id })
           .first();
 

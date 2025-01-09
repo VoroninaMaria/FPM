@@ -12,6 +12,7 @@ export default new GraphQLObjectType({
 		location_id: { type: GraphQLID },
 		name: { type: GraphQLString },
 		places: { type: GraphQLFloat },
+		min_price: { type: GraphQLFloat },
 		created_at: { type: GraphQLString },
 		updated_at: { type: GraphQLString },
 	},

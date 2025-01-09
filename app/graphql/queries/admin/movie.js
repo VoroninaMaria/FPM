@@ -12,6 +12,12 @@ const Movie = {
 	args: { id: { type: new GraphQLNonNull(GraphQLID) } },
 	resolve: (_, { id }) =>
 		Database("movies")
+			.select([
+				Database.raw('"movies".*'),
+				Database.raw(
+					"(select array_agg(category_id) from movie_categories where movie_categories.movie_id = movies.id) as categories_ids"
+				),
+			])
 			.where({ id })
 			.first()
 			.catch(() => {
@@ -33,6 +39,12 @@ const allMovies = {
 		}
 	) =>
 		Database("movies")
+			.select([
+				Database.raw('"movies".*'),
+				Database.raw(
+					"(select array_agg(category_id) from movie_categories where movie_categories.movie_id = movies.id) as categories_ids"
+				),
+			])
 			.where({ ...filter })
 			.modify((queryBuilder) => {
 				if (ids?.length) queryBuilder.whereIn("id", ids);

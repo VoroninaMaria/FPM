@@ -27,27 +27,6 @@ const ALL_ADMINS =
 const ALL_ADMINS_META =
   "query _allAdminsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: AdminFilter) \
 {_allAdminsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
-const CLIENT_SELF_QUERY = "{self {id phone merchant_id email}}";
-const CLIENT =
-  "query Client($id: ID!) {Client (id: $id) {id merchant_id category_id tag_ids status phone email unconfirmed_changes created_at updated_at}}";
-const ALL_CLIENTS =
-  "query allClients($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: ClientFilter) \
-{allClients (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id merchant_id category_id tag_ids status phone email unconfirmed_changes created_at updated_at}}";
-const ALL_CLIENTS_META =
-  "query _allClientsMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: ClientFilter) \
-{_allClientsMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
-
-const SMS_SERVICE =
-  "query SmsService($id: ID!) {SmsService (id: $id) {id balance merchant_id status config service_name created_at updated_at}}";
-
-const ALL_SMS_SERVICES =
-  "query allSmsServices($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: SmsServiceFilter) \
-{allSmsServices (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {id merchant_id status service_name created_at updated_at}}";
-
-const ALL_SMS_SERVICES_META =
-  "query _allSmsServicesMeta($perPage: Int, $page: Int, $sortField: String, $sortOrder: String,  $filter: SmsServiceFilter) \
-{_allSmsServicesMeta (perPage: $perPage, page: $page, sortField: $sortField, sortOrder: $sortOrder,  filter: $filter) {count}}";
-
 const CATEGORY =
   "query Category($id: ID!) {Category (id: $id) {id merchant_id category_id name created_at updated_at}}";
 const ALL_CATEGORIES =
@@ -191,17 +170,10 @@ export {
   ADMIN,
   ALL_ADMINS,
   ALL_ADMINS_META,
-  CLIENT_SELF_QUERY,
-  CLIENT,
-  ALL_CLIENTS,
-  ALL_CLIENTS_META,
   MERCHANT_SELF_QUERY,
   MERCHANT,
   ALL_MERCHANTS,
   ALL_MERCHANTS_META,
-  SMS_SERVICE,
-  ALL_SMS_SERVICES,
-  ALL_SMS_SERVICES_META,
   CATEGORY,
   ALL_CATEGORIES,
   ALL_CATEGORIES_META,

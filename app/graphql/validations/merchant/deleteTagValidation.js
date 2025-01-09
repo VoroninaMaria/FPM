@@ -20,14 +20,5 @@ export default yup.object({
         .catch(() => {
           throw new GraphQLError("Forbidden");
         });
-    })
-    .test("empty", "delete_error", (tag_id) =>
-      Database("client_tags")
-        .where({ tag_id })
-        .first()
-        .then((client_tag) => !client_tag)
-        .catch(() => {
-          throw new GraphQLError("Forbidden");
-        })
-    ),
+    }),
 });

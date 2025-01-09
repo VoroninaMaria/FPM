@@ -16,9 +16,6 @@ const listMovie = () => (
 	<List actions={<CreateOnlyTopToolbar />}>
 		<Datagrid bulkActionButtons={false}>
 			<TextField source="name" />
-			<ReferenceField source="category_id" reference="Category" link="show">
-				<TextField source="name" />
-			</ReferenceField>
 			<DateField source="created_at" />
 			<DateField source="updated_at" />
 			<ShowButton className="button-show" />

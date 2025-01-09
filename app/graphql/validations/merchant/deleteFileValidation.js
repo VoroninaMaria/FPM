@@ -18,7 +18,7 @@ export default yup.object({
         .where({ id, account_id, account_type: "merchants" })
         .first()
         .catch(() => {
-          throw new GraphQLError("Forbidden");
+          throw new GraphQLError("Forbidden1111");
         });
     }),
 });

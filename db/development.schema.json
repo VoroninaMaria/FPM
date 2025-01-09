@@ -128,6 +128,10 @@
       "type": "uuid",
       "default": null
     },
+    "min_price": {
+      "type": "real",
+      "default": null
+    },
     "name": {
       "type": "character varying",
       "default": null
@@ -233,7 +237,7 @@
       "default": null
     }
   },
-  "movies": {
+  "movie_categories": {
     "category_id": {
       "type": "uuid",
       "default": null
@@ -241,6 +245,36 @@
     "created_at": {
       "type": "timestamp with time zone",
       "default": "now()"
+    },
+    "id": {
+      "type": "uuid",
+      "default": "uuid_generate_v4()"
+    },
+    "movie_id": {
+      "type": "uuid",
+      "default": null
+    },
+    "updated_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    }
+  },
+  "movies": {
+    "age": {
+      "type": "character varying",
+      "default": null
+    },
+    "created_at": {
+      "type": "timestamp with time zone",
+      "default": "now()"
+    },
+    "description": {
+      "type": "character varying",
+      "default": null
+    },
+    "duration": {
+      "type": "character varying",
+      "default": null
     },
     "file_id": {
       "type": "uuid",
@@ -250,7 +284,15 @@
       "type": "uuid",
       "default": "uuid_generate_v4()"
     },
+    "main_roles": {
+      "type": "character varying",
+      "default": null
+    },
     "name": {
+      "type": "character varying",
+      "default": null
+    },
+    "start_date": {
       "type": "character varying",
       "default": null
     },
@@ -288,10 +330,6 @@
       "type": "json",
       "default": null
     },
-    "sms_service_id": {
-      "type": "uuid",
-      "default": null
-    },
     "updated_at": {
       "type": "timestamp with time zone",
       "default": "now()"
@@ -327,32 +365,6 @@
       "default": null
     },
     "time": {
-      "type": "character varying",
-      "default": null
-    },
-    "updated_at": {
-      "type": "timestamp with time zone",
-      "default": "now()"
-    }
-  },
-  "sms_services": {
-    "config": {
-      "type": "json",
-      "default": "'{}'::json"
-    },
-    "created_at": {
-      "type": "timestamp with time zone",
-      "default": "now()"
-    },
-    "id": {
-      "type": "uuid",
-      "default": "uuid_generate_v4()"
-    },
-    "merchant_id": {
-      "type": "uuid",
-      "default": null
-    },
-    "service_name": {
       "type": "character varying",
       "default": null
     },
