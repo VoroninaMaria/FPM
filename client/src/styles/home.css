@@ -1,44 +1,172 @@
+/* home.css */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap");
+
 body {
-	margin: 0;
-	font-family: Arial, sans-serif;
-	background-color: #f4f4f4;
-	color: #333;
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
 }
 
-.container {
-	display: flex;
-	flex-direction: column;
-	min-height: 100vh;
+.page-container {
+  display: flex;
+  flex-direction: column; /* Ensure nav is on top */
+  width: 100%;
+  height: 100vh;
+  padding: 0;
+  margin: 0;
+  position: relative;
+  background: url("../img/mainHeaderBackground2.jpg") no-repeat center center
+    fixed;
+  background-size: cover;
+  overflow: hidden;
+}
+
+.nav {
+  background-color: rgba(
+    25,
+    25,
+    25,
+    0.8
+  ); /* Semi-transparent background for nav */
+  width: 100%;
+  padding: 2% 10%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.nav-list {
+  list-style-type: none;
+  display: flex;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+}
+
+.nav-right {
+  display: flex;
+  justify-content: flex-end; /* Ensure items are aligned to the right */
+  flex: 1; /* Take up the remaining space */
+  padding-right: 20%;
+}
+
+.nav-item {
+  margin: 0 20px; /* Reduced margin between menu items */
+}
+
+.nav-item a {
+  color: #ffffff; /* White color */
+  text-decoration: none;
+  font-size: 24px; /* Increased font size */
+  transition: color 0.3s, text-decoration 0.3s; /* Smooth transition */
+}
+
+.nav-item a:hover {
+  color: #d82524; /* Bright pink color on hover */
+  opacity: 0.7;
+  text-decoration: underline; /* Underline on hover */
+}
+
+.content-container {
+  display: flex; /* Ensures header and main content are side by side */
+  width: 100%;
+  flex: 1;
 }
 
 .header {
-	background-color: #333;
-	color: #fff;
-	padding: 20px;
-	text-align: center;
+  font-family: "Lexend", sans-serif; /* Apply Lexend font */
+  background-color: rgba(
+    25,
+    25,
+    25,
+    0.8
+  ); /* Semi-transparent background for header */
+  color: #fff;
+  padding: 3% 0;
+  text-align: center;
+  flex: 0 0 55%; /* Header takes up 60% */
+}
+
+.header-content {
+  margin-top: 120px;
+}
+
+.header-title {
+  font-size: 100px; /* Увеличенный размер шрифта */
+  margin: 0;
+  font-weight: 200; /* Начертание Regular */
+  line-height: 1.1; /* Высота строки уменьшена */
+}
+
+.line {
+  margin: 0; /* Убираем отступы */
+}
+
+.header-description {
+  color: white;
+  font-size: 16px;
+  width: 70%;
+  padding-left: 15%;
+  padding-top: 1%;
+  font-weight: 50;
+  opacity: 0.6;
 }
 
 .main-content {
-	flex: 1;
-	padding: 20px;
+  font-family: "Lexend";
+  background-color: rgba(
+    25,
+    25,
+    25,
+    0.8
+  ); /* Semi-transparent background for main content */
+  flex: 0 0 45%; /* Main content takes up 40% */
+  padding: 3% 0;
 }
 
-.location-list {
-	list-style: none;
-	padding: 0;
+.location-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr); /* 2 items per row */
+  gap: 40px; /* Увеличенный промежуток между элементами */
+  margin-right: 25%; /* Отодвинуть сетку от правой стороны на 10% */
 }
 
 .location-item {
-	background-color: #fff;
-	margin-bottom: 10px;
-	padding: 15px;
-	border-radius: 5px;
-	box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background-color: #ccc; /* Серый цвет фона для каждого элемента */
+  margin-bottom: 10px;
+  border-radius: 15px; /* Закругленные углы */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  height: 320px; /* Увеличенная высота блока */
+  background-size: cover; /* Ensures the image covers the block */
+  background-position: center; /* Centers the image within the block */
+  display: flex;
+  align-items: flex-end; /* Place text at the bottom */
+  color: white; /* White font color */
+}
+
+.location-item a {
+  text-decoration: none; /* Remove underline */
+  color: white; /* White font color for links */
+}
+
+.location-item a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.location-address-info {
+  background-color: rgba(0, 0, 0, 0.8); /* Black with 50% transparency */
+  width: 100%;
+  text-align: center;
+  font-size: 14px;
+  color: white;
+  padding: 15px;
+  border-radius: 5px;
+  margin-bottom: 5px;
 }
 
 .footer {
-	background-color: #333;
-	color: #fff;
-	text-align: center;
-	padding: 10px;
+  background-color: #333;
+  color: #fff;
+  text-align: center;
+  padding: 10px;
 }

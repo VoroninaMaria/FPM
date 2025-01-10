@@ -6,6 +6,8 @@ import {
   ListMetadata,
 } from "@local/graphql/types/index.js";
 import paginationArgs from "@local/graphql/queries/shared/paginationArgs.js";
+import { Config } from "@local/lib/index.js";
+import { FILE_CONSTANTS } from "@local/constants/index.js";
 
 const Location = {
   type: LocationType,
@@ -14,6 +16,11 @@ const Location = {
     Database("locations")
       .where({ id })
       .first()
+      .then((file) => ({
+        ...file,
+        url: `${Config.assetsUrl}/${file.id}`,
+        size: file.size / FILE_CONSTANTS.BYTES_IN_MEGABYTE,
+      }))
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),

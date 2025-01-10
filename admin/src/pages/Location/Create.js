@@ -22,6 +22,13 @@ const createLocation = () => (
         source="address"
         validate={[required()]}
       />
+      <ReferenceInput source="file_id" reference="File">
+        <SelectInput
+          optionText="name"
+          optionValue="id"
+          validate={[required()]}
+        />
+      </ReferenceInput>
       <ReferenceInput source="merchant_id" reference="Merchant">
         <SelectInput
           optionText="name"

@@ -21,6 +21,13 @@ const editLocation = () => (
         source="name"
         validate={[required()]}
       />
+      <ReferenceInput source="file_id" reference="File">
+        <SelectInput
+          optionText="name"
+          optionValue="id"
+          validate={[required()]}
+        />
+      </ReferenceInput>
       <TextInput
         inputProps={{ maxLength: 255 }}
         source="address"

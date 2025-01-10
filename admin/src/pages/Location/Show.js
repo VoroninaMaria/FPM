@@ -13,6 +13,9 @@ const showDiscount = () => (
       <ReferenceField source="merchant_id" reference="Merchant" link="show">
         <TextField source="name" />
       </ReferenceField>
+      <ReferenceField source="file_id" reference="File" link="show">
+        <TextField source="name" />
+      </ReferenceField>
       <DateField source="created_at" />
       <DateField source="updated_at" />
     </SimpleShowLayout>

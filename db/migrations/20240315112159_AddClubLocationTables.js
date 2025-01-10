@@ -12,6 +12,7 @@ export const up = async (knex) => {
       .references("id")
       .inTable("merchants");
     table.unique(["merchant_id", "name"]);
+    table.uuid("file_id").index().notNull().references("id").inTable("files");
     addTimestamps(knex, table);
   });
 };

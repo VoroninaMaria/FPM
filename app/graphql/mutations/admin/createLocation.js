@@ -13,6 +13,7 @@ export default {
   args: {
     name: { type: new GraphQLNonNull(GraphQLString) },
     address: { type: new GraphQLNonNull(GraphQLString) },
+    file_id: { type: new GraphQLNonNull(GraphQLID) },
     merchant_id: { type: new GraphQLNonNull(GraphQLID) },
   },
   resolve: (_, params) =>
