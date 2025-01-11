@@ -52,19 +52,26 @@ const LocationDetails = () => {
 
   const fetchMovies = async (locationId, category_name) => {
     try {
+      const query = `
+      {
+  movieByLocation(location_id: "${locationId}" ${
+        category_name ? `, category_name: "${category_name}"` : ""
+      }) {
+          categories_ids, file_id, name, description, start_date, age, duration, main_roles, id
+        }
+      }
+    `;
       const response = await fetch("http://localhost:5001/graphql", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
-          query: `{ movieByLocation(location_id: "${locationId}", category_name: "${category_name}") { categories_ids, file_id, name, description, start_date, age, duration, main_roles, id } }`,
-        }),
+        body: JSON.stringify({ query }),
       });
       const textResult = await response.text();
 
       try {
-        const jsonResult = await JSON.parse(textResult);
+        const jsonResult = JSON.parse(textResult);
 
         if (jsonResult.data && jsonResult.data.movieByLocation) {
           const moviesWithDetails = await Promise.all(
@@ -151,10 +158,11 @@ const LocationDetails = () => {
           id="categoryFilter"
           value={categoryFilter}
           onChange={handleCategoryChange}
+          className="category-filter" /* Добавляем класс здесь */
         >
           <option value="">All</option>
           <option value="businki">businki</option>
-          <option value="Category2">Category2</option>
+          <option value="bubochki">bubochki</option>
           {/* Add more categories as needed */}
         </select>
       </div>

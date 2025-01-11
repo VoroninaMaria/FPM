@@ -13,7 +13,6 @@ import { Config } from "@local/lib/index.js";
 import { FILE_CONSTANTS } from "@local/constants/index.js";
 import paginationArgs from "@local/graphql/queries/shared/paginationArgs.js";
 import { CategoryFilter } from "@local/graphql/types/index.js";
-import { MovieFilter } from "@local/graphql/types/index.js";
 
 const allTags = {
   type: new GraphQLList(TagType),
@@ -159,9 +158,7 @@ const sessionById = {
 const movieByLocation = {
   type: new GraphQLList(MovieType),
   args: {
-    location_id: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
+    location_id: { type: new GraphQLNonNull(GraphQLString) },
     category_name: { type: GraphQLString },
   },
   resolve: async (
@@ -170,25 +167,47 @@ const movieByLocation = {
     { perPage = 5, page = 0, sortField = "name", sortOrder = "asc" }
   ) => {
     try {
+      // Получаем сеансы по локации
       const sessions = await Database("sessions").where({ location_id });
-      const moviesIds = Array.from(
+      const movieIds = Array.from(
         new Set(sessions.map((session) => session.movie_id))
       );
 
-      let categoryFilterCondition = "";
+      // Если категории не переданы, возвращаем все фильмы
+      let categoryId = null;
 
       if (category_name) {
-        categoryFilterCondition = `AND name = '${category_name}'`;
+        const category = await Database("categories")
+          .where("name", category_name)
+          .first();
+
+        if (!category) {
+          throw new GraphQLError("Категория с указанным именем не найдена.");
+        }
+        categoryId = category.id;
       }
 
+      // Получаем фильмы
       const movies = await Database("movies")
         .select([
-          Database.raw('"movies".*'),
+          "movies.*",
           Database.raw(
-            `(select array_agg(category_id) from movie_categories where movie_categories.movie_id = movies.id ${categoryFilterCondition}) as categories_ids`
+            `(SELECT ARRAY_AGG(category_id) 
+              FROM movie_categories 
+              WHERE movie_categories.movie_id = movies.id) as categories_ids`
           ),
         ])
-        .whereIn("id", moviesIds)
+        .whereIn("movies.id", movieIds)
+        .modify((query) => {
+          if (categoryId) {
+            query.whereExists(function () {
+              this.select("*")
+                .from("movie_categories")
+                .whereRaw("movie_categories.movie_id = movies.id")
+                .andWhere("movie_categories.category_id", categoryId);
+            });
+          }
+        })
         .limit(perPage)
         .offset(page * perPage)
         .orderBy(sortField, sortOrder);
@@ -208,10 +227,17 @@ const allSessionByMovieAndLocation = {
     movie_id: { type: new GraphQLNonNull(GraphQLID) },
     location_id: { type: new GraphQLNonNull(GraphQLID) },
   },
-  resolve: (_, { movie_id, location_id }) =>
+  resolve: (
+    _,
+    { movie_id, location_id },
+    { perPage = 20, page = 0, sortField = "day", sortOrder = "asc" }
+  ) =>
     Database("sessions")
       .where({ movie_id })
       .andWhere({ location_id })
+      .limit(perPage)
+      .offset(page * perPage)
+      .orderBy(sortField, sortOrder)
       .then((result) => {
         if (!result) {
           throw new GraphQLError("Session not found");
