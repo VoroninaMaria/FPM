@@ -4,7 +4,7 @@ import "../styles/home.css";
 
 const Home = () => {
   const [locations, setLocations] = useState([]);
-  const [backgroundImages, setBackgroundImages] = useState({}); // New state for background images
+  const [backgroundImages, setBackgroundImages] = useState({});
   const [htmlResponse, setHtmlResponse] = useState("");
 
   useEffect(() => {
@@ -17,7 +17,7 @@ const Home = () => {
           },
           body: JSON.stringify({
             query: "{ allLocations { name, address, file_id } }",
-          }), // Updated query
+          }),
         });
         const textResult = await response.text();
 
@@ -27,7 +27,6 @@ const Home = () => {
           if (jsonResult.data && jsonResult.data.allLocations) {
             setLocations(jsonResult.data.allLocations);
 
-            // Fetch background images for each location
             for (const location of jsonResult.data.allLocations) {
               if (location.file_id) {
                 const imageResponse = await fetch(
@@ -39,7 +38,7 @@ const Home = () => {
                     },
                     body: JSON.stringify({
                       query: `{ fileById(id: "${location.file_id}") { url } }`,
-                    }), // Query to fetch image URL
+                    }),
                   }
                 );
                 const imageResult = await imageResponse.json();
@@ -66,32 +65,6 @@ const Home = () => {
 
   return (
     <div className="page-container">
-      <nav className="nav">
-        <ul className="nav-list">
-          <li className="nav-item left-align">
-            <a href="#" style={{ color: "#ffffff" }}>
-              CinemaClub
-            </a>
-          </li>
-          <div className="nav-right">
-            <li className="nav-item">
-              <a href="/">Home</a>
-            </li>
-            <li className="nav-item">
-              <a href="/about">About Us</a>
-            </li>
-            <li className="nav-item">
-              <a href="/contacts">Contacts</a>
-            </li>
-            <li className="nav-item">
-              <a href="/movies">Movies</a>
-            </li>
-            <li className="nav-item">
-              <a href="#">Location</a>
-            </li>
-          </div>
-        </ul>
-      </nav>
       <div className="content-container">
         <header className="header">
           <div className="header-content">
@@ -127,7 +100,7 @@ const Home = () => {
                   key={index}
                   className="location-item"
                   style={{
-                    backgroundImage: `url(${backgroundImages[location.name]})`, // Apply background image
+                    backgroundImage: `url(${backgroundImages[location.name]})`,
                   }}
                 >
                   <div className="location-address-info">

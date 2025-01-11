@@ -1,0 +1,45 @@
+/* src/styles/header.css */
+@import url("https://fonts.googleapis.com/css2?family=Lexend:wght@400;600&display=swap");
+
+.nav {
+	background-color: rgba(0, 0, 0, 0); /* More transparent background for nav */
+	width: 100%;
+	padding: 2% 10%;
+	display: flex;
+	justify-content: space-between;
+	position: fixed; /* Fixes the header at the top of the page */
+	top: 0;
+	z-index: 1000; /* Ensures it appears above other content */
+}
+
+.nav-list {
+	list-style-type: none;
+	display: flex;
+	margin: 0;
+	padding: 0;
+	width: 100%;
+}
+
+.nav-right {
+	display: flex;
+	justify-content: flex-end; /* Ensure items are aligned to the right */
+	flex: 1; /* Take up the remaining space */
+	padding-right: 20%;
+}
+
+.nav-item {
+	margin: 0 20px; /* Reduced margin between menu items */
+}
+
+.nav-item a {
+	color: #ffffff; /* White color */
+	text-decoration: none;
+	font-size: 24px; /* Increased font size */
+	transition: color 0.3s, text-decoration 0.3s; /* Smooth transition */
+}
+
+.nav-item a:hover {
+	color: #d82524; /* Bright pink color on hover */
+	opacity: 0.7;
+	text-decoration: underline; /* Underline on hover */
+}

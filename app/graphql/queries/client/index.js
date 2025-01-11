@@ -11,6 +11,9 @@ import { Session as SessionType } from "@local/graphql/types/index.js";
 import { Hall as HallType } from "@local/graphql/types/index.js";
 import { Config } from "@local/lib/index.js";
 import { FILE_CONSTANTS } from "@local/constants/index.js";
+import paginationArgs from "@local/graphql/queries/shared/paginationArgs.js";
+import { CategoryFilter } from "@local/graphql/types/index.js";
+import { MovieFilter } from "@local/graphql/types/index.js";
 
 const allTags = {
   type: new GraphQLList(TagType),
@@ -57,6 +60,32 @@ const categoryById = {
     Database("categories")
       .where({ id })
       .first()
+      .catch(() => {
+        throw new GraphQLError("Forbidden");
+      }),
+};
+
+const allCategories = {
+  type: new GraphQLList(CategoryType),
+  args: { ...paginationArgs, filter: { type: CategoryFilter } },
+  resolve: (
+    _,
+    {
+      perPage = 20,
+      page = 0,
+      sortField = "merchant_id",
+      sortOrder = "asc",
+      filter: { ids, ...filter },
+    }
+  ) =>
+    Database("categories")
+      .where({ ...filter })
+      .modify((queryBuilder) => {
+        if (ids?.length) queryBuilder.whereIn("id", ids);
+      })
+      .limit(perPage)
+      .offset(page * perPage)
+      .orderBy(sortField, sortOrder)
       .catch(() => {
         throw new GraphQLError("Forbidden");
       }),
@@ -129,15 +158,40 @@ const sessionById = {
 
 const movieByLocation = {
   type: new GraphQLList(MovieType),
-  args: { location_id: { type: new GraphQLNonNull(GraphQLString) } },
-  resolve: async (_, { location_id }) => {
+  args: {
+    location_id: {
+      type: new GraphQLNonNull(GraphQLString),
+    },
+    category_name: { type: GraphQLString },
+  },
+  resolve: async (
+    _,
+    { location_id, category_name },
+    { perPage = 5, page = 0, sortField = "name", sortOrder = "asc" }
+  ) => {
     try {
-      // Получаем залы по location_id
       const sessions = await Database("sessions").where({ location_id });
       const moviesIds = Array.from(
         new Set(sessions.map((session) => session.movie_id))
       );
-      const movies = await Database("movies").whereIn("id", moviesIds);
+
+      let categoryFilterCondition = "";
+
+      if (category_name) {
+        categoryFilterCondition = `AND name = '${category_name}'`;
+      }
+
+      const movies = await Database("movies")
+        .select([
+          Database.raw('"movies".*'),
+          Database.raw(
+            `(select array_agg(category_id) from movie_categories where movie_categories.movie_id = movies.id ${categoryFilterCondition}) as categories_ids`
+          ),
+        ])
+        .whereIn("id", moviesIds)
+        .limit(perPage)
+        .offset(page * perPage)
+        .orderBy(sortField, sortOrder);
 
       return movies;
     } catch (error) {
@@ -182,4 +236,5 @@ export default {
   locationById,
   hallById,
   sessionById,
+  allCategories,
 };

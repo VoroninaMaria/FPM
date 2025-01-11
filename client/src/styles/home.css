@@ -22,51 +22,6 @@ body {
   overflow: hidden;
 }
 
-.nav {
-  background-color: rgba(
-    25,
-    25,
-    25,
-    0.8
-  ); /* Semi-transparent background for nav */
-  width: 100%;
-  padding: 2% 10%;
-  display: flex;
-  justify-content: space-between;
-}
-
-.nav-list {
-  list-style-type: none;
-  display: flex;
-  margin: 0;
-  padding: 0;
-  width: 100%;
-}
-
-.nav-right {
-  display: flex;
-  justify-content: flex-end; /* Ensure items are aligned to the right */
-  flex: 1; /* Take up the remaining space */
-  padding-right: 20%;
-}
-
-.nav-item {
-  margin: 0 20px; /* Reduced margin between menu items */
-}
-
-.nav-item a {
-  color: #ffffff; /* White color */
-  text-decoration: none;
-  font-size: 24px; /* Increased font size */
-  transition: color 0.3s, text-decoration 0.3s; /* Smooth transition */
-}
-
-.nav-item a:hover {
-  color: #d82524; /* Bright pink color on hover */
-  opacity: 0.7;
-  text-decoration: underline; /* Underline on hover */
-}
-
 .content-container {
   display: flex; /* Ensures header and main content are side by side */
   width: 100%;
@@ -88,7 +43,7 @@ body {
 }
 
 .header-content {
-  margin-top: 120px;
+  margin-top: 23%;
 }
 
 .header-title {
@@ -125,6 +80,7 @@ body {
 }
 
 .location-grid {
+  margin-top: 15%;
   display: grid;
   grid-template-columns: repeat(2, 1fr); /* 2 items per row */
   gap: 40px; /* Увеличенный промежуток между элементами */
