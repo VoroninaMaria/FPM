@@ -26,11 +26,7 @@ const showSession = () => (
 			<ReferenceField source="movie_id" reference="Movie" link="show">
 				<TextField source="name" />
 			</ReferenceField>
-			<ArrayField source="place_arr" label="Places Array">
-				<SingleFieldList>
-					<BooleanField source="" />
-				</SingleFieldList>
-			</ArrayField>
+			<TextField source="place_arr" />
 			<DateField source="created_at" />
 			<DateField source="updated_at" />
 		</SimpleShowLayout>

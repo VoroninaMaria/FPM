@@ -12,7 +12,7 @@
 
 .footer::before {
 	content: "";
-	background: url("../img/mainHeaderBackground.jpg") no-repeat center center;
+	background-color: black;
 	background-size: cover;
 	opacity: 0.3; /* Прозрачность изображения */
 	position: absolute;
